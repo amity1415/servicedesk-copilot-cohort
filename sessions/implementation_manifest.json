@@ -71,7 +71,9 @@
       "live_gate": null,
       "checkpoint_commit": "2553e5c10f9c935f534b54dbb33ef3401072928c",
       "checkpoint_export_verified": true,
-      "completion_state": "verified_awaiting_commit"
+      "completion_state": "verified_committed",
+      "completion_commit": "102f4b76ff38bb1bff4029a7c66886114d97faba",
+      "completion_evidence": "sessions/03-neural-networks-transformers-and-tokenization/verification/runtime-gate.json"
     },
     {
       "session": 4,
