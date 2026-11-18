@@ -564,7 +564,7 @@
           "meaning": "Optional policy ID linking the how-to to governing policy."
         }
       ],
-      "notes": "Markdown YAML frontmatter and HTML <meta name=\"kb:...\"> encode the same metadata. Parser normalization currently converts metadata values to strings; distinguish that representation from source-level arrays/nulls.",
+      "notes": "Markdown YAML frontmatter and HTML <meta name=\"kb:...\"> encode the same metadata. The normalized loader retains JSON-compatible error-code arrays and normalizes date/filter fields explicitly. Trusted sidecar metadata and the policy register control visibility and versions.",
       "sha256": {
         "data/kb/KB-1001.md": "7737e12ac77e7ce470291a748fef6a78820d98fc3d3c7c396983fd4d0a9e7cec",
         "data/kb/KB-1002.html": "07402bd7e35444a3286330a994878d7a406e007a9976408b24eb6b3f967414a1",
@@ -2313,5 +2313,16 @@
     "evals/README.md": "9d1138b0a02f27b7cf3a9e52cd30592e016931b36fbfd2fa95d1107a68c2c541",
     "evals/redteam/attacks.jsonl": "164502a4a05b4aefd4f8f33906a2fed9858aee8871a445be64ce661b063b6231",
     "evals/rubrics/answer.yaml": "abfdd23fb87603925597e0633e9981b9f3353d8ae36c000fb5f7ec739c8d1603"
+  },
+  "derived_rag_baseline": {
+    "directory": "fixtures/rag-baseline",
+    "documents": 20,
+    "normalized_format": "Markdown derived from original Markdown/HTML",
+    "questions": 20,
+    "question_status": "draft",
+    "source_lineage": [
+      "original_source",
+      "original_sha256"
+    ]
   }
 }

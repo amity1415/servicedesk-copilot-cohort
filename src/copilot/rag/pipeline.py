@@ -2,13 +2,10 @@
 
 from __future__ import annotations
 
-import hashlib
-import json
 import math
 import re
 from collections import Counter
-from dataclasses import asdict, dataclass
-from datetime import date
+from dataclasses import dataclass
 from pathlib import Path
 
 
@@ -32,117 +29,33 @@ class Chunk:
 
 
 def tokens(text: str) -> list[str]:
-    return re.findall(r"[\w]+(?:-[\w]+)*", text.lower())
+    return re.findall("[\\w]+(?:-[\\w]+)*", text.lower())
 
 
 def load_document(path: Path) -> Document:
-    suffix = path.suffix.lower()
-    metadata = {}
-    if suffix == ".pdf":
-        from pypdf import PdfReader
+    from copilot.rag.loaders import load_document as parse
 
-        text = "\n".join(
-            page.extract_text(extraction_mode="layout") or "" for page in PdfReader(path).pages
-        )
-    elif suffix == ".docx":
-        from docx import Document as WordDocument
-
-        doc = WordDocument(path)
-        text = "\n".join(p.text for p in doc.paragraphs)
-        text += "\n" + "\n".join(
-            " | ".join(c.text for c in r.cells) for t in doc.tables for r in t.rows
-        )
-    else:
-        text = path.read_text(encoding="utf-8")
-        if suffix == ".html":
-            from bs4 import BeautifulSoup
-
-            soup = BeautifulSoup(text, "html.parser")
-            metadata = {
-                str(m.get("name")).removeprefix("kb:"): str(m.get("content"))
-                for m in soup.find_all("meta")
-                if m.get("name")
-            }
-            text = soup.get_text("\n", strip=True)
-        elif text.startswith("---"):
-            import yaml
-
-            _, header, text = text.split("---", 2)
-            metadata = {k: str(v) for k, v in yaml.safe_load(header).items()}
-    digest = hashlib.sha256(path.read_bytes()).hexdigest()
-    return Document(metadata.get("id", path.stem), text.strip(), metadata, str(path), digest)
+    return parse(path)
 
 
 def ingest(data: Path, output: Path) -> dict:
-    paths = sorted(
-        p
-        for directory in ("kb", "policies", "runbooks", "reference")
-        for p in (data / directory).glob("*")
-        if p.suffix.lower() in {".md", ".html", ".pdf", ".docx"}
-    )
-    old = {d["source"]: d for d in json.loads(output.read_text())} if output.exists() else {}
-    documents, skipped, changed = [], [], 0
-    for path in paths:
-        try:
-            doc = load_document(path)
-            changed += old.get(str(path), {}).get("digest") != doc.digest
-            documents.append(asdict(doc))
-        except Exception as exc:
-            skipped.append({"source": str(path), "error": str(exc)})
-    output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(documents, indent=2), encoding="utf-8")
-    report = {"documents": len(documents), "changed": changed, "skipped": skipped}
-    output.with_suffix(".report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
-    return report
+    from copilot.rag.loaders import ingest as run
+
+    return run(data, output)
 
 
 def chunk(
-    document: Document, strategy: str = "recursive", size: int = 1200, overlap: int = 120
-) -> list[Chunk]:
-    if not 0 <= overlap < size:
-        raise ValueError("require 0 <= overlap < size")
-    if strategy == "fixed":
-        parts = [document.text[i : i + size] for i in range(0, len(document.text), size - overlap)]
-    elif strategy in {"recursive", "parent-child"}:
-        # Paragraphs and numbered steps are atomic. An oversize atomic unit is
-        # retained intact rather than silently breaking a troubleshooting step.
-        units = re.split(r"\n\s*\n|(?=\n\d+\. )", document.text)
-        parts, current = [], ""
-        for unit in units:
-            if current and len(current) + len(unit) > size:
-                parts.append(current)
-                current = ""
-            current = (current + "\n\n" + unit).strip()
-        if current:
-            parts.append(current)
-    else:
-        raise ValueError(f"unknown chunk strategy: {strategy}")
-    return [
-        Chunk(
-            f"{document.id}:{i}",
-            document.id,
-            part,
-            document.metadata,
-            document.source,
-            document.text if strategy == "parent-child" else "",
-        )
-        for i, part in enumerate(parts)
-    ]
+    document: Document, strategy="recursive", size=1200, overlap=120, encoder=None, threshold=0.55
+):
+    from copilot.rag.chunking import make_chunks
+
+    return make_chunks(document, strategy, size, overlap, encoder, threshold)
 
 
-def allowed(metadata: dict, role: str, os_name: str | None, region: str | None) -> bool:
-    # Missing audience is denied for employees: PDFs/DOCX require curated metadata.
-    if role == "employee" and metadata.get("audience") != "employee":
-        return False
-    if metadata.get("status", "current") != "current":
-        return False
-    effective = metadata.get("effective_date", "")
-    if effective and effective > date.today().isoformat():
-        return False
-    return not any(
-        wanted and metadata.get(key, "any").lower() not in {wanted.lower(), "any", "global"}
-        for key, wanted in (("os", os_name), ("region", region))
-    )
+def allowed(metadata, role, os_name, region):
+    from copilot.rag.loaders import is_allowed
+
+    return is_allowed(metadata, role, os_name, region)
 
 
 class Retriever:
@@ -151,7 +64,6 @@ class Retriever:
 
     @classmethod
     def from_data(cls, data: Path):
-        # KB baseline needs no parser dependencies beyond YAML/BeautifulSoup.
         return cls(
             [
                 load_document(p)
@@ -188,7 +100,7 @@ class Retriever:
             "for",
         }
         q = Counter(t for t in tokens(query) if t not in stopwords)
-        exact = re.findall(r"\b(?:KB-\d+|\d{3,})\b", query, re.I)
+        exact = re.findall("\\b(?:KB-\\d+|\\d{3,})\\b", query, re.I)
         if exact:
             candidates = [
                 c
@@ -220,7 +132,6 @@ class Retriever:
 
     def answer(self, query: str, **kwargs) -> dict:
         hits = self.search(query, **kwargs)
-        # This extractive baseline cannot establish semantic answerability.
         if not hits:
             return {
                 "answer": "No supporting source found. I can raise a ticket.",

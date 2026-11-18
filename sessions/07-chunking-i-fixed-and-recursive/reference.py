@@ -1,12 +1,11 @@
-"""Session 07 runnable reference experiment; execute from project root."""
+"""Execute session 7 source, not a shared experiment preflight."""
 
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "src"))
-
-from copilot.course.experiments import run_session  # noqa: E402
-
 if __name__ == "__main__":
-    run_session(7, ROOT)
+    raise SystemExit(
+        subprocess.call([sys.executable, str(ROOT / "scripts/session.py"), "run", "7"], cwd=ROOT)
+    )

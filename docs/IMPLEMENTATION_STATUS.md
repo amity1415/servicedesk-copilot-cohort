@@ -5,6 +5,28 @@ live integration checks and release gates are separate. A successful offline run
 does not certify production readiness, model quality, protocol interoperability or
 the numerical release targets.
 
+## Validated cumulative RAG batch, sessions 05–08
+
+Implemented in both the integrated application and independent cumulative session
+source trees, following the instructor-authorized batch exception. All four
+session solutions and their commands passed; starters preserve inherited tests
+and intentionally fail the new work. Main regression: 111 passed. Fresh session-08
+Git checkout: 45 passed and its four-strategy benchmark completed. Real CPU ONNX
+inference and an isolated authenticated HTTP request passed. No paid calls occurred.
+
+Ingestion: 150 documents, no skips, no changes on repeated unchanged ingestion.
+All 177 protected original seed/evaluation files retain their recorded hashes.
+TF-IDF cosine retrieval and cited extraction are integrated into API/MCP; semantic
+chunk boundaries use pinned MiniLM ONNX. Recursive remains the default after a
+20-question draft comparison (0.80 Recall@5 versus semantic/parent-child 0.75).
+These are draft-label development results, not reviewed release scores.
+
+Local tags cohort-session-05 through cohort-session-08 contain standalone projects.
+Evidence: reports/baselines/rag-batch-verification.json and
+sessions/implementation_manifest.json. Session 04 remains pending live validation.
+GitHub publishing, PostgreSQL indexing, live generation, Jenkins and Docker runtime
+validation remain unfinished. Existing API/UI processes need restart to load code.
+
 ## Delivered teaching material
 
 - Forty numbered session folders, each with technical content, numbered build
@@ -21,8 +43,8 @@ the numerical release targets.
 | --- | --- | --- |
 | Foundations | Grouped ticket holdout, TF-IDF logistic/MLP classifiers, clustering | Actual fits on the 5,000-ticket corpus |
 | Model client | Configurable compatible chat endpoint, bounded retry, tokens/latency | Mock transport; no paid calls |
-| Retrieval | Parsers, hashes, fixed/recursive/parent-child chunks, metadata filters, BM25-style lexical reference | Full-corpus parsing and repeatability; source/OS/error-code tests |
-| Neural/database adapters | Sentence embeddings, cache, semantic chunks, RRF, cross-encoder, pgvector schema/search | Source implemented; neural downloads and PostgreSQL runtime not exercised |
+| Retrieval | Mixed-format parsers, trusted metadata, four chunking strategies, TF-IDF cosine with pre-scoring authorization | Full-corpus parsing and repeatability; source/OS/error-code tests |
+| Neural/database adapters | Sentence embeddings, cache, semantic chunks, RRF, cross-encoder, pgvector schema/search | Pinned CPU ONNX semantic chunking exercised; PostgreSQL, dense retrieval and reranking runtime not exercised |
 | API/UI | Authenticated ask, completed-result SSE, ingestion restriction, approvals, feedback, Streamlit | API exercised; UI source compiled, no visual browser review |
 | Actions/state | Durable local threads, memory deletion, stable ticket draft/key, dual approval, licence allocation | Ownership, duplicate/rejection, approval and effect tests |
 | Agent references | Bounded hand-written loop, specialist allow-lists, dependency executor, typed LangGraph decision/tool loop | Scripted decisions and in-memory checkpoints; PostgreSQL saver not exercised |

@@ -314,7 +314,7 @@ def collect():
             }
             for name, meaning in KB_FIELDS.items()
         ],
-        notes='Markdown YAML frontmatter and HTML <meta name="kb:..."> encode the same metadata. Parser normalization currently converts metadata values to strings; distinguish that representation from source-level arrays/nulls.',
+        notes='Markdown YAML frontmatter and HTML <meta name="kb:..."> encode the same metadata. The normalized loader retains JSON-compatible error-code arrays and normalizes date/filter fields explicitly. Trusted sidecar metadata and the policy register control visibility and versions.',
     )
     policy_fields = {
         "id": "Policy ID, e.g. POL-003; joins KB related_policy.",

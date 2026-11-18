@@ -7,6 +7,7 @@ COPY src ./src
 COPY services ./services
 RUN pip install --no-cache-dir ".[course,ticketing,protocols,agents,postgres,telemetry]"
 COPY data ./data
+COPY fixtures ./fixtures
 COPY policies ./policies
 COPY release ./release
 RUN mkdir -p /app/.work && chown -R copilot:copilot /app/.work

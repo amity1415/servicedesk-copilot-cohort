@@ -103,23 +103,121 @@
     },
     {
       "session": 5,
-      "status": "planned",
-      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+      "status": "implemented",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet",
+      "completion_state": "verified_pending_commit",
+      "starter": "sessions/05-why-rag-and-a-naive-baseline/starter",
+      "solution": "sessions/05-why-rag-and-a-naive-baseline/solution",
+      "previous_tests": [
+        "test_config.py",
+        "test_inference.py",
+        "test_logging_setup.py",
+        "test_ml.py",
+        "test_source_identity.py",
+        "test_tickets.py",
+        "test_tokens.py"
+      ],
+      "new_tests": [
+        "test_rag_baseline.py"
+      ],
+      "default_command": [
+        "rag-demo"
+      ],
+      "checkpoint_tag": "cohort-session-05",
+      "live_gate": "Live LLM answering and human-label review remain later validation; local retrieval/semantic inference is real",
+      "checkpoint_commit": "0546d2cd6d1afeb461bc2dc33854269e7a786bc0",
+      "checkpoint_export_verified": true,
+      "completion_evidence": "reports/baselines/rag-batch-verification.json"
     },
     {
       "session": 6,
-      "status": "planned",
-      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+      "status": "implemented",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet",
+      "completion_state": "verified_pending_commit",
+      "starter": "sessions/06-document-ingestion-and-parsing/starter",
+      "solution": "sessions/06-document-ingestion-and-parsing/solution",
+      "previous_tests": [
+        "test_config.py",
+        "test_inference.py",
+        "test_logging_setup.py",
+        "test_ml.py",
+        "test_rag_baseline.py",
+        "test_source_identity.py",
+        "test_tickets.py",
+        "test_tokens.py"
+      ],
+      "new_tests": [
+        "test_rag_ingestion.py"
+      ],
+      "default_command": [
+        "rag-ingest"
+      ],
+      "checkpoint_tag": "cohort-session-06",
+      "live_gate": "Live LLM answering and human-label review remain later validation; local retrieval/semantic inference is real",
+      "checkpoint_commit": "870dd1d59d7cf9a8bf21605f07005d5ab63b6173",
+      "checkpoint_export_verified": true,
+      "completion_evidence": "reports/baselines/rag-batch-verification.json"
     },
     {
       "session": 7,
-      "status": "planned",
-      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+      "status": "implemented",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet",
+      "completion_state": "verified_pending_commit",
+      "starter": "sessions/07-chunking-i-fixed-and-recursive/starter",
+      "solution": "sessions/07-chunking-i-fixed-and-recursive/solution",
+      "previous_tests": [
+        "test_config.py",
+        "test_inference.py",
+        "test_logging_setup.py",
+        "test_ml.py",
+        "test_rag_baseline.py",
+        "test_rag_ingestion.py",
+        "test_source_identity.py",
+        "test_tickets.py",
+        "test_tokens.py"
+      ],
+      "new_tests": [
+        "test_rag_recursive.py"
+      ],
+      "default_command": [
+        "rag-chunks"
+      ],
+      "checkpoint_tag": "cohort-session-07",
+      "live_gate": "Live LLM answering and human-label review remain later validation; local retrieval/semantic inference is real",
+      "checkpoint_commit": "d68b0c7af10cde2712501c32b55956d6bf4e54b7",
+      "checkpoint_export_verified": true,
+      "completion_evidence": "reports/baselines/rag-batch-verification.json"
     },
     {
       "session": 8,
-      "status": "planned",
-      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+      "status": "implemented",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet",
+      "completion_state": "verified_pending_commit",
+      "starter": "sessions/08-chunking-ii-semantic-and-parent-child/starter",
+      "solution": "sessions/08-chunking-ii-semantic-and-parent-child/solution",
+      "previous_tests": [
+        "test_config.py",
+        "test_inference.py",
+        "test_logging_setup.py",
+        "test_ml.py",
+        "test_rag_baseline.py",
+        "test_rag_ingestion.py",
+        "test_rag_recursive.py",
+        "test_source_identity.py",
+        "test_tickets.py",
+        "test_tokens.py"
+      ],
+      "new_tests": [
+        "test_rag_semantic.py"
+      ],
+      "default_command": [
+        "rag-benchmark"
+      ],
+      "checkpoint_tag": "cohort-session-08",
+      "live_gate": "Live LLM answering and human-label review remain later validation; local retrieval/semantic inference is real",
+      "checkpoint_commit": "825be15cf6b5594d13d32da4ab4404e767f1209c",
+      "checkpoint_export_verified": true,
+      "completion_evidence": "reports/baselines/rag-batch-verification.json"
     },
     {
       "session": 9,
@@ -290,5 +388,18 @@
     "course_history": "independent linear cumulative source history"
   },
   "completion_policy": "docs/SESSION_COMPLETION_POLICY.md",
-  "source_status_is_not_completion": true
+  "source_status_is_not_completion": true,
+  "validation_batches": [
+    {
+      "sessions": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "authorization": "Instructor requested implementation through session 8 before batch validation",
+      "status": "runtime_and_fresh_checkout_verified_pending_commit",
+      "session_4_live_check": "separate pending requirement, not silently passed"
+    }
+  ]
 }

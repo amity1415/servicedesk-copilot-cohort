@@ -56,3 +56,17 @@ Docker deployment and Jenkins administration remain separate decisions.
 ## Required execution and commit gate
 
 Source availability is separate from audited completion. Run `python scripts/complete_session.py N` in order. This executes both session and integrated application features, passes tests, saves evidence and commits before the next session is allowed. See [the completion policy](../docs/SESSION_COMPLETION_POLICY.md). A required live comparison cannot pass on a mock.
+
+
+## RAG batch commands
+
+`copilot rag-demo` runs the integrated vector/extractive pipeline. `rag-ingest`
+ingests 150 sources twice to verify idempotence. `rag-chunks` inspects boundaries;
+`rag-benchmark` measures fixed, recursive, neural semantic and parent-child
+strategies. Use `scripts/session.py run 5` through `run 8` for the actual cumulative
+session source. Prepare public model assets with `copilot rag-model-prepare` if
+they are not already present. No paid OpenAI call is required for this local batch.
+
+Session 4's live comparison remains pending. RAG answers in this batch use cited
+extraction, and question labels remain draft; production answer quality is not
+certified. Read `docs/RAG_SESSION_05_08.md` and each new `BUILD_GUIDE.md` for scope.

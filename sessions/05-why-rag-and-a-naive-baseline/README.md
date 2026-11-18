@@ -1,5 +1,7 @@
 # Session 05: Why RAG and a naive baseline
 
+[Actual cumulative Python build guide](BUILD_GUIDE.md)
+
 [Problem statement and dataset metadata](PROBLEM_STATEMENT_AND_DATASET.md)
 
 Session 04 is the starting point. This increment becomes part of the same application and is retained in session 06.
@@ -18,7 +20,7 @@ Work through these implementation decisions: Select 20 Markdown documents; const
 
 - [src/copilot/rag/pipeline.py](../../src/copilot/rag/pipeline.py)
 
-Run the adjacent `reference.py` from the project root. It executes the session experiment through the shared application code. Its JSON report declares whether it is an offline experiment or an integration preflight. A preflight does not satisfy the integration gate.
+Run the adjacent `reference.py` from the project root. It executes this session's own cumulative solution source. The matching feature also runs through the main application. This RAG batch is validated with real local retrieval/semantic inference; live LLM quality remains a separate gate.
 
 ## Deliberate failure exercise
 

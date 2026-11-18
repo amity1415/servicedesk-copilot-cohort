@@ -35,3 +35,15 @@ The runtime gate for session 3 reports a declared unit-rate cost forecast and it
 assumptions, not billed provider usage or validation that a deployment model is
 available. Refresh pricing/model decisions before live work. All unrelated live,
 security and production release gates remain required by the program's build plan.
+
+
+## Instructor authorized RAG batch exception
+
+On 18 November 2026 the instructor explicitly requested implementation through
+session 8 before validation. Sessions 5–8 are therefore one authorized batch:
+implement all four, run their cumulative acceptance and starter checks, run the
+corresponding main application features and actual semantic/HTTP checks, then
+record verified per-session commits and checkpoint tags. This exception does not
+mark session 4's live-model gate complete or authorize an unvalidated later batch.
+The batch validator is `scripts/validate_rag_batch.py`; the original sequential
+gate remains fail-closed for sessions without an authorized batch definition.

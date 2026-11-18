@@ -4,11 +4,11 @@ Use with [the engineering design](DESIGN.md). Milestones begin **planned** until
 
 | ID | Milestone | Status | Branch or commit | Jenkins build or local evidence | Next action |
 | --- | --- | --- | --- | --- | --- |
-| M00 | Git and reproducible baseline | Planned | — | — | Review staged assets and generated reports; establish clean-clone gate |
-| M01 | Ingestion and trusted metadata | Planned | — | — | Test policy registry and IT-only runbook handling |
+| M00 | Git and reproducible baseline | In progress | Local main and session tags 01–08 | Fresh session-08 checkout: 45 tests and benchmark passed | Configure GitHub remote and dependency lock workflow |
+| M01 | Ingestion and trusted metadata | Complete | cohort-session-06 through 08 | reports/baselines/rag-batch-verification.json; 150 documents, 0 skips, unchanged repeat | Retain checks when adding persistent indexing |
 | M02 | Persistent versioned index | Planned | — | — | Design migrations, exact search and generation activation |
 | M03 | Authorized hybrid retrieval | Planned | — | — | Freeze retrieval subset and compare sparse/dense/fusion |
-| M04 | Grounded service integration | Planned | — | — | Inject one RagService into API and documents MCP |
+| M04 | Grounded service integration | In progress | Local RAG batch 05–08 | Shared VectorRag factory, authenticated HTTP and cumulative API/MCP tests | Validate live generation and provider errors |
 | M05 | Reviewed evaluation gates | Planned | — | — | Review labels/splits and define claim-support checks |
 | M06 | Durable observability | Planned | — | — | Trace one full request before adding dashboards |
 | M07 | Jenkins CI and trusted quality jobs | Planned | — | — | Register the Windows agent and review the seed Jenkinsfile |
@@ -29,11 +29,11 @@ Allowed statuses: Planned, In progress, Blocked, Ready for review, Complete. Use
 
 ### M01 Ingestion and trusted metadata
 
-- [ ] Normalize metadata across Markdown, HTML, PDF and DOCX.
-- [ ] Join current/superseded policy revisions to the authoritative register.
-- [ ] Strip HTML portal chrome and preserve tables and ordered steps.
-- [ ] Enforce missing-audience denial and IT-only runbook visibility.
-- [ ] Include metadata/parser/chunker changes in invalidation; quarantine bad sources.
+- [x] Normalize metadata across Markdown, HTML, PDF and DOCX.
+- [x] Join current/superseded policy revisions to the authoritative register.
+- [x] Strip HTML portal chrome and preserve tables and ordered steps.
+- [x] Enforce missing-audience denial and IT-only runbook visibility.
+- [x] Include metadata/parser/chunker changes in invalidation; quarantine bad sources.
 
 ### M02 Persistent versioned index
 

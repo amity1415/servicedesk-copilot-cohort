@@ -1,5 +1,7 @@
 # Steps to follow — session 08
 
+[Actual cumulative Python build guide](BUILD_GUIDE.md)
+
 Run every command from `servicedesk-copilot/` with the environment activated. See [setup](../../docs/SETUP.md).
 
 1. Verify session 07 is complete. Read your previous evidence and preserve its passing checks.

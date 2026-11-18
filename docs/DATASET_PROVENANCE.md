@@ -63,3 +63,15 @@ KB `audience=it-staff` is not the same concept as employee application `role=ana
 - Distinct KB IDs and a `heldout` field do not guarantee an independent heldout benchmark; the current retrieval evaluator reports across the supplied pool. Review and enforce the split explicitly before claiming heldout quality.
 - Draft golden sets and desired red-team outcomes are not proof of model quality, human agreement or attack resistance. Missing measurements stay unknown.
 - Fictional prices, SLA values and historic fixture dates are not live vendor pricing, organizational policy or current outage status. No generalization to production traffic is established.
+
+
+## RAG teaching derivative for sessions 5 through 8
+
+`fixtures/rag-baseline` contains 20 normalized Markdown articles derived from the
+original Markdown/HTML exports, with original source paths and byte hashes. The
+Mac article originates in HTML and is explicitly normalized by the trainer. Two
+questions are acceptance scenarios; 18 are derived from resolved synthetic tickets.
+All 20 labels remain drafts. The original seed and existing evaluation files were
+not changed. Session 8 compares chunking on the complete 150-document supported
+corpus with the same questions, keeping TF-IDF retrieval fixed. Semantic boundaries
+use a pinned local CPU sentence model, not a paid API or simulated embeddings.

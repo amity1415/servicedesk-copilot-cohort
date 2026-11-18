@@ -54,11 +54,20 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     register(commands)
 
+    from copilot.rag.cli import register as register_rag
+
+    register_rag(commands)
+
     args = parser.parse_args(argv)
     settings = get_settings()
     configure_logging(settings.log_level, settings.log_format)
 
     from copilot.foundation_cli import execute
+    from copilot.rag.cli import execute as execute_rag
+
+    rag_result = execute_rag(args, settings)
+    if rag_result is not None:
+        return rag_result
 
     foundation_result = execute(args, settings, Path("reports/integrated"))
     if foundation_result is not None:
@@ -102,11 +111,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         import json
 
         from copilot.agents.engine import Engine
-        from copilot.rag.pipeline import Retriever
         from copilot.tools.runtime import Runtime
 
         runtime = Runtime(Path(".work/runtime.sqlite3"), settings.data_dir)
-        engine = Engine(runtime, Retriever.from_data(settings.data_dir))
+        from copilot.rag.service import VectorRag
+
+        engine = Engine(runtime, VectorRag.from_data(settings.data_dir))
         print(json.dumps(engine.run(args.employee, args.question, args.thread), indent=2))
         return 0
     if args.command == "serve":

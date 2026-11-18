@@ -1,0 +1,398 @@
+{
+  "scope": "sessions 5\u20138 actual source plus integrated local RAG validation",
+  "verified_at": "2026-11-18T07:27:10.983466+00:00",
+  "checks": [
+    {
+      "name": "session-05-solution-tests",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "5"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "68df1feff836fb96e1bc988d2a95c0922e838dca672eb5431c86cc227a999379"
+    },
+    {
+      "name": "session-05-starter-inherited",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "5",
+        "--variant",
+        "starter",
+        "--previous-only"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "063afaad5cdb0f691f99f67dc3ff78ff4af8fd40e6e6ab62a01764cb57942fa1"
+    },
+    {
+      "name": "session-05-starter-new",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "5",
+        "--variant",
+        "starter"
+      ],
+      "exit_code": 1,
+      "expected": "starter new work fails",
+      "passed": true,
+      "output_sha256": "9b36d3c42eb3f8edae5e48b9e00788c9560793f67c1c7bb4e5885ee21565e51d"
+    },
+    {
+      "name": "session-05-runtime",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "5"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "9dd4c19da378704f6fc2d76fa5ece746f59fc8242add9bf3888913867818f21d"
+    },
+    {
+      "name": "session-06-solution-tests",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "6"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "d6171a868ab9316965c027090fdfcf6232f0369574b7bee474c68b4c12fd109b"
+    },
+    {
+      "name": "session-06-starter-inherited",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "6",
+        "--variant",
+        "starter",
+        "--previous-only"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "6ea45c13b82ca06c7866a31de9ad894d2958b67a12ac543cb049436a81c46e0e"
+    },
+    {
+      "name": "session-06-starter-new",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "6",
+        "--variant",
+        "starter"
+      ],
+      "exit_code": 1,
+      "expected": "starter new work fails",
+      "passed": true,
+      "output_sha256": "f0dc32cab8508ba592f87541d121615a117d87c00647e9bfcd5a8e32d17feca6"
+    },
+    {
+      "name": "session-06-runtime",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "6"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "69958079caed7fbfce52d9d2a7c87c8d57d0f67e5feed275cdb3d3a001ab6399"
+    },
+    {
+      "name": "session-07-solution-tests",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "7"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "a7a60b785cd068a6d49e22c6efce19a3b90eb13c6e8cb9ba8112da32e100d603"
+    },
+    {
+      "name": "session-07-starter-inherited",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "7",
+        "--variant",
+        "starter",
+        "--previous-only"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "8a28c33e400fbb6ac5f4d6fcedf651507abe0a8f0715aaf437640d96eb85a4c8"
+    },
+    {
+      "name": "session-07-starter-new",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "7",
+        "--variant",
+        "starter"
+      ],
+      "exit_code": 1,
+      "expected": "starter new work fails",
+      "passed": true,
+      "output_sha256": "b279acd45137cec28bc1ad5724bf1a6068b913b0a4f12677fa2d4acf43f69f1f"
+    },
+    {
+      "name": "session-07-runtime",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "7"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "21a48ca0b532c57e253772d7a9c654d6d002d99d821790f9f639a737381033fd"
+    },
+    {
+      "name": "session-08-solution-tests",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "8"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "a057af9543992ac0018923fa07c868ca66f7e1568c44b1fe4492423be9723f30"
+    },
+    {
+      "name": "session-08-starter-inherited",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "8",
+        "--variant",
+        "starter",
+        "--previous-only"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "59ba816fc8a4ed7ac1f026639f9de9db90e8ab554381d15dc72742213203818a"
+    },
+    {
+      "name": "session-08-starter-new",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "8",
+        "--variant",
+        "starter"
+      ],
+      "exit_code": 1,
+      "expected": "starter new work fails",
+      "passed": true,
+      "output_sha256": "e2654f513cd3493296a375018cc66ca0b3aa4eb041fc80d0fdd556dfc7b28941"
+    },
+    {
+      "name": "session-08-runtime",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "8"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "0ea50b0dfa9c86e8f03b9f2d624d6a0536b45c835a0e106a35891024a5a4f9ec"
+    },
+    {
+      "name": "main-regression",
+      "command": [
+        "-m",
+        "pytest",
+        "--junitxml=reports/rag-batch-tests.xml",
+        "--tb=short"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "149e4cbd263ad2368140105adeaafe4acdd01502fbe42529b292baaa21668ac2"
+    },
+    {
+      "name": "main-baseline",
+      "command": [
+        "-m",
+        "copilot",
+        "rag-demo"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "e13e8d80b13670fd252c5a37b7498c46e0f38a45f1a5098ba01c75753f3b64ec"
+    },
+    {
+      "name": "main-ingestion",
+      "command": [
+        "-m",
+        "copilot",
+        "rag-ingest"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "ee11e237540e39a68750d4688ab9a83ca66ea935450f7d2d7b4819fdf03962dd"
+    },
+    {
+      "name": "main-recursive",
+      "command": [
+        "-m",
+        "copilot",
+        "rag-chunks",
+        "--strategy",
+        "recursive"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "604e5ccc2d1b34f593531b6f7fb4721e78406ef22ca9a57e295f247bde5b294b"
+    },
+    {
+      "name": "main-four-strategies",
+      "command": [
+        "-m",
+        "copilot",
+        "rag-benchmark"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "0f5bed2b053b9df9bc50ef66c5a5d376edcc973941e71aa0167d54b62b923cdf"
+    },
+    {
+      "name": "main-mac-workflow",
+      "command": [
+        "-m",
+        "copilot",
+        "ask",
+        "How do I set up VPN on my Mac?",
+        "--employee",
+        "E1261",
+        "--thread",
+        "rag-batch-check"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "2ad1e414f96c7ce979ddb3e1d2459d811e334aa6ae4c043213d717bd5cf76bbf"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "format",
+      "command": [
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "b08c1e5f3bf13b1b0373441e6e967431a97b21eec0de2968b54e19997ddc4166"
+    },
+    {
+      "name": "course-links",
+      "command": [
+        "scripts/check_course.py"
+      ],
+      "exit_code": 0,
+      "expected": "success",
+      "passed": true,
+      "output_sha256": "1f346c19de1390fbb72e3d29d316a6abce56d94435421a161c96a19477fe2157"
+    }
+  ],
+  "all_passed": true,
+  "paid_calls": 0,
+  "semantic_encoder": {
+    "repository": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "files": {
+      "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+      "config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+      "onnx/model_quint8_avx2.onnx": "b941bf19f1f1283680f449fa6a7336bb5600bdcd5f84d10ddc5cd72218a0fd21"
+    },
+    "pooling": "attention-mask mean then L2 normalization",
+    "max_tokens": 256,
+    "dimension": 384,
+    "provider": "CPUExecutionProvider"
+  },
+  "retrieval_encoder": "TF-IDF cosine",
+  "scorecard": {
+    "fixed": {
+      "chunks": 237,
+      "recall_at_5": 0.8,
+      "elapsed_s": 2.21851130000141,
+      "oversize_chunks": 0
+    },
+    "recursive": {
+      "chunks": 209,
+      "recall_at_5": 0.8,
+      "elapsed_s": 0.08125019998988137,
+      "oversize_chunks": 2
+    },
+    "semantic": {
+      "chunks": 1770,
+      "recall_at_5": 0.75,
+      "elapsed_s": 0.3280520000116667,
+      "oversize_chunks": 2
+    },
+    "parent-child": {
+      "chunks": 764,
+      "recall_at_5": 0.75,
+      "elapsed_s": 0.11733470000035595,
+      "oversize_chunks": 2
+    }
+  },
+  "label_status": "draft; no production-quality certification",
+  "session_4_live_gate": "still pending",
+  "runtime_probes": {
+    "actual_cpu_inference": true,
+    "model_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "cold_vectors_encoded": 3,
+    "vector_dimension": 384,
+    "related_cosine": 0.5677443437185272,
+    "unrelated_cosine": 0.058712171375932834,
+    "cache_repeat_verified": true,
+    "http_health": 200,
+    "http_unauthenticated": 401,
+    "http_mac_article": "KB-1017",
+    "existing_api_or_ui_restarted": false,
+    "paid_calls": 0
+  },
+  "fresh_session_08_checkout": {
+    "tests_passed": true,
+    "four_strategy_benchmark_passed": true,
+    "weights": "shared immutable pinned model; source and dataset from checkout"
+  }
+}

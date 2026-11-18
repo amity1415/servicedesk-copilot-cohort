@@ -18,3 +18,10 @@ for sessions 05–08. Docker engine/Jenkins agent configuration are verified sep
 before container or CI deployment work, rather than inferred from their installation.
 
 The instructor was advised to rotate the key exposed in chat. That key was not written to project files or used for paid requests. A replacement should be configured locally, never committed.
+
+## 2026-11-18: instructor-authorized RAG batch
+
+Build sessions 05–08 together, then validate the complete batch before marking it
+complete. Keep session 04 live acceptance pending. Preserve per-session cumulative
+Git tags and explicit evidence. Use recursive chunking by default: it tied fixed
+Recall@5 with fewer chunks on draft labels; semantic complexity did not improve it.

@@ -24,7 +24,7 @@ Read [the complete generation lineage](../../docs/DATASET_PROVENANCE.md) and [th
 - [data/kb/KB-1001.md](../../data/kb/KB-1001.md)
 - [data/kb/KB-1017.html](../../data/kb/KB-1017.html)
 
-Markdown YAML frontmatter and HTML <meta name="kb:..."> encode the same metadata. Parser normalization currently converts metadata values to strings; distinguish that representation from source-level arrays/nulls.
+Markdown YAML frontmatter and HTML <meta name="kb:..."> encode the same metadata. The normalized loader retains JSON-compatible error-code arrays and normalizes date/filter fields explicitly. Trusted sidecar metadata and the policy register control visibility and versions.
 
 | Field | Representation / missingness | Meaning |
 | --- | --- | --- |
