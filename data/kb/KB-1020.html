@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>VPN is connected but internal sites do not load on macOS | HelpHub Knowledge Base</title>
+  <meta name="kb:id" content="KB-1020">
+  <meta name="kb:title" content="VPN is connected but internal sites do not load on macOS">
+  <meta name="kb:type" content="troubleshooting">
+  <meta name="kb:system" content="SecureTunnel VPN">
+  <meta name="kb:category" content="Network &amp; VPN">
+  <meta name="kb:subcategory" content="VPN">
+  <meta name="kb:os" content="macos">
+  <meta name="kb:region" content="global">
+  <meta name="kb:audience" content="employee">
+  <meta name="kb:version" content="2.4">
+  <meta name="kb:effective_date" content="2025-11-12">
+  <meta name="kb:last_reviewed" content="2026-01-24">
+  <meta name="kb:owner" content="Network Operations">
+  <meta name="kb:status" content="current">
+  <meta name="kb:error_codes" content="[]">
+  <meta name="kb:related_policy" content="POL-006">
+  <link rel="stylesheet" href="/assets/helphub.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="/">HelpHub</a>
+    <nav>
+      <a href="/kb">Knowledge base</a>
+      <a href="/requests">My requests</a>
+      <a href="/status">Service status</a>
+      <a href="/contact">Contact the service desk</a>
+    </nav>
+    <form class="search" action="/kb/search"><input name="q" placeholder="Search the knowledge base"></form>
+  </header>
+  <nav class="breadcrumb">
+    <a href="/kb">Knowledge base</a> &gt; <a href="/kb/c">Network &amp; VPN</a> &gt; VPN
+  </nav>
+  <main>
+    <article id="KB-1020">
+      <h1>VPN is connected but internal sites do not load on macOS</h1>
+      <p class="summary">When the VPN shows connected but intranet pages time out, the laptop is usually still using the home network&#x27;s DNS servers.</p>
+      <p class="applies"><strong>Applies to:</strong> macOS | All regions | All employees</p>
+      <h2>Symptoms</h2>
+      <ul>
+        <li>SecureTunnel shows connected.</li>
+        <li>Public websites load but intranet.larkhaven.example does not.</li>
+      </ul>
+      <h2>Likely causes</h2>
+      <ul>
+        <li>A stale DNS cache.</li>
+        <li>A manually configured DNS server on the network adapter.</li>
+        <li>A browser secure-DNS setting that bypasses the VPN.</li>
+      </ul>
+      <h2>Resolution</h2>
+      <ol>
+        <li>Disconnect and reconnect SecureTunnel.</li>
+        <li>Open Terminal and run: sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder</li>
+        <li>Open System Settings, Network, your connection, Details, DNS, and remove any servers you added by hand.</li>
+        <li>In the browser settings turn off Use secure DNS.</li>
+        <li>Test with https://intranet.larkhaven.example.</li>
+      </ol>
+      <h2>Still not working?</h2>
+      <p>Raise a ticket in HelpHub under Network &amp; VPN, VPN. It is handled by Network Operations. Include the exact error message and your asset tag.</p>
+      <p class="policy"><em>Related policy: POL-006 Remote Work and VPN Policy.</em></p>
+    </article>
+    <aside class="feedback">
+      <p>Was this article helpful?</p>
+      <button type="button">Yes</button> <button type="button">No</button>
+      <p class="views">Viewed 0 times in the last 30 days</p>
+    </aside>
+  </main>
+  <footer class="site-footer">
+    <p>KB-1020 | Version 2.4 | Last reviewed 2026-01-24 | Owner: Network Operations</p>
+    <p>Larkhaven Group internal use only. Do not share outside the company.</p>
+    <p><a href="/privacy">Privacy</a> | <a href="/accessibility">Accessibility</a> | <a href="/kb/feedback">Suggest an article</a></p>
+  </footer>
+</body>
+</html>

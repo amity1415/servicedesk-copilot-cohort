@@ -1,0 +1,11 @@
+profile_id,department,name,laptop_type
+RP-EXE,Executive,Executive standard,Standard
+RP-ENG,Engineering,Engineering standard,Developer
+RP-SAL,Sales,Sales standard,Standard
+RP-SUP,Customer Support,Customer Support standard,Standard
+RP-OPS,Operations,Operations standard,Standard
+RP-ITS,IT,IT standard,Developer
+RP-FIN,Finance,Finance standard,Standard
+RP-MKT,Marketing,Marketing standard,Standard
+RP-HRS,HR,HR standard,Standard
+RP-LEG,Legal,Legal standard,Standard

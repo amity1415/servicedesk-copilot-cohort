@@ -1,0 +1,28 @@
+# Secrets: .env is never committed. Copy .env.example instead.
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+
+# Local outputs
+reports/*
+!reports/baselines/
+reports/baselines/*
+!reports/baselines/*.json
+.work/
+*.sqlite3
+*.db
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.idea/

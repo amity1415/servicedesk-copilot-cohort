@@ -1,0 +1,301 @@
+employee_id,full_name,email,department,job_title,role,is_manager,manager_id,office,region,start_date,status
+E1001,Diego Adeyemi,diego.adeyemi@larkhaven.example,Executive,Chief Executive Officer,employee,true,,Bengaluru,APAC,2017-03-16,active
+E1002,Anna Ali,anna.ali@larkhaven.example,Engineering,VP Engineering,employee,true,E1001,Singapore,APAC,2017-08-30,active
+E1003,Paula Morris,paula.morris@larkhaven.example,Engineering,Engineering Manager,employee,true,E1002,Bengaluru,APAC,2016-09-27,active
+E1004,Sakura Keller,sakura.keller@larkhaven.example,Engineering,Engineering Manager,employee,true,E1002,Singapore,APAC,2015-07-28,active
+E1005,Jasmine Hussain,jasmine.hussain@larkhaven.example,Engineering,Engineering Manager,employee,true,E1002,London,EMEA,2020-05-05,active
+E1006,Vikram Tan,vikram.tan@larkhaven.example,Engineering,Engineering Manager,employee,true,E1002,Chicago,AMER,2012-07-23,active
+E1007,Camila Rivera,camila.rivera@larkhaven.example,Engineering,Engineering Manager,employee,true,E1002,Chicago,AMER,2019-05-27,active
+E1008,Gabriel Yamamoto,gabriel.yamamoto@larkhaven.example,Engineering,Engineering Manager,employee,true,E1002,Singapore,APAC,2012-10-25,active
+E1009,Ibrahim Torres,ibrahim.torres@larkhaven.example,Engineering,Software Engineer,employee,false,E1003,Chicago,AMER,2025-07-06,active
+E1010,Chen Kumar,chen.kumar@larkhaven.example,Engineering,Software Engineer,employee,false,E1004,Singapore,APAC,2018-02-02,active
+E1011,Kofi Brown,kofi.brown@larkhaven.example,Engineering,Data Engineer,employee,false,E1005,Chicago,AMER,2016-02-08,active
+E1012,Elena Wilson,elena.wilson@larkhaven.example,Engineering,QA Engineer,employee,false,E1006,Bengaluru,APAC,2021-12-31,active
+E1013,Pedro Delgado,pedro.delgado@larkhaven.example,Engineering,Senior Software Engineer,employee,false,E1007,Munich,EMEA,2023-05-30,active
+E1014,Jasmine Das,jasmine.das@larkhaven.example,Engineering,DevOps Engineer,employee,false,E1008,Bengaluru,APAC,2019-10-29,active
+E1015,Alejandro Weber,alejandro.weber@larkhaven.example,Engineering,Senior Software Engineer,employee,false,E1003,Munich,EMEA,2021-06-30,active
+E1016,Anna Andersson,anna.andersson@larkhaven.example,Engineering,QA Engineer,employee,false,E1004,Bengaluru,APAC,2015-11-29,active
+E1017,Leon Delgado,leon.delgado@larkhaven.example,Engineering,Software Engineer,employee,false,E1005,Toronto,AMER,2025-04-10,active
+E1018,Neha Davies,neha.davies@larkhaven.example,Engineering,QA Engineer,employee,false,E1006,Munich,EMEA,2024-05-08,active
+E1019,Yara Rivera,yara.rivera@larkhaven.example,Engineering,Product Designer,employee,false,E1007,Chicago,AMER,2021-05-30,active
+E1020,Hassan Nakamura,hassan.nakamura@larkhaven.example,Engineering,Software Engineer,employee,false,E1008,Bengaluru,APAC,2026-06-13,active
+E1021,Jasmine Hughes,jasmine.hughes@larkhaven.example,Engineering,DevOps Engineer,employee,false,E1003,Chicago,AMER,2021-12-28,active
+E1022,Aditi Yamamoto,aditi.yamamoto@larkhaven.example,Engineering,QA Engineer,employee,false,E1004,Chicago,AMER,2019-04-08,active
+E1023,Sebastian Agarwal,sebastian.agarwal@larkhaven.example,Engineering,Senior Software Engineer,employee,false,E1005,Toronto,AMER,2026-03-02,active
+E1024,Kevin Delgado,kevin.delgado@larkhaven.example,Engineering,QA Engineer,employee,false,E1006,Bengaluru,APAC,2015-12-18,active
+E1025,Nora Wong,nora.wong@larkhaven.example,Engineering,QA Engineer,employee,false,E1007,Bengaluru,APAC,2016-01-20,active
+E1026,Chloe Jensen,chloe.jensen@larkhaven.example,Engineering,Product Designer,employee,false,E1008,Bengaluru,APAC,2022-09-19,active
+E1027,Fatima Schmidt,fatima.schmidt@larkhaven.example,Engineering,QA Engineer,employee,false,E1003,Toronto,AMER,2019-08-06,active
+E1028,Emma Morris,emma.morris@larkhaven.example,Engineering,Data Engineer,employee,false,E1004,Munich,EMEA,2026-07-09,active
+E1029,Zainab Chen,zainab.chen@larkhaven.example,Engineering,Product Designer,employee,false,E1005,Munich,EMEA,2023-02-14,active
+E1030,Mateo Khan,mateo.khan@larkhaven.example,Engineering,Data Engineer,employee,false,E1006,Singapore,APAC,2023-04-09,active
+E1031,Hana Yadav,hana.yadav@larkhaven.example,Engineering,Senior Software Engineer,employee,false,E1007,Singapore,APAC,2021-09-28,active
+E1032,Ahmed Thompson,ahmed.thompson@larkhaven.example,Engineering,Product Designer,employee,false,E1008,Munich,EMEA,2019-11-06,active
+E1033,Rahul Sharma,rahul.sharma@larkhaven.example,Engineering,Software Engineer,employee,false,E1003,Bengaluru,APAC,2022-11-09,active
+E1034,Valentina Lim,valentina.lim@larkhaven.example,Engineering,Senior Software Engineer,employee,false,E1004,Chicago,AMER,2015-10-09,active
+E1035,Nikhil Smith,nikhil.smith@larkhaven.example,Engineering,QA Engineer,employee,false,E1005,Chicago,AMER,2026-05-28,active
+E1036,Wei Das,wei.das@larkhaven.example,Engineering,Data Engineer,employee,false,E1006,Toronto,AMER,2024-09-02,active
+E1037,Lara Morris,lara.morris@larkhaven.example,Engineering,Product Designer,employee,false,E1007,London,EMEA,2020-01-16,active
+E1038,Hiroshi Adeyemi,hiroshi.adeyemi@larkhaven.example,Engineering,QA Engineer,employee,false,E1008,Toronto,AMER,2019-02-15,active
+E1039,Andre Garcia,andre.garcia@larkhaven.example,Engineering,Product Designer,employee,false,E1003,London,EMEA,2018-01-14,active
+E1040,Ravi Evans,ravi.evans@larkhaven.example,Engineering,Senior Software Engineer,employee,false,E1004,Chicago,AMER,2019-01-13,active
+E1041,Fatima Khan,fatima.khan@larkhaven.example,Engineering,Data Engineer,employee,false,E1005,Bengaluru,APAC,2016-10-17,active
+E1042,Alejandro Andersson,alejandro.andersson@larkhaven.example,Engineering,QA Engineer,employee,false,E1006,Chicago,AMER,2024-04-11,active
+E1043,Javier Evans,javier.evans@larkhaven.example,Engineering,QA Engineer,employee,false,E1007,Munich,EMEA,2022-08-03,active
+E1044,Lina Bianchi,lina.bianchi@larkhaven.example,Engineering,Software Engineer,employee,false,E1008,Chicago,AMER,2025-10-02,active
+E1045,Maria Dubois,maria.dubois@larkhaven.example,Engineering,Product Designer,employee,false,E1003,Singapore,APAC,2018-06-28,active
+E1046,Mohammed Pillai,mohammed.pillai@larkhaven.example,Engineering,QA Engineer,employee,false,E1004,London,EMEA,2020-12-30,active
+E1047,Javier Patel,javier.patel@larkhaven.example,Engineering,Senior Software Engineer,employee,false,E1005,London,EMEA,2024-10-17,active
+E1048,Ibrahim Thompson,ibrahim.thompson@larkhaven.example,Engineering,DevOps Engineer,employee,false,E1006,Toronto,AMER,2018-04-11,active
+E1049,Kofi Haddad,kofi.haddad@larkhaven.example,Engineering,Senior Software Engineer,employee,false,E1007,Chicago,AMER,2022-06-11,active
+E1050,Pedro Wilson,pedro.wilson@larkhaven.example,Engineering,Data Engineer,employee,false,E1008,Munich,EMEA,2022-04-09,active
+E1051,Anna Torres,anna.torres@larkhaven.example,Engineering,QA Engineer,employee,false,E1003,Toronto,AMER,2021-06-09,active
+E1052,Wei Fernandez,wei.fernandez@larkhaven.example,Engineering,QA Engineer,employee,false,E1004,Chicago,AMER,2025-09-28,active
+E1053,Oliver Dubois,oliver.dubois@larkhaven.example,Engineering,Software Engineer,employee,false,E1005,Chicago,AMER,2026-03-05,active
+E1054,Andre Okonkwo,andre.okonkwo@larkhaven.example,Engineering,Product Designer,employee,false,E1006,Chicago,AMER,2025-09-16,active
+E1055,Nikhil Zhang,nikhil.zhang@larkhaven.example,Engineering,QA Engineer,employee,false,E1007,Bengaluru,APAC,2020-07-03,active
+E1056,Rohan Rao,rohan.rao@larkhaven.example,Engineering,Product Designer,employee,false,E1008,Toronto,AMER,2020-01-26,active
+E1057,Kevin Morris,kevin.morris@larkhaven.example,Engineering,QA Engineer,employee,false,E1003,London,EMEA,2018-12-03,active
+E1058,Shreya Gupta,shreya.gupta@larkhaven.example,Engineering,QA Engineer,employee,false,E1004,Toronto,AMER,2021-06-01,active
+E1059,Alejandro Fraser,alejandro.fraser@larkhaven.example,Engineering,QA Engineer,employee,false,E1005,London,EMEA,2023-10-03,active
+E1060,Hassan Garcia,hassan.garcia@larkhaven.example,Engineering,QA Engineer,employee,false,E1006,London,EMEA,2023-07-27,active
+E1061,Yara Hughes,yara.hughes@larkhaven.example,Sales,VP Sales,employee,true,E1001,Bengaluru,APAC,2019-08-03,active
+E1062,Lukas Becker,lukas.becker@larkhaven.example,Sales,Sales Manager,employee,true,E1061,Munich,EMEA,2018-01-28,active
+E1063,Aditi Rao,aditi.rao@larkhaven.example,Sales,Sales Manager,employee,true,E1061,Munich,EMEA,2012-04-25,active
+E1064,Ivan Garcia,ivan.garcia@larkhaven.example,Sales,Sales Manager,employee,true,E1061,London,EMEA,2019-08-01,active
+E1065,Diego Saito,diego.saito@larkhaven.example,Sales,Sales Manager,employee,true,E1061,Chicago,AMER,2013-12-22,active
+E1066,Ines Bose,ines.bose@larkhaven.example,Sales,Sales Manager,employee,true,E1061,Toronto,AMER,2018-08-14,active
+E1067,Maya Richter,maya.richter@larkhaven.example,Sales,Sales Manager,employee,true,E1061,Munich,EMEA,2019-03-07,active
+E1068,Daniel Brooks,daniel.brooks@larkhaven.example,Sales,Account Executive,employee,false,E1062,Chicago,AMER,2016-06-16,active
+E1069,Deepak Olsen,deepak.olsen@larkhaven.example,Sales,Solutions Consultant,employee,false,E1063,Munich,EMEA,2019-03-26,active
+E1070,Javier Chen,javier.chen@larkhaven.example,Sales,Sales Development Representative,employee,false,E1064,London,EMEA,2026-03-08,active
+E1071,Paula Tan,paula.tan@larkhaven.example,Sales,Sales Development Representative,employee,false,E1065,Singapore,APAC,2025-05-26,active
+E1072,Wei Meyer,wei.meyer@larkhaven.example,Sales,Solutions Consultant,employee,false,E1066,London,EMEA,2022-04-26,active
+E1073,Rebecca Yamamoto,rebecca.yamamoto@larkhaven.example,Sales,Sales Operations Analyst,employee,false,E1067,London,EMEA,2025-08-24,active
+E1074,Jasmine Fischer,jasmine.fischer@larkhaven.example,Sales,Solutions Consultant,employee,false,E1062,Singapore,APAC,2025-01-11,active
+E1075,Aarav Reyes,aarav.reyes@larkhaven.example,Sales,Sales Development Representative,employee,false,E1063,London,EMEA,2024-06-08,active
+E1076,Yara Saito,yara.saito@larkhaven.example,Sales,Solutions Consultant,employee,false,E1064,Chicago,AMER,2017-06-05,active
+E1077,Carlos Gupta,carlos.gupta@larkhaven.example,Sales,Sales Development Representative,employee,false,E1065,Chicago,AMER,2022-05-12,active
+E1078,Shreya Moreau,shreya.moreau@larkhaven.example,Sales,Sales Development Representative,employee,false,E1066,London,EMEA,2019-01-31,active
+E1079,Omar Thompson,omar.thompson@larkhaven.example,Sales,Sales Operations Analyst,employee,false,E1067,London,EMEA,2023-03-19,active
+E1080,Ananya Das,ananya.das@larkhaven.example,Sales,Solutions Consultant,employee,false,E1062,London,EMEA,2017-10-13,active
+E1081,Samuel Mukherjee,samuel.mukherjee@larkhaven.example,Sales,Account Executive,employee,false,E1063,Bengaluru,APAC,2015-06-26,active
+E1082,Simone Mukherjee,simone.mukherjee@larkhaven.example,Sales,Sales Development Representative,employee,false,E1064,Toronto,AMER,2022-03-23,active
+E1083,Maya Olsen,maya.olsen@larkhaven.example,Sales,Sales Operations Analyst,employee,false,E1065,Chicago,AMER,2015-10-19,active
+E1084,Ivan Joshi,ivan.joshi@larkhaven.example,Sales,Sales Development Representative,employee,false,E1066,Chicago,AMER,2022-01-13,active
+E1085,Rohan Olsen,rohan.olsen@larkhaven.example,Sales,Sales Operations Analyst,employee,false,E1067,London,EMEA,2023-07-18,active
+E1086,Ahmed Dubois,ahmed.dubois@larkhaven.example,Sales,Account Executive,employee,false,E1062,Singapore,APAC,2025-01-10,active
+E1087,Yara Ito,yara.ito@larkhaven.example,Sales,Solutions Consultant,employee,false,E1063,Chicago,AMER,2021-01-14,active
+E1088,Nikhil Pillai,nikhil.pillai@larkhaven.example,Sales,Account Executive,employee,false,E1064,Bengaluru,APAC,2016-11-01,active
+E1089,Jasmine Sharma,jasmine.sharma@larkhaven.example,Sales,Solutions Consultant,employee,false,E1065,Bengaluru,APAC,2026-01-30,active
+E1090,Ibrahim Ng,ibrahim.ng@larkhaven.example,Sales,Solutions Consultant,employee,false,E1066,Toronto,AMER,2026-08-31,active
+E1091,Olivia Bose,olivia.bose@larkhaven.example,Sales,Sales Development Representative,employee,false,E1067,Chicago,AMER,2022-01-06,active
+E1092,Anna Hussain,anna.hussain@larkhaven.example,Sales,Solutions Consultant,employee,false,E1062,London,EMEA,2024-12-30,active
+E1093,Thomas Castro,thomas.castro@larkhaven.example,Sales,Account Executive,employee,false,E1063,London,EMEA,2026-06-19,active
+E1094,Ravi Rivera,ravi.rivera@larkhaven.example,Sales,Sales Operations Analyst,employee,false,E1064,London,EMEA,2026-03-20,active
+E1095,Elena Petrov,elena.petrov@larkhaven.example,Sales,Account Executive,employee,false,E1065,London,EMEA,2021-03-21,active
+E1096,Felix Iyer,felix.iyer@larkhaven.example,Sales,Sales Operations Analyst,employee,false,E1066,Chicago,AMER,2015-05-07,active
+E1097,Victor Schmidt,victor.schmidt@larkhaven.example,Sales,Sales Operations Analyst,employee,false,E1067,London,EMEA,2020-06-28,active
+E1098,Jasmine Costa,jasmine.costa@larkhaven.example,Sales,Sales Operations Analyst,employee,false,E1062,Munich,EMEA,2022-03-04,active
+E1099,Lucas Iyer,lucas.iyer@larkhaven.example,Sales,Sales Operations Analyst,employee,false,E1063,London,EMEA,2024-02-02,active
+E1100,Elias Johnson,elias.johnson@larkhaven.example,Sales,Sales Operations Analyst,employee,false,E1064,Chicago,AMER,2015-12-25,active
+E1101,Nikhil Joshi,nikhil.joshi@larkhaven.example,Sales,Sales Development Representative,employee,false,E1065,Chicago,AMER,2024-04-16,active
+E1102,Olivia Okonkwo,olivia.okonkwo@larkhaven.example,Sales,Sales Operations Analyst,employee,false,E1066,Munich,EMEA,2018-08-03,active
+E1103,Pedro Pillai,pedro.pillai@larkhaven.example,Sales,Solutions Consultant,employee,false,E1067,Bengaluru,APAC,2026-06-10,active
+E1104,Felix Kapoor,felix.kapoor@larkhaven.example,Sales,Sales Operations Analyst,employee,false,E1062,Singapore,APAC,2026-07-17,active
+E1105,Ravi Martin,ravi.martin@larkhaven.example,Sales,Account Executive,employee,false,E1063,Bengaluru,APAC,2016-06-08,active
+E1106,Lara Keller,lara.keller@larkhaven.example,Sales,Account Executive,employee,false,E1064,Munich,EMEA,2015-11-27,active
+E1107,Charlotte Evans,charlotte.evans@larkhaven.example,Sales,Solutions Consultant,employee,false,E1065,London,EMEA,2021-04-24,active
+E1108,Johanna Pillai,johanna.pillai@larkhaven.example,Sales,Solutions Consultant,employee,false,E1066,Singapore,APAC,2025-02-17,active
+E1109,Amelia Suzuki,amelia.suzuki@larkhaven.example,Sales,Account Executive,employee,false,E1067,Chicago,AMER,2016-09-26,active
+E1110,Ines Richter,ines.richter@larkhaven.example,Sales,Solutions Consultant,employee,false,E1062,Munich,EMEA,2025-12-03,active
+E1111,Tariq Varga,tariq.varga@larkhaven.example,Sales,Solutions Consultant,employee,false,E1063,Bengaluru,APAC,2024-02-24,active
+E1112,Zainab Ortiz,zainab.ortiz@larkhaven.example,Sales,Solutions Consultant,employee,false,E1064,Chicago,AMER,2015-06-20,active
+E1113,Rohan Schmidt,rohan.schmidt@larkhaven.example,Sales,Sales Operations Analyst,employee,false,E1065,Chicago,AMER,2024-09-23,active
+E1114,Nadia Clarke,nadia.clarke@larkhaven.example,Sales,Account Executive,employee,false,E1066,Toronto,AMER,2016-05-12,active
+E1115,Ahmed Richter,ahmed.richter@larkhaven.example,Sales,Sales Operations Analyst,employee,false,E1067,Toronto,AMER,2018-07-30,active
+E1116,Emma Iyer,emma.iyer@larkhaven.example,Customer Support,Head of Customer Support,employee,true,E1001,Bengaluru,APAC,2017-01-02,active
+E1117,Yara Sharma,yara.sharma@larkhaven.example,Customer Support,Support Team Lead,employee,true,E1116,London,EMEA,2017-11-10,active
+E1118,Amelia Rao,amelia.rao@larkhaven.example,Customer Support,Support Team Lead,employee,true,E1116,Chicago,AMER,2021-07-12,active
+E1119,Vikram Davies,vikram.davies@larkhaven.example,Customer Support,Support Team Lead,employee,true,E1116,Chicago,AMER,2020-04-10,active
+E1120,Ines Lim,ines.lim@larkhaven.example,Customer Support,Support Team Lead,employee,true,E1116,Chicago,AMER,2012-08-05,active
+E1121,Rahul Mitchell,rahul.mitchell@larkhaven.example,Customer Support,Support Team Lead,employee,true,E1116,Toronto,AMER,2018-10-22,active
+E1122,Tom Whitfield,tom.whitfield@larkhaven.example,Customer Support,Support Specialist,employee,false,E1117,Chicago,AMER,2015-10-05,active
+E1123,Javier Rivera,javier.rivera@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1118,Chicago,AMER,2019-04-09,active
+E1124,Mohammed Reyes,mohammed.reyes@larkhaven.example,Customer Support,Support Specialist,employee,false,E1119,London,EMEA,2017-11-20,active
+E1125,Deepak O'Brien,deepak.obrien@larkhaven.example,Customer Support,Support Specialist,employee,false,E1120,Chicago,AMER,2025-11-13,active
+E1126,Vikram Bauer,vikram.bauer@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1121,Chicago,AMER,2018-12-12,active
+E1127,Amelia Rivera,amelia.rivera@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1117,Bengaluru,APAC,2024-01-12,active
+E1128,Kofi Gupta,kofi.gupta@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1118,Chicago,AMER,2020-10-19,active
+E1129,Rebecca Pereira,rebecca.pereira@larkhaven.example,Customer Support,Customer Success Manager,employee,false,E1119,London,EMEA,2017-08-03,active
+E1130,Ben Singh,ben.singh@larkhaven.example,Customer Support,Customer Success Manager,employee,false,E1120,Chicago,AMER,2026-05-14,active
+E1131,Nikhil Agarwal,nikhil.agarwal@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1121,Chicago,AMER,2015-11-17,active
+E1132,Ethan Taylor,ethan.taylor@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1117,Chicago,AMER,2023-07-27,active
+E1133,Sara Okonkwo,sara.okonkwo@larkhaven.example,Customer Support,Support Specialist,employee,false,E1118,Singapore,APAC,2020-11-24,active
+E1134,Omar Silva,omar.silva@larkhaven.example,Customer Support,Customer Success Manager,employee,false,E1119,Chicago,AMER,2015-04-06,active
+E1135,Isabella Romano,isabella.romano@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1120,Bengaluru,APAC,2019-01-05,active
+E1136,Zainab Weber,zainab.weber@larkhaven.example,Customer Support,Support Specialist,employee,false,E1121,Singapore,APAC,2019-03-02,active
+E1137,Valentina Agarwal,valentina.agarwal@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1117,Chicago,AMER,2025-08-03,active
+E1138,Kevin Davies,kevin.davies@larkhaven.example,Customer Support,Customer Success Manager,employee,false,E1118,Munich,EMEA,2020-11-05,active
+E1139,Jasmine Brown,jasmine.brown@larkhaven.example,Customer Support,Customer Success Manager,employee,false,E1119,Chicago,AMER,2020-06-26,active
+E1140,Johanna Wang,johanna.wang@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1120,Chicago,AMER,2018-04-03,active
+E1141,Maya Ortiz,maya.ortiz@larkhaven.example,Customer Support,Support Specialist,employee,false,E1121,London,EMEA,2017-11-27,active
+E1142,Sebastian Varga,sebastian.varga@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1117,Singapore,APAC,2017-05-28,active
+E1143,Olivia Fraser,olivia.fraser@larkhaven.example,Customer Support,Customer Success Manager,employee,false,E1118,Chicago,AMER,2025-02-15,active
+E1144,Jin Zhang,jin.zhang@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1119,Chicago,AMER,2019-03-14,active
+E1145,Ananya Verma,ananya.verma@larkhaven.example,Customer Support,Support Specialist,employee,false,E1120,London,EMEA,2026-06-02,active
+E1146,Vikram Olsen,vikram.olsen@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1121,Munich,EMEA,2022-09-04,active
+E1147,Samuel O'Brien,samuel.obrien@larkhaven.example,Customer Support,Customer Success Manager,employee,false,E1117,Singapore,APAC,2020-08-26,active
+E1148,Camila Hoffmann,camila.hoffmann@larkhaven.example,Customer Support,Support Specialist,employee,false,E1118,Munich,EMEA,2023-10-04,active
+E1149,James Hall,james.hall@larkhaven.example,Customer Support,Support Specialist,employee,false,E1119,Bengaluru,APAC,2018-12-13,active
+E1150,Diego Hall,diego.hall@larkhaven.example,Customer Support,Support Specialist,employee,false,E1120,Chicago,AMER,2023-03-22,active
+E1151,Javier Costa,javier.costa@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1121,Chicago,AMER,2020-09-05,active
+E1152,Shreya Andersson,shreya.andersson@larkhaven.example,Customer Support,Customer Success Manager,employee,false,E1117,Toronto,AMER,2016-09-24,active
+E1153,Rania Garcia,rania.garcia@larkhaven.example,Customer Support,Support Specialist,employee,false,E1118,Bengaluru,APAC,2022-08-16,active
+E1154,Felix White,felix.white@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1119,Chicago,AMER,2020-11-23,active
+E1155,Beatriz Kowalski,beatriz.kowalski@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1120,London,EMEA,2025-10-29,active
+E1156,Lucas Yadav,lucas.yadav@larkhaven.example,Customer Support,Support Specialist,employee,false,E1121,Singapore,APAC,2026-08-08,active
+E1157,Maya Das,maya.das@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1117,Munich,EMEA,2020-09-10,active
+E1158,Kenji Garcia,kenji.garcia@larkhaven.example,Customer Support,Support Specialist,employee,false,E1118,Chicago,AMER,2019-01-27,active
+E1159,Michael Rivera,michael.rivera@larkhaven.example,Customer Support,Customer Success Manager,employee,false,E1119,London,EMEA,2022-06-08,active
+E1160,Beatriz Richter,beatriz.richter@larkhaven.example,Customer Support,Senior Support Specialist,employee,false,E1120,Chicago,AMER,2023-05-10,active
+E1161,Carlos Adeyemi,carlos.adeyemi@larkhaven.example,Operations,Chief Operating Officer,employee,true,E1001,Chicago,AMER,2018-10-31,active
+E1162,Leon Chen,leon.chen@larkhaven.example,Operations,Operations Manager,employee,true,E1161,Chicago,AMER,2015-06-22,active
+E1163,Julia Wilson,julia.wilson@larkhaven.example,Operations,Operations Manager,employee,true,E1161,London,EMEA,2015-12-06,active
+E1164,Rahul Ali,rahul.ali@larkhaven.example,Operations,Operations Manager,employee,true,E1161,Chicago,AMER,2014-04-10,active
+E1165,Ines Chatterjee,ines.chatterjee@larkhaven.example,Operations,Operations Manager,employee,true,E1161,Chicago,AMER,2021-03-19,active
+E1166,Arjun Mehta,arjun.mehta@larkhaven.example,Operations,Logistics Coordinator,employee,false,E1162,Bengaluru,APAC,2021-05-09,active
+E1167,Jin Petrov,jin.petrov@larkhaven.example,Operations,Logistics Coordinator,employee,false,E1163,Chicago,AMER,2016-10-26,active
+E1168,Sara Novak,sara.novak@larkhaven.example,Operations,Operations Analyst,employee,false,E1164,Bengaluru,APAC,2024-11-03,active
+E1169,Johanna Mitchell,johanna.mitchell@larkhaven.example,Operations,Operations Analyst,employee,false,E1165,Chicago,AMER,2021-05-20,active
+E1170,Jonas Evans,jonas.evans@larkhaven.example,Operations,Procurement Specialist,employee,false,E1162,Chicago,AMER,2023-10-05,active
+E1171,Hassan Menon,hassan.menon@larkhaven.example,Operations,Facilities Coordinator,employee,false,E1163,Munich,EMEA,2025-09-21,active
+E1172,Javier Kim,javier.kim@larkhaven.example,Operations,Logistics Coordinator,employee,false,E1164,Bengaluru,APAC,2023-07-03,active
+E1173,Maria Costa,maria.costa@larkhaven.example,Operations,Facilities Coordinator,employee,false,E1165,Chicago,AMER,2023-01-14,active
+E1174,Elias Fernandez,elias.fernandez@larkhaven.example,Operations,Logistics Coordinator,employee,false,E1162,Chicago,AMER,2021-04-26,active
+E1175,Elias Suzuki,elias.suzuki@larkhaven.example,Operations,Procurement Specialist,employee,false,E1163,Munich,EMEA,2017-04-05,active
+E1176,Omar Saito,omar.saito@larkhaven.example,Operations,Facilities Coordinator,employee,false,E1164,Chicago,AMER,2024-10-07,active
+E1177,Shreya Smith,shreya.smith@larkhaven.example,Operations,Logistics Coordinator,employee,false,E1165,Toronto,AMER,2016-07-15,active
+E1178,Maya Pillai,maya.pillai@larkhaven.example,Operations,Procurement Specialist,employee,false,E1162,Chicago,AMER,2019-05-13,active
+E1179,Neha Rao,neha.rao@larkhaven.example,Operations,Facilities Coordinator,employee,false,E1163,Chicago,AMER,2019-01-19,active
+E1180,James Khan,james.khan@larkhaven.example,Operations,Logistics Coordinator,employee,false,E1164,Bengaluru,APAC,2016-12-22,active
+E1181,Anika Nakamura,anika.nakamura@larkhaven.example,Operations,Logistics Coordinator,employee,false,E1165,Munich,EMEA,2023-04-11,active
+E1182,Rebecca Fraser,rebecca.fraser@larkhaven.example,Operations,Logistics Coordinator,employee,false,E1162,Munich,EMEA,2024-09-29,active
+E1183,Kevin Young,kevin.young@larkhaven.example,Operations,Procurement Specialist,employee,false,E1163,Toronto,AMER,2016-09-05,active
+E1184,Valentina Petrov,valentina.petrov@larkhaven.example,Operations,Logistics Coordinator,employee,false,E1164,Chicago,AMER,2019-04-28,active
+E1185,Lucas Reyes,lucas.reyes@larkhaven.example,Operations,Logistics Coordinator,employee,false,E1165,Munich,EMEA,2016-12-02,active
+E1186,Akira Wilson,akira.wilson@larkhaven.example,Operations,Facilities Coordinator,employee,false,E1162,Toronto,AMER,2021-08-27,active
+E1187,Neha Kim,neha.kim@larkhaven.example,Operations,Logistics Coordinator,employee,false,E1163,London,EMEA,2019-02-17,active
+E1188,Wei Joshi,wei.joshi@larkhaven.example,Operations,Procurement Specialist,employee,false,E1164,Singapore,APAC,2018-06-16,active
+E1189,Mei White,mei.white@larkhaven.example,Operations,Logistics Coordinator,employee,false,E1165,Chicago,AMER,2023-05-16,active
+E1190,David Wilson,david.wilson@larkhaven.example,Operations,Facilities Coordinator,employee,false,E1162,Chicago,AMER,2022-12-29,active
+E1191,Valentina Meyer,valentina.meyer@larkhaven.example,Operations,Logistics Coordinator,employee,false,E1163,Bengaluru,APAC,2025-07-07,active
+E1192,Julia Romano,julia.romano@larkhaven.example,Operations,Procurement Specialist,employee,false,E1164,Chicago,AMER,2023-04-08,active
+E1193,Elena Fischer,elena.fischer@larkhaven.example,Operations,Procurement Specialist,employee,false,E1165,Chicago,AMER,2015-09-08,active
+E1194,Mei Gupta,mei.gupta@larkhaven.example,Operations,Facilities Coordinator,employee,false,E1162,Bengaluru,APAC,2016-04-17,active
+E1195,Hassan Sanchez,hassan.sanchez@larkhaven.example,Operations,Logistics Coordinator,employee,false,E1163,Chicago,AMER,2021-05-19,active
+E1196,Anika Wang,anika.wang@larkhaven.example,Operations,Facilities Coordinator,employee,false,E1164,Bengaluru,APAC,2016-06-08,active
+E1197,Charlotte Thompson,charlotte.thompson@larkhaven.example,Operations,Facilities Coordinator,employee,false,E1165,Munich,EMEA,2020-12-08,active
+E1198,Kavya Campbell,kavya.campbell@larkhaven.example,Operations,Operations Analyst,employee,false,E1162,Toronto,AMER,2024-03-01,active
+E1199,Rania Mukherjee,rania.mukherjee@larkhaven.example,Operations,Logistics Coordinator,employee,false,E1163,Bengaluru,APAC,2016-11-05,active
+E1200,Valentina Kapoor,valentina.kapoor@larkhaven.example,Operations,Procurement Specialist,employee,false,E1164,Toronto,AMER,2022-11-25,active
+E1201,Akira Jensen,akira.jensen@larkhaven.example,IT,Chief Information Officer,employee,true,E1001,Chicago,AMER,2017-05-20,active
+E1202,Alejandro Das,alejandro.das@larkhaven.example,IT,Service Desk Manager,employee,true,E1201,Toronto,AMER,2019-08-10,active
+E1203,Grace Lin,grace.lin@larkhaven.example,IT,Service Desk Analyst,analyst,false,E1202,Singapore,APAC,2017-08-31,active
+E1204,Aditi Kowalski,aditi.kowalski@larkhaven.example,IT,Service Desk Analyst,analyst,false,E1202,Singapore,APAC,2019-02-12,active
+E1205,Jonas Kim,jonas.kim@larkhaven.example,IT,Service Desk Analyst,analyst,false,E1202,Bengaluru,APAC,2023-11-09,active
+E1206,Kofi Fraser,kofi.fraser@larkhaven.example,IT,Service Desk Analyst,analyst,false,E1202,Bengaluru,APAC,2018-12-24,active
+E1207,Hiroshi Torres,hiroshi.torres@larkhaven.example,IT,Service Desk Analyst,analyst,false,E1202,Bengaluru,APAC,2020-10-23,active
+E1208,Nora Pereira,nora.pereira@larkhaven.example,IT,Service Desk Analyst,analyst,false,E1202,Toronto,AMER,2020-09-16,active
+E1209,Nora Suzuki,nora.suzuki@larkhaven.example,IT,Service Desk Analyst,analyst,false,E1202,Chicago,AMER,2025-09-14,active
+E1210,Isabella Lopez,isabella.lopez@larkhaven.example,IT,Service Desk Analyst,analyst,false,E1202,Toronto,AMER,2023-05-06,active
+E1211,James Kim,james.kim@larkhaven.example,IT,Service Desk Analyst,analyst,false,E1202,Chicago,AMER,2021-11-16,active
+E1212,Nora Torres,nora.torres@larkhaven.example,IT,Service Desk Analyst,analyst,false,E1202,Chicago,AMER,2019-05-23,active
+E1213,Ravi Ali,ravi.ali@larkhaven.example,IT,Service Desk Analyst,analyst,false,E1202,Munich,EMEA,2019-09-18,active
+E1214,Anna Davies,anna.davies@larkhaven.example,IT,Service Desk Analyst,analyst,false,E1202,London,EMEA,2016-05-02,active
+E1215,Oliver Petrov,oliver.petrov@larkhaven.example,IT,Identity and Access Analyst,analyst,false,E1202,London,EMEA,2023-07-05,active
+E1216,Naveen Murphy,naveen.murphy@larkhaven.example,IT,Identity and Access Analyst,analyst,false,E1202,Bengaluru,APAC,2022-01-31,active
+E1217,Jonas Thompson,jonas.thompson@larkhaven.example,IT,Infrastructure Manager,employee,true,E1201,Singapore,APAC,2020-09-05,active
+E1218,Marcus Hale,marcus.hale@larkhaven.example,IT,Systems Administrator,admin,false,E1217,Chicago,AMER,2023-01-03,active
+E1219,Gabriel Ng,gabriel.ng@larkhaven.example,IT,Systems Administrator,admin,false,E1217,Bengaluru,APAC,2015-12-04,active
+E1220,Charlotte Mitchell,charlotte.mitchell@larkhaven.example,IT,Systems Administrator,admin,false,E1217,Toronto,AMER,2022-02-11,active
+E1221,Aarav Costa,aarav.costa@larkhaven.example,IT,Systems Administrator,admin,false,E1217,Chicago,AMER,2020-02-03,active
+E1222,Sakura Lopez,sakura.lopez@larkhaven.example,IT,Network Engineer,employee,false,E1217,London,EMEA,2023-10-27,active
+E1223,Charlotte Kapoor,charlotte.kapoor@larkhaven.example,IT,Network Engineer,employee,false,E1217,London,EMEA,2023-02-07,active
+E1224,Julia Zhang,julia.zhang@larkhaven.example,IT,Network Engineer,employee,false,E1217,London,EMEA,2017-05-17,active
+E1225,Rohan Fraser,rohan.fraser@larkhaven.example,IT,Workplace Engineer,employee,false,E1217,London,EMEA,2020-07-24,active
+E1226,Tariq Romano,tariq.romano@larkhaven.example,IT,Workplace Engineer,employee,false,E1217,Bengaluru,APAC,2019-04-23,active
+E1227,Wei Bauer,wei.bauer@larkhaven.example,IT,Workplace Engineer,employee,false,E1217,London,EMEA,2021-06-18,active
+E1228,Diego Kapoor,diego.kapoor@larkhaven.example,IT,Software Packaging Engineer,employee,false,E1217,Chicago,AMER,2025-08-04,active
+E1229,Aditi Lim,aditi.lim@larkhaven.example,IT,Messaging Engineer,employee,false,E1217,Singapore,APAC,2022-02-23,active
+E1230,Sebastian Shah,sebastian.shah@larkhaven.example,IT,Security Operations Lead,employee,true,E1201,Bengaluru,APAC,2019-05-21,active
+E1231,Akira Walker,akira.walker@larkhaven.example,IT,Security Analyst,analyst,false,E1230,Bengaluru,APAC,2020-10-27,active
+E1232,Mei Ali,mei.ali@larkhaven.example,IT,Security Analyst,analyst,false,E1230,Bengaluru,APAC,2017-12-28,active
+E1233,Fatima Young,fatima.young@larkhaven.example,Finance,Chief Financial Officer,employee,true,E1001,Chicago,AMER,2012-08-03,active
+E1234,Samuel Rao,samuel.rao@larkhaven.example,Finance,Finance Manager,employee,true,E1233,Chicago,AMER,2014-10-19,active
+E1235,Leah Singh,leah.singh@larkhaven.example,Finance,Finance Manager,employee,true,E1233,Chicago,AMER,2018-06-23,active
+E1236,Zoe Andersson,zoe.andersson@larkhaven.example,Finance,Finance Manager,employee,true,E1233,Munich,EMEA,2019-01-31,active
+E1237,Sofia Rossi,sofia.rossi@larkhaven.example,Finance,Financial Analyst,employee,false,E1234,Toronto,AMER,2025-05-13,active
+E1238,Ines Clarke,ines.clarke@larkhaven.example,Finance,Financial Analyst,employee,false,E1235,London,EMEA,2025-03-17,active
+E1239,Hiroshi Castro,hiroshi.castro@larkhaven.example,Finance,Accountant,employee,false,E1236,Munich,EMEA,2015-12-31,active
+E1240,Chloe Varga,chloe.varga@larkhaven.example,Finance,Payroll Specialist,employee,false,E1234,Toronto,AMER,2025-08-15,active
+E1241,Yuki Young,yuki.young@larkhaven.example,Finance,Payroll Specialist,employee,false,E1235,Munich,EMEA,2015-12-14,active
+E1242,Alejandro Reddy,alejandro.reddy@larkhaven.example,Finance,Payroll Specialist,employee,false,E1236,Munich,EMEA,2018-06-06,active
+E1243,Simone Zhang,simone.zhang@larkhaven.example,Finance,Payroll Specialist,employee,false,E1234,Bengaluru,APAC,2025-05-27,active
+E1244,Kofi Lee,kofi.lee@larkhaven.example,Finance,Payroll Specialist,employee,false,E1235,London,EMEA,2016-06-15,active
+E1245,Chloe Romano,chloe.romano@larkhaven.example,Finance,Financial Controller,employee,false,E1236,London,EMEA,2025-12-16,active
+E1246,Akira Singh,akira.singh@larkhaven.example,Finance,Financial Controller,employee,false,E1234,Chicago,AMER,2025-09-14,active
+E1247,Rahul Yadav,rahul.yadav@larkhaven.example,Finance,Accountant,employee,false,E1235,Chicago,AMER,2020-08-14,active
+E1248,Andre Olsen,andre.olsen@larkhaven.example,Finance,Payroll Specialist,employee,false,E1236,Singapore,APAC,2020-12-20,active
+E1249,Chen Lopez,chen.lopez@larkhaven.example,Finance,Accounts Payable Specialist,employee,false,E1234,Chicago,AMER,2016-02-03,active
+E1250,Hiroshi Bauer,hiroshi.bauer@larkhaven.example,Finance,Accountant,employee,false,E1235,Bengaluru,APAC,2026-05-31,active
+E1251,Olivia Lee,olivia.lee@larkhaven.example,Finance,Financial Analyst,employee,false,E1236,London,EMEA,2023-09-29,active
+E1252,Aditi Iyer,aditi.iyer@larkhaven.example,Finance,Accounts Payable Specialist,employee,false,E1234,Bengaluru,APAC,2016-11-06,active
+E1253,Chloe Bose,chloe.bose@larkhaven.example,Finance,Accountant,employee,false,E1235,Chicago,AMER,2018-02-09,active
+E1254,Rania Gupta,rania.gupta@larkhaven.example,Finance,Accountant,employee,false,E1236,Chicago,AMER,2024-08-16,active
+E1255,Chen Keller,chen.keller@larkhaven.example,Finance,Accounts Payable Specialist,employee,false,E1234,Chicago,AMER,2022-05-17,active
+E1256,Mateo Jensen,mateo.jensen@larkhaven.example,Finance,Financial Controller,employee,false,E1235,London,EMEA,2022-10-03,active
+E1257,Olivia Romano,olivia.romano@larkhaven.example,Finance,Accounts Payable Specialist,employee,false,E1236,Chicago,AMER,2024-09-22,active
+E1258,Tariq Gupta,tariq.gupta@larkhaven.example,Marketing,VP Marketing,employee,true,E1001,Chicago,AMER,2014-10-23,active
+E1259,Diego Reddy,diego.reddy@larkhaven.example,Marketing,Marketing Manager,employee,true,E1258,London,EMEA,2018-10-08,active
+E1260,Nikhil Verma,nikhil.verma@larkhaven.example,Marketing,Marketing Manager,employee,true,E1258,Bengaluru,APAC,2013-07-09,active
+E1261,Priya Nair,priya.nair@larkhaven.example,Marketing,Content Strategist,employee,false,E1259,London,EMEA,2024-04-05,active
+E1262,Ivan Kapoor,ivan.kapoor@larkhaven.example,Marketing,Events Coordinator,employee,false,E1260,London,EMEA,2017-04-22,active
+E1263,Liam Morris,liam.morris@larkhaven.example,Marketing,Content Strategist,employee,false,E1259,Chicago,AMER,2022-03-11,active
+E1264,Olivia Morris,olivia.morris@larkhaven.example,Marketing,Content Strategist,employee,false,E1260,Munich,EMEA,2017-03-15,active
+E1265,Rania Sharma,rania.sharma@larkhaven.example,Marketing,Events Coordinator,employee,false,E1259,Toronto,AMER,2025-05-05,active
+E1266,Rahul Weber,rahul.weber@larkhaven.example,Marketing,Events Coordinator,employee,false,E1260,Chicago,AMER,2019-01-29,active
+E1267,Maya Mukherjee,maya.mukherjee@larkhaven.example,Marketing,Events Coordinator,employee,false,E1259,Bengaluru,APAC,2019-08-01,active
+E1268,David Kapoor,david.kapoor@larkhaven.example,Marketing,Digital Marketing Specialist,employee,false,E1260,Chicago,AMER,2016-04-01,active
+E1269,Rahul Delgado,rahul.delgado@larkhaven.example,Marketing,Brand Designer,employee,false,E1259,Singapore,APAC,2020-11-24,active
+E1270,Aarav Johnson,aarav.johnson@larkhaven.example,Marketing,Content Strategist,employee,false,E1260,London,EMEA,2023-09-24,active
+E1271,Leon Wang,leon.wang@larkhaven.example,Marketing,Digital Marketing Specialist,employee,false,E1259,Singapore,APAC,2019-01-19,active
+E1272,Emily Taylor,emily.taylor@larkhaven.example,Marketing,Digital Marketing Specialist,employee,false,E1260,Toronto,AMER,2017-09-04,active
+E1273,Omar Jensen,omar.jensen@larkhaven.example,Marketing,Digital Marketing Specialist,employee,false,E1259,Bengaluru,APAC,2015-11-27,active
+E1274,James Torres,james.torres@larkhaven.example,Marketing,Content Strategist,employee,false,E1260,Chicago,AMER,2022-05-18,active
+E1275,Laura Adeyemi,laura.adeyemi@larkhaven.example,Marketing,Brand Designer,employee,false,E1259,Chicago,AMER,2015-11-04,active
+E1276,Naveen Hall,naveen.hall@larkhaven.example,Marketing,Content Strategist,employee,false,E1260,London,EMEA,2022-05-23,active
+E1277,Chloe Kapoor,chloe.kapoor@larkhaven.example,Marketing,Digital Marketing Specialist,employee,false,E1259,Chicago,AMER,2026-04-27,active
+E1278,Sara Martin,sara.martin@larkhaven.example,HR,Chief People Officer,employee,true,E1001,London,EMEA,2020-06-11,active
+E1279,Yuki Garcia,yuki.garcia@larkhaven.example,HR,HR Manager,employee,true,E1278,London,EMEA,2012-05-11,active
+E1280,Omar Ali,omar.ali@larkhaven.example,HR,HR Manager,employee,true,E1278,Bengaluru,APAC,2012-10-15,active
+E1281,Michael Khan,michael.khan@larkhaven.example,HR,HR Operations Specialist,employee,false,E1279,London,EMEA,2026-02-16,active
+E1282,Liam Singh,liam.singh@larkhaven.example,HR,Recruiter,employee,false,E1280,Chicago,AMER,2017-12-27,active
+E1283,David Thompson,david.thompson@larkhaven.example,HR,Recruiter,employee,false,E1279,Chicago,AMER,2020-07-26,active
+E1284,Aarav Lim,aarav.lim@larkhaven.example,HR,Recruiter,employee,false,E1280,Bengaluru,APAC,2015-05-06,active
+E1285,Lina Costa,lina.costa@larkhaven.example,HR,HR Operations Specialist,employee,false,E1279,Munich,EMEA,2022-04-10,active
+E1286,Victor Nakamura,victor.nakamura@larkhaven.example,HR,HR Business Partner,employee,false,E1280,Munich,EMEA,2024-06-08,active
+E1287,Ethan Romano,ethan.romano@larkhaven.example,HR,HR Business Partner,employee,false,E1279,Toronto,AMER,2016-01-20,active
+E1288,Johanna Davies,johanna.davies@larkhaven.example,HR,Recruiter,employee,false,E1280,Toronto,AMER,2018-05-23,active
+E1289,Vikram Walker,vikram.walker@larkhaven.example,HR,HR Business Partner,employee,false,E1279,London,EMEA,2020-11-02,active
+E1290,Rania Johnson,rania.johnson@larkhaven.example,HR,HR Operations Specialist,employee,false,E1280,Toronto,AMER,2016-09-15,active
+E1291,David Castro,david.castro@larkhaven.example,HR,HR Business Partner,employee,false,E1279,Toronto,AMER,2015-09-11,active
+E1292,Ivan Richter,ivan.richter@larkhaven.example,HR,Recruiter,employee,false,E1280,Chicago,AMER,2018-08-23,active
+E1293,Tariq Dubois,tariq.dubois@larkhaven.example,Legal,General Counsel,employee,true,E1001,Munich,EMEA,2021-09-20,active
+E1294,Thomas Desai,thomas.desai@larkhaven.example,Legal,Compliance Analyst,employee,false,E1293,Toronto,AMER,2024-09-12,active
+E1295,Ananya Shah,ananya.shah@larkhaven.example,Legal,Paralegal,employee,false,E1293,Toronto,AMER,2020-03-01,active
+E1296,Nikhil Castro,nikhil.castro@larkhaven.example,Legal,Paralegal,employee,false,E1293,Chicago,AMER,2023-08-18,active
+E1297,Lina Kim,lina.kim@larkhaven.example,Legal,Paralegal,employee,false,E1293,Chicago,AMER,2022-11-02,active
+E1298,Nikhil Sanchez,nikhil.sanchez@larkhaven.example,Legal,Paralegal,employee,false,E1293,Bengaluru,APAC,2023-06-30,active
+E1299,Jonas Sharma,jonas.sharma@larkhaven.example,Legal,Paralegal,employee,false,E1293,Chicago,AMER,2026-03-05,active
+E1300,Johanna Thompson,johanna.thompson@larkhaven.example,Legal,Paralegal,employee,false,E1293,London,EMEA,2015-12-25,active

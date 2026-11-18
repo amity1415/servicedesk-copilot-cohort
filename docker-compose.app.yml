@@ -1,0 +1,78 @@
+# Teaching application overlay: docker compose -f docker-compose.yml -f docker-compose.app.yml up --build
+# Set COPILOT_AUTH_TOKENS and COPILOT_HR_TOKEN in the shell or .env before startup.
+services:
+  api:
+    build: .
+    environment:
+      COPILOT_AUTH_TOKENS: ${COPILOT_AUTH_TOKENS:?Set the server-side token map}
+      COPILOT_TICKETING_API_KEY: dev-ticketing-key
+      COPILOT_TICKETING_BASE_URL: http://ticketing:8081
+      COPILOT_TRANSPORT: mcp
+      COPILOT_DOCUMENTS_MCP_URL: http://documents:8000/mcp
+      COPILOT_ASSETS_DB_MCP_URL: http://assets_db:8000/mcp
+      COPILOT_TICKETING_MCP_URL: http://ticketing_mcp:8000/mcp
+    ports: ["8082:8080"]
+    volumes: ["runtime:/app/.work"]
+    depends_on:
+      db:
+        condition: service_healthy
+      ticketing:
+        condition: service_started
+      documents:
+        condition: service_started
+      assets_db:
+        condition: service_started
+      ticketing_mcp:
+        condition: service_started
+  ui:
+    build: .
+    environment:
+      COPILOT_UI_API_URL: http://api:8080
+    command: ["streamlit", "run", "src/copilot/ui/chat.py", "--server.address=0.0.0.0", "--server.port=8501"]
+    ports: ["8501:8501"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8501/_stcore/health')"]
+    depends_on: [api]
+  documents:
+    build: .
+    command: ["uvicorn", "copilot.mcp_servers.http:configured_app", "--factory", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      COPILOT_MCP_SERVER: documents
+      COPILOT_AUTH_TOKENS: ${COPILOT_AUTH_TOKENS:?Set the server-side token map}
+    ports: ["8001:8000"]
+    healthcheck:
+      disable: true
+  assets_db:
+    build: .
+    command: ["uvicorn", "copilot.mcp_servers.http:configured_app", "--factory", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      COPILOT_MCP_SERVER: assets_db
+      COPILOT_AUTH_TOKENS: ${COPILOT_AUTH_TOKENS:?Set the server-side token map}
+    ports: ["8002:8000"]
+    healthcheck:
+      disable: true
+  ticketing_mcp:
+    build: .
+    command: ["uvicorn", "copilot.mcp_servers.http:configured_app", "--factory", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      COPILOT_MCP_SERVER: ticketing
+      COPILOT_AUTH_TOKENS: ${COPILOT_AUTH_TOKENS:?Set the server-side token map}
+      COPILOT_TICKETING_BASE_URL: http://ticketing:8081
+      COPILOT_TICKETING_API_KEY: dev-ticketing-key
+      COPILOT_HR_URL: http://hr:8090
+      COPILOT_HR_TOKEN: ${COPILOT_HR_TOKEN:?Set the partner token}
+    volumes: ["runtime:/app/.work"]
+    ports: ["8003:8000"]
+    healthcheck:
+      disable: true
+    depends_on: [ticketing]
+  hr:
+    build: .
+    command: ["uvicorn", "services.hr_agent.app:create_app", "--factory", "--host", "0.0.0.0", "--port", "8090"]
+    environment:
+      COPILOT_HR_TOKEN: ${COPILOT_HR_TOKEN:?Set the partner token}
+    ports: ["8090:8090"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8090/.well-known/agent-card.json')"]
+volumes:
+  runtime:

@@ -1,0 +1,13 @@
+id,title,version,effective_date,status,superseded_by,owner,file
+POL-001,Acceptable Use Policy,3.0,2025-09-01,current,,Chief Information Security Officer,POL-001_v3.0.pdf
+POL-002,Access Control Policy,2.1,2026-04-01,current,,Head of Identity and Access,POL-002_v2.1.pdf
+POL-003,Password and MFA Policy,4.0,2026-03-01,current,,Head of Identity and Access,POL-003_v4.0.pdf
+POL-004,Device and Endpoint Policy,2.3,2025-11-01,current,,Head of Workplace Engineering,POL-004_v2.3.pdf
+POL-005,Software Licensing and Installation Policy,2.0,2025-07-01,current,,IT Asset Manager,POL-005_v2.0.pdf
+POL-006,Remote Work and VPN Policy,1.4,2025-05-01,current,,Head of Network Operations,POL-006_v1.4.pdf
+POL-007,Data Classification and Handling Policy,3.1,2025-02-01,current,,Data Protection Officer,POL-007_v3.1.pdf
+POL-008,Mobile Device and BYOD Policy,1.2,2025-08-01,current,,Head of Workplace Engineering,POL-008_v1.2.pdf
+POL-009,"Joiner, Mover and Leaver Policy",2.2,2026-01-15,current,,Head of IT Service Management,POL-009_v2.2.pdf
+POL-010,Security Incident Reporting and Response Policy,2.0,2025-10-01,current,,Chief Information Security Officer,POL-010_v2.0.pdf
+POL-002,Access Control Policy,2.0,2024-10-01,superseded,2.1,Head of Identity and Access,POL-002_v2.0.pdf
+POL-003,Password and MFA Policy,3.2,2024-06-01,superseded,4.0,Head of Identity and Access,POL-003_v3.2.pdf

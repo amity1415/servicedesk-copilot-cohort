@@ -1,0 +1,266 @@
+{
+  "scope": "Actual cumulative source readiness, separate from lesson documentation",
+  "sessions": [
+    {
+      "session": 1,
+      "status": "implemented",
+      "starter": "sessions/01-kickoff-and-project-setup/starter",
+      "solution": "sessions/01-kickoff-and-project-setup/solution",
+      "previous_tests": [],
+      "new_tests": [
+        "test_config.py",
+        "test_logging_setup.py",
+        "test_tickets.py",
+        "test_source_identity.py"
+      ],
+      "default_command": [
+        "tickets-stats"
+      ],
+      "checkpoint_tag": "cohort-session-01",
+      "live_gate": null
+    },
+    {
+      "session": 2,
+      "status": "implemented",
+      "starter": "sessions/02-ml-basics-on-ticket-data/starter",
+      "solution": "sessions/02-ml-basics-on-ticket-data/solution",
+      "previous_tests": [
+        "test_config.py",
+        "test_logging_setup.py",
+        "test_tickets.py",
+        "test_source_identity.py"
+      ],
+      "new_tests": [
+        "test_ml.py"
+      ],
+      "default_command": [
+        "train"
+      ],
+      "checkpoint_tag": "cohort-session-02",
+      "live_gate": null
+    },
+    {
+      "session": 3,
+      "status": "implemented",
+      "starter": "sessions/03-neural-networks-transformers-and-tokenization/starter",
+      "solution": "sessions/03-neural-networks-transformers-and-tokenization/solution",
+      "previous_tests": [
+        "test_config.py",
+        "test_logging_setup.py",
+        "test_tickets.py",
+        "test_source_identity.py",
+        "test_ml.py"
+      ],
+      "new_tests": [
+        "test_tokens.py"
+      ],
+      "default_command": [
+        "compare"
+      ],
+      "checkpoint_tag": "cohort-session-03",
+      "live_gate": null
+    },
+    {
+      "session": 4,
+      "status": "implemented",
+      "starter": "sessions/04-inference-parameters-and-the-first-llm-call/starter",
+      "solution": "sessions/04-inference-parameters-and-the-first-llm-call/solution",
+      "previous_tests": [
+        "test_config.py",
+        "test_logging_setup.py",
+        "test_tickets.py",
+        "test_source_identity.py",
+        "test_ml.py",
+        "test_tokens.py"
+      ],
+      "new_tests": [
+        "test_inference.py"
+      ],
+      "default_command": [
+        "llm-smoke"
+      ],
+      "checkpoint_tag": "cohort-session-04",
+      "live_gate": "not run; paid calls disabled"
+    },
+    {
+      "session": 5,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 6,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 7,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 8,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 9,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 10,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 11,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 12,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 13,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 14,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 15,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 16,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 17,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 18,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 19,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 20,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 21,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 22,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 23,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 24,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 25,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 26,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 27,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 28,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 29,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 30,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 31,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 32,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 33,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 34,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 35,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 36,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 37,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 38,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 39,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    },
+    {
+      "session": 40,
+      "status": "planned",
+      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+    }
+  ]
+}

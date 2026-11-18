@@ -1,0 +1,40 @@
+# Install once with: pre-commit install
+# Run the hooks from the activated virtual environment, so the ruff hooks find ruff.
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: ^data/
+      - id: end-of-file-fixer
+        exclude: ^data/
+      - id: check-yaml
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ["--maxkb=1024"]
+        exclude: ^data/
+
+  # Uses the ruff installed in the virtual environment, so the editor, the command line,
+  # these hooks and CI all run the same version.
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: ruff check
+        entry: ruff check --fix
+        language: system
+        types: [python]
+        require_serial: true
+      - id: ruff-format
+        name: ruff format
+        entry: ruff format
+        language: system
+        types: [python]
+        require_serial: true
+
+  # Blocks commits that contain API keys, tokens or passwords.
+  # Refresh the pinned versions in this file with: pre-commit autoupdate
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.4
+    hooks:
+      - id: gitleaks

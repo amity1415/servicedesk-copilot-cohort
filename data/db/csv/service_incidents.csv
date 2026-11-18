@@ -1,0 +1,13 @@
+incident_id,service,region,status,started_at,resolved_at,message
+1,SecureTunnel VPN,APAC,degraded,2026-11-13 02:40:00,,Intermittent disconnects on the Singapore gateway. Engineers are investigating; next update at 05:00 UTC.
+2,FollowMe Printing,EMEA,outage,2026-11-13 08:15:00,,Badge release is unavailable in the London office. Print jobs are queued and will not be lost.
+3,Email,Global,degraded,2026-11-10 13:05:00,2026-11-10 14:20:00,Delays of up to 20 minutes delivering external email. Resolved after a mail gateway restart.
+4,LarkID,AMER,outage,2026-11-04 15:30:00,2026-11-04 16:02:00,Sign-in failed for users in Chicago and Toronto. Caused by an expired certificate on the regional node.
+5,Microsoft Teams,Global,degraded,2026-10-28 09:10:00,2026-10-28 11:45:00,Meeting recordings were not available. Vendor incident; no action needed by users.
+6,SecureTunnel VPN,EMEA,degraded,2026-10-20 07:50:00,2026-10-20 09:30:00,Version 5.2 clients on macOS 26 disconnected every few minutes. Fixed in version 5.3; see KI-2026-014.
+7,App Hub,Global,outage,2026-10-14 06:00:00,2026-10-14 07:15:00,Planned maintenance. Installations were paused for 75 minutes.
+8,FinSight,Global,degraded,2026-10-01 08:00:00,2026-10-01 12:30:00,Month-end reports ran slowly. Capacity was increased.
+9,LarkNet Wi-Fi,APAC,outage,2026-09-23 04:20:00,2026-09-23 05:05:00,Wi-Fi was unavailable on floors 3 and 4 in Bengaluru after a switch failure.
+10,HelpHub,Global,degraded,2026-09-17 10:00:00,2026-09-17 10:40:00,Search in the knowledge base returned no results. Index rebuilt.
+11,File Shares,EMEA,outage,2026-09-09 12:15:00,2026-09-09 13:50:00,The Munich file server was unreachable during a storage fail-over.
+12,FollowMe Printing,AMER,degraded,2026-09-02 14:00:00,2026-09-02 15:10:00,Slow release of print jobs in Chicago. Print queue cleared.

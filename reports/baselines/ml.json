@@ -1,0 +1,326 @@
+{
+  "split": "short-description-group holdout",
+  "seed": 42,
+  "train": 3894,
+  "test": 1106,
+  "models": {
+    "category:logistic": {
+      "metrics": {
+        "Access & Identity": {
+          "precision": 0.928030303030303,
+          "recall": 0.9879032258064516,
+          "f1-score": 0.95703125,
+          "support": 248.0
+        },
+        "Email & Collaboration": {
+          "precision": 0.9879518072289156,
+          "recall": 0.9761904761904762,
+          "f1-score": 0.9820359281437125,
+          "support": 168.0
+        },
+        "General Enquiry": {
+          "precision": 0.9830508474576272,
+          "recall": 0.6590909090909091,
+          "f1-score": 0.7891156462585034,
+          "support": 88.0
+        },
+        "Hardware & Devices": {
+          "precision": 0.849624060150376,
+          "recall": 0.9868995633187773,
+          "f1-score": 0.9131313131313131,
+          "support": 229.0
+        },
+        "Network & VPN": {
+          "precision": 0.9759036144578314,
+          "recall": 0.9050279329608939,
+          "f1-score": 0.9391304347826087,
+          "support": 179.0
+        },
+        "Onboarding & Offboarding": {
+          "precision": 0.9423076923076923,
+          "recall": 0.98,
+          "f1-score": 0.9607843137254902,
+          "support": 50.0
+        },
+        "Security": {
+          "precision": 1.0,
+          "recall": 0.15384615384615385,
+          "f1-score": 0.26666666666666666,
+          "support": 13.0
+        },
+        "Software": {
+          "precision": 0.9541984732824428,
+          "recall": 0.9541984732824428,
+          "f1-score": 0.9541984732824428,
+          "support": 131.0
+        },
+        "accuracy": 0.9321880650994575,
+        "macro avg": {
+          "precision": 0.9526333497393986,
+          "recall": 0.8253945918120131,
+          "f1-score": 0.8452617532488422,
+          "support": 1106.0
+        },
+        "weighted avg": {
+          "precision": 0.9376147691862718,
+          "recall": 0.9321880650994575,
+          "f1-score": 0.9272018658996302,
+          "support": 1106.0
+        }
+      },
+      "labels": [
+        "Access & Identity",
+        "Email & Collaboration",
+        "General Enquiry",
+        "Hardware & Devices",
+        "Network & VPN",
+        "Onboarding & Offboarding",
+        "Security",
+        "Software"
+      ],
+      "confusion_matrix": [
+        [
+          245,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          164,
+          0,
+          3,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          9,
+          0,
+          58,
+          19,
+          1,
+          0,
+          0,
+          1
+        ],
+        [
+          3,
+          0,
+          0,
+          226,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0,
+          13,
+          162,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          49,
+          0,
+          0
+        ],
+        [
+          1,
+          2,
+          0,
+          3,
+          1,
+          1,
+          2,
+          3
+        ],
+        [
+          3,
+          0,
+          0,
+          1,
+          1,
+          1,
+          0,
+          125
+        ]
+      ],
+      "weakest_class": "Security",
+      "weakness_hypothesis": "Inspect errors and support: ambiguous request text and unseen template families may limit recall; do not infer the cause from F1 alone.",
+      "elapsed_s": 0.6311025000031805
+    },
+    "priority:logistic": {
+      "metrics": {
+        "P1": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 1.0
+        },
+        "P2": {
+          "precision": 0.42857142857142855,
+          "recall": 0.11764705882352941,
+          "f1-score": 0.18461538461538463,
+          "support": 102.0
+        },
+        "P3": {
+          "precision": 0.597574421168688,
+          "recall": 0.8442367601246106,
+          "f1-score": 0.6998063266623629,
+          "support": 642.0
+        },
+        "P4": {
+          "precision": 0.43859649122807015,
+          "recall": 0.2077562326869806,
+          "f1-score": 0.2819548872180451,
+          "support": 361.0
+        },
+        "accuracy": 0.5687160940325497,
+        "macro avg": {
+          "precision": 0.3661855852420467,
+          "recall": 0.29241001290878016,
+          "f1-score": 0.29159414962394814,
+          "support": 1106.0
+        },
+        "weighted avg": {
+          "precision": 0.5295573213724383,
+          "recall": 0.5687160940325497,
+          "f1-score": 0.5152731873722608,
+          "support": 1106.0
+        }
+      },
+      "labels": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          12,
+          82,
+          8
+        ],
+        [
+          0,
+          12,
+          542,
+          88
+        ],
+        [
+          0,
+          4,
+          282,
+          75
+        ]
+      ],
+      "weakest_class": "P1",
+      "weakness_hypothesis": "Inspect errors and support: ambiguous request text and unseen template families may limit recall; do not infer the cause from F1 alone.",
+      "elapsed_s": 0.288369200003217
+    }
+  },
+  "clusters": [
+    [
+      "are",
+      "are not",
+      "wrong",
+      "not",
+      "my",
+      "says",
+      "it says",
+      "onedrive"
+    ],
+    [
+      "new",
+      "the",
+      "phone",
+      "in",
+      "vpn",
+      "up",
+      "on",
+      "my"
+    ],
+    [
+      "help but",
+      "to help",
+      "not fix",
+      "tried to",
+      "colleague tried",
+      "fix",
+      "fix it",
+      "but could"
+    ],
+    [
+      "the",
+      "luck",
+      "but no",
+      "no luck",
+      "tried the",
+      "the steps",
+      "steps on",
+      "steps"
+    ],
+    [
+      "for",
+      "an",
+      "need",
+      "it",
+      "this",
+      "have",
+      "an hour",
+      "hour"
+    ],
+    [
+      "password",
+      "locked",
+      "locked out",
+      "out",
+      "stopped",
+      "my password",
+      "my",
+      "account"
+    ],
+    [
+      "access",
+      "to",
+      "access to",
+      "need access",
+      "need",
+      "to the",
+      "shared",
+      "folder"
+    ],
+    [
+      "is",
+      "it",
+      "my",
+      "laptop",
+      "not",
+      "the",
+      "it is",
+      "on"
+    ]
+  ]
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Outlook keeps asking for your password on macOS | HelpHub Knowledge Base</title>
+  <meta name="kb:id" content="KB-1038">
+  <meta name="kb:title" content="Outlook keeps asking for your password on macOS">
+  <meta name="kb:type" content="troubleshooting">
+  <meta name="kb:system" content="Outlook">
+  <meta name="kb:category" content="Email &amp; Collaboration">
+  <meta name="kb:subcategory" content="Outlook">
+  <meta name="kb:os" content="macos">
+  <meta name="kb:region" content="global">
+  <meta name="kb:audience" content="employee">
+  <meta name="kb:version" content="1.2">
+  <meta name="kb:effective_date" content="2026-08-14">
+  <meta name="kb:last_reviewed" content="2026-09-22">
+  <meta name="kb:owner" content="Messaging &amp; Collaboration">
+  <meta name="kb:status" content="current">
+  <meta name="kb:error_codes" content="[]">
+  <meta name="kb:related_policy" content="">
+  <link rel="stylesheet" href="/assets/helphub.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="/">HelpHub</a>
+    <nav>
+      <a href="/kb">Knowledge base</a>
+      <a href="/requests">My requests</a>
+      <a href="/status">Service status</a>
+      <a href="/contact">Contact the service desk</a>
+    </nav>
+    <form class="search" action="/kb/search"><input name="q" placeholder="Search the knowledge base"></form>
+  </header>
+  <nav class="breadcrumb">
+    <a href="/kb">Knowledge base</a> &gt; <a href="/kb/c">Email &amp; Collaboration</a> &gt; Outlook
+  </nav>
+  <main>
+    <article id="KB-1038">
+      <h1>Outlook keeps asking for your password on macOS</h1>
+      <p class="summary">Repeated password prompts in Outlook come from a saved old password or a sign-in session that expired.</p>
+      <p class="applies"><strong>Applies to:</strong> macOS | All regions | All employees</p>
+      <h2>Symptoms</h2>
+      <ul>
+        <li>A password box appears every few minutes.</li>
+        <li>Typing the correct password makes the box come back.</li>
+      </ul>
+      <h2>Likely causes</h2>
+      <ul>
+        <li>The LarkID password was changed recently.</li>
+        <li>Outlook is signed in with a cached session that has expired.</li>
+      </ul>
+      <h2>Resolution</h2>
+      <ol>
+        <li>Quit Outlook and Teams.</li>
+        <li>Open Keychain Access, search for Exchange and for larkhaven.example, and delete the matching entries.</li>
+        <li>Start Outlook and sign in once with LarkID, approving the prompt on your phone.</li>
+        <li>If the prompt returns, open Outlook, Settings, Accounts, remove the account and add it again.</li>
+      </ol>
+      <h2>Still not working?</h2>
+      <p>Raise a ticket in HelpHub under Email &amp; Collaboration, Outlook. It is handled by Messaging &amp; Collaboration. Include the exact error message and your asset tag.</p>
+    </article>
+    <aside class="feedback">
+      <p>Was this article helpful?</p>
+      <button type="button">Yes</button> <button type="button">No</button>
+      <p class="views">Viewed 0 times in the last 30 days</p>
+    </aside>
+  </main>
+  <footer class="site-footer">
+    <p>KB-1038 | Version 1.2 | Last reviewed 2026-09-22 | Owner: Messaging &amp; Collaboration</p>
+    <p>Larkhaven Group internal use only. Do not share outside the company.</p>
+    <p><a href="/privacy">Privacy</a> | <a href="/accessibility">Accessibility</a> | <a href="/kb/feedback">Suggest an article</a></p>
+  </footer>
+</body>
+</html>

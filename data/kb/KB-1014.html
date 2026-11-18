@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Stop repeated keychain password prompts on macOS | HelpHub Knowledge Base</title>
+  <meta name="kb:id" content="KB-1014">
+  <meta name="kb:title" content="Stop repeated keychain password prompts on macOS">
+  <meta name="kb:type" content="troubleshooting">
+  <meta name="kb:system" content="macOS">
+  <meta name="kb:category" content="Access &amp; Identity">
+  <meta name="kb:subcategory" content="Keychain">
+  <meta name="kb:os" content="macos">
+  <meta name="kb:region" content="global">
+  <meta name="kb:audience" content="employee">
+  <meta name="kb:version" content="2.0">
+  <meta name="kb:effective_date" content="2026-03-23">
+  <meta name="kb:last_reviewed" content="2026-05-05">
+  <meta name="kb:owner" content="Service Desk L1">
+  <meta name="kb:status" content="current">
+  <meta name="kb:error_codes" content="[]">
+  <meta name="kb:related_policy" content="">
+  <link rel="stylesheet" href="/assets/helphub.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="/">HelpHub</a>
+    <nav>
+      <a href="/kb">Knowledge base</a>
+      <a href="/requests">My requests</a>
+      <a href="/status">Service status</a>
+      <a href="/contact">Contact the service desk</a>
+    </nav>
+    <form class="search" action="/kb/search"><input name="q" placeholder="Search the knowledge base"></form>
+  </header>
+  <nav class="breadcrumb">
+    <a href="/kb">Knowledge base</a> &gt; <a href="/kb/c">Access &amp; Identity</a> &gt; Keychain
+  </nav>
+  <main>
+    <article id="KB-1014">
+      <h1>Stop repeated keychain password prompts on macOS</h1>
+      <p class="summary">After a password change the Mac keychain still uses the old password, so apps keep asking for the login keychain password.</p>
+      <p class="applies"><strong>Applies to:</strong> macOS | All regions | All employees</p>
+      <h2>Symptoms</h2>
+      <ul>
+        <li>Messages such as &#x27;accountsd wants to use the login keychain&#x27; appear repeatedly.</li>
+        <li>Outlook and Teams ask for a password after every restart.</li>
+      </ul>
+      <h2>Likely causes</h2>
+      <ul>
+        <li>The LarkID password was changed on another device or in the browser.</li>
+      </ul>
+      <h2>Resolution</h2>
+      <ol>
+        <li>When prompted, try your previous password once; if it works, choose Update Keychain Password.</li>
+        <li>If you do not remember the old password, open Keychain Access, choose Settings and Reset Default Keychains.</li>
+        <li>Restart the Mac and sign in with your current LarkID password.</li>
+        <li>Sign in to Outlook, Teams and OneDrive again when they ask.</li>
+      </ol>
+      <h2>Good to know</h2>
+      <ul>
+        <li>Resetting the default keychain removes saved Wi-Fi and website passwords; VaultKey entries are not affected.</li>
+      </ul>
+      <h2>Still not working?</h2>
+      <p>Raise a ticket in HelpHub under Access &amp; Identity, Keychain. It is handled by Service Desk L1. Include the exact error message and your asset tag.</p>
+    </article>
+    <aside class="feedback">
+      <p>Was this article helpful?</p>
+      <button type="button">Yes</button> <button type="button">No</button>
+      <p class="views">Viewed 0 times in the last 30 days</p>
+    </aside>
+  </main>
+  <footer class="site-footer">
+    <p>KB-1014 | Version 2.0 | Last reviewed 2026-05-05 | Owner: Service Desk L1</p>
+    <p>Larkhaven Group internal use only. Do not share outside the company.</p>
+    <p><a href="/privacy">Privacy</a> | <a href="/accessibility">Accessibility</a> | <a href="/kb/feedback">Suggest an article</a></p>
+  </footer>
+</body>
+</html>

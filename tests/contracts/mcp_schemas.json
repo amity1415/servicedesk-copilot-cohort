@@ -1,0 +1,204 @@
+{
+  "assets_db": {
+    "check_licences": {
+      "properties": {
+        "app_id": {
+          "title": "App Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "app_id"
+      ],
+      "title": "check_licencesArguments",
+      "type": "object"
+    },
+    "check_service_status": {
+      "properties": {},
+      "title": "check_service_statusArguments",
+      "type": "object"
+    },
+    "get_assets": {
+      "properties": {
+        "employee_id": {
+          "title": "Employee Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "employee_id"
+      ],
+      "title": "get_assetsArguments",
+      "type": "object"
+    },
+    "get_employee": {
+      "properties": {},
+      "title": "get_employeeArguments",
+      "type": "object"
+    },
+    "get_software_catalogue": {
+      "properties": {},
+      "title": "get_software_catalogueArguments",
+      "type": "object"
+    }
+  },
+  "documents": {
+    "search_kb": {
+      "properties": {
+        "os_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Os Name"
+        },
+        "query": {
+          "title": "Query",
+          "type": "string"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "title": "search_kbArguments",
+      "type": "object"
+    }
+  },
+  "ticketing": {
+    "create_ticket": {
+      "$defs": {
+        "TicketDraft": {
+          "properties": {
+            "asset": {
+              "title": "Asset",
+              "type": "string"
+            },
+            "assignment_group": {
+              "title": "Assignment Group",
+              "type": "string"
+            },
+            "category": {
+              "title": "Category",
+              "type": "string"
+            },
+            "priority": {
+              "pattern": "^P[1-4]$",
+              "title": "Priority",
+              "type": "string"
+            },
+            "steps_tried": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Steps Tried",
+              "type": "array"
+            },
+            "summary": {
+              "maxLength": 160,
+              "minLength": 3,
+              "title": "Summary",
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "priority",
+            "summary",
+            "steps_tried",
+            "asset",
+            "assignment_group"
+          ],
+          "title": "TicketDraft",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "draft": {
+          "$ref": "#/$defs/TicketDraft"
+        },
+        "idempotency_key": {
+          "title": "Idempotency Key",
+          "type": "string"
+        }
+      },
+      "required": [
+        "draft",
+        "idempotency_key"
+      ],
+      "title": "create_ticketArguments",
+      "type": "object"
+    },
+    "decide_access": {
+      "properties": {
+        "decision": {
+          "title": "Decision",
+          "type": "string"
+        },
+        "request_id": {
+          "title": "Request Id",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "request_id",
+        "decision"
+      ],
+      "title": "decide_accessArguments",
+      "type": "object"
+    },
+    "fulfil_access": {
+      "properties": {
+        "request_id": {
+          "title": "Request Id",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "request_id"
+      ],
+      "title": "fulfil_accessArguments",
+      "type": "object"
+    },
+    "onboard": {
+      "properties": {
+        "candidate_id": {
+          "title": "Candidate Id",
+          "type": "string"
+        },
+        "start_date": {
+          "title": "Start Date",
+          "type": "string"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "start_date"
+      ],
+      "title": "onboardArguments",
+      "type": "object"
+    },
+    "request_access": {
+      "properties": {
+        "app_id": {
+          "title": "App Id",
+          "type": "string"
+        },
+        "idempotency_key": {
+          "title": "Idempotency Key",
+          "type": "string"
+        }
+      },
+      "required": [
+        "app_id",
+        "idempotency_key"
+      ],
+      "title": "request_accessArguments",
+      "type": "object"
+    }
+  }
+}

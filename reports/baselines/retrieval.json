@@ -1,0 +1,1122 @@
+{
+  "mode": "lexical-baseline-on-draft-labels",
+  "recall_at_5": 0.7666666666666667,
+  "context_precision": null,
+  "faithfulness": null,
+  "answer_relevance": null,
+  "release_gate_passed": false,
+  "reason": "Review labels and run answer metrics before assessing release targets",
+  "cases": [
+    {
+      "id": "rag-001",
+      "recall_at_5": 0.0,
+      "retrieved": [
+        "KB-1002",
+        "KB-1024",
+        "KB-1070",
+        "KB-1080",
+        "KB-1085"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-002",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1017",
+        "KB-1018",
+        "KB-1019",
+        "KB-1020",
+        "KB-1033"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-003",
+      "recall_at_5": 0.0,
+      "retrieved": [],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-004",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1043",
+        "KB-1044",
+        "KB-1067",
+        "KB-1068",
+        "KB-1099"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-005",
+      "recall_at_5": 0.0,
+      "retrieved": [],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-006",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1043",
+        "KB-1044",
+        "KB-1059",
+        "KB-1097",
+        "KB-1099"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-007",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1009",
+        "KB-1010",
+        "KB-1011",
+        "KB-1012",
+        "KB-1091"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-008",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1036",
+        "KB-1042",
+        "KB-1053",
+        "KB-1070",
+        "KB-1080"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-009",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1063",
+        "KB-1064",
+        "KB-1065",
+        "KB-1074",
+        "KB-1088"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-010",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1017",
+        "KB-1018",
+        "KB-1019",
+        "KB-1020",
+        "KB-1081"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-011",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1018",
+        "KB-1019",
+        "KB-1054",
+        "KB-1055",
+        "KB-1079"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-012",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1019",
+        "KB-1020",
+        "KB-1076",
+        "KB-1078",
+        "KB-1081"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-013",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1009",
+        "KB-1010",
+        "KB-1011",
+        "KB-1013",
+        "KB-1092"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-014",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1013",
+        "KB-1070",
+        "KB-1080",
+        "KB-1091"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-015",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1025",
+        "KB-1026",
+        "KB-1027",
+        "KB-1028",
+        "KB-1089"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-016",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1001",
+        "KB-1025",
+        "KB-1037",
+        "KB-1038",
+        "KB-1060"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-017",
+      "recall_at_5": 0.0,
+      "retrieved": [],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-018",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1014",
+        "KB-1058",
+        "KB-1059",
+        "KB-1070",
+        "KB-1081"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-019",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1024"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-020",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1046",
+        "KB-1047",
+        "KB-1054",
+        "KB-1060",
+        "KB-1071"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-021",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1043",
+        "KB-1044",
+        "KB-1045",
+        "KB-1068",
+        "KB-1099"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-022",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1020",
+        "KB-1024",
+        "KB-1029",
+        "KB-1030",
+        "KB-1031"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-023",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1018"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-024",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1007",
+        "KB-1034",
+        "KB-1035",
+        "KB-1073",
+        "KB-1074"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-025",
+      "recall_at_5": 0.0,
+      "retrieved": [],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-026",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1013",
+        "KB-1054",
+        "KB-1058",
+        "KB-1069",
+        "KB-1070"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-027",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1014",
+        "KB-1037",
+        "KB-1038",
+        "KB-1061",
+        "KB-1070"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-028",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1001",
+        "KB-1007",
+        "KB-1013",
+        "KB-1024",
+        "KB-1031"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-029",
+      "recall_at_5": 0.0,
+      "retrieved": [
+        "KB-1013",
+        "KB-1046",
+        "KB-1047",
+        "KB-1057",
+        "KB-1092"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-030",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1020",
+        "KB-1024",
+        "KB-1029",
+        "KB-1030",
+        "KB-1031"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-031",
+      "recall_at_5": 0.0,
+      "retrieved": [
+        "KB-1015",
+        "KB-1039",
+        "KB-1078",
+        "KB-1081",
+        "KB-1087"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-032",
+      "recall_at_5": 0.0,
+      "retrieved": [
+        "KB-1002",
+        "KB-1007",
+        "KB-1013",
+        "KB-1015",
+        "KB-1024"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-033",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1008",
+        "KB-1010",
+        "KB-1013",
+        "KB-1060",
+        "KB-1080"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-034",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1007",
+        "KB-1044",
+        "KB-1056",
+        "KB-1080",
+        "KB-1090"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-035",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1010",
+        "KB-1054",
+        "KB-1075",
+        "KB-1079",
+        "KB-1083"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-036",
+      "recall_at_5": 0.0,
+      "retrieved": [],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-037",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1019",
+        "KB-1048",
+        "KB-1049",
+        "KB-1050",
+        "KB-1069"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-038",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1010",
+        "KB-1012",
+        "KB-1040",
+        "KB-1077",
+        "KB-1099"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-039",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1010",
+        "KB-1011",
+        "KB-1012",
+        "KB-1013",
+        "KB-1078"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-040",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1001",
+        "KB-1002",
+        "KB-1003",
+        "KB-1008",
+        "KB-1087"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-041",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1013",
+        "KB-1046",
+        "KB-1071",
+        "KB-1072",
+        "KB-1086"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-042",
+      "recall_at_5": 0.0,
+      "retrieved": [
+        "KB-1028",
+        "KB-1055",
+        "KB-1059",
+        "KB-1060",
+        "KB-1092"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-043",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1013",
+        "KB-1014",
+        "KB-1015",
+        "KB-1024",
+        "KB-1061"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-044",
+      "recall_at_5": 0.0,
+      "retrieved": [],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-045",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1046",
+        "KB-1047",
+        "KB-1070",
+        "KB-1075",
+        "KB-1076"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-046",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1012",
+        "KB-1039",
+        "KB-1060",
+        "KB-1079",
+        "KB-1080"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-047",
+      "recall_at_5": 0.0,
+      "retrieved": [],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-048",
+      "recall_at_5": 0.0,
+      "retrieved": [],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-049",
+      "recall_at_5": 0.0,
+      "retrieved": [
+        "KB-1080",
+        "KB-1090",
+        "KB-1091",
+        "KB-1093",
+        "KB-1099"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-050",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1054",
+        "KB-1055",
+        "KB-1085",
+        "KB-1099"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-051",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1006",
+        "KB-1042",
+        "KB-1043",
+        "KB-1044",
+        "KB-1060"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-052",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1054",
+        "KB-1055",
+        "KB-1071",
+        "KB-1072",
+        "KB-1080"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-053",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1025",
+        "KB-1026",
+        "KB-1027",
+        "KB-1028",
+        "KB-1060"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-054",
+      "recall_at_5": 0.0,
+      "retrieved": [],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-055",
+      "recall_at_5": 0.0,
+      "retrieved": [],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-056",
+      "recall_at_5": 0.0,
+      "retrieved": [
+        "KB-1035",
+        "KB-1036",
+        "KB-1041",
+        "KB-1047",
+        "KB-1053"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-057",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1003",
+        "KB-1015",
+        "KB-1019",
+        "KB-1020",
+        "KB-1081"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-058",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1032",
+        "KB-1074",
+        "KB-1083",
+        "KB-1089",
+        "KB-1091"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-059",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1054",
+        "KB-1055",
+        "KB-1057",
+        "KB-1077"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-060",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1016",
+        "KB-1037",
+        "KB-1038",
+        "KB-1039",
+        "KB-1085"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-061",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1027",
+        "KB-1028",
+        "KB-1046",
+        "KB-1047",
+        "KB-1099"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-062",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1017",
+        "KB-1022",
+        "KB-1023",
+        "KB-1024",
+        "KB-1046"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-063",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1061",
+        "KB-1062",
+        "KB-1086",
+        "KB-1096",
+        "KB-1097"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-064",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1019",
+        "KB-1020",
+        "KB-1033",
+        "KB-1054",
+        "KB-1081"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-065",
+      "recall_at_5": 0.0,
+      "retrieved": [],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-066",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1020",
+        "KB-1060",
+        "KB-1067",
+        "KB-1068",
+        "KB-1099"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-067",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1014",
+        "KB-1054",
+        "KB-1060",
+        "KB-1069",
+        "KB-1079"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-068",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1013",
+        "KB-1043",
+        "KB-1044",
+        "KB-1083",
+        "KB-1099"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-069",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1018",
+        "KB-1019",
+        "KB-1020",
+        "KB-1032",
+        "KB-1065"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-070",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1022",
+        "KB-1037",
+        "KB-1069",
+        "KB-1070",
+        "KB-1079"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-071",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1007",
+        "KB-1034",
+        "KB-1035",
+        "KB-1073",
+        "KB-1074"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-072",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1025",
+        "KB-1026",
+        "KB-1027",
+        "KB-1028",
+        "KB-1099"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-073",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1019",
+        "KB-1020",
+        "KB-1067",
+        "KB-1068",
+        "KB-1085"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-074",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1007",
+        "KB-1012",
+        "KB-1080",
+        "KB-1085",
+        "KB-1092"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-075",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1013",
+        "KB-1069",
+        "KB-1070",
+        "KB-1079",
+        "KB-1080"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-076",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1006",
+        "KB-1018",
+        "KB-1051",
+        "KB-1081",
+        "KB-1100"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-077",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1013",
+        "KB-1028",
+        "KB-1033",
+        "KB-1070",
+        "KB-1080"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-078",
+      "recall_at_5": 0.0,
+      "retrieved": [
+        "KB-1006",
+        "KB-1039",
+        "KB-1053",
+        "KB-1063",
+        "KB-1064"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-079",
+      "recall_at_5": 0.0,
+      "retrieved": [],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-080",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1013",
+        "KB-1063",
+        "KB-1064",
+        "KB-1065",
+        "KB-1066"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-081",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1013",
+        "KB-1044",
+        "KB-1095",
+        "KB-1096",
+        "KB-1097"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-082",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1004",
+        "KB-1005",
+        "KB-1006",
+        "KB-1007",
+        "KB-1090"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-083",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1040",
+        "KB-1045",
+        "KB-1050",
+        "KB-1059",
+        "KB-1060"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-084",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1007",
+        "KB-1037",
+        "KB-1061",
+        "KB-1080",
+        "KB-1085"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-085",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1004",
+        "KB-1034",
+        "KB-1035",
+        "KB-1073",
+        "KB-1074"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-086",
+      "recall_at_5": 0.0,
+      "retrieved": [
+        "KB-1043",
+        "KB-1044",
+        "KB-1081",
+        "KB-1085",
+        "KB-1099"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-087",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1004",
+        "KB-1005",
+        "KB-1006",
+        "KB-1007",
+        "KB-1035"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-088",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1017",
+        "KB-1021",
+        "KB-1022",
+        "KB-1023",
+        "KB-1024"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-089",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1007",
+        "KB-1035",
+        "KB-1074",
+        "KB-1090",
+        "KB-1091"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-090",
+      "recall_at_5": 1.0,
+      "retrieved": [
+        "KB-1021",
+        "KB-1037",
+        "KB-1057",
+        "KB-1059",
+        "KB-1084"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-091",
+      "recall_at_5": null,
+      "retrieved": [
+        "KB-1014",
+        "KB-1015",
+        "KB-1025",
+        "KB-1026",
+        "KB-1032"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-092",
+      "recall_at_5": null,
+      "retrieved": [],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-093",
+      "recall_at_5": null,
+      "retrieved": [
+        "KB-1033",
+        "KB-1039",
+        "KB-1040",
+        "KB-1077",
+        "KB-1081"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-094",
+      "recall_at_5": null,
+      "retrieved": [
+        "KB-1009",
+        "KB-1015",
+        "KB-1052",
+        "KB-1053",
+        "KB-1091"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-095",
+      "recall_at_5": null,
+      "retrieved": [
+        "KB-1053",
+        "KB-1058",
+        "KB-1060",
+        "KB-1088",
+        "KB-1092"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-096",
+      "recall_at_5": null,
+      "retrieved": [
+        "KB-1010",
+        "KB-1040",
+        "KB-1077",
+        "KB-1082",
+        "KB-1088"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-097",
+      "recall_at_5": null,
+      "retrieved": [
+        "KB-1013",
+        "KB-1026",
+        "KB-1063",
+        "KB-1064",
+        "KB-1065"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-098",
+      "recall_at_5": null,
+      "retrieved": [
+        "KB-1010",
+        "KB-1018",
+        "KB-1039",
+        "KB-1077",
+        "KB-1088"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-099",
+      "recall_at_5": null,
+      "retrieved": [
+        "KB-1032",
+        "KB-1033",
+        "KB-1040",
+        "KB-1081",
+        "KB-1088"
+      ],
+      "review_status": "draft"
+    },
+    {
+      "id": "rag-100",
+      "recall_at_5": null,
+      "retrieved": [
+        "KB-1014",
+        "KB-1033",
+        "KB-1061",
+        "KB-1076",
+        "KB-1083"
+      ],
+      "review_status": "draft"
+    }
+  ]
+}

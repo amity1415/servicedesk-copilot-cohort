@@ -1,0 +1,66 @@
+// Seed offline CI example. Review and copy to root Jenkinsfile in a Git branch.
+// Requires a dedicated Windows agent labelled copilot-windows, Python, Git,
+// Pipeline/SCM support, and JUnit reporting. No model or deployment credentials.
+// Uses current pip bootstrap; switch to a reviewed frozen lock for release builds.
+pipeline {
+    agent { label 'copilot-windows' }
+
+    options {
+        skipDefaultCheckout(true)
+        disableConcurrentBuilds()
+        timestamps()
+        timeout(time: 30, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '20', artifactNumToKeepStr: '10'))
+    }
+
+    stages {
+        stage('Checkout exact source') {
+            steps {
+                // This is the dedicated Jenkins job workspace, not the developer project.
+                deleteDir()
+                checkout scm
+                bat 'git rev-parse HEAD'
+            }
+        }
+
+        stage('Prepare isolated environment') {
+            steps {
+                bat 'python --version'
+                bat 'python -m venv .venv'
+                bat '.venv\\Scripts\\python.exe -m pip install -e ".[dev,ticketing,course,protocols,agents,postgres,telemetry]"'
+                bat 'if exist reports\\jenkins-tests.xml del reports\\jenkins-tests.xml'
+            }
+        }
+
+        stage('Lint and formatting') {
+            steps {
+                bat '.venv\\Scripts\\python.exe -m ruff check .'
+                bat '.venv\\Scripts\\python.exe -m ruff format --check .'
+            }
+        }
+
+        stage('Course and MCP contracts') {
+            steps {
+                bat '.venv\\Scripts\\python.exe scripts\\check_course.py'
+                bat '.venv\\Scripts\\python.exe scripts\\snapshot_contracts.py'
+            }
+        }
+
+        stage('Offline tests') {
+            steps {
+                bat '.venv\\Scripts\\python.exe -m pytest --junitxml=reports/jenkins-tests.xml --tb=short'
+            }
+        }
+    }
+
+    post {
+        always {
+            // Missing XML after a setup failure is not a passing test result;
+            // the failed stage still fails the build. Pytest must return success.
+            junit testResults: 'reports/jenkins-tests.xml', allowEmptyResults: true
+            archiveArtifacts artifacts: 'reports/jenkins-tests.xml',
+                             allowEmptyArchive: true,
+                             fingerprint: true
+        }
+    }
+}

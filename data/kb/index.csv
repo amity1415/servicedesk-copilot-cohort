@@ -1,0 +1,121 @@
+id,title,file
+KB-1001,Reset your LarkID password,KB-1001.md
+KB-1002,Unlock a locked LarkID account (error LID-1203),KB-1002.html
+KB-1003,LarkID password rules,KB-1003.md
+KB-1004,Set up LarkID Authenticator on iPhone and iPad,KB-1004.md
+KB-1005,Set up LarkID Authenticator on Android,KB-1005.html
+KB-1006,Fix rejected approval codes in LarkID Authenticator (error LID-MFA-102),KB-1006.md
+KB-1007,Move LarkID Authenticator to a new phone,KB-1007.md
+KB-1008,An application tile is missing from the LarkID portal,KB-1008.html
+KB-1009,Request access to an application,KB-1009.md
+KB-1010,"Get access to FinSight, the finance reporting tool",KB-1010.md
+KB-1011,Request access to a shared folder,KB-1011.html
+KB-1012,Request a shared mailbox or access to one,KB-1012.md
+KB-1013,Reset a Windows Hello PIN that stopped working (error 0x80090016),KB-1013.md
+KB-1014,Stop repeated keychain password prompts on macOS,KB-1014.html
+KB-1015,"Set up VaultKey, the approved password manager",KB-1015.md
+KB-1016,Install and set up SecureTunnel VPN on Windows,KB-1016.md
+KB-1017,Install and set up SecureTunnel VPN on macOS,KB-1017.html
+KB-1018,Fix VPN error 809 on Windows,KB-1018.md
+KB-1019,VPN is connected but internal sites do not load on Windows,KB-1019.md
+KB-1020,VPN is connected but internal sites do not load on macOS,KB-1020.html
+KB-1021,SecureTunnel device check failed (error ST-407),KB-1021.md
+KB-1022,VPN keeps disconnecting on Windows,KB-1022.md
+KB-1023,VPN keeps disconnecting on macOS,KB-1023.html
+KB-1024,SecureTunnel sign-in fails (error ST-401),KB-1024.md
+KB-1025,"Connect to LarkNet, the office Wi-Fi on Windows",KB-1025.md
+KB-1026,"Connect to LarkNet, the office Wi-Fi on macOS",KB-1026.html
+KB-1027,LarkNet stops connecting because the Wi-Fi certificate expired on Windows,KB-1027.md
+KB-1028,LarkNet stops connecting because the Wi-Fi certificate expired on macOS,KB-1028.md
+KB-1029,Give a visitor access to guest Wi-Fi (Americas),KB-1029.html
+KB-1030,"Give a visitor access to guest Wi-Fi (Europe, Middle East and Africa)",KB-1030.md
+KB-1031,Give a visitor access to guest Wi-Fi (Asia Pacific),KB-1031.md
+KB-1032,Improve a slow home connection for remote work,KB-1032.html
+KB-1033,Certificate warning NET::ERR_CERT_AUTHORITY_INVALID on internal sites,KB-1033.md
+KB-1034,Set up work email on your phone on iPhone and iPad,KB-1034.md
+KB-1035,Set up work email on your phone on Android,KB-1035.html
+KB-1036,Outlook cannot connect to the server (error 0x800CCC0E),KB-1036.md
+KB-1037,Outlook keeps asking for your password on Windows,KB-1037.md
+KB-1038,Outlook keeps asking for your password on macOS,KB-1038.html
+KB-1039,Mailbox is full or nearly full,KB-1039.md
+KB-1040,Share your calendar or give someone delegate access,KB-1040.md
+KB-1041,Recover a deleted email or file,KB-1041.html
+KB-1042,Teams sign-in fails with error caa70004,KB-1042.md
+KB-1043,Camera or microphone does not work in Teams on Windows,KB-1043.md
+KB-1044,Camera or microphone does not work in Teams on macOS,KB-1044.html
+KB-1045,Screen sharing shows a black screen on macOS,KB-1045.md
+KB-1046,OneDrive is not syncing on Windows,KB-1046.md
+KB-1047,OneDrive is not syncing on macOS,KB-1047.html
+KB-1048,Book a meeting room and use the room screen (Americas),KB-1048.md
+KB-1049,"Book a meeting room and use the room screen (Europe, Middle East and Africa)",KB-1049.md
+KB-1050,Book a meeting room and use the room screen (Asia Pacific),KB-1050.html
+KB-1051,Set an out-of-office reply and the standard email signature,KB-1051.md
+KB-1052,Create or change an email distribution list,KB-1052.md
+KB-1053,Send a file that is too large for email,KB-1053.html
+KB-1054,Speed up a slow laptop on Windows,KB-1054.md
+KB-1055,Speed up a slow laptop on macOS,KB-1055.md
+KB-1056,Laptop does not turn on or does not charge,KB-1056.html
+KB-1057,Request a replacement laptop,KB-1057.md
+KB-1058,Set up a docking station and external screens on Windows,KB-1058.md
+KB-1059,Set up a docking station and external screens on macOS,KB-1059.html
+KB-1060,Laptop asks for a BitLocker recovery key,KB-1060.md
+KB-1061,Mac does not accept your password at start-up (FileVault),KB-1061.md
+KB-1062,Report a lost or stolen laptop or phone,KB-1062.html
+KB-1063,Print in the office with FollowMe printing (Americas),KB-1063.md
+KB-1064,"Print in the office with FollowMe printing (Europe, Middle East and Africa)",KB-1064.md
+KB-1065,Print in the office with FollowMe printing (Asia Pacific),KB-1065.html
+KB-1066,Printing fails with error 0x00000709 on Windows,KB-1066.md
+KB-1067,Pair a Bluetooth headset on Windows,KB-1067.md
+KB-1068,Pair a Bluetooth headset on macOS,KB-1068.html
+KB-1069,Windows laptop restarts with a blue screen,KB-1069.md
+KB-1070,Mac restarts with 'Your computer restarted because of a problem',KB-1070.md
+KB-1071,Free up disk space on Windows,KB-1071.html
+KB-1072,Free up disk space on macOS,KB-1072.md
+KB-1073,Enrol a phone in DeviceCare on iPhone and iPad,KB-1073.md
+KB-1074,Enrol a phone in DeviceCare on Android,KB-1074.html
+KB-1075,Install software from App Hub on Windows,KB-1075.md
+KB-1076,Install software from App Hub on macOS,KB-1076.md
+KB-1077,Request licensed software,KB-1077.html
+KB-1078,Software installation fails with error 0x80070005,KB-1078.md
+KB-1079,Windows Update fails with error 0x800F0922,KB-1079.md
+KB-1080,macOS update does not install,KB-1080.html
+KB-1081,Fix a website that does not load or display properly,KB-1081.md
+KB-1082,You received an 'Unapproved software detected' notice,KB-1082.md
+KB-1083,Request temporary administrator rights,KB-1083.html
+KB-1084,EndpointShield quarantined a file (alert ES-QUAR-21),KB-1084.md
+KB-1085,Report a suspicious email,KB-1085.md
+KB-1086,What to do if you suspect malware,KB-1086.html
+KB-1087,Using USB storage devices,KB-1087.md
+KB-1088,Data classification quick guide,KB-1088.md
+KB-1089,Travelling abroad with company devices,KB-1089.html
+KB-1090,Your first day: IT checklist for new joiners,KB-1090.md
+KB-1091,Managers: request IT setup for a new joiner,KB-1091.md
+KB-1092,Leaving the company: accounts and equipment,KB-1092.html
+KB-1093,Accounts for contractors and temporary staff,KB-1093.md
+KB-1094,Remote work set-up checklist,KB-1094.md
+KB-1095,IT support hours and how to reach the service desk (Americas),KB-1095.html
+KB-1096,"IT support hours and how to reach the service desk (Europe, Middle East and Africa)",KB-1096.md
+KB-1097,IT support hours and how to reach the service desk (Asia Pacific),KB-1097.md
+KB-1098,Raise a good IT ticket,KB-1098.html
+KB-1099,Make and receive phone calls in Teams,KB-1099.md
+KB-1100,"Problems with PeopleHub, payslips or leave",KB-1100.md
+KB-1101,Service desk: set ticket priority,KB-1101.html
+KB-1102,Service desk: route tickets to the right group,KB-1102.md
+KB-1103,Service desk: verify a caller's identity,KB-1103.md
+KB-1104,Service desk: unlock an account in the LarkID admin console,KB-1104.html
+KB-1105,Identity and Access: reset MFA and issue a temporary access pass,KB-1105.md
+KB-1106,Known issue KI-2026-014: SecureTunnel 5.2 disconnects on macOS 26,KB-1106.md
+KB-1107,Network Operations: diagnose VPN error 809 that follows the user,KB-1107.html
+KB-1108,Messaging: rebuild an Outlook profile safely,KB-1108.md
+KB-1109,Workplace Engineering: repair or re-image a laptop,KB-1109.md
+KB-1110,Software Packaging: reclaim unused licences,KB-1110.html
+KB-1111,Service desk: communication during a priority 1 incident,KB-1111.md
+KB-1112,Workplace Engineering: clear a stuck FollowMe print queue,KB-1112.md
+KB-1113,Software Packaging: handle a request for new software,KB-1113.html
+KB-1114,Security Operations: lock or wipe a lost device,KB-1114.md
+KB-1115,Security Operations: handle requests for administrator rights,KB-1115.md
+KB-1116,Onboarding Team: fulfil a new joiner request,KB-1116.html
+KB-1117,Service desk: when to involve Security Operations,KB-1117.md
+KB-1118,Service desk: write resolution notes others can use,KB-1118.md
+KB-1119,Service desk: knowledge-base article standard,KB-1119.html
+KB-1120,Service desk: publish a service status update,KB-1120.md

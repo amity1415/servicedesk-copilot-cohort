@@ -1,0 +1,26 @@
+name: teaching-reference
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  offline-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e ".[dev,ticketing,course,protocols,agents,postgres,telemetry]"
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: pytest
+      - run: python scripts/check_course.py
+      - run: python scripts/snapshot_contracts.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reference-validation
+          path: reports/
+# The full Compose/nightly quality gate is intentionally not claimed here.
+# See docs/IMPLEMENTATION_STATUS.md and session 38's measured release checklist.

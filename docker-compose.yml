@@ -1,0 +1,50 @@
+# Enterprise systems the copilot talks to, run locally.
+#
+#   docker compose up -d db          # session 10: PostgreSQL with pgvector and the seeded company data
+#   docker compose up -d ticketing   # session 17: the ticketing mock
+#   docker compose down -v           # stop everything and delete the database volume
+#
+# The MCP servers, the HR agent, the API and the UI are added to this file as they are built.
+
+name: servicedesk-copilot
+
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    environment:
+      # Local development values only. They match .env.example.
+      POSTGRES_USER: copilot
+      POSTGRES_PASSWORD: copilot_dev_only
+      POSTGRES_DB: copilot
+    ports:
+      - "5432:5432"
+    volumes:
+      # Scripts in this folder run once, in name order, when the volume is first created.
+      - ./data/db/00_extensions.sql:/docker-entrypoint-initdb.d/00_extensions.sql:ro
+      - ./data/db/01_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./data/db/02_seed.sql:/docker-entrypoint-initdb.d/02_seed.sql:ro
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U copilot -d copilot"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  ticketing:
+    build: ./services/ticketing_mock
+    environment:
+      TICKETING_API_KEY: dev-ticketing-key
+      TICKETING_SEED: /seed/open_tickets.json
+      TICKETING_EMPLOYEES: /seed/employees.csv
+      # Fault injection is off by default. See services/ticketing_mock/README.md.
+      FAULT_ERROR_RATE: "0"
+      FAULT_TIMEOUT_RATE: "0"
+      FAULT_RATE_LIMIT_PER_MINUTE: "0"
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./data/tickets/open_tickets.json:/seed/open_tickets.json:ro
+      - ./data/db/csv/employees.csv:/seed/employees.csv:ro
+
+volumes:
+  pgdata:

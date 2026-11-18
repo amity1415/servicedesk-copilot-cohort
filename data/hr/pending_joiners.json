@@ -1,0 +1,68 @@
+[
+  {
+    "candidate_id": "C-2041",
+    "full_name": "Hannah Vogel",
+    "department": "Sales",
+    "job_title": "Account Executive",
+    "office": "Munich",
+    "region": "EMEA",
+    "manager_id": "E1062",
+    "start_date": "2026-11-16",
+    "cost_centre": "CC-4410",
+    "role_profile": "RP-SAL",
+    "laptop_type": "Standard",
+    "peoplehub_record": "complete",
+    "missing_fields": [],
+    "hr_checklist": {
+      "contract_signed": true,
+      "right_to_work_checked": true,
+      "payroll_set_up": true,
+      "induction_booked": "2026-11-16T09:30:00+01:00"
+    }
+  },
+  {
+    "candidate_id": "C-2043",
+    "full_name": "Rafael Mendes",
+    "department": "Engineering",
+    "job_title": "Software Engineer",
+    "office": "Toronto",
+    "region": "AMER",
+    "manager_id": "E1003",
+    "start_date": "2026-11-23",
+    "cost_centre": null,
+    "role_profile": "RP-ENG",
+    "laptop_type": "Developer",
+    "peoplehub_record": "incomplete",
+    "missing_fields": [
+      "cost_centre",
+      "right_to_work_checked"
+    ],
+    "hr_checklist": {
+      "contract_signed": true,
+      "right_to_work_checked": false,
+      "payroll_set_up": false,
+      "induction_booked": null
+    }
+  },
+  {
+    "candidate_id": "C-2044",
+    "full_name": "Aiko Tanaka",
+    "department": "Customer Support",
+    "job_title": "Support Specialist",
+    "office": "Singapore",
+    "region": "APAC",
+    "manager_id": "E1117",
+    "start_date": "2026-12-01",
+    "cost_centre": "CC-5120",
+    "role_profile": "RP-SUP",
+    "laptop_type": "Standard",
+    "peoplehub_record": "complete",
+    "missing_fields": [],
+    "hr_checklist": {
+      "contract_signed": true,
+      "right_to_work_checked": true,
+      "payroll_set_up": true,
+      "induction_booked": "2026-12-01T09:30:00+08:00"
+    }
+  }
+]

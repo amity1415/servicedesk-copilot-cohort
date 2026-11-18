@@ -1,0 +1,58 @@
+[project]
+name = "servicedesk-copilot"
+version = "0.1.0"
+description = "IT Service Desk Copilot: the single use case for the 60-hour AI Engineering program"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "httpx>=0.27,<1",
+    "PyYAML>=6,<7",
+    "beautifulsoup4>=4.12,<5",
+    "opentelemetry-api>=1.30,<2",
+]
+
+[project.optional-dependencies]
+# Everyone: tests, lint and Git hooks.
+dev = ["pytest>=8", "ruff>=0.6", "pre-commit>=3.7"]
+# Only to run the trainer-provided ticketing mock outside Docker, or its tests.
+ticketing = ["fastapi>=0.111", "uvicorn>=0.30", "httpx>=0.27"]
+# Only to regenerate the synthetic data pack (python -m datagen).
+datagen = ["fpdf2>=2.7.9", "python-docx>=1.1"]
+course = ["scikit-learn>=1.5,<2", "tiktoken>=0.7,<1", "pypdf>=5,<8", "python-docx>=1.1,<2", "fastapi>=0.111,<1", "uvicorn>=0.30,<1", "streamlit>=1.38,<2"]
+neural = ["sentence-transformers>=3,<6"]
+postgres = ["psycopg[binary,pool]>=3.2,<4", "pgvector>=0.3,<1"]
+agents = ["langgraph>=1,<2", "langgraph-checkpoint-postgres>=3,<4"]
+protocols = ["mcp>=1.26,<2", "a2a-sdk>=0.3,<1"]
+telemetry = ["opentelemetry-sdk>=1.30,<2", "opentelemetry-exporter-otlp>=1.30,<2"]
+
+[project.scripts]
+copilot = "copilot.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/copilot"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "services/ticketing_mock/tests"]
+pythonpath = ["src", ".", "services/ticketing_mock"]
+addopts = "-q --import-mode=importlib"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+# The data generator holds authored text and document templates: one sentence or one
+# table row per line reads better there than wrapped strings.
+"datagen/**/*.py" = ["E501"]
+"scripts/build_course.py" = ["E501"]
+"scripts/prepare_evals.py" = ["E501"]

@@ -1,0 +1,4 @@
+region,name,support_hours,phone,tech_bar
+AMER,Americas,"07:00 to 19:00 Central Time, Monday to Friday",extension 4357 or +1 312 555 0143,"Chicago, floor 3, 09:00 to 16:00; Toronto, floor 2, 10:00 to 15:00"
+EMEA,"Europe, Middle East and Africa","07:00 to 19:00 UK time, Monday to Friday",extension 4357 or +44 20 7946 0143,"London, floor 5, 09:00 to 16:00; Munich, floor 1, 09:30 to 15:30"
+APAC,Asia Pacific,"07:00 to 19:00 India Standard Time, Monday to Friday",extension 4357 or +65 6555 0143,"Bengaluru, floor 4, 09:30 to 17:00; Singapore, floor 9, 10:00 to 15:00"

@@ -1,0 +1,451 @@
+asset_tag,device_type,model,os,os_version,serial_number,purchase_date,ram_gb,storage_gb,assigned_to,status,encrypted,compliant,last_patch_date,pending_updates
+LH-L-00001,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,BMJQTMZQJB,2023-02-09,16,512,E1001,in use,true,true,2026-11-13,0
+LH-L-00002,laptop,MacBook Pro 14 (M4),macos,macOS 26.3,QBW2BN7ZRG,2026-03-24,32,256,E1002,in use,true,false,2026-10-12,5
+LH-L-00003,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,VZXBXSUMMG,2023-12-30,16,1024,E1003,in use,true,true,2026-11-13,0
+LH-L-00004,laptop,MacBook Air 13 (M2),macos,macOS 26.3,5XYDKJDDQ3,2023-03-26,16,512,E1004,in use,true,true,2026-11-10,0
+LH-L-00005,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,C7YYHJ6WUF,2023-04-06,8,1024,E1005,in use,true,true,2026-11-02,1
+LH-L-00006,laptop,Dell Latitude 7450,windows,Windows 11 24H2,BTJHELVEEC,2026-10-12,16,512,E1006,in use,true,true,2026-10-28,2
+LH-L-00007,laptop,Dell Latitude 7450,windows,Windows 11 25H2,F67R4ZB588,2025-07-09,16,1024,E1007,in use,true,true,2026-10-30,1
+LH-L-00008,laptop,MacBook Pro 14 (M3),macos,macOS 15.7,MVAUKN46XF,2025-11-08,32,512,E1008,in use,true,true,2026-11-03,3
+LH-L-00009,laptop,Dell Latitude 5440,windows,Windows 11 25H2,26PHTRMN8T,2023-01-02,8,256,E1009,in use,true,true,2026-11-05,0
+LH-L-00010,laptop,MacBook Air 13 (M2),macos,macOS 26.3,76CRSV45JX,2024-12-13,32,1024,E1010,in use,true,true,2026-11-07,0
+LH-L-00011,laptop,Dell Latitude 7450,windows,Windows 11 25H2,PQ7T4YUEFU,2025-12-27,16,256,E1011,in use,true,true,2026-11-02,2
+LH-L-00012,laptop,MacBook Air 13 (M2),macos,macOS 26.3,DSWK7GP4QX,2024-03-23,16,256,E1012,in use,true,true,2026-11-02,2
+LH-L-00013,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,VPW32JB4BZ,2023-02-27,8,256,E1013,in use,true,true,2026-11-13,0
+LH-L-00014,laptop,MacBook Air 13 (M4),macos,macOS 26.3,MYL3VM86AW,2026-06-09,16,1024,E1014,in use,true,true,2026-10-31,2
+LH-L-00015,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,74YU9FZJWF,2026-06-18,32,256,E1015,in use,true,true,2026-11-10,0
+LH-L-00016,laptop,Dell Latitude 5440,windows,Windows 11 24H2,LR835BFRHE,2023-08-11,32,512,E1016,in use,true,true,2026-11-02,1
+LH-L-00017,laptop,HP EliteBook 840 G8,windows,Windows 11 25H2,4Q32EXM522,2021-09-22,8,1024,E1017,in use,true,false,2026-09-25,10
+LH-L-00018,laptop,Dell Latitude 7450,windows,Windows 11 25H2,KBM5MVGMBR,2025-05-13,16,1024,E1018,in use,true,true,2026-11-13,0
+LH-L-00019,laptop,MacBook Air 13 (M3),macos,macOS 26.3,SNMKEEFHXG,2024-09-22,16,512,E1019,in use,true,true,2026-10-15,1
+LH-L-00020,laptop,MacBook Pro 14 (M4),macos,macOS 26.3,RFJRDPJDAN,2026-02-07,16,1024,E1020,in use,true,true,2026-11-02,1
+LH-L-00021,laptop,MacBook Pro 14 (M4),macos,macOS 26.3,XBRL9WDBEU,2025-06-20,16,256,E1021,in use,true,true,2026-11-09,0
+LH-L-00022,laptop,MacBook Pro 14 (M3),macos,macOS 15.7,GQ8634YZ97,2023-11-15,16,1024,E1022,in use,true,false,2026-09-30,5
+LH-L-00023,laptop,Dell Latitude 7440,windows,Windows 11 24H2,TUMRWMXB3D,2023-11-07,16,512,E1023,in use,true,true,2026-11-05,0
+LH-L-00024,laptop,MacBook Pro 14 (M4),macos,macOS 26.3,W3MB8RD7JL,2026-06-03,16,512,E1024,in use,true,true,2026-11-12,0
+LH-L-00025,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,H92FJ55DNN,2023-08-01,16,1024,E1025,in use,true,true,2026-10-23,2
+LH-L-00026,laptop,MacBook Air 13 (M1),macos,macOS 26.3,FG2V3TLVZY,2022-12-27,8,512,E1026,in use,true,true,2026-11-09,0
+LH-L-00027,laptop,MacBook Air 13 (M3),macos,macOS 26.3,NMUBDJLT4M,2024-05-07,16,512,E1027,in use,true,true,2026-11-08,0
+LH-L-00028,laptop,MacBook Air 13 (M2),macos,macOS 26.3,TTK7RYJC2G,2024-01-12,32,1024,E1028,in use,true,true,2026-11-13,0
+LH-L-00029,laptop,MacBook Air 13 (M2),macos,macOS 26.3,7685PC5HNA,2024-08-18,16,256,E1029,in use,true,true,2026-11-02,2
+LH-L-00030,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,JHV78BP6HH,2024-04-30,16,256,E1030,in use,true,true,2026-11-08,0
+LH-L-00031,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,22QKWEV7ZY,2026-05-14,32,512,E1031,in use,true,true,2026-11-05,0
+LH-L-00032,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,DVHBDBBD34,2025-11-09,32,256,E1032,in use,true,true,2026-11-12,0
+LH-L-00033,laptop,MacBook Air 13 (M2),macos,macOS 26.3,52UDN3C4J7,2024-01-29,16,256,E1033,in use,true,true,2026-11-09,0
+LH-L-00034,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,76EUR5SA42,2026-04-04,16,512,E1034,in use,true,false,2026-10-08,4
+LH-L-00035,laptop,MacBook Air 13 (M1),macos,macOS 26.3,WH7NCHRJBN,2022-10-15,8,256,E1035,in use,true,true,2026-10-31,3
+LH-L-00036,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,GA2C4DYQV3,2023-12-01,16,512,E1036,in use,true,true,2026-11-02,3
+LH-L-00037,laptop,Dell Latitude 7450,windows,Windows 11 25H2,PVJMRRT8B9,2026-01-25,32,512,E1037,in use,true,true,2026-11-10,0
+LH-L-00038,laptop,Dell Latitude 7440,windows,Windows 11 24H2,B2WTC4AGJB,2025-02-21,16,512,E1038,in use,true,false,2026-09-25,6
+LH-L-00039,laptop,Dell Latitude 7440,windows,Windows 11 24H2,355PPQM385,2023-01-04,16,1024,E1039,in use,true,true,2026-11-11,0
+LH-L-00040,laptop,Lenovo ThinkPad T14 Gen 2,windows,Windows 11 24H2,RN4MKSGPG3,2022-07-07,8,1024,E1040,in use,true,true,2026-11-05,0
+LH-L-00041,laptop,MacBook Air 13 (M2),macos,macOS 15.7,EQG83DACUQ,2023-12-13,32,512,E1041,in use,true,true,2026-11-09,0
+LH-L-00042,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,NG2Q3DKNQK,2025-02-03,16,512,E1042,in use,true,true,2026-11-12,0
+LH-L-00043,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,8GNLJFUQDB,2026-01-28,16,512,E1043,in use,true,true,2026-11-01,2
+LH-L-00044,laptop,MacBook Air 13 (M2),macos,macOS 26.3,NJ2CQMTYY4,2022-02-06,16,512,E1044,in use,true,true,2026-11-13,0
+LH-L-00045,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,KFH45XABN3,2023-11-30,32,512,E1045,in use,true,true,2026-11-04,0
+LH-L-00046,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,GNWLQCQMFA,2025-08-31,16,512,E1046,in use,true,false,2026-10-09,8
+LH-L-00047,laptop,HP EliteBook 840 G8,windows,Windows 11 24H2,4HJB878QM5,2022-12-03,16,512,E1047,in use,true,true,2026-11-07,0
+LH-L-00048,laptop,HP EliteBook 840 G11,windows,Windows 11 25H2,5B4GKDR3U5,2024-03-07,32,1024,E1048,in use,true,false,2026-09-29,4
+LH-L-00049,laptop,MacBook Pro 14 (M3),macos,macOS 15.7,LEUB45NPMH,2023-09-05,32,512,E1049,in use,true,true,2026-11-12,0
+LH-L-00050,laptop,MacBook Pro 14 (M3),macos,macOS 15.7,U454LX7HF2,2025-01-29,32,512,E1050,in use,true,true,2026-10-30,1
+LH-L-00051,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,CX3US95GL8,2023-07-09,8,256,E1051,in use,true,true,2026-11-05,0
+LH-L-00052,laptop,MacBook Air 13 (M2),macos,macOS 26.3,UP8SB4RYHH,2022-01-22,16,1024,E1052,in use,true,true,2026-11-02,1
+LH-L-00053,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,JWBZ3UABRK,2024-06-23,32,1024,E1053,in use,true,true,2026-11-13,0
+LH-L-00054,laptop,MacBook Air 13 (M2),macos,macOS 26.3,3TY634AMVF,2022-04-09,8,1024,E1054,in use,true,true,2026-11-03,3
+LH-L-00055,laptop,MacBook Air 13 (M3),macos,macOS 26.3,CXZZPS56L3,2025-02-16,32,256,E1055,in use,true,false,2026-09-19,10
+LH-L-00056,laptop,MacBook Pro 14 (M3),macos,macOS 15.7,UG5XBX2SJW,2023-09-13,32,512,E1056,in use,true,true,2026-11-03,2
+LH-L-00057,laptop,MacBook Air 13 (M4),macos,macOS 15.7,PTBSUXLT2D,2025-11-07,32,512,E1057,in use,true,true,2026-11-07,0
+LH-L-00058,laptop,MacBook Pro 14 (M4),macos,macOS 15.7,A4RY7X6RXA,2026-03-01,32,512,E1058,in use,true,true,2026-11-11,0
+LH-L-00059,laptop,MacBook Air 13 (M3),macos,macOS 15.7,KRC54XHNPY,2025-05-10,32,512,E1059,in use,true,true,2026-11-12,0
+LH-L-00060,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,963PCGU27G,2026-08-02,16,512,E1060,in use,true,true,2026-10-19,3
+LH-L-00061,laptop,HP EliteBook 840 G10,windows,Windows 11 25H2,UN8UHXSHJU,2023-10-22,16,256,E1061,in use,true,true,2026-11-07,0
+LH-L-00062,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,RAQJ6BDPJP,2024-09-09,16,512,E1062,in use,true,true,2026-11-09,0
+LH-L-00063,laptop,MacBook Air 13 (M2),macos,macOS 15.7,NT7THDDUEG,2023-03-14,16,512,E1063,in use,true,true,2026-10-18,2
+LH-L-00064,laptop,Dell Latitude 7450,windows,Windows 11 25H2,N72YBEZWZ7,2026-02-09,16,512,E1064,in use,true,true,2026-11-08,0
+LH-L-00065,laptop,MacBook Air 13 (M3),macos,macOS 26.3,FP5L6PA4TX,2025-04-28,16,512,E1065,in use,true,true,2026-11-12,0
+LH-L-00066,laptop,Dell Latitude 7450,windows,Windows 11 24H2,5ZDCUXQ5N9,2024-05-12,16,512,E1066,in use,true,true,2026-10-16,3
+LH-L-00067,laptop,Dell Latitude 5420,windows,Windows 11 24H2,L9WZZX63Q2,2022-12-03,8,512,E1067,in use,true,true,2026-10-31,3
+LH-L-00068,laptop,Dell Latitude 5440,windows,Windows 11 24H2,FFLNA46LMC,2024-06-03,16,512,E1068,in use,true,true,2026-11-09,0
+LH-L-00069,laptop,Dell Latitude 7450,windows,Windows 11 24H2,M95CFD5EN2,2026-05-13,16,1024,E1069,in use,true,true,2026-10-30,1
+LH-L-00070,laptop,HP EliteBook 840 G8,windows,Windows 11 24H2,W794CVT3X9,2022-11-23,16,512,E1070,in use,true,true,2026-11-11,0
+LH-L-00071,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,Z9CZHFEENS,2025-05-23,16,512,E1071,in use,true,true,2026-10-29,2
+LH-L-00072,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,AGW7NZ7VGA,2026-09-19,16,512,E1072,in use,true,true,2026-10-17,1
+LH-L-00073,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,B6HZJZCSZ5,2023-07-09,16,1024,E1073,in use,true,true,2026-11-02,3
+LH-L-00074,laptop,MacBook Air 13 (M4),macos,macOS 26.3,XUQM5DX7QC,2026-06-19,16,256,E1074,in use,true,true,2026-11-08,0
+LH-L-00075,laptop,Dell Latitude 7440,windows,Windows 11 24H2,LRBE3FQVBJ,2025-05-14,16,512,E1075,in use,true,true,2026-11-05,0
+LH-L-00076,laptop,MacBook Air 13 (M2),macos,macOS 15.7,QYDKM4Q3SU,2023-05-06,16,512,E1076,in use,true,true,2026-10-30,3
+LH-L-00077,laptop,Dell Latitude 7440,windows,Windows 11 24H2,2XY88A8XWZ,2025-09-01,32,256,E1077,in use,true,true,2026-10-31,1
+LH-L-00078,laptop,MacBook Air 13 (M4),macos,macOS 15.7,Y8XS5XX8G7,2025-06-04,16,512,E1078,in use,true,true,2026-11-10,0
+LH-L-00079,laptop,Dell Latitude 7440,windows,Windows 11 24H2,PWQEN8WSJH,2024-10-06,16,1024,E1079,in use,true,true,2026-11-12,0
+LH-L-00080,laptop,MacBook Pro 14 (M3),macos,macOS 15.7,BG5SJTPK9R,2023-01-07,16,256,E1080,in use,true,true,2026-11-08,0
+LH-L-00081,laptop,MacBook Air 13 (M2),macos,macOS 26.3,WVQQSR4Q3K,2023-02-22,16,1024,E1081,in use,true,true,2026-10-31,3
+LH-L-00082,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,4BQLTRAAGB,2026-03-26,16,256,E1082,in use,true,true,2026-10-31,1
+LH-L-00083,laptop,MacBook Pro 14 (M4),macos,macOS 26.3,ZA6D8XFQMW,2025-10-19,16,512,E1083,in use,true,true,2026-11-06,0
+LH-L-00084,laptop,Lenovo ThinkPad T14 Gen 2,windows,Windows 11 24H2,WNBZUCVDZ5,2022-02-20,8,512,E1084,in use,true,true,2026-11-11,0
+LH-L-00085,laptop,Dell Latitude 7450,windows,Windows 11 24H2,V9RNM7N8UQ,2026-08-17,16,1024,E1085,in use,true,true,2026-11-11,0
+LH-L-00086,laptop,Dell Latitude 5440,windows,Windows 11 25H2,GX5UZFTS25,2023-06-01,8,1024,E1086,in use,true,true,2026-11-01,2
+LH-L-00087,laptop,Dell Latitude 7440,windows,Windows 11 25H2,CCYYWHBW9T,2023-06-12,16,512,E1087,in use,true,true,2026-10-31,3
+LH-L-00088,laptop,MacBook Air 13 (M3),macos,macOS 26.3,PLN57K7BQR,2024-09-29,16,1024,E1088,in use,true,true,2026-11-04,0
+LH-L-00089,laptop,Lenovo ThinkPad T14 Gen 2,windows,Windows 11 24H2,UL95HJL2PN,2021-08-29,8,512,E1089,in use,true,true,2026-10-30,3
+LH-L-00090,laptop,Dell Latitude 7440,windows,Windows 11 24H2,4HPGEPVR74,2025-06-09,16,1024,E1090,in use,true,true,2026-10-31,3
+LH-L-00091,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,6XHH7ZQB9K,2024-12-03,16,512,E1091,in use,true,true,2026-11-09,0
+LH-L-00092,laptop,Dell Latitude 7450,windows,Windows 11 25H2,XH72YM5MFL,2025-03-04,16,256,E1092,in use,true,true,2026-11-10,0
+LH-L-00093,laptop,MacBook Air 13 (M3),macos,macOS 26.3,M42Q3FRUUR,2024-12-21,16,1024,E1093,in use,false,false,2026-11-08,0
+LH-L-00094,laptop,Dell Latitude 7440,windows,Windows 11 24H2,9SSZAE4NT4,2024-12-25,16,1024,E1094,in use,true,true,2026-11-03,1
+LH-L-00095,laptop,HP EliteBook 840 G11,windows,Windows 11 25H2,ZRNZ7XEVCL,2025-03-30,16,512,E1095,in use,true,true,2026-11-03,3
+LH-L-00096,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,AHW4JJFVSM,2026-04-25,16,256,E1096,in use,true,true,2026-11-05,0
+LH-L-00097,laptop,MacBook Air 13 (M2),macos,macOS 26.3,4MX538L658,2024-06-09,32,512,E1097,in use,true,true,2026-11-12,0
+LH-L-00098,laptop,MacBook Air 13 (M4),macos,macOS 26.3,E56QFAKBZQ,2026-04-26,16,512,E1098,in use,true,true,2026-10-27,3
+LH-L-00099,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,3ZXUTJGT3K,2023-04-25,16,512,E1099,in use,true,true,2026-11-01,1
+LH-L-00100,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,J5MQYRK5LL,2025-09-26,16,1024,E1100,in use,true,true,2026-11-11,0
+LH-L-00101,laptop,MacBook Pro 14 (M4),macos,macOS 26.3,S8UN8QTFQV,2024-04-15,16,512,E1101,in use,true,true,2026-11-13,0
+LH-L-00102,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,MTKYT8G4LX,2024-02-22,16,1024,E1102,in use,true,true,2026-11-05,0
+LH-L-00103,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 25H2,CW95A66XGX,2023-01-15,8,1024,E1103,in use,true,true,2026-11-07,0
+LH-L-00104,laptop,MacBook Air 13 (M1),macos,macOS 15.7,DNGPMFDP38,2022-12-10,16,512,E1104,in use,true,true,2026-11-01,3
+LH-L-00105,laptop,Lenovo ThinkPad T14 Gen 2,windows,Windows 11 24H2,K5C3E8RRHB,2022-04-29,16,512,E1105,in use,true,true,2026-11-07,0
+LH-L-00106,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,6HE7AB4NY9,2023-08-30,16,512,E1106,in use,true,true,2026-11-07,0
+LH-L-00107,laptop,Lenovo ThinkPad T14 Gen 2,windows,Windows 11 24H2,NSCYDGRHLU,2022-08-20,8,512,E1107,in use,true,true,2026-11-11,0
+LH-L-00108,laptop,Dell Latitude 7440,windows,Windows 11 25H2,8E7V3YLXYP,2024-12-05,16,1024,E1108,in use,true,true,2026-11-08,0
+LH-L-00109,laptop,MacBook Air 13 (M1),macos,macOS 26.3,HB39EAZKP8,2022-04-21,8,512,E1109,in use,true,true,2026-11-06,0
+LH-L-00110,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,F2MBDACRRW,2026-08-21,16,512,E1110,in use,true,false,2026-09-25,6
+LH-L-00111,laptop,Dell Latitude 7440,windows,Windows 11 24H2,9BPX6W68NG,2023-09-08,16,512,E1111,in use,true,true,2026-11-10,0
+LH-L-00112,laptop,Dell Latitude 7450,windows,Windows 11 25H2,FCYH42J56B,2026-03-15,32,512,E1112,in use,true,true,2026-11-02,2
+LH-L-00113,laptop,MacBook Air 13 (M3),macos,macOS 26.3,LFZXVDCQH6,2024-10-11,16,256,E1113,in use,true,true,2026-10-30,1
+LH-L-00114,laptop,MacBook Air 13 (M2),macos,macOS 15.7,QJ36Q3SMDP,2024-08-29,16,512,E1114,in use,true,true,2026-11-06,0
+LH-L-00115,laptop,Dell Latitude 7450,windows,Windows 11 25H2,67LH8DRQTA,2026-06-27,16,512,E1115,in use,true,true,2026-11-08,0
+LH-L-00116,laptop,MacBook Air 13 (M2),macos,macOS 26.3,3WYHPCBF9P,2023-06-05,8,512,E1116,in use,true,true,2026-11-07,0
+LH-L-00117,laptop,MacBook Air 13 (M3),macos,macOS 26.3,XCNWRR7UKS,2024-03-10,16,1024,E1117,in use,true,true,2026-10-17,1
+LH-L-00118,laptop,HP EliteBook 840 G11,windows,Windows 11 25H2,5KWLRUBQG7,2025-01-29,16,512,E1118,in use,true,true,2026-11-03,2
+LH-L-00119,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,APUQ4T39B4,2023-04-29,16,1024,E1119,in use,true,true,2026-10-30,3
+LH-L-00120,laptop,MacBook Pro 14 (M4),macos,macOS 26.3,38TNMVEMWR,2025-05-24,16,512,E1120,in use,true,true,2026-11-12,0
+LH-L-00121,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 25H2,9VL4JJMTKQ,2026-03-21,16,1024,E1121,in use,true,false,2026-09-29,6
+LH-L-00122,laptop,Dell Latitude 5440,windows,Windows 11 24H2,W59MBLASQ5,2023-11-06,16,256,E1122,in use,true,true,2026-11-09,0
+LH-L-00123,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,BFLBRJN56Z,2025-01-22,16,256,E1123,in use,true,true,2026-11-11,0
+LH-L-00124,laptop,MacBook Air 13 (M4),macos,macOS 26.3,SGTQY57XJR,2026-07-08,32,1024,E1124,in use,true,true,2026-11-07,0
+LH-L-00125,laptop,Dell Latitude 7450,windows,Windows 11 25H2,EYC26EHVR2,2024-03-07,16,1024,E1125,in use,true,true,2026-11-08,0
+LH-L-00126,laptop,HP EliteBook 840 G11,windows,Windows 11 25H2,7DR694BU44,2026-08-13,16,256,E1126,in use,true,true,2026-11-03,1
+LH-L-00127,laptop,MacBook Air 13 (M1),macos,macOS 15.7,KUXYXJ88EW,2022-10-26,16,1024,E1127,in use,true,true,2026-11-09,0
+LH-L-00128,laptop,Dell Latitude 5440,windows,Windows 11 24H2,HYCH335LA4,2023-04-23,16,1024,E1128,in use,true,true,2026-11-03,1
+LH-L-00129,laptop,Dell Latitude 7440,windows,Windows 11 24H2,QU2K3PUN4F,2023-03-15,8,512,E1129,in use,true,true,2026-10-31,2
+LH-L-00130,laptop,HP EliteBook 840 G11,windows,Windows 11 25H2,C3LWB2SNMN,2026-04-08,32,512,E1130,in use,true,true,2026-11-01,1
+LH-L-00131,laptop,Dell Latitude 7440,windows,Windows 11 24H2,DXVXQMTR2L,2025-04-25,16,512,E1131,in use,true,true,2026-10-24,1
+LH-L-00132,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,TFCZW5R87Q,2023-04-10,16,512,E1132,in use,true,true,2026-11-03,1
+LH-L-00133,laptop,Dell Latitude 5440,windows,Windows 11 25H2,CGNJB9QBFU,2023-08-07,16,256,E1133,in use,true,true,2026-11-06,0
+LH-L-00134,laptop,Dell Latitude 7440,windows,Windows 11 24H2,PHKHYPF248,2023-11-30,16,256,E1134,in use,true,true,2026-11-09,0
+LH-L-00135,laptop,Dell Latitude 7440,windows,Windows 11 24H2,9ZRNYY5X9N,2024-05-13,16,512,E1135,in use,true,true,2026-11-09,0
+LH-L-00136,laptop,Dell Latitude 7450,windows,Windows 11 25H2,F976LSUCK9,2026-02-17,16,256,E1136,in use,true,true,2026-11-02,2
+LH-L-00137,laptop,MacBook Pro 14 (M4),macos,macOS 26.3,HC5GTWPSRZ,2025-06-08,16,256,E1137,in use,true,true,2026-11-01,1
+LH-L-00138,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 25H2,9962WN792L,2025-08-23,16,512,E1138,in use,true,true,2026-10-18,1
+LH-L-00139,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,PYZR95LC6L,2026-01-28,16,256,E1139,in use,true,true,2026-11-08,0
+LH-L-00140,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 25H2,YGPG7C6M6Z,2025-11-19,32,1024,E1140,in use,true,true,2026-10-30,1
+LH-L-00141,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,484KPJCYY4,2026-09-06,16,512,E1141,in use,true,true,2026-11-07,0
+LH-L-00142,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,ADYTZR8YK2,2023-04-25,8,1024,E1142,in use,true,true,2026-11-09,0
+LH-L-00143,laptop,Dell Latitude 7450,windows,Windows 11 25H2,JBCNUKMQHR,2026-01-26,32,256,E1143,in use,true,true,2026-11-08,0
+LH-L-00144,laptop,Dell Latitude 5440,windows,Windows 11 25H2,D8SWKSTQWF,2023-04-16,8,512,E1144,in use,true,true,2026-10-30,2
+LH-L-00145,laptop,Dell Latitude 7440,windows,Windows 11 24H2,MJ7ZG4V97G,2023-04-06,16,1024,E1145,in use,true,true,2026-11-13,0
+LH-L-00146,laptop,Dell Latitude 5440,windows,Windows 11 24H2,HRGGKP3BBS,2024-12-19,16,512,E1146,in use,true,true,2026-11-09,0
+LH-L-00147,laptop,Dell Latitude 5440,windows,Windows 11 24H2,X4LNTKED8J,2023-05-26,16,512,E1147,in use,true,true,2026-11-09,0
+LH-L-00148,laptop,HP EliteBook 840 G10,windows,Windows 11 25H2,6BM7S9B5M3,2023-04-27,16,512,E1148,in use,true,true,2026-11-11,0
+LH-L-00149,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,M728SZQ77A,2025-10-25,16,1024,E1149,in use,true,true,2026-11-06,0
+LH-L-00150,laptop,HP EliteBook 840 G11,windows,Windows 11 25H2,ZHYD7EAT7K,2026-05-26,16,512,E1150,in use,true,true,2026-11-06,0
+LH-L-00151,laptop,MacBook Air 13 (M2),macos,macOS 15.7,MFBGV3EKSJ,2023-01-15,16,256,E1151,in use,true,true,2026-10-31,2
+LH-L-00152,laptop,Dell Latitude 7450,windows,Windows 11 24H2,76PQ2QUN4Z,2026-09-24,16,256,E1152,in use,true,true,2026-11-01,1
+LH-L-00153,laptop,Dell Latitude 7450,windows,Windows 11 24H2,X4C75BQY36,2026-06-14,16,512,E1153,in use,true,false,2026-09-26,4
+LH-L-00154,laptop,HP EliteBook 840 G8,windows,Windows 11 24H2,V2SZ3FVEGZ,2022-11-14,8,1024,E1154,in use,true,true,2026-10-14,1
+LH-L-00155,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,WPZ9Q28A7S,2023-04-01,16,1024,E1155,in use,true,true,2026-11-01,1
+LH-L-00156,laptop,Dell Latitude 7450,windows,Windows 11 24H2,F8XWB4AU6Y,2026-02-27,16,512,E1156,in use,true,true,2026-10-23,1
+LH-L-00157,laptop,HP EliteBook 840 G11,windows,Windows 11 25H2,DKX8C8F5YJ,2025-06-19,32,512,E1157,in use,true,true,2026-11-01,1
+LH-L-00158,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,MF42F9NH9G,2024-04-13,16,512,E1158,in use,true,true,2026-11-07,0
+LH-L-00159,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,6NNNJ9T5NJ,2025-07-25,16,512,E1159,in use,true,true,2026-11-01,2
+LH-L-00160,laptop,Dell Latitude 7450,windows,Windows 11 24H2,P9J77CGT3Z,2026-02-25,16,1024,E1160,in use,true,true,2026-10-23,3
+LH-L-00161,laptop,MacBook Air 13 (M1),macos,macOS 15.7,EMR8PPJF2F,2022-12-28,8,512,E1161,in use,true,true,2026-11-02,2
+LH-L-00162,laptop,Dell Latitude 5440,windows,Windows 11 24H2,6JC22M8W6A,2023-10-03,32,512,E1162,in use,true,true,2026-11-06,0
+LH-L-00163,laptop,MacBook Air 13 (M4),macos,macOS 15.7,3YTGFGFNYP,2026-10-07,16,1024,E1163,in use,true,true,2026-11-10,0
+LH-L-00164,laptop,MacBook Air 13 (M3),macos,macOS 26.3,YHJFGR2ERZ,2025-07-08,16,512,E1164,in use,true,true,2026-11-03,1
+LH-L-00165,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,TG9DGQHSV4,2026-06-06,32,1024,E1165,in use,true,false,2026-10-11,4
+LH-L-00166,laptop,Dell Latitude 5400,windows,Windows 11 24H2,LPP4C2Z7H5,2021-05-17,8,256,E1166,in use,true,false,2026-10-06,9
+LH-L-00167,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,Z25W3H4KTN,2026-01-19,16,512,E1167,in use,true,true,2026-10-31,2
+LH-L-00168,laptop,Dell Latitude 7450,windows,Windows 11 24H2,5F36JKV97Z,2026-09-10,16,256,E1168,in use,true,true,2026-10-31,3
+LH-L-00169,laptop,HP EliteBook 840 G8,windows,Windows 11 24H2,JCTCKKHFMW,2022-05-25,8,256,E1169,in use,true,true,2026-11-11,0
+LH-L-00170,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,RNDKJ7M7NT,2023-11-06,16,512,E1170,in use,true,true,2026-11-11,0
+LH-L-00171,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,S9CWGEKDJA,2023-04-13,16,512,E1171,in use,true,true,2026-11-10,0
+LH-L-00172,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,H4HSB3FM87,2026-07-22,16,1024,E1172,in use,true,true,2026-11-04,0
+LH-L-00173,laptop,HP EliteBook 840 G10,windows,Windows 11 25H2,A3UBEDH2L2,2025-05-25,16,1024,E1173,in use,true,true,2026-11-04,0
+LH-L-00174,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,TH6FKYN2WY,2024-01-29,16,512,E1174,in use,true,true,2026-11-09,0
+LH-L-00175,laptop,Lenovo ThinkPad T14 Gen 2,windows,Windows 11 24H2,S92A3EEW3F,2022-07-20,16,512,E1175,in use,true,true,2026-11-07,0
+LH-L-00176,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,TFJPUS55MD,2026-04-03,16,512,E1176,in use,true,true,2026-11-05,0
+LH-L-00177,laptop,MacBook Pro 14 (M3),macos,macOS 15.7,DWUG8C6FE3,2023-05-02,16,512,E1177,in use,true,true,2026-11-04,0
+LH-L-00178,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,QR9PQNZDXS,2023-04-09,8,1024,E1178,in use,true,true,2026-11-05,0
+LH-L-00179,laptop,Dell Latitude 7440,windows,Windows 11 24H2,4HHEWXY58A,2025-12-27,16,512,E1179,in use,true,true,2026-10-15,2
+LH-L-00180,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,4E5JPRFGE5,2023-06-03,16,1024,E1180,in use,true,false,2026-10-11,9
+LH-L-00181,laptop,Dell Latitude 5440,windows,Windows 11 25H2,WPVFNVM9FN,2025-05-03,16,256,E1181,in use,true,true,2026-11-10,0
+LH-L-00182,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,DYK7LYPHZQ,2023-01-03,16,1024,E1182,in use,true,true,2026-11-12,0
+LH-L-00183,laptop,Dell Latitude 7450,windows,Windows 11 24H2,V5K65RXNJJ,2026-05-11,16,256,E1183,in use,true,true,2026-11-12,0
+LH-L-00184,laptop,Dell Latitude 5440,windows,Windows 11 24H2,AGUAFXHXC4,2024-04-24,16,256,E1184,in use,true,true,2026-11-06,0
+LH-L-00185,laptop,Dell Latitude 7440,windows,Windows 11 24H2,LDZTQDH6CN,2025-05-30,16,512,E1185,in use,true,true,2026-11-05,0
+LH-L-00186,laptop,HP EliteBook 840 G8,windows,Windows 11 24H2,NSAEX6TRQA,2022-12-14,16,256,E1186,in use,true,true,2026-11-11,0
+LH-L-00187,laptop,Dell Latitude 7440,windows,Windows 11 25H2,DVP3F7R5CL,2024-12-12,16,512,E1187,in use,true,true,2026-11-06,0
+LH-L-00188,laptop,Dell Latitude 5420,windows,Windows 11 24H2,W9UPKESLRP,2022-03-04,8,256,E1188,in use,false,false,2026-10-22,2
+LH-L-00189,laptop,Dell Latitude 5420,windows,Windows 11 24H2,SKCS8BYKWG,2021-07-10,16,1024,E1189,in use,true,true,2026-11-10,0
+LH-L-00190,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,QCVZ9SVP6F,2026-03-11,16,512,E1190,in use,true,true,2026-11-09,0
+LH-L-00191,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,HEJMUY2Z7E,2023-03-20,16,512,E1191,in use,true,true,2026-11-13,0
+LH-L-00192,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 25H2,KS6TJ42DE9,2023-04-06,16,512,E1192,in use,true,true,2026-11-04,0
+LH-L-00193,laptop,MacBook Air 13 (M1),macos,macOS 26.3,BG54FNGXHT,2021-10-04,16,1024,E1193,in use,true,true,2026-10-30,3
+LH-L-00194,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,3XV2778YDR,2026-07-09,16,512,E1194,in use,true,true,2026-11-06,0
+LH-L-00195,laptop,MacBook Air 13 (M2),macos,macOS 26.3,KQ2MLQKABA,2022-10-19,8,1024,E1195,in use,true,true,2026-11-05,0
+LH-L-00196,laptop,MacBook Air 13 (M2),macos,macOS 26.3,8EVK9CPK9F,2023-04-16,8,512,E1196,in use,true,true,2026-11-09,0
+LH-L-00197,laptop,Dell Latitude 7450,windows,Windows 11 24H2,MNVERRZCTJ,2026-03-02,16,512,E1197,in use,true,true,2026-11-06,0
+LH-L-00198,laptop,Dell Latitude 7450,windows,Windows 11 24H2,PMDGVWHRRP,2025-11-02,16,256,E1198,in use,true,true,2026-10-31,3
+LH-L-00199,laptop,MacBook Pro 14 (M4),macos,macOS 15.7,53E9UM96KZ,2024-01-25,16,1024,E1199,in use,true,true,2026-11-03,2
+LH-L-00200,laptop,Dell Latitude 5420,windows,Windows 11 24H2,87R6286SFB,2022-10-20,8,256,E1200,in use,true,true,2026-11-06,0
+LH-L-00201,laptop,MacBook Pro 14 (M3),macos,macOS 15.7,FPWVTLR8TQ,2023-04-12,8,512,E1201,in use,true,true,2026-11-12,0
+LH-L-00202,laptop,Dell Latitude 7440,windows,Windows 11 24H2,QMXQCSFWE5,2023-05-29,16,256,E1202,in use,true,true,2026-11-05,0
+LH-L-00203,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,2CPLSQTRV3,2025-04-14,16,512,E1203,in use,true,true,2026-11-09,0
+LH-L-00204,laptop,Dell Latitude 7450,windows,Windows 11 24H2,FKBGEQRATK,2026-03-12,16,256,E1204,in use,true,true,2026-11-10,0
+LH-L-00205,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,6URKJ24JSZ,2023-04-14,16,256,E1205,in use,true,true,2026-11-09,0
+LH-L-00206,laptop,Dell Latitude 7440,windows,Windows 11 25H2,HWW6KJDVNW,2024-02-14,16,1024,E1206,in use,true,true,2026-11-01,1
+LH-L-00207,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 25H2,HRRTPSHVXC,2025-09-07,16,256,E1207,in use,true,true,2026-10-23,1
+LH-L-00208,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 25H2,ZDX2TKQMG2,2026-05-05,16,1024,E1208,in use,true,true,2026-11-11,0
+LH-L-00209,laptop,MacBook Air 13 (M2),macos,macOS 15.7,PVKSYC2C9Y,2023-08-01,16,256,E1209,in use,true,true,2026-11-06,0
+LH-L-00210,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,J99JHVAGYB,2024-09-18,32,512,E1210,in use,true,true,2026-11-09,0
+LH-L-00211,laptop,MacBook Air 13 (M3),macos,macOS 15.7,JS2AHRHSD4,2025-11-25,16,1024,E1211,in use,true,true,2026-11-04,0
+LH-L-00212,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,5R33BGRREE,2025-02-07,16,512,E1212,in use,true,true,2026-11-02,3
+LH-L-00213,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,Y7NDTGAAWY,2023-01-10,16,256,E1213,in use,true,true,2026-11-04,0
+LH-L-00214,laptop,HP EliteBook 840 G10,windows,Windows 11 25H2,M9VHD28PXL,2023-07-06,8,1024,E1214,in use,true,true,2026-11-13,0
+LH-L-00215,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 25H2,2VPNB3KVMA,2026-03-07,16,256,E1215,in use,true,true,2026-10-30,3
+LH-L-00216,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,MEWXLWTMHL,2024-09-06,16,1024,E1216,in use,true,true,2026-11-01,3
+LH-L-00217,laptop,HP EliteBook 840 G11,windows,Windows 11 25H2,9PK6ARX9MP,2026-08-01,16,256,E1217,in use,true,true,2026-11-03,1
+LH-L-00218,laptop,MacBook Pro 14 (M4),macos,macOS 26.3,PQU2YGZPUP,2025-02-10,32,1024,E1218,in use,true,true,2026-11-09,0
+LH-L-00219,laptop,Dell Latitude 7450,windows,Windows 11 25H2,L9MZAKU9W5,2026-08-24,16,512,E1219,in use,true,true,2026-11-09,0
+LH-L-00220,laptop,Dell Latitude 7440,windows,Windows 11 24H2,ZQLDK3HZ6S,2023-01-30,8,512,E1220,in use,true,true,2026-10-29,2
+LH-L-00221,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,CB6KXKVHNH,2026-03-23,16,512,E1221,in use,true,true,2026-10-31,1
+LH-L-00222,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,QUZPPMGWW3,2024-04-28,16,1024,E1222,in use,true,true,2026-10-22,2
+LH-L-00223,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 25H2,47Q6A43VDA,2023-04-13,16,256,E1223,in use,true,true,2026-11-13,0
+LH-L-00224,laptop,Dell Latitude 5440,windows,Windows 11 24H2,JH92QY9DFL,2025-03-24,32,1024,E1224,in use,true,true,2026-11-01,1
+LH-L-00225,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 25H2,Y77FU799A8,2024-07-01,16,256,E1225,in use,true,true,2026-11-10,0
+LH-L-00226,laptop,Dell Latitude 5440,windows,Windows 11 24H2,26439Q4FJM,2025-08-26,16,512,E1226,in use,true,true,2026-11-09,0
+LH-L-00227,laptop,MacBook Pro 14 (M3),macos,macOS 15.7,CZ3TNGPESC,2025-06-23,16,1024,E1227,in use,true,true,2026-11-10,0
+LH-L-00228,laptop,HP EliteBook 840 G8,windows,Windows 11 25H2,LYCSGKHH4P,2022-12-19,16,256,E1228,in use,true,true,2026-10-30,3
+LH-L-00229,laptop,Dell Latitude 5440,windows,Windows 11 25H2,J9RQ5JNT64,2023-07-29,16,1024,E1229,in use,true,true,2026-11-12,0
+LH-L-00230,laptop,MacBook Air 13 (M1),macos,macOS 26.3,23ND32GP6Z,2022-12-26,16,512,E1230,in use,true,true,2026-11-13,0
+LH-L-00231,laptop,HP EliteBook 840 G8,windows,Windows 11 24H2,DCBVL8QF6W,2021-05-10,8,512,E1231,in use,true,true,2026-11-02,2
+LH-L-00232,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 25H2,AUHG4U45DS,2023-04-23,16,256,E1232,in use,true,true,2026-10-30,3
+LH-L-00233,laptop,MacBook Pro 14 (M4),macos,macOS 26.3,CMD77AAVKE,2026-06-04,16,1024,E1233,in use,true,true,2026-11-08,0
+LH-L-00234,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,PRAF6LD78Q,2025-09-17,16,256,E1234,in use,true,true,2026-11-02,2
+LH-L-00235,laptop,Dell Latitude 7450,windows,Windows 11 24H2,QTXTXNCYNP,2025-01-25,16,512,E1235,in use,true,true,2026-11-09,0
+LH-L-00236,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,M8FXWZZMCY,2026-03-10,16,1024,E1236,in use,true,true,2026-10-14,1
+LH-L-00237,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,6Q7WN5259Q,2025-01-20,16,512,E1237,in use,true,true,2026-11-09,0
+LH-L-00238,laptop,Dell Latitude 7450,windows,Windows 11 25H2,E9FYAYE6M5,2026-05-24,32,512,E1238,in use,true,true,2026-11-04,0
+LH-L-00239,laptop,Dell Latitude 7440,windows,Windows 11 24H2,TG6UC9593K,2023-01-15,16,512,E1239,in use,true,false,2026-09-28,10
+LH-L-00240,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,ELJLF55LWY,2023-12-27,16,1024,E1240,in use,true,true,2026-11-13,0
+LH-L-00241,laptop,Dell Latitude 7440,windows,Windows 11 24H2,HE6ACQGTGT,2024-01-07,16,512,E1241,in use,true,true,2026-11-10,0
+LH-L-00242,laptop,Dell Latitude 7450,windows,Windows 11 24H2,6T4TL7W4JX,2026-06-13,16,1024,E1242,in use,true,true,2026-11-04,0
+LH-L-00243,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,BVWRQADDBW,2024-12-10,16,256,E1243,in use,true,true,2026-11-09,0
+LH-L-00244,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 25H2,5VDHRX3KTQ,2026-05-23,16,512,E1244,in use,true,false,2026-10-02,10
+LH-L-00245,laptop,Dell Latitude 5440,windows,Windows 11 24H2,UGFA4JV4SZ,2023-10-04,16,1024,E1245,in use,true,true,2026-11-01,1
+LH-L-00246,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,JGLRTPFSWX,2026-03-20,16,512,E1246,in use,true,true,2026-11-08,0
+LH-L-00247,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,6BRUMA3LFM,2024-12-23,16,512,E1247,in use,true,true,2026-10-29,2
+LH-L-00248,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,BVV66GWZVE,2024-10-10,16,1024,E1248,in use,true,true,2026-11-11,0
+LH-L-00249,laptop,Dell Latitude 7440,windows,Windows 11 25H2,X2VXLZQSPT,2025-04-28,16,512,E1249,in use,true,true,2026-11-08,0
+LH-L-00250,laptop,HP EliteBook 840 G8,windows,Windows 11 24H2,KJ9ZLMGV9E,2022-12-28,16,256,E1250,in use,true,true,2026-11-08,0
+LH-L-00251,laptop,Dell Latitude 5420,windows,Windows 11 25H2,WP3H6PLNR2,2022-05-14,16,256,E1251,in use,true,true,2026-10-27,2
+LH-L-00252,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,363GFG4HUL,2023-09-25,16,512,E1252,in use,true,true,2026-10-30,3
+LH-L-00253,laptop,Lenovo ThinkPad T14 Gen 2,windows,Windows 11 24H2,EAP97VS4EL,2022-12-13,16,1024,E1253,in use,true,true,2026-11-06,0
+LH-L-00254,laptop,MacBook Air 13 (M4),macos,macOS 26.3,Q9ARMSE6G9,2025-06-19,16,512,E1254,in use,true,true,2026-11-13,0
+LH-L-00255,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,KEEZAGFHPL,2024-12-06,16,512,E1255,in use,true,true,2026-11-04,0
+LH-L-00256,laptop,Dell Latitude 5440,windows,Windows 11 24H2,BNAU9VVHLS,2023-03-13,8,512,E1256,in use,true,true,2026-11-02,1
+LH-L-00257,laptop,MacBook Pro 14 (M4),macos,macOS 15.7,3K6MVTLT3N,2026-05-24,16,512,E1257,in use,true,true,2026-11-12,0
+LH-L-00258,laptop,MacBook Air 13 (M3),macos,macOS 26.3,PZ39Y46AB2,2025-11-06,16,512,E1258,in use,true,true,2026-11-10,0
+LH-L-00259,laptop,MacBook Pro 14 (M4),macos,macOS 26.3,V7W88ABP9N,2024-06-23,16,512,E1259,in use,true,true,2026-11-10,0
+LH-L-00260,laptop,Dell Latitude 5420,windows,Windows 11 24H2,NZNXR2GQNL,2022-12-25,16,512,E1260,in use,true,true,2026-11-01,1
+LH-L-00261,laptop,MacBook Air 13 (M2),macos,macOS 26.3,TBJSJ95QGP,2024-03-11,16,512,E1261,in use,true,true,2026-11-09,0
+LH-L-00262,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,8YU5ACMCPS,2025-08-23,16,512,E1262,in use,true,true,2026-11-06,0
+LH-L-00263,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,ALF9T8WELR,2026-02-18,16,256,E1263,in use,true,true,2026-11-04,0
+LH-L-00264,laptop,MacBook Air 13 (M2),macos,macOS 15.7,9CC4BUN5LZ,2022-12-20,8,256,E1264,in use,true,true,2026-11-10,0
+LH-L-00265,laptop,MacBook Air 13 (M2),macos,macOS 26.3,3RU5FCYMW8,2023-03-09,16,512,E1265,in use,true,true,2026-11-12,0
+LH-L-00266,laptop,MacBook Air 13 (M4),macos,macOS 26.3,WYWDZKRYV5,2025-10-21,16,512,E1266,in use,true,true,2026-10-30,2
+LH-L-00267,laptop,Dell Latitude 7440,windows,Windows 11 24H2,4EX6F4CU9J,2024-02-09,16,256,E1267,in use,true,true,2026-11-05,0
+LH-L-00268,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,M2US4SQFX8,2026-03-28,16,512,E1268,in use,true,true,2026-11-07,0
+LH-L-00269,laptop,Dell Latitude 7450,windows,Windows 11 25H2,3EPCDHC7SX,2024-08-05,16,1024,E1269,in use,true,true,2026-10-15,1
+LH-L-00270,laptop,MacBook Air 13 (M2),macos,macOS 15.7,JVGKME436U,2023-05-22,8,256,E1270,in use,true,true,2026-11-13,0
+LH-L-00271,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,D34EMQN3TR,2023-01-11,16,256,E1271,in use,true,true,2026-11-11,0
+LH-L-00272,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,L2NC2RRRYW,2024-06-19,16,512,E1272,in use,true,true,2026-11-08,0
+LH-L-00273,laptop,Dell Latitude 5440,windows,Windows 11 24H2,HUEJFWKU6Q,2023-10-12,16,256,E1273,in use,true,true,2026-10-31,1
+LH-L-00274,laptop,Dell Latitude 5440,windows,Windows 11 25H2,HBX4KPACYC,2024-09-04,16,512,E1274,in use,true,true,2026-11-02,3
+LH-L-00275,laptop,Dell Latitude 7450,windows,Windows 11 24H2,ZVKT955SX8,2025-08-25,16,512,E1275,in use,true,true,2026-11-12,0
+LH-L-00276,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,XUS59HGZW8,2025-06-26,16,1024,E1276,in use,true,true,2026-10-31,2
+LH-L-00277,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,97DJ4QQNZC,2024-01-02,16,512,E1277,in use,true,true,2026-11-01,3
+LH-L-00278,laptop,Dell Latitude 5440,windows,Windows 11 24H2,ABFVG7WVGF,2023-02-25,8,1024,E1278,in use,true,true,2026-11-06,0
+LH-L-00279,laptop,Dell Latitude 5440,windows,Windows 11 24H2,GC3LUH3AXW,2023-05-07,16,1024,E1279,in use,true,true,2026-11-06,0
+LH-L-00280,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,9SB4XKMXWG,2026-01-06,16,512,E1280,in use,true,true,2026-11-07,0
+LH-L-00281,laptop,Dell Latitude 7450,windows,Windows 11 24H2,HXQF3ZTLA6,2026-04-13,32,512,E1281,in use,true,true,2026-11-09,0
+LH-L-00282,laptop,Dell Latitude 7450,windows,Windows 11 24H2,5JW95FKFM7,2025-10-05,16,1024,E1282,in use,true,true,2026-11-02,2
+LH-L-00283,laptop,MacBook Air 13 (M4),macos,macOS 26.3,JZB6YJ2RDT,2025-12-06,16,1024,E1283,in use,true,true,2026-11-07,0
+LH-L-00284,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,QCST5EZEUC,2023-05-15,16,256,E1284,in use,true,true,2026-11-07,0
+LH-L-00285,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,EAXZ6YZ34J,2026-05-09,16,256,E1285,in use,true,true,2026-11-02,2
+LH-L-00286,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,L2YES237AG,2025-10-27,16,256,E1286,in use,true,true,2026-11-05,0
+LH-L-00287,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,D5AVDLA28Y,2025-01-17,16,512,E1287,in use,true,true,2026-11-04,0
+LH-L-00288,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,FLMGDEUC28,2023-09-09,16,1024,E1288,in use,false,false,2026-11-13,0
+LH-L-00289,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,2HDV2NVZ4H,2023-12-01,16,256,E1289,in use,true,true,2026-11-05,0
+LH-L-00290,laptop,MacBook Air 13 (M2),macos,macOS 26.3,9SJDUAYKK6,2023-12-22,32,256,E1290,in use,true,true,2026-11-06,0
+LH-L-00291,laptop,MacBook Air 13 (M2),macos,macOS 26.3,WGZKXVUZST,2022-12-25,16,1024,E1291,in use,true,true,2026-11-06,0
+LH-L-00292,laptop,Dell Latitude 7440,windows,Windows 11 24H2,9FG7VBPLVW,2024-10-25,16,512,E1292,in use,true,true,2026-10-30,3
+LH-L-00293,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,XAZXRBQWRQ,2026-04-19,32,512,E1293,in use,true,true,2026-10-31,2
+LH-L-00294,laptop,Dell Latitude 5440,windows,Windows 11 24H2,S543PB2CDX,2025-06-20,16,512,E1294,in use,true,true,2026-11-11,0
+LH-L-00295,laptop,HP EliteBook 840 G8,windows,Windows 11 24H2,3JZFLTAMJ2,2022-11-20,8,512,E1295,in use,true,true,2026-11-10,0
+LH-L-00296,laptop,HP EliteBook 840 G8,windows,Windows 11 25H2,8DG668VJY3,2021-10-12,16,256,E1296,in use,true,true,2026-10-23,1
+LH-L-00297,laptop,Dell Latitude 7440,windows,Windows 11 24H2,MVNFAS93VX,2025-12-12,16,256,E1297,in use,true,true,2026-11-01,2
+LH-L-00298,laptop,Dell Latitude 5440,windows,Windows 11 25H2,PNFM6UKBC4,2023-02-23,16,512,E1298,in use,true,false,2026-09-23,10
+LH-L-00299,laptop,HP EliteBook 840 G11,windows,Windows 11 25H2,2S5FNRZRA4,2026-03-02,32,512,E1299,in use,true,true,2026-11-05,0
+LH-L-00300,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,6TK53QJAQE,2024-09-06,16,512,E1300,in use,true,true,2026-11-09,0
+LH-P-00001,phone,iPhone 15,ios,iOS 18.7,M8T4FUEEF5,2024-05-27,,128,E1261,in use,true,true,2026-10-20,1
+LH-P-00002,phone,Google Pixel 8,android,Android 15,EGGT4MEFJ3,2025-04-28,,128,E1068,in use,true,true,2026-10-25,1
+LH-P-00003,phone,iPhone 16,ios,iOS 18.7,WW8FK37HR2,2024-08-17,,128,E1062,in use,true,true,2026-10-30,1
+LH-P-00004,phone,iPhone 16,ios,iOS 26.3,ZPFCK44UWT,2024-01-19,,128,E1218,in use,true,true,2026-11-10,0
+LH-P-00005,phone,Google Pixel 9,android,Android 15,RTA2KDPXWZ,2026-01-01,,128,E1064,in use,true,true,2026-10-17,1
+LH-P-00006,phone,Google Pixel 9,android,Android 15,2PM7MH4HH5,2024-07-03,,128,E1065,in use,true,true,2026-10-09,1
+LH-P-00007,phone,iPhone 13,ios,iOS 18.7,CUXL9DXDL8,2024-11-28,,256,E1066,in use,true,true,2026-11-06,1
+LH-P-00008,phone,Samsung Galaxy S23,android,Android 16,8M9V96FLCZ,2026-07-22,,128,E1067,in use,true,true,2026-10-10,0
+LH-P-00009,phone,Samsung Galaxy S24,android,Android 16,VGBNTMP32Q,2025-02-17,,256,E1202,in use,true,true,2026-10-30,0
+LH-P-00010,phone,Samsung Galaxy S23,android,Android 15,KMGXNZAG8L,2025-06-07,,256,E1061,in use,true,true,2026-10-08,1
+LH-P-00011,phone,Samsung Galaxy S24,android,Android 16,E69NTLDC3R,2025-06-07,,128,E1201,in use,true,true,2026-10-13,0
+LH-P-00012,phone,iPhone 16,ios,iOS 26.3,YA4GN5EYRG,2024-05-04,,256,E1217,in use,true,true,2026-10-11,0
+LH-P-00013,phone,iPhone 16,ios,iOS 26.3,ZQ35YWYECM,2024-08-01,,256,E1230,in use,true,true,2026-10-06,0
+LH-P-00014,phone,iPhone 13,ios,iOS 26.3,S4UHC5JQPG,2024-06-06,,128,E1001,in use,true,true,2026-10-29,0
+LH-P-00015,phone,iPhone 13,ios,iOS 18.7,R6WRS3N4FH,2026-05-08,,128,E1063,in use,true,true,2026-11-05,1
+LH-P-00016,phone,Samsung Galaxy S24,android,Android 16,TBXX6WCB3D,2024-12-25,,128,E1161,in use,true,true,2026-11-04,0
+LH-P-00017,phone,iPhone 15,ios,iOS 18.7,HVM9CETJNP,2024-03-07,,128,E1164,in use,true,true,2026-10-08,1
+LH-P-00018,phone,Samsung Galaxy S23,android,Android 16,VDFDFPJ6BZ,2025-08-17,,128,E1007,in use,true,true,2026-11-01,0
+LH-P-00019,phone,iPhone 14,ios,iOS 18.7,FTVJ5J9WYX,2024-01-23,,128,E1119,in use,true,true,2026-10-31,1
+LH-P-00020,phone,Google Pixel 8,android,Android 15,H6DRJPDN29,2025-01-31,,256,E1008,in use,true,true,2026-10-17,1
+LH-P-00021,phone,Google Pixel 9,android,Android 16,6UE4KB57NV,2024-05-15,,128,E1236,in use,true,true,2026-10-25,0
+LH-P-00022,phone,iPhone 13,ios,iOS 26.3,U4T4546LG3,2026-04-13,,128,E1006,in use,true,true,2026-10-31,0
+LH-P-00023,phone,iPhone 13,ios,iOS 18.7,YGTQZK4UNU,2024-04-14,,256,E1280,in use,true,true,2026-10-26,1
+LH-P-00024,phone,Samsung Galaxy S24,android,Android 16,2REBNWFBQT,2025-05-31,,256,E1118,in use,true,true,2026-10-09,0
+LH-P-00025,phone,Samsung Galaxy S24,android,Android 16,H4HSC4LRNR,2026-06-10,,128,E1165,in use,true,true,2026-10-14,0
+LH-P-00026,phone,Google Pixel 8,android,Android 16,4CV8M77P8P,2025-04-27,,128,E1233,in use,true,true,2026-10-06,0
+LH-P-00027,phone,Google Pixel 8,android,Android 15,BVQ56NYGZU,2025-02-10,,256,E1260,in use,true,true,2026-10-19,1
+LH-P-00028,phone,iPhone 14,ios,iOS 26.3,DX7C7D23LZ,2025-08-23,,128,E1278,in use,true,true,2026-10-13,0
+LH-P-00029,phone,iPhone 15,ios,iOS 26.3,XSXZUTU2X2,2024-02-12,,128,E1005,in use,true,true,2026-10-15,0
+LH-P-00030,phone,Samsung Galaxy S23,android,Android 16,6PHRQQE8A7,2024-07-25,,256,E1293,in use,true,true,2026-10-10,0
+LH-P-00031,phone,iPhone 13,ios,iOS 26.3,KSA4W3RLQZ,2025-10-14,,128,E1003,in use,true,true,2026-11-04,0
+LH-P-00032,phone,iPhone 14,ios,iOS 18.7,J2JQEZGPZT,2025-11-06,,256,E1116,in use,true,true,2026-10-11,1
+LH-P-00033,phone,Google Pixel 9,android,Android 16,KBLFL7Q28U,2026-06-08,,256,E1258,in use,true,true,2026-10-17,0
+LH-P-00034,phone,iPhone 14,ios,iOS 18.7,V7WY4Y7RCY,2025-03-11,,128,E1004,in use,true,true,2026-10-31,1
+LH-P-00035,phone,iPhone 15,ios,iOS 26.3,UKEUR63TUN,2024-09-23,,128,E1163,in use,true,true,2026-10-16,0
+LH-P-00036,phone,iPhone 15,ios,iOS 26.3,MZD3N77YFW,2026-01-16,,128,E1002,in use,true,true,2026-10-22,0
+LH-P-00037,phone,Google Pixel 9,android,Android 16,LVVPE7YFXG,2024-04-19,,256,E1117,in use,true,true,2026-10-05,0
+LH-P-00038,phone,iPhone 16,ios,iOS 26.3,4Y5JJQAHJS,2024-06-06,,128,E1279,in use,true,true,2026-11-05,0
+LH-P-00039,phone,Samsung Galaxy S24,android,Android 15,HL62LAUGGC,2025-11-25,,256,E1234,in use,true,true,2026-11-13,1
+LH-P-00040,phone,Samsung Galaxy S24,android,Android 16,MTP76ZBML2,2024-12-12,,256,E1235,in use,true,true,2026-11-04,0
+LH-P-00041,phone,iPhone 15,ios,iOS 26.3,MBEMPMR4TK,2025-12-21,,256,E1120,in use,true,true,2026-10-20,0
+LH-P-00042,phone,Samsung Galaxy S24,android,Android 15,26SW3ZXJ6W,2026-05-27,,128,E1121,in use,true,true,2026-10-25,1
+LH-P-00043,phone,Google Pixel 9,android,Android 16,MUZHHEASEQ,2024-09-25,,256,E1259,in use,true,true,2026-10-16,0
+LH-P-00044,phone,Google Pixel 8,android,Android 16,MLKJCL688C,2024-04-27,,128,E1162,in use,true,true,2026-10-18,0
+LH-P-00045,phone,Samsung Galaxy S24,android,Android 16,BX58W3TAWT,2025-01-01,,128,E1110,in use,true,true,2026-11-10,0
+LH-P-00046,phone,Google Pixel 8,android,Android 16,X3ZWDP2D29,2026-04-26,,128,E1076,in use,true,true,2026-10-31,0
+LH-P-00047,phone,iPhone 13,ios,iOS 26.3,GLS9RPWTGG,2025-06-22,,256,E1111,in use,true,true,2026-11-11,0
+LH-P-00048,phone,Google Pixel 8,android,Android 15,C986UUMXJJ,2023-12-23,,128,E1219,in use,true,true,2026-10-22,1
+LH-P-00049,phone,Google Pixel 9,android,Android 16,CFURNEHD32,2024-05-16,,128,E1091,in use,true,true,2026-10-26,0
+LH-P-00050,phone,iPhone 14,ios,iOS 26.3,ZV4D92RY6M,2025-06-12,,128,E1213,in use,true,true,2026-10-22,0
+LH-P-00051,phone,Google Pixel 8,android,Android 15,EDTKL398M8,2025-02-28,,128,E1104,in use,true,true,2026-10-20,1
+LH-P-00052,phone,iPhone 16,ios,iOS 26.3,B63PLE5PAX,2026-05-22,,128,E1206,in use,true,true,2026-10-14,0
+LH-P-00053,phone,iPhone 16,ios,iOS 26.3,376ATNMRXS,2024-08-09,,128,E1080,in use,true,true,2026-10-20,0
+LH-P-00054,phone,iPhone 16,ios,iOS 26.3,PH99Q6NSV6,2025-09-17,,128,E1079,in use,true,true,2026-11-02,0
+LH-P-00055,phone,iPhone 13,ios,iOS 26.3,58X7XEJUSY,2025-11-21,,128,E1095,in use,true,true,2026-10-06,0
+LH-P-00056,phone,iPhone 16,ios,iOS 18.7,URLVTKEKXT,2024-06-23,,128,E1114,in use,true,true,2026-10-31,1
+LH-P-00057,phone,iPhone 14,ios,iOS 26.3,HQKH6EQU9R,2024-10-24,,128,E1108,in use,true,true,2026-10-08,0
+LH-P-00058,phone,iPhone 16,ios,iOS 18.7,QJJXCSCK4M,2026-01-25,,128,E1215,in use,true,true,2026-11-11,1
+LH-P-00059,phone,Google Pixel 8,android,Android 15,QFFFEQ6WHZ,2025-04-15,,128,E1084,in use,true,true,2026-10-10,1
+LH-P-00060,phone,iPhone 16,ios,iOS 26.3,CE9CNAMVHD,2024-12-17,,128,E1082,in use,true,true,2026-10-22,0
+LH-P-00061,phone,Samsung Galaxy S23,android,Android 15,Q9G3CWSB3L,2024-12-10,,128,E1212,in use,true,true,2026-10-10,1
+LH-P-00062,phone,Samsung Galaxy S24,android,Android 16,6SX6WZZ2Y3,2023-11-16,,128,E1113,in use,true,true,2026-10-23,0
+LH-P-00063,phone,iPhone 16,ios,iOS 18.7,X9X9KT5MGF,2025-08-10,,128,E1096,in use,true,true,2026-10-13,1
+LH-P-00064,phone,Samsung Galaxy S24,android,Android 16,83XK89NWZZ,2026-09-11,,128,E1214,in use,true,true,2026-10-10,0
+LH-P-00065,phone,Samsung Galaxy S23,android,Android 15,3ZS55LGA3L,2023-12-06,,256,E1226,in use,true,true,2026-10-08,1
+LH-P-00066,phone,iPhone 13,ios,iOS 26.3,9DSWUTCT3U,2025-03-11,,128,E1208,in use,true,true,2026-10-14,0
+LH-P-00067,phone,iPhone 15,ios,iOS 18.7,X8XJ8DREU7,2024-06-17,,256,E1087,in use,true,true,2026-10-26,1
+LH-P-00068,phone,iPhone 13,ios,iOS 26.3,7DSG3JLVYE,2026-05-30,,256,E1099,in use,true,true,2026-10-23,0
+LH-P-00069,phone,iPhone 15,ios,iOS 26.3,62HATN5B5M,2025-04-14,,128,E1207,in use,true,true,2026-10-29,0
+LH-P-00070,phone,Samsung Galaxy S24,android,Android 16,Y8REMHR5WU,2025-11-10,,256,E1070,in use,true,true,2026-10-14,0
+LH-P-00071,phone,Samsung Galaxy S23,android,Android 16,TKAYSJY369,2026-02-26,,256,E1109,in use,true,true,2026-10-16,0
+LH-P-00072,phone,iPhone 13,ios,iOS 26.3,L64F3CX4HP,2025-08-19,,256,E1211,in use,true,true,2026-10-31,0
+LH-P-00073,phone,iPhone 16,ios,iOS 26.3,VAZ9N4E92B,2025-09-22,,128,E1112,in use,true,true,2026-10-23,0
+LH-P-00074,phone,iPhone 16,ios,iOS 26.3,BX42HHHAC9,2024-08-31,,128,E1223,in use,true,true,2026-10-11,0
+LH-P-00075,phone,Google Pixel 9,android,Android 15,PF8HXH4GTL,2025-06-09,,128,E1073,in use,true,true,2026-10-29,1
+LH-P-00076,phone,iPhone 13,ios,iOS 18.7,Z9RYKELBEU,2024-03-08,,256,E1224,in use,true,true,2026-11-12,1
+LH-P-00077,phone,iPhone 13,ios,iOS 26.3,8YPCMXV2N8,2024-04-21,,128,E1081,in use,true,true,2026-10-23,0
+LH-P-00078,phone,Google Pixel 8,android,Android 15,6KN6UJADTD,2025-11-08,,128,E1216,in use,true,true,2026-10-20,1
+LH-P-00079,phone,Google Pixel 9,android,Android 16,XM7AGQYMTL,2025-10-15,,256,E1231,in use,true,true,2026-10-23,0
+LH-P-00080,phone,Google Pixel 8,android,Android 16,JA6N8XZFLE,2025-01-16,,128,E1093,in use,true,true,2026-10-10,0
+LH-P-00081,phone,Google Pixel 9,android,Android 16,GHJATPUPLS,2025-11-04,,128,E1107,in use,true,true,2026-11-11,0
+LH-P-00082,phone,iPhone 16,ios,iOS 26.3,C9G58EWBGR,2026-02-24,,128,E1077,in use,true,true,2026-10-17,0
+LH-P-00083,phone,Samsung Galaxy S23,android,Android 16,TZ99JQ9B5X,2024-10-04,,128,E1090,in use,true,true,2026-10-13,0
+LH-P-00084,phone,iPhone 14,ios,iOS 26.3,3MJ2UHDNUN,2024-04-01,,128,E1228,in use,true,true,2026-10-23,0
+LH-P-00085,phone,iPhone 15,ios,iOS 26.3,P7AHLALA3C,2025-11-14,,256,E1092,in use,true,true,2026-11-02,0
+LH-P-00086,phone,Google Pixel 8,android,Android 16,PQRHFQ7V3Q,2025-02-01,,128,E1069,in use,true,true,2026-11-04,0
+LH-P-00087,phone,iPhone 13,ios,iOS 26.3,G3F9P86JSP,2025-01-12,,128,E1204,in use,true,true,2026-11-05,0
+LH-P-00088,phone,iPhone 16,ios,iOS 26.3,SDDV6WAW53,2025-04-05,,128,E1097,in use,true,true,2026-10-14,0
+LH-P-00089,phone,iPhone 14,ios,iOS 26.3,BW755R6BRR,2024-07-05,,256,E1094,in use,true,true,2026-11-04,0
+LH-P-00090,phone,iPhone 14,ios,iOS 18.7,X62FHQZ377,2024-04-04,,128,E1086,in use,true,true,2026-10-31,1
+LH-P-00091,phone,Google Pixel 8,android,Android 16,XURHR89TG4,2025-02-12,,128,E1221,in use,true,true,2026-10-24,0
+LH-P-00092,phone,Google Pixel 8,android,Android 15,EL2SKRFENN,2026-02-05,,128,E1083,in use,true,true,2026-11-12,1
+LH-P-00093,phone,iPhone 13,ios,iOS 26.3,PMJTVZPCXE,2025-12-26,,128,E1115,in use,true,true,2026-10-17,0
+LH-P-00094,phone,iPhone 15,ios,iOS 18.7,SYQVS34EVZ,2025-02-05,,128,E1209,in use,true,true,2026-10-21,1
+LH-P-00095,phone,iPhone 15,ios,iOS 26.3,4SKHCMGEUU,2024-09-28,,256,E1075,in use,true,true,2026-10-20,0
+LH-P-00096,phone,Google Pixel 9,android,Android 16,NYJT4EUKVG,2024-08-03,,128,E1088,in use,true,true,2026-10-05,0
+LH-P-00097,phone,iPhone 13,ios,iOS 26.3,6RBB5H6FXL,2025-06-12,,256,E1101,in use,true,true,2026-10-24,0
+LH-P-00098,phone,Google Pixel 8,android,Android 15,98N77HU3GT,2026-01-12,,128,E1210,in use,true,true,2026-10-25,1
+LH-P-00099,phone,iPhone 14,ios,iOS 18.7,JDVQLNNVVR,2026-02-01,,256,E1227,in use,true,true,2026-11-01,1
+LH-P-00100,phone,iPhone 15,ios,iOS 26.3,EKZ5FT25MH,2024-09-19,,128,E1203,in use,true,true,2026-10-30,0
+LH-P-00101,phone,Samsung Galaxy S23,android,Android 16,33HGZU6ASP,2024-02-14,,128,E1072,in use,true,true,2026-10-13,0
+LH-P-00102,phone,iPhone 14,ios,iOS 18.7,VD8UA9L9ES,2024-07-08,,128,E1225,in use,true,true,2026-10-10,1
+LH-P-00103,phone,Google Pixel 9,android,Android 16,8Q8X6CAETM,2025-05-20,,256,E1102,in use,true,true,2026-10-09,0
+LH-P-00104,phone,iPhone 13,ios,iOS 18.7,3NDFTXEL2Z,2025-11-11,,256,E1089,in use,true,true,2026-10-21,1
+LH-P-00105,phone,Samsung Galaxy S23,android,Android 16,XJSSHRB96Z,2025-01-18,,256,E1232,in use,true,true,2026-10-31,0
+LH-L-00301,laptop,Dell Latitude 7440,windows,Windows 11 24H2,ZZUEZNW8ZJ,2023-08-03,16,1024,,in stock,true,true,2026-10-30,2
+LH-L-00302,laptop,Dell Latitude 5440,windows,Windows 11 24H2,9W5TQQW5QW,2023-04-01,16,512,,in stock,true,true,2026-11-02,2
+LH-L-00303,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 25H2,DPRMWE4T99,2026-03-23,16,256,,in stock,true,true,2026-10-30,2
+LH-L-00304,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,B2Z9UV8VFA,2024-12-28,16,512,,in stock,true,true,2026-11-09,0
+LH-L-00305,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,FZ58HCNDL9,2024-10-26,16,1024,,in stock,true,true,2026-11-01,1
+LH-L-00306,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,7USBTNXL4R,2024-03-09,16,512,,in stock,true,true,2026-11-12,0
+LH-L-00307,laptop,Dell Latitude 5400,windows,Windows 11 25H2,FNL95B5Y5E,2021-10-07,8,512,,in stock,true,true,2026-11-12,0
+LH-L-00308,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,Y4U2MP3PHA,2024-02-04,16,512,,in stock,true,true,2026-11-01,2
+LH-L-00309,laptop,Dell Latitude 5440,windows,Windows 11 24H2,WWDCZSAAM8,2023-07-20,16,1024,,in stock,true,true,2026-10-30,1
+LH-L-00310,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,FG2R353273,2023-06-14,16,1024,,in stock,true,true,2026-11-11,0
+LH-L-00311,laptop,Lenovo ThinkPad T14 Gen 2,windows,Windows 11 25H2,ES46NEDAK9,2022-03-23,8,512,,in stock,true,true,2026-11-01,2
+LH-L-00312,laptop,Dell Latitude 7440,windows,Windows 11 24H2,MB4ZSMVJWY,2024-02-06,16,1024,,in stock,true,true,2026-11-11,0
+LH-L-00313,laptop,Dell Latitude 5440,windows,Windows 11 24H2,V5K2MR6WAN,2024-01-26,16,512,,in stock,true,true,2026-11-13,0
+LH-L-00314,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 25H2,7K76X5VYKZ,2025-07-04,16,1024,,in stock,true,true,2026-11-05,0
+LH-L-00315,laptop,Dell Latitude 7450,windows,Windows 11 24H2,QSR6HX8YYM,2025-01-03,16,1024,,in stock,true,true,2026-11-03,1
+LH-L-00316,laptop,Dell Latitude 5440,windows,Windows 11 25H2,TKYXX7A64B,2025-03-29,16,256,,in stock,true,true,2026-11-12,0
+LH-L-00317,laptop,MacBook Air 13 (M2),macos,macOS 26.3,89RTPHDKGZ,2023-11-28,16,1024,,in stock,true,true,2026-11-01,3
+LH-L-00318,laptop,Lenovo ThinkPad T14 Gen 4,windows,Windows 11 24H2,NSP7ZPA9ZG,2024-09-21,16,512,,in stock,true,true,2026-11-01,2
+LH-L-00319,laptop,Dell Latitude 5440,windows,Windows 11 24H2,K3A8HBKG2K,2023-09-02,16,1024,,in stock,true,true,2026-10-28,3
+LH-L-00320,laptop,MacBook Pro 14 (M3),macos,macOS 26.3,CBPAWFJ68K,2023-05-03,16,256,,in stock,true,true,2026-11-06,0
+LH-L-00321,laptop,Dell Latitude 7450,windows,Windows 11 24H2,TEYXTJS3TD,2026-04-02,16,512,,in stock,true,true,2026-11-07,0
+LH-L-00322,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 25H2,VBXTNNNT8B,2025-12-31,32,256,,in stock,true,true,2026-11-09,0
+LH-L-00323,laptop,Dell Latitude 7440,windows,Windows 11 24H2,D8QS8UAXTJ,2023-04-12,8,512,,in stock,true,true,2026-11-09,0
+LH-L-00324,laptop,HP EliteBook 840 G8,windows,Windows 11 25H2,AYAHWG9546,2022-01-07,16,512,,in stock,true,true,2026-11-12,0
+LH-L-00325,laptop,Dell Latitude 7440,windows,Windows 11 25H2,94EQJ7TKZ9,2023-10-27,16,512,,in stock,true,true,2026-11-08,0
+LH-L-00326,laptop,Dell Latitude 7440,windows,Windows 11 24H2,2D5KPGY7SJ,2023-08-11,16,512,,in stock,true,true,2026-11-13,0
+LH-L-00327,laptop,MacBook Pro 14 (M3),macos,macOS 15.7,MUDUKWY2ZN,2023-06-12,16,512,,in stock,true,true,2026-10-31,2
+LH-L-00328,laptop,Dell Latitude 7440,windows,Windows 11 25H2,EW244CWVDD,2023-07-16,8,1024,,in stock,true,true,2026-11-05,0
+LH-L-00329,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,W7NKM4KYBA,2026-05-27,16,512,,in stock,true,false,2026-10-05,8
+LH-L-00330,laptop,Dell Latitude 5440,windows,Windows 11 24H2,MSUTPF7LLH,2023-04-22,16,256,,in stock,true,true,2026-11-13,0
+LH-L-00331,laptop,MacBook Air 13 (M4),macos,macOS 26.3,UEJYP8Y4RF,2025-07-31,16,256,,in repair,true,true,2026-11-07,0
+LH-L-00332,laptop,Dell Latitude 7450,windows,Windows 11 24H2,MP8TF4PPDB,2025-05-18,16,512,,in repair,true,true,2026-11-13,0
+LH-L-00333,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,CWP44MGZU9,2023-07-11,16,256,,in repair,true,true,2026-10-24,1
+LH-L-00334,laptop,HP EliteBook 840 G11,windows,Windows 11 24H2,RJVDN96VYT,2024-05-23,16,1024,,in repair,true,true,2026-11-07,0
+LH-L-00335,laptop,HP EliteBook 840 G8,windows,Windows 11 24H2,38GMLEAYHV,2022-04-30,16,512,,in repair,true,true,2026-11-09,0
+LH-L-00336,laptop,MacBook Air 13 (M2),macos,macOS 26.3,AYQ8LHD7C5,2023-09-02,16,256,,in repair,true,true,2026-10-31,1
+LH-L-00337,laptop,MacBook Air 13 (M1),macos,macOS 26.3,32REGM7GQL,2021-07-23,16,512,,in repair,true,true,2026-11-13,0
+LH-L-00338,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 25H2,MDBH9QXCMT,2024-01-07,16,512,,in repair,true,true,2026-10-31,2
+LH-L-00339,laptop,Dell Latitude 5440,windows,Windows 11 24H2,FND39WLYW5,2023-01-26,8,512,,lost,true,true,2026-11-11,0
+LH-L-00340,laptop,MacBook Air 13 (M4),macos,macOS 15.7,5EW5BLVHH9,2025-02-01,16,512,,lost,true,false,2026-10-11,11
+LH-L-00341,laptop,Dell Latitude 5440,windows,Windows 11 25H2,C8QLV6Z658,2025-10-02,16,1024,,retired,true,true,2026-10-16,3
+LH-L-00342,laptop,Lenovo ThinkPad T14 Gen 5,windows,Windows 11 24H2,FY5TG98U2V,2024-03-15,16,512,,retired,true,true,2026-11-04,0
+LH-L-00343,laptop,HP EliteBook 840 G11,windows,Windows 11 25H2,EWJ7B8LJHS,2024-03-14,16,256,,retired,true,true,2026-11-06,0
+LH-L-00344,laptop,HP EliteBook 840 G8,windows,Windows 11 24H2,XNE9FHRJFK,2022-08-09,16,512,,retired,true,false,2026-10-03,6
+LH-L-00345,laptop,HP EliteBook 840 G10,windows,Windows 11 24H2,3SQ5GEBFYY,2024-08-30,32,256,,retired,true,true,2026-11-12,0

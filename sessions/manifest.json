@@ -1,0 +1,387 @@
+[
+  {
+    "session": 1,
+    "title": "Kickoff and project setup",
+    "folder": "01-kickoff-and-project-setup",
+    "sources": [
+      "src/copilot/config.py",
+      "src/copilot/logging_setup.py",
+      "src/copilot/tickets.py"
+    ],
+    "evidence": "Clean-install transcript, ticket counts and a decision record naming the three enterprise boundaries"
+  },
+  {
+    "session": 2,
+    "title": "ML basics on ticket data",
+    "folder": "02-ml-basics-on-ticket-data",
+    "sources": [
+      "src/copilot/ml/train.py"
+    ],
+    "evidence": "Category and priority precision, recall, macro F1, support and confusion matrices; weakest-class error analysis"
+  },
+  {
+    "session": 3,
+    "title": "Neural networks, transformers and tokenization",
+    "folder": "03-neural-networks-transformers-and-tokenization",
+    "sources": [
+      "src/copilot/ml/train.py",
+      "src/copilot/course/experiments.py"
+    ],
+    "evidence": "Comparison report plus token distribution and a cost estimate with explicit model, encoding, prices and output-length assumption"
+  },
+  {
+    "session": 4,
+    "title": "Inference parameters and the first LLM call",
+    "folder": "04-inference-parameters-and-the-first-llm-call",
+    "sources": [
+      "src/copilot/llm/client.py"
+    ],
+    "evidence": "ADR with accuracy, measured latency, token usage and actual pricing; live result remains unmeasured until a provider is configured"
+  },
+  {
+    "session": 5,
+    "title": "Why RAG and a naive baseline",
+    "folder": "05-why-rag-and-a-naive-baseline",
+    "sources": [
+      "src/copilot/rag/pipeline.py"
+    ],
+    "evidence": "Frozen 20-question dataset, retrieved IDs and a clearly labelled baseline report"
+  },
+  {
+    "session": 6,
+    "title": "Document ingestion and parsing",
+    "folder": "06-document-ingestion-and-parsing",
+    "sources": [
+      "src/copilot/rag/pipeline.py"
+    ],
+    "evidence": "Full-corpus parse count, zero unexpected skips, second-run changed count zero and inspected SLA text"
+  },
+  {
+    "session": 7,
+    "title": "Chunking I: fixed and recursive",
+    "folder": "07-chunking-i-fixed-and-recursive",
+    "sources": [
+      "src/copilot/rag/pipeline.py"
+    ],
+    "evidence": "Chunk inspection output with sizes, IDs and step-boundary checks"
+  },
+  {
+    "session": 8,
+    "title": "Chunking II: semantic and parent-child",
+    "folder": "08-chunking-ii-semantic-and-parent-child",
+    "sources": [
+      "src/copilot/rag/advanced.py"
+    ],
+    "evidence": "Four-strategy scorecard on the same 20 reviewed questions, with context token counts"
+  },
+  {
+    "session": 9,
+    "title": "Embeddings",
+    "folder": "09-embeddings",
+    "sources": [
+      "src/copilot/rag/advanced.py"
+    ],
+    "evidence": "Embedding cache and measured retrieval comparison ADR with dimension, latency and hardware"
+  },
+  {
+    "session": 10,
+    "title": "Vector database and indexing",
+    "folder": "10-vector-database-and-indexing",
+    "sources": [
+      "src/copilot/rag/advanced.py",
+      "docker-compose.yml"
+    ],
+    "evidence": "Database search transcript, replacement and withdrawal checks, measured latency distribution"
+  },
+  {
+    "session": 11,
+    "title": "Retrieval and metadata filtering",
+    "folder": "11-retrieval-and-metadata-filtering",
+    "sources": [
+      "src/copilot/rag/pipeline.py"
+    ],
+    "evidence": "Tests for macOS versus Windows, current versus superseded policy and employee versus IT audience"
+  },
+  {
+    "session": 12,
+    "title": "Hybrid search",
+    "folder": "12-hybrid-search",
+    "sources": [
+      "src/copilot/rag/advanced.py"
+    ],
+    "evidence": "Per-subset Recall@5, candidate IDs and a latency comparison"
+  },
+  {
+    "session": 13,
+    "title": "Reranking and query rewriting",
+    "folder": "13-reranking-and-query-rewriting",
+    "sources": [
+      "src/copilot/rag/advanced.py",
+      "src/copilot/tools/runtime.py"
+    ],
+    "evidence": "Two-turn retrieval tests, reranking delta and p95 latency measurement"
+  },
+  {
+    "session": 14,
+    "title": "Grounded prompting with citations",
+    "folder": "14-grounded-prompting-with-citations",
+    "sources": [
+      "src/copilot/rag/advanced.py",
+      "src/copilot/guardrails/checks.py"
+    ],
+    "evidence": "Requests 1 and 2 transcripts plus citation-membership tests and human entailment review"
+  },
+  {
+    "session": 15,
+    "title": "RAG evaluation",
+    "folder": "15-rag-evaluation",
+    "sources": [
+      "evals/",
+      "src/copilot/course/experiments.py"
+    ],
+    "evidence": "Four-metric report with judge configuration, baseline, uncertainty and ten attributed failures"
+  },
+  {
+    "session": 16,
+    "title": "RAG as a FastAPI service",
+    "folder": "16-rag-as-a-fastapi-service",
+    "sources": [
+      "src/copilot/api/app.py",
+      "src/copilot/ui/chat.py"
+    ],
+    "evidence": "Authenticated API tests and UI walkthrough of requests 1 and 2"
+  },
+  {
+    "session": 17,
+    "title": "Agents versus workflows",
+    "folder": "17-agents-versus-workflows",
+    "sources": [
+      "src/copilot/tools/ticketing.py",
+      "policies/actions.yaml"
+    ],
+    "evidence": "Ticket visible in mock API and an action-risk inventory with default-deny handling"
+  },
+  {
+    "session": 18,
+    "title": "Tool calling and structured output",
+    "folder": "18-tool-calling-and-structured-output",
+    "sources": [
+      "src/copilot/tools/ticketing.py",
+      "src/copilot/tools/runtime.py"
+    ],
+    "evidence": "Tool-choice sample, 20 validated drafts and invalid-output escalation test"
+  },
+  {
+    "session": 19,
+    "title": "The agent loop written by hand",
+    "folder": "19-the-agent-loop-written-by-hand",
+    "sources": [
+      "src/copilot/agents/react.py"
+    ],
+    "evidence": "Bounded trajectory for slow laptop and a runaway-loop regression test"
+  },
+  {
+    "session": 20,
+    "title": "LangGraph and state management",
+    "folder": "20-langgraph-and-state-management",
+    "sources": [
+      "src/copilot/agents/graph.py",
+      "src/copilot/tools/runtime.py"
+    ],
+    "evidence": "Request 3 end state plus restart-and-resume transcript against PostgreSQL"
+  },
+  {
+    "session": 21,
+    "title": "Planning and task decomposition",
+    "folder": "21-planning-and-task-decomposition",
+    "sources": [
+      "src/copilot/agents/planning.py"
+    ],
+    "evidence": "Stored plan, dependency-order tests and a failed-step replanning trace"
+  },
+  {
+    "session": 22,
+    "title": "Short-term and long-term memory",
+    "folder": "22-short-term-and-long-term-memory",
+    "sources": [
+      "src/copilot/tools/runtime.py"
+    ],
+    "evidence": "Budget check, cross-thread recall and deletion verification with remaining checkpoint caveat"
+  },
+  {
+    "session": 23,
+    "title": "Agentic RAG and reflection",
+    "folder": "23-agentic-rag-and-reflection",
+    "sources": [
+      "src/copilot/rag/advanced.py",
+      "src/copilot/agents/react.py"
+    ],
+    "evidence": "Two-source answer, caught unsupported draft and measured reflection overhead"
+  },
+  {
+    "session": 24,
+    "title": "Self-correction, error handling and retries",
+    "folder": "24-self-correction-error-handling-and-retries",
+    "sources": [
+      "src/copilot/tools/ticketing.py"
+    ],
+    "evidence": "Fault matrix with success or clean escalation and duplicate count zero"
+  },
+  {
+    "session": 25,
+    "title": "Human-in-the-loop approval",
+    "folder": "25-human-in-the-loop-approval",
+    "sources": [
+      "src/copilot/tools/runtime.py",
+      "src/copilot/api/app.py"
+    ],
+    "evidence": "Request 4 end state plus unauthorized, replay and seat-capacity tests"
+  },
+  {
+    "session": 26,
+    "title": "Multi-agent I: supervisor and specialists",
+    "folder": "26-multi-agent-i-supervisor-and-specialists",
+    "sources": [
+      "src/copilot/agents/react.py"
+    ],
+    "evidence": "Requests 3 and 4 trajectories plus quality, token and latency comparison ADR"
+  },
+  {
+    "session": 27,
+    "title": "Multi-agent II: hierarchical teams and handoffs",
+    "folder": "27-multi-agent-ii-hierarchical-teams-and-handoffs",
+    "sources": [
+      "src/copilot/agents/planning.py"
+    ],
+    "evidence": "IT onboarding trace and analyst queue case with full evidence summary"
+  },
+  {
+    "session": 28,
+    "title": "Guardrails and prompt injection defence",
+    "folder": "28-guardrails-and-prompt-injection-defence",
+    "sources": [
+      "src/copilot/guardrails/checks.py",
+      "evals/redteam/"
+    ],
+    "evidence": "25-case report with state assertions, zero forbidden effects and explicit detector limitations"
+  },
+  {
+    "session": 29,
+    "title": "MCP architecture and the ticketing server",
+    "folder": "29-mcp-architecture-and-the-ticketing-server",
+    "sources": [
+      "src/copilot/mcp_servers/servers.py",
+      "src/copilot/mcp_servers/client.py"
+    ],
+    "evidence": "Actual initialize, list_tools and create-ticket transcript plus session 28 regressions"
+  },
+  {
+    "session": 30,
+    "title": "Tools, resources and prompts",
+    "folder": "30-tools-resources-and-prompts",
+    "sources": [
+      "src/copilot/mcp_servers/servers.py"
+    ],
+    "evidence": "Client transcripts for list_tools, read_resource and get_prompt with visibility tests"
+  },
+  {
+    "session": 31,
+    "title": "Database server and transports",
+    "folder": "31-database-server-and-transports",
+    "sources": [
+      "src/copilot/mcp_servers/servers.py",
+      "src/copilot/mcp_servers/client.py"
+    ],
+    "evidence": "Three-server HTTP transcripts and database-role write denial"
+  },
+  {
+    "session": 32,
+    "title": "Authentication and permissions",
+    "folder": "32-authentication-and-permissions",
+    "sources": [
+      "src/copilot/api/app.py",
+      "src/copilot/tools/runtime.py"
+    ],
+    "evidence": "Role-by-tool permission matrix, denied-call audit and ownership tests"
+  },
+  {
+    "session": 33,
+    "title": "Agent-to-Agent with the HR agent",
+    "folder": "33-agent-to-agent-with-the-hr-agent",
+    "sources": [
+      "services/hr_agent/",
+      "src/copilot/agents/planning.py"
+    ],
+    "evidence": "Request 5 completed through the real A2A transport plus unauthorized-call rejection"
+  },
+  {
+    "session": 34,
+    "title": "MCP versus A2A versus direct calls",
+    "folder": "34-mcp-versus-a2a-versus-direct-calls",
+    "sources": [
+      "src/copilot/mcp_servers/client.py",
+      "tests/"
+    ],
+    "evidence": "Measured transport ADR and version-controlled schema snapshot"
+  },
+  {
+    "session": 35,
+    "title": "Evaluation strategy and golden datasets",
+    "folder": "35-evaluation-strategy-and-golden-datasets",
+    "sources": [
+      "evals/",
+      "src/copilot/course/experiments.py"
+    ],
+    "evidence": "40 reviewed tasks and reset proof for tickets, database and checkpoint state"
+  },
+  {
+    "session": 36,
+    "title": "LLM-as-a-judge",
+    "folder": "36-llm-as-a-judge",
+    "sources": [
+      "evals/rubrics/"
+    ],
+    "evidence": "Agreement report against 85 percent starting target, with model, rubric version and uncertainty"
+  },
+  {
+    "session": 37,
+    "title": "Agent evaluation",
+    "folder": "37-agent-evaluation",
+    "sources": [
+      "evals/",
+      "src/copilot/course/experiments.py"
+    ],
+    "evidence": "Task success, tool accuracy and trajectory report; no target is claimed without measured run"
+  },
+  {
+    "session": 38,
+    "title": "Regression testing in CI",
+    "folder": "38-regression-testing-in-ci",
+    "sources": [
+      ".github/workflows/ci.yml",
+      "release/manifest.yaml"
+    ],
+    "evidence": "CI workflow, explicit thresholds and demonstrated regression rejection"
+  },
+  {
+    "session": 39,
+    "title": "Tracing, observability and monitoring",
+    "folder": "39-tracing-observability-and-monitoring",
+    "sources": [
+      "telemetry/",
+      "src/copilot/ui/chat.py"
+    ],
+    "evidence": "Cross-service trace, dashboard and measured knowledge-answer p95; cost has no fabricated default"
+  },
+  {
+    "session": 40,
+    "title": "Containerization, readiness and final walkthrough",
+    "folder": "40-containerization-readiness-and-final-walkthrough",
+    "sources": [
+      "Dockerfile",
+      "docker-compose.yml",
+      "docs/INTEGRATION_STEPS.md"
+    ],
+    "evidence": "Clean-machine demo, scan outputs and measured release targets before tagging v1.0"
+  }
+]

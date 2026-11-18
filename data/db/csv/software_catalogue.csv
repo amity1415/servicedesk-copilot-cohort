@@ -1,0 +1,41 @@
+app_id,name,vendor,category,licence_type,annual_charge_usd,approval_rule,platforms,delivery,restricted,seats_total
+APP-001,Microsoft 365 Apps,Microsoft,Productivity,Site,0,None,"Windows, macOS",Preinstalled,false,
+APP-002,Microsoft Teams,Microsoft,Collaboration,Site,0,None,"Windows, macOS",Preinstalled,false,
+APP-003,OneDrive,Microsoft,Storage,Site,0,None,"Windows, macOS",Preinstalled,false,
+APP-004,Google Chrome,Google,Browser,Free,0,None,"Windows, macOS",App Hub,false,
+APP-005,Microsoft Edge,Microsoft,Browser,Free,0,None,"Windows, macOS",Preinstalled,false,
+APP-006,SecureTunnel VPN,Larkhaven IT,Network,Site,0,None,"Windows, macOS",App Hub,false,
+APP-007,EndpointShield,Larkhaven IT,Security,Site,0,None,"Windows, macOS",Preinstalled,false,
+APP-008,VaultKey,Larkhaven IT,Security,Site,0,None,"Windows, macOS",App Hub,false,
+APP-009,LarkID Authenticator,Larkhaven IT,Security,Free,0,None,"iOS, Android",App store,false,
+APP-010,DeviceCare,Larkhaven IT,Device management,Site,0,None,"iOS, Android",App store,false,
+APP-011,SendSafe,Larkhaven IT,File transfer,Site,0,None,Web,LarkID portal,false,
+APP-012,Adobe Acrobat Reader,Adobe,Documents,Free,0,None,"Windows, macOS",App Hub,false,
+APP-013,Adobe Acrobat Pro,Adobe,Documents,Named,240,Manager,"Windows, macOS","HelpHub request, then App Hub",false,120
+APP-014,Microsoft Visio,Microsoft,Diagrams,Named,180,Manager,Windows,"HelpHub request, then App Hub",false,25
+APP-015,Microsoft Project,Microsoft,Planning,Named,360,Manager + cost-centre owner,Windows,"HelpHub request, then App Hub",false,30
+APP-016,Power BI Desktop,Microsoft,Analytics,Free,0,None,Windows,App Hub,false,
+APP-017,Power BI Pro,Microsoft,Analytics,Named,168,Manager,Web,"HelpHub request, then App Hub",false,80
+APP-018,Tableau Desktop,Salesforce,Analytics,Named,840,Manager + cost-centre owner,"Windows, macOS","HelpHub request, then App Hub",false,20
+APP-019,Tableau Viewer,Salesforce,Analytics,Named,180,Manager,Web,"HelpHub request, then App Hub",false,90
+APP-020,FinSight,Larkhaven Finance Systems,Finance,Named,600,Manager + data owner,Web,LarkID portal,true,60
+APP-021,CoreERP,Larkhaven Finance Systems,Finance,Named,0,Manager + data owner,Web,LarkID portal,true,200
+APP-022,PeopleHub administration,Larkhaven HR Systems,HR,Named,0,Manager + data owner,Web,LarkID portal,true,15
+APP-023,TrackIt,Larkhaven IT,Project tracking,Site,0,Manager,Web,LarkID portal,false,
+APP-024,Zoom Workplace,Zoom,Collaboration,Named,150,Manager,"Windows, macOS","HelpHub request, then App Hub",false,60
+APP-025,Miro,Miro,Collaboration,Named,120,Manager,Web,"HelpHub request, then App Hub",false,70
+APP-026,Figma,Figma,Design,Named,540,Manager + cost-centre owner,Web,"HelpHub request, then App Hub",false,25
+APP-027,Adobe Creative Cloud,Adobe,Design,Named,960,Manager + cost-centre owner,"Windows, macOS","HelpHub request, then App Hub",false,18
+APP-028,Snagit,TechSmith,Screen capture,Named,40,Manager,"Windows, macOS","HelpHub request, then App Hub",false,100
+APP-029,Camtasia,TechSmith,Video,Named,220,Manager,"Windows, macOS","HelpHub request, then App Hub",false,20
+APP-030,AutoCAD LT,Autodesk,Engineering,Named,480,Manager + cost-centre owner,Windows,"HelpHub request, then App Hub",false,12
+APP-031,Visual Studio Code,Microsoft,Development,Free,0,None,"Windows, macOS",App Hub,false,
+APP-032,Python 3,Python Software Foundation,Development,Free,0,None,"Windows, macOS",App Hub,false,
+APP-033,Git,Software Freedom Conservancy,Development,Free,0,None,"Windows, macOS",App Hub,false,
+APP-034,Docker Desktop,Docker,Development,Named,252,Manager,"Windows, macOS","HelpHub request, then App Hub",false,70
+APP-035,PyCharm Professional,JetBrains,Development,Named,249,Manager,"Windows, macOS","HelpHub request, then App Hub",false,40
+APP-036,Postman,Postman,Development,Free,0,None,"Windows, macOS",App Hub,false,
+APP-037,DBeaver Community,DBeaver,Development,Free,0,None,"Windows, macOS",App Hub,false,
+APP-038,GitHub Copilot Business,GitHub,AI assistant,Named,228,Manager,"Windows, macOS","HelpHub request, then App Hub",false,80
+APP-039,7-Zip,Igor Pavlov,Utilities,Free,0,None,Windows,App Hub,false,
+APP-040,Notepad++,Notepad++ team,Utilities,Free,0,None,Windows,App Hub,false,

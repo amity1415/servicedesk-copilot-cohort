@@ -1,0 +1,6 @@
+version: 1
+default: deny
+read: [search_kb, get_employee, get_assets, check_service_status]
+low_risk_write: [create_ticket, update_ticket]
+approval_required: [request_access, fulfil_access]
+forbidden: [grant_admin, arbitrary_sql, disable_security]

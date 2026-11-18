@@ -1,0 +1,8 @@
+version: 1
+FinSight:
+  required: [line_manager, finance_data_owner]
+  finance_data_owner_job_title: Chief Financial Officer
+  bind_to: [request_id, employee, app]
+  edited_action: new_request_required
+  fulfil_roles: [analyst, admin]
+  rejection: terminal
