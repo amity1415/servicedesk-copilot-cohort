@@ -45,7 +45,9 @@
       "live_gate": null,
       "checkpoint_commit": "9fb14018fc5fcb08c4e642070560349bd6d8e3e2",
       "checkpoint_export_verified": true,
-      "completion_state": "verified_awaiting_commit"
+      "completion_state": "verified_committed",
+      "completion_commit": "3a7b8950da366d0564316b7e297cf25d0ce92979",
+      "completion_evidence": "sessions/02-ml-basics-on-ticket-data/verification/runtime-gate.json"
     },
     {
       "session": 3,
