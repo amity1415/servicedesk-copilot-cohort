@@ -45,7 +45,7 @@ def create_app(
         if not token:
             raise ValueError("empty bearer tokens are forbidden")
         runtime.employee(employee_id)
-    engine = Engine(runtime, VectorRag.from_data(data), ticketing)
+    engine = Engine(runtime, VectorRag.configured(data), ticketing)
     app = FastAPI(title="Larkhaven Copilot", version="0.2.0")
     app.state.runtime = runtime
 
@@ -86,7 +86,7 @@ def create_app(
     def health():
         return {
             "status": "ok",
-            "mode": "tfidf-vector-extractive",
+            "mode": engine.retriever.mode,
             "documents": len(engine.retriever.chunks),
         }
 

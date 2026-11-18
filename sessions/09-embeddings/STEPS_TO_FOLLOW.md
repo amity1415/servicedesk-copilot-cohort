@@ -26,5 +26,10 @@ ruff check .
 ruff format --check .
 ```
 
-13. Complete the evidence template, review the diff and commit only this increment and its reviewed evidence. Do not commit `.env`, runtime databases or tokens.
-14. Continue to session 10 without replacing the repository. Consult [integration steps](../../docs/INTEGRATION_STEPS.md) at module boundaries.
+13. Start or restart the integrated app and check readiness. Exercise neural
+    retrieval through its normal application entry point, verify that a repeated
+    request reuses the embedding cache, and smoke-test the existing TF-IDF path.
+    Record the configuration and observed results under the
+    [session completion policy](../../docs/SESSION_COMPLETION_POLICY.md).
+14. Complete the evidence template, review the diff and commit only this increment and its reviewed evidence. Do not commit `.env`, runtime databases or tokens.
+15. Continue to session 10 without replacing the repository. Consult [integration steps](../../docs/INTEGRATION_STEPS.md) at module boundaries.

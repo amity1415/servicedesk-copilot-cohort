@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 from pathlib import Path
 from time import monotonic
@@ -48,7 +49,15 @@ def documents_from(data, baseline=False):
 
 
 class VectorRag:
-    def __init__(self, documents, strategy="fixed", size=1200, overlap=120, semantic_encoder=None):
+    def __init__(
+        self,
+        documents,
+        strategy="fixed",
+        size=1200,
+        overlap=120,
+        semantic_encoder=None,
+        retrieval_encoder=None,
+    ):
         from sklearn.feature_extraction.text import TfidfVectorizer
 
         from copilot.rag.chunking import make_chunks
@@ -60,18 +69,46 @@ class VectorRag:
             for doc in documents
             for c in make_chunks(doc, strategy, size, overlap, encoder=semantic_encoder)
         ]
+        self.retrieval_encoder = retrieval_encoder
+        self.mode = "neural-vector-extractive" if retrieval_encoder else "tfidf-vector-extractive"
         self.vectorizer = TfidfVectorizer(ngram_range=(1, 2), sublinear_tf=True)
-        self.matrix = (
-            self.vectorizer.fit_transform(
-                [str(c.metadata.get("title", "")) + "\n" + c.text for c in self.chunks]
-            )
-            if self.chunks
-            else None
+        texts = [str(c.metadata.get("title", "")) + "\n" + c.text for c in self.chunks]
+        self.matrix = None
+        if texts and retrieval_encoder:
+            import numpy as np
+
+            self.matrix = np.asarray(retrieval_encoder.encode(texts), dtype=np.float32)
+        elif texts:
+            self.matrix = self.vectorizer.fit_transform(texts)
+
+    @classmethod
+    def from_data(
+        cls,
+        data,
+        strategy="recursive",
+        baseline=False,
+        semantic_encoder=None,
+        retrieval_encoder=None,
+    ):
+        return cls(
+            documents_from(data, baseline),
+            strategy,
+            semantic_encoder=semantic_encoder,
+            retrieval_encoder=retrieval_encoder,
         )
 
     @classmethod
-    def from_data(cls, data, strategy="recursive", baseline=False, semantic_encoder=None):
-        return cls(documents_from(data, baseline), strategy, semantic_encoder=semantic_encoder)
+    def configured(cls, data):
+        backend = os.getenv("COPILOT_RETRIEVAL_BACKEND", "tfidf")
+        if backend == "tfidf":
+            return cls.from_data(data)
+        if backend == "neural":
+            from copilot.rag.semantic_encoder import OnnxEncoder
+
+            return cls.from_data(
+                data, retrieval_encoder=OnnxEncoder(cache=os.getenv("COPILOT_EMBEDDING_CACHE"))
+            )
+        raise ValueError("COPILOT_RETRIEVAL_BACKEND must be tfidf or neural")
 
     def search(self, query, role="employee", os_name=None, region=None, k=5):
         if k < 1:
@@ -79,7 +116,7 @@ class VectorRag:
         candidates = [
             i for i, c in enumerate(self.chunks) if is_allowed(c.metadata, role, os_name, region)
         ]
-        exact = re.findall(r"\b(?:KB-\d+|\d{3,})\b", query, re.I)
+        exact = re.findall(r"\b(?:KB-\d+|\d{3,})\b", query, re.IGNORECASE)
         if exact:
             candidates = [
                 i
@@ -98,8 +135,12 @@ class VectorRag:
             ]
         if not candidates or self.matrix is None:
             return []
-        vector = self.vectorizer.transform([query])
-        scores = (self.matrix[candidates] @ vector.T).toarray().ravel()
+        if self.retrieval_encoder:
+            vector = self.retrieval_encoder.encode([query])[0]
+            scores = self.matrix[candidates] @ vector
+        else:
+            vector = self.vectorizer.transform([query])
+            scores = (self.matrix[candidates] @ vector.T).toarray().ravel()
         ranked = sorted(zip(candidates, scores, strict=True), key=lambda row: row[1], reverse=True)
         return [self.chunks[index] for index, score in ranked if score > 0.02][:k]
 
@@ -110,7 +151,7 @@ class VectorRag:
                 "answer": "No supporting source found. I can raise a ticket.",
                 "citations": [],
                 "abstained": True,
-                "mode": "tfidf-vector-extractive",
+                "mode": self.mode,
             }
         best = hits[0].document_id
         chosen_ids = {h.id for h in hits if h.document_id == best}
@@ -122,7 +163,7 @@ class VectorRag:
             "citations": [
                 {"chunk_id": c.id, "document_id": c.document_id, "source": c.source} for c in chosen
             ],
-            "mode": "tfidf-vector-extractive",
+            "mode": self.mode,
             "chunk_strategy": self.strategy,
         }
 

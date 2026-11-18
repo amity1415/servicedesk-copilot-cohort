@@ -392,6 +392,18 @@ For a bad retrieval generation, revert the active generation/config and verify s
 
 ## Progressive implementation sequence
 
+### Session integration and runtime acceptance
+
+Each session increment ships in both the standalone cumulative session solution
+and the shared application. Before recording completion, run the standalone
+acceptance checks and the shared application's regression suite. Start the
+updated application or restart the affected local services, verify readiness,
+and exercise the new feature and an existing workflow through their normal
+application entry points. Use the local host setup where it covers the feature.
+Start the supporting services required by the feature and retain the observed
+results with the session evidence. The
+[session completion policy](../SESSION_COMPLETION_POLICY.md) defines the gate.
+
 Each milestone should be a small branch/PR or a short sequence of reviewed PRs. Update the tracker with commit/build/report links before proceeding. Session numbers identify related teaching material; milestones express the actual dependency order.
 
 | Milestone | Related sessions | Build increment | Gate before proceeding |

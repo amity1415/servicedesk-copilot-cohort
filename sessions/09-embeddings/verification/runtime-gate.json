@@ -1,0 +1,713 @@
+{
+  "session": 9,
+  "verified_at_utc": "2026-11-18T17:36:27.830774+00:00",
+  "source_state": "9ed0e0df582c81dab21e329931555942bb6a3086",
+  "checks": [
+    {
+      "name": "session-tests",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "9"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "75de0e4a66d936eccc4513300836fe411ac0db488bb71f983d5848f65a8da5ee"
+    },
+    {
+      "name": "main-tests",
+      "command": [
+        "-m",
+        "pytest",
+        "--tb=short",
+        "--basetemp=.work/pytest-gate-c3aba219ec35483db8582a224cbb2882"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "ae6688f10d787d34a45a296a5588fae032406313c860f990b69d12449b6d67f9"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "format",
+      "command": [
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "4c59f9aba014418c256a43d7557f3bfa04e54f2f68ecf087693a647435cdf0d2"
+    },
+    {
+      "name": "session-run",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "9"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "940930513902d1a401862e024da7882c8ac2a8ce0c5c15457b0a00317f34e1d7"
+    },
+    {
+      "name": "main-run",
+      "command": [
+        "-m",
+        "copilot",
+        "rag-embedding-compare"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "58b99d4da4b821e32fd65f2dbcd1cd30299302d16facf855ad805ecd6ac6a2ed"
+    },
+    {
+      "name": "starter-inherited",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "9",
+        "--variant",
+        "starter",
+        "--previous-only"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "6cf6feed9665b77f86046511bfffca27d60bb7d5186aef8de8be3ac73cac3ff5"
+    },
+    {
+      "name": "starter-new",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "9",
+        "--variant",
+        "starter"
+      ],
+      "exit_code": 1,
+      "expected_failure": true,
+      "output_sha256": "593c3b9302ffb8b3bb283e83bb9f775a542b40e227cbe46967b466840b83cff2"
+    },
+    {
+      "name": "main-http-runtime",
+      "command": [
+        "scripts/verify_embedding_runtime.py"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "be45e40532d138933597b077621e0e677badd6e7c313bbee9e3ea9d401cb462a"
+    }
+  ],
+  "runtime_scope": "actual session source and integrated main application",
+  "paid_calls": 0,
+  "comparison": {
+    "mode": "local-neural-retrieval-comparison",
+    "hardware": {
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel"
+    },
+    "question_count": 20,
+    "label_status": "draft, requires instructor review",
+    "models": [
+      {
+        "model": {
+          "repository": "sentence-transformers/all-MiniLM-L6-v2",
+          "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+          "files": {
+            "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+            "config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+            "onnx/model_quint8_avx2.onnx": "b941bf19f1f1283680f449fa6a7336bb5600bdcd5f84d10ddc5cd72218a0fd21"
+          },
+          "pooling": "attention-mask mean then L2 normalization",
+          "max_tokens": 256,
+          "dimension": 384,
+          "provider": "CPUExecutionProvider"
+        },
+        "identity": "02c81e195b4c8f54c5dc6e0d2b6c55d31063969bda37e150096b94352c18a5d1",
+        "indexing_seconds": 13.87014020000015,
+        "recall_at_5": 0.85,
+        "cold_vector_misses": 226,
+        "repeat_vector_misses": 0,
+        "cache_rows_before_repeat": 226,
+        "cache_rows_after_repeat": 226,
+        "cases": [
+          {
+            "id": "rag05-01",
+            "retrieved": [
+              "KB-1017",
+              "KB-1020",
+              "KB-1023",
+              "KB-1026",
+              "POL-006_v1.4"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.011017199999969307
+          },
+          {
+            "id": "rag05-02",
+            "retrieved": [
+              "KB-1018"
+            ],
+            "missed": [],
+            "error_code_query": true,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.010703599999942526
+          },
+          {
+            "id": "rag05-03",
+            "retrieved": [
+              "KB-1001",
+              "KB-1002",
+              "KB-1013",
+              "KB-1060"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.011233199999878707
+          },
+          {
+            "id": "rag05-04",
+            "retrieved": [
+              "KB-1017",
+              "KB-1020",
+              "KB-1021",
+              "KB-1023",
+              "KB-1024"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.016245599999820115
+          },
+          {
+            "id": "rag05-05",
+            "retrieved": [],
+            "missed": [
+              "KB-1002"
+            ],
+            "error_code_query": true,
+            "recall_at_5": 0.0,
+            "latency_seconds": 0.0007938999997350038
+          },
+          {
+            "id": "rag05-06",
+            "retrieved": [
+              "KB-1043",
+              "KB-1048",
+              "KB-1050",
+              "KB-1067",
+              "KB-1099"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.014700299999731214
+          },
+          {
+            "id": "rag05-07",
+            "retrieved": [],
+            "missed": [
+              "KB-1006"
+            ],
+            "error_code_query": true,
+            "recall_at_5": 0.0,
+            "latency_seconds": 0.0009362000000692206
+          },
+          {
+            "id": "rag05-08",
+            "retrieved": [
+              "KB-1043",
+              "KB-1048",
+              "KB-1049",
+              "KB-1067",
+              "KB-1099"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.01296890000003259
+          },
+          {
+            "id": "rag05-09",
+            "retrieved": [
+              "KB-1008",
+              "KB-1009",
+              "KB-1075",
+              "KB-1077",
+              "KB-1082"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.014809899999818299
+          },
+          {
+            "id": "rag05-10",
+            "retrieved": [
+              "KB-1018",
+              "KB-1021",
+              "KB-1036",
+              "KB-1037",
+              "KB-1079"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.014864499999930558
+          },
+          {
+            "id": "rag05-11",
+            "retrieved": [
+              "KB-1063",
+              "KB-1064",
+              "KB-1065",
+              "KB-1066",
+              "KB-1085"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.011524800000188407
+          },
+          {
+            "id": "rag05-12",
+            "retrieved": [
+              "KB-1054",
+              "KB-1056",
+              "KB-1069",
+              "KB-1086"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.012250700000095094
+          },
+          {
+            "id": "rag05-13",
+            "retrieved": [
+              "KB-1075",
+              "KB-1078",
+              "KB-1079",
+              "KB-1082"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.015585699999974167
+          },
+          {
+            "id": "rag05-14",
+            "retrieved": [
+              "KB-1010",
+              "KB-1050",
+              "POL-002_v2.1",
+              "POL-003_v4.0"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.017651300000125048
+          },
+          {
+            "id": "rag05-15",
+            "retrieved": [
+              "KB-1090",
+              "KB-1091",
+              "POL-009_v2.2"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.01594089999980497
+          },
+          {
+            "id": "rag05-16",
+            "retrieved": [
+              "KB-1021",
+              "KB-1022",
+              "KB-1025",
+              "KB-1027",
+              "KB-1033"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.016821900000195456
+          },
+          {
+            "id": "rag05-17",
+            "retrieved": [
+              "KB-1002",
+              "KB-1015",
+              "KB-1036",
+              "KB-1037",
+              "KB-1085"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.01482239999995727
+          },
+          {
+            "id": "rag05-18",
+            "retrieved": [],
+            "missed": [
+              "KB-1095"
+            ],
+            "error_code_query": true,
+            "recall_at_5": 0.0,
+            "latency_seconds": 0.0012274999999135616
+          },
+          {
+            "id": "rag05-19",
+            "retrieved": [
+              "KB-1045",
+              "KB-1059",
+              "KB-1068",
+              "KB-1070",
+              "KB-1080"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.014850500000193279
+          },
+          {
+            "id": "rag05-20",
+            "retrieved": [
+              "KB-1024"
+            ],
+            "missed": [],
+            "error_code_query": true,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.012286700000004203
+          }
+        ]
+      },
+      {
+        "model": {
+          "repository": "sentence-transformers/all-MiniLM-L12-v2",
+          "revision": "a50ef00143b4d5391434df20ae11632588ac25be",
+          "files": {
+            "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+            "config.json": "bc451f333af67312ba0de5018ef1c9ba663cb18549443e568f0bd35262dc1c48",
+            "onnx/model_quint8_avx2.onnx": "3c5e33c478496a43413086336955119154d56f3c3d0dccadb484041dc1ce762d"
+          },
+          "pooling": "attention-mask mean then L2 normalization",
+          "max_tokens": 256,
+          "dimension": 384,
+          "provider": "CPUExecutionProvider"
+        },
+        "identity": "5bfae6e690e0fa5769e33c3aa597af788f4651c1fd80f11eabf1de01fb50da04",
+        "indexing_seconds": 23.29940549999992,
+        "recall_at_5": 0.85,
+        "cold_vector_misses": 226,
+        "repeat_vector_misses": 0,
+        "cache_rows_before_repeat": 452,
+        "cache_rows_after_repeat": 452,
+        "cases": [
+          {
+            "id": "rag05-01",
+            "retrieved": [
+              "KB-1017",
+              "KB-1020",
+              "KB-1023",
+              "KB-1026",
+              "POL-006_v1.4"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.013852700000370533
+          },
+          {
+            "id": "rag05-02",
+            "retrieved": [
+              "KB-1018"
+            ],
+            "missed": [],
+            "error_code_query": true,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.016123200000038196
+          },
+          {
+            "id": "rag05-03",
+            "retrieved": [
+              "KB-1001",
+              "KB-1002",
+              "KB-1013",
+              "POL-001_v3.0"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.01564860000007684
+          },
+          {
+            "id": "rag05-04",
+            "retrieved": [
+              "KB-1017",
+              "KB-1020",
+              "KB-1023",
+              "KB-1024",
+              "KB-1033"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.023603800000273623
+          },
+          {
+            "id": "rag05-05",
+            "retrieved": [],
+            "missed": [
+              "KB-1002"
+            ],
+            "error_code_query": true,
+            "recall_at_5": 0.0,
+            "latency_seconds": 0.0007150000001274748
+          },
+          {
+            "id": "rag05-06",
+            "retrieved": [
+              "KB-1043",
+              "KB-1048",
+              "KB-1049",
+              "KB-1067",
+              "KB-1099"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.019404300000132935
+          },
+          {
+            "id": "rag05-07",
+            "retrieved": [],
+            "missed": [
+              "KB-1006"
+            ],
+            "error_code_query": true,
+            "recall_at_5": 0.0,
+            "latency_seconds": 0.000751600000057806
+          },
+          {
+            "id": "rag05-08",
+            "retrieved": [
+              "KB-1042",
+              "KB-1043",
+              "KB-1067",
+              "KB-1091",
+              "KB-1099"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.01891189999969356
+          },
+          {
+            "id": "rag05-09",
+            "retrieved": [
+              "KB-1009",
+              "KB-1010",
+              "KB-1011",
+              "KB-1075",
+              "REF-002"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.02211940000006507
+          },
+          {
+            "id": "rag05-10",
+            "retrieved": [
+              "KB-1018",
+              "KB-1036",
+              "KB-1037",
+              "KB-1079"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.02371080000011716
+          },
+          {
+            "id": "rag05-11",
+            "retrieved": [
+              "KB-1063",
+              "KB-1064",
+              "KB-1065",
+              "KB-1066",
+              "KB-1100"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.01680420000002414
+          },
+          {
+            "id": "rag05-12",
+            "retrieved": [
+              "KB-1054",
+              "KB-1056",
+              "KB-1057",
+              "KB-1082"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.017435300000215648
+          },
+          {
+            "id": "rag05-13",
+            "retrieved": [
+              "KB-1009",
+              "KB-1075",
+              "KB-1078",
+              "KB-1083"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.020314200000029814
+          },
+          {
+            "id": "rag05-14",
+            "retrieved": [
+              "KB-1009",
+              "KB-1010",
+              "KB-1015",
+              "KB-1090",
+              "POL-003_v4.0"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.01637890000029074
+          },
+          {
+            "id": "rag05-15",
+            "retrieved": [
+              "KB-1090",
+              "KB-1091",
+              "POL-009_v2.2"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.017818199999965145
+          },
+          {
+            "id": "rag05-16",
+            "retrieved": [
+              "KB-1021",
+              "KB-1022",
+              "KB-1025",
+              "KB-1027",
+              "KB-1033"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.019473800000014307
+          },
+          {
+            "id": "rag05-17",
+            "retrieved": [
+              "KB-1002",
+              "KB-1015",
+              "KB-1036",
+              "KB-1037",
+              "KB-1085"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.018681399999877613
+          },
+          {
+            "id": "rag05-18",
+            "retrieved": [],
+            "missed": [
+              "KB-1095"
+            ],
+            "error_code_query": true,
+            "recall_at_5": 0.0,
+            "latency_seconds": 0.0006425999999919441
+          },
+          {
+            "id": "rag05-19",
+            "retrieved": [
+              "KB-1020",
+              "KB-1045",
+              "KB-1059",
+              "KB-1080",
+              "KB-1081"
+            ],
+            "missed": [],
+            "error_code_query": false,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.0172127000000728
+          },
+          {
+            "id": "rag05-20",
+            "retrieved": [
+              "KB-1024"
+            ],
+            "missed": [],
+            "error_code_query": true,
+            "recall_at_5": 1.0,
+            "latency_seconds": 0.01735999999982596
+          }
+        ]
+      }
+    ]
+  },
+  "http_runtime": {
+    "question": "How do I set up VPN on my Mac?",
+    "backends": {
+      "tfidf": {
+        "health": {
+          "status": "ok",
+          "mode": "tfidf-vector-extractive",
+          "documents": 209
+        },
+        "citations": [
+          "KB-1017"
+        ],
+        "cache_rows": []
+      },
+      "neural": {
+        "health": {
+          "status": "ok",
+          "mode": "neural-vector-extractive",
+          "documents": 209
+        },
+        "citations": [
+          "KB-1017"
+        ],
+        "cache_rows": [
+          209,
+          210,
+          210
+        ]
+      }
+    }
+  }
+}

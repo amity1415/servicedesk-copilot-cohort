@@ -9,6 +9,7 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
+from uuid import uuid4
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -113,7 +114,7 @@ def main(argv=None):
             "--confcutdir",
             str(snapshot),
             "--basetemp",
-            str(ROOT / ".work/pytest-cohort" / f"s{args.number:02d}-{args.variant}"),
+            str(ROOT / ".work/pytest-cohort" / f"s{args.number:02d}-{args.variant}-{uuid4().hex}"),
             "--tb=short",
         ]
         (ROOT / ".work/pytest-cohort").mkdir(parents=True, exist_ok=True)

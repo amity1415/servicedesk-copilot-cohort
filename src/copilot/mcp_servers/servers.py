@@ -41,7 +41,7 @@ def make_server(
         return register
 
     if name == "documents":
-        retriever = VectorRag.from_data(data)
+        retriever = VectorRag.configured(data)
 
         @tool()
         def search_kb(query: str, os_name: str | None = None) -> dict:

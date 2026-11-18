@@ -58,6 +58,11 @@ Docker deployment and Jenkins administration remain separate decisions.
 Source availability is separate from audited completion. Run `python scripts/complete_session.py N` in order. This executes both session and integrated application features, passes tests, saves evidence and commits before the next session is allowed. See [the completion policy](../docs/SESSION_COMPLETION_POLICY.md). A required live comparison cannot pass on a mock.
 
 
+Before recording completion, start or restart the affected shared application
+services and verify readiness, the new capability, and an existing workflow
+through the running app. Record the observed results in the session evidence.
+Follow the [session completion policy](../docs/SESSION_COMPLETION_POLICY.md).
+
 ## RAG batch commands
 
 `copilot rag-demo` runs the integrated vector/extractive pipeline. `rag-ingest`

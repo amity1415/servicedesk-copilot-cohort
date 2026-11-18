@@ -14,6 +14,7 @@ import subprocess
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
+from uuid import uuid4
 
 ROOT = Path(__file__).resolve().parents[1]
 IDENTITY = ["-c", "user.name=Codex Course Builder", "-c", "user.email=codex-course@local.invalid"]
@@ -21,7 +22,19 @@ IDENTITY = ["-c", "user.name=Codex Course Builder", "-c", "user.email=codex-cour
 
 def git(*arguments):
     result = subprocess.run(
-        ["git", *IDENTITY, *arguments], cwd=ROOT, text=True, capture_output=True, check=True
+        [
+            "git",
+            "--git-dir=.git",
+            "--work-tree=.",
+            "-c",
+            "core.fsmonitor=false",
+            *IDENTITY,
+            *arguments,
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=True,
     )
     return result.stdout.strip()
 
@@ -49,7 +62,7 @@ def complete(number):
         git("commit", "-m", "Keep session 04 pending until live acceptance is verified")
         print(item["completion_blocker"], flush=True)
         return 2
-    if number not in {1, 2, 3}:
+    if number not in {1, 2, 3, 9}:
         raise RuntimeError("No complete runtime-gate definition exists for this session yet")
     evidence_dir = ROOT / "sessions" / Path(item["solution"]).parts[1] / "verification"
     evidence_dir.mkdir(parents=True, exist_ok=True)
@@ -66,13 +79,29 @@ def complete(number):
         environment.pop(name, None)
     commands = [
         ("session-tests", ["scripts/session.py", "test", str(number)]),
-        ("main-tests", ["-m", "pytest", "--tb=short"]),
+        (
+            "main-tests",
+            ["-m", "pytest", "--tb=short", f"--basetemp=.work/pytest-gate-{uuid4().hex}"],
+        ),
         ("lint", ["-m", "ruff", "check", "."]),
         ("format", ["-m", "ruff", "format", "--check", "."]),
         ("session-run", ["scripts/session.py", "run", str(number)]),
     ]
-    runtime_command = {1: "tickets-stats", 2: "train", 3: "compare"}[number]
+    runtime_command = {1: "tickets-stats", 2: "train", 3: "compare", 9: "rag-embedding-compare"}[
+        number
+    ]
     commands.append(("main-run", ["-m", "copilot", runtime_command]))
+    if number == 9:
+        commands.extend(
+            [
+                (
+                    "starter-inherited",
+                    ["scripts/session.py", "test", "9", "--variant", "starter", "--previous-only"],
+                ),
+                ("starter-new", ["scripts/session.py", "test", "9", "--variant", "starter"]),
+                ("main-http-runtime", ["scripts/verify_embedding_runtime.py"]),
+            ]
+        )
     if number == 3:
         pricing = [
             "token-report",
@@ -102,21 +131,28 @@ def complete(number):
         )
         output = (result.stdout or "") + (result.stderr or "")
         (logs / f"{label}.log").write_text(output, encoding="utf-8")
+        expected_failure = label == "starter-new"
+        passed = (
+            result.returncode == 1 and "1 failed" in output and "test_rag_embeddings.py" in output
+            if expected_failure
+            else result.returncode == 0
+        )
         results.append(
             {
                 "name": label,
                 "command": arguments,
                 "exit_code": result.returncode,
+                "expected_failure": expected_failure,
                 "output_sha256": hashlib.sha256(output.encode()).hexdigest(),
             }
         )
-        if result.returncode:
+        if not passed:
             item["completion_state"] = "verification_failed"
             item["completion_blocker"] = f"{label} failed; inspect {logs.relative_to(ROOT)}"
             path.write_text(json.dumps(manifest, indent=2) + "\n")
             raise RuntimeError(item["completion_blocker"])
     # Validate outputs exist and reflect full corpus execution, not just a zero exit.
-    if number >= 2:
+    if number in {2, 3}:
         main_report = json.loads((ROOT / "reports/integrated/ml.json").read_text())
         session_report = json.loads(
             (ROOT / f"reports/cohort/session-{number:02d}/solution/ml.json").read_text()
@@ -153,6 +189,19 @@ def complete(number):
             "actual_provider_cost": None,
             "limitations": "Request-text estimate excludes prompts, context and chat framing.",
         }
+    if number == 9:
+        main_rag = ROOT / "reports/integrated/rag"
+        report = json.loads((main_rag / "rag-embedding-compare.json").read_text())
+        cohort = json.loads(
+            (ROOT / "reports/cohort/session-09/solution/rag-embedding-compare.json").read_text()
+        )
+        for integrated, standalone in zip(report["models"], cohort["models"], strict=True):
+            if integrated["identity"] != standalone["identity"] or [
+                row["retrieved"] for row in integrated["cases"]
+            ] != [row["retrieved"] for row in standalone["cases"]]:
+                raise RuntimeError("Integrated and standalone embedding results differ")
+        evidence["comparison"] = report
+        evidence["http_runtime"] = json.loads((main_rag / "embedding-runtime.json").read_text())
     record = evidence_dir / "runtime-gate.json"
     record.write_text(json.dumps(evidence, indent=2) + "\n")
     item["completion_state"] = "verified_awaiting_commit"
@@ -169,6 +218,29 @@ def complete(number):
         "sessions/IMPLEMENTATION_GUIDE.md",
         str(record.relative_to(ROOT)),
     ]
+    if number == 9:
+        paths = [
+            "docs/SESSION_COMPLETION_POLICY.md",
+            "docs/adr/0003-local-embedding-retrieval.md",
+            "docs/engineering-design/DESIGN.md",
+            "sessions/IMPLEMENTATION_GUIDE.md",
+            "sessions/implementation_manifest.json",
+            "sessions/09-embeddings",
+            "policies/embedding_model_l12.json",
+            "scripts/complete_session.py",
+            "scripts/session.py",
+            "scripts/verify_embedding_runtime.py",
+            "src/copilot/api/app.py",
+            "src/copilot/cli.py",
+            "src/copilot/mcp_servers/servers.py",
+            "src/copilot/rag/cli.py",
+            "src/copilot/rag/embedding_benchmark.py",
+            "src/copilot/rag/semantic_encoder.py",
+            "src/copilot/rag/service.py",
+            "tests/test_rag_embeddings.py",
+        ]
+    if number == 9 and git("diff", "--cached", "--name-only"):
+        raise RuntimeError("The Git index has staged changes. Preserve them before completion.")
     git("add", "--", *paths)
     git("diff", "--cached", "--check")
     git("commit", "-m", f"Verify session {number:02d} runtime in cohort and main application")

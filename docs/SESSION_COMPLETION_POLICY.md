@@ -9,10 +9,19 @@ Before advancing from session N:
 3. Execute the corresponding feature through the integrated application's source,
    independently of the session launcher.
 4. Pass the accumulated session acceptance tests and main regression checks.
+   Start the integrated application from the updated workspace, or restart its
+   affected local services if they are already running. Check readiness, then
+   exercise the new capability through its normal application entry point.
+   Verify an existing workflow through the running app as a smoke test.
+   For a CLI-only capability, run its integrated CLI command and check any
+   affected services.
 5. Inspect real output artifacts and confirm required metadata, split and scope.
 6. Complete required live/service checks. A mock, preflight or unknown result does
    not certify a required live capability.
 7. Save evidence, review the scoped diff, and commit the verified implementation.
+   Record the running-app configuration, startup or restart, readiness, the
+   feature and smoke-test inputs, and observed results. Keep credentials out of
+   the evidence. Leave the session pending if a required runtime check cannot run.
 8. Record that commit as the session completion pointer before beginning N+1.
 
 `scripts/complete_session.py N` enforces the currently defined runtime gates and

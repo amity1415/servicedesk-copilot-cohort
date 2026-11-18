@@ -1,0 +1,13 @@
+{
+  "repository": "sentence-transformers/all-MiniLM-L12-v2",
+  "revision": "a50ef00143b4d5391434df20ae11632588ac25be",
+  "files": {
+    "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+    "config.json": "bc451f333af67312ba0de5018ef1c9ba663cb18549443e568f0bd35262dc1c48",
+    "onnx/model_quint8_avx2.onnx": "3c5e33c478496a43413086336955119154d56f3c3d0dccadb484041dc1ce762d"
+  },
+  "pooling": "attention-mask mean then L2 normalization",
+  "max_tokens": 256,
+  "dimension": 384,
+  "provider": "CPUExecutionProvider"
+}

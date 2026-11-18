@@ -225,8 +225,30 @@
     },
     {
       "session": 9,
-      "status": "planned",
-      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+      "status": "implemented",
+      "completion_state": "verified_awaiting_commit",
+      "starter": "sessions/09-embeddings/starter",
+      "solution": "sessions/09-embeddings/solution",
+      "previous_tests": [
+        "test_config.py",
+        "test_inference.py",
+        "test_logging_setup.py",
+        "test_ml.py",
+        "test_rag_baseline.py",
+        "test_rag_ingestion.py",
+        "test_rag_recursive.py",
+        "test_rag_semantic.py",
+        "test_source_identity.py",
+        "test_tickets.py",
+        "test_tokens.py"
+      ],
+      "new_tests": [
+        "test_rag_embeddings.py"
+      ],
+      "default_command": [
+        "rag-embedding-compare"
+      ],
+      "completion_blocker": "main-tests failed; inspect reports\\completion\\session-09"
     },
     {
       "session": 10,

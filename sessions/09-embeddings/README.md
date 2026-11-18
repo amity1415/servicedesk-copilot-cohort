@@ -18,7 +18,11 @@ Work through these implementation decisions: Batch normalized sentence embedding
 
 - [src/copilot/rag/advanced.py](../../src/copilot/rag/advanced.py)
 
-Run the adjacent `reference.py` from the project root. It executes the session experiment through the shared application code. Its JSON report declares whether it is an offline experiment or an integration preflight. A preflight does not satisfy the integration gate.
+Prepare the pinned CPU assets with `copilot rag-model-prepare` and
+`copilot rag-embedding-model-prepare`. Run `scripts/session.py run 9` for
+the standalone comparison and the adjacent `reference.py` for the integrated
+comparison. The [retrieval ADR](../../docs/adr/0003-local-embedding-retrieval.md)
+records the decision and measured results.
 
 ## Deliberate failure exercise
 

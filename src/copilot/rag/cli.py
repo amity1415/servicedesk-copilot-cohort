@@ -30,6 +30,9 @@ def register(commands, stage=8):
         )
     if stage >= 8:
         commands.add_parser("rag-model-prepare", help="download and pin the public CPU model")
+    if stage >= 9:
+        commands.add_parser("rag-embedding-compare", help="compare two local embedding models")
+        commands.add_parser("rag-embedding-model-prepare", help="prepare the second CPU model")
     if stage >= 5:
         commands.add_parser("rag-benchmark", help="measure the session's chunking strategies")
 
@@ -46,6 +49,17 @@ def execute(args, settings, stage=8):
         from copilot.rag.semantic_encoder import prepare_model
 
         result = prepare_model()
+    elif args.command == "rag-embedding-model-prepare":
+        from copilot.rag.semantic_encoder import model_directory, prepare_model
+
+        pin = Path(__file__).resolve().parents[3] / "policies/embedding_model_l12.json"
+        if not pin.is_file():
+            raise FileNotFoundError(pin)
+        result = prepare_model(model_directory().with_name("minilm-l12"), pin)
+    elif args.command == "rag-embedding-compare":
+        from copilot.rag.embedding_benchmark import compare_embeddings
+
+        result = compare_embeddings(data)
     elif args.command == "rag-ingest":
         from copilot.rag.loaders import ingest
 

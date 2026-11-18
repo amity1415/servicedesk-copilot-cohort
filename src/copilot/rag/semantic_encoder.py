@@ -11,6 +11,7 @@ import json
 import os
 import shutil
 import sqlite3
+from contextlib import closing
 from pathlib import Path
 
 MODEL_REPO = "sentence-transformers/all-MiniLM-L6-v2"
@@ -21,18 +22,19 @@ def model_directory():
     return Path(os.getenv("COPILOT_LOCAL_MODEL_DIR", ".work/models/minilm"))
 
 
-def prepare_model(directory=None):
+def prepare_model(directory=None, pin_file=None):
     from huggingface_hub import HfApi, hf_hub_download
 
     destination = Path(directory or model_directory())
     destination.mkdir(parents=True, exist_ok=True)
-    pin_file = Path(__file__).resolve().parents[3] / "policies/semantic_model.json"
+    pin_file = pin_file or Path(__file__).resolve().parents[3] / "policies/semantic_model.json"
     pin = json.loads(pin_file.read_text()) if pin_file.exists() else None
-    revision = pin["revision"] if pin else HfApi(token=False).model_info(MODEL_REPO).sha
+    repository = pin["repository"] if pin else MODEL_REPO
+    revision = pin["revision"] if pin else HfApi(token=False).model_info(repository).sha
     checksums = {}
     for filename in MODEL_FILES:
         downloaded = hf_hub_download(
-            MODEL_REPO, filename, revision=revision, cache_dir=str(destination / "hub"), token=False
+            repository, filename, revision=revision, cache_dir=str(destination / "hub"), token=False
         )
         target = destination / filename
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -41,7 +43,7 @@ def prepare_model(directory=None):
         if pin and checksums[filename] != pin["files"][filename]:
             raise ValueError("downloaded artifact does not match approved model pin")
     manifest = {
-        "repository": MODEL_REPO,
+        "repository": repository,
         "revision": revision,
         "files": checksums,
         "pooling": "attention-mask mean then L2 normalization",
@@ -84,7 +86,7 @@ class OnnxEncoder:
         self.cache = Path(cache or destination / "vectors.sqlite3")
         self.cache.parent.mkdir(parents=True, exist_ok=True)
         self.encoded_misses = 0
-        with sqlite3.connect(self.cache) as db:
+        with closing(sqlite3.connect(self.cache)) as db, db:
             db.execute("CREATE TABLE IF NOT EXISTS vectors (key TEXT PRIMARY KEY, value BLOB)")
 
     def encode(self, texts):
@@ -94,7 +96,7 @@ class OnnxEncoder:
             hashlib.sha256((self.identity + "\0" + text).encode()).hexdigest() for text in texts
         ]
         found = {}
-        with sqlite3.connect(self.cache) as db:
+        with closing(sqlite3.connect(self.cache)) as db, db:
             for key in set(keys):
                 row = db.execute("SELECT value FROM vectors WHERE key=?", (key,)).fetchone()
                 if row:
