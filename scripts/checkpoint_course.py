@@ -56,6 +56,7 @@ def create():
         "docker-compose.yml",
         "docker-compose.app.yml",
         "src",
+        "services",
         "tests",
         "scripts",
         "datagen",
