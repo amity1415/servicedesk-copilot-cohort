@@ -17,7 +17,9 @@
         "tickets-stats"
       ],
       "checkpoint_tag": "cohort-session-01",
-      "live_gate": null
+      "live_gate": null,
+      "checkpoint_commit": "2f15e2ca4bac94d9062f2348338e521a18391f7f",
+      "checkpoint_export_verified": true
     },
     {
       "session": 2,
@@ -37,7 +39,9 @@
         "train"
       ],
       "checkpoint_tag": "cohort-session-02",
-      "live_gate": null
+      "live_gate": null,
+      "checkpoint_commit": "9fb14018fc5fcb08c4e642070560349bd6d8e3e2",
+      "checkpoint_export_verified": true
     },
     {
       "session": 3,
@@ -58,7 +62,9 @@
         "compare"
       ],
       "checkpoint_tag": "cohort-session-03",
-      "live_gate": null
+      "live_gate": null,
+      "checkpoint_commit": "2553e5c10f9c935f534b54dbb33ef3401072928c",
+      "checkpoint_export_verified": true
     },
     {
       "session": 4,
@@ -80,7 +86,9 @@
         "llm-smoke"
       ],
       "checkpoint_tag": "cohort-session-04",
-      "live_gate": "not run; paid calls disabled"
+      "live_gate": "not run; paid calls disabled",
+      "checkpoint_commit": "b175c8d8860f3dca9314371ab141c832549e89a7",
+      "checkpoint_export_verified": true
     },
     {
       "session": 5,
@@ -262,5 +270,12 @@
       "status": "planned",
       "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
     }
-  ]
+  ],
+  "git_history": {
+    "remote": null,
+    "publishing": "not performed",
+    "author": "automated Codex Course Builder",
+    "root_branch": "main",
+    "course_history": "independent linear cumulative source history"
+  }
 }
