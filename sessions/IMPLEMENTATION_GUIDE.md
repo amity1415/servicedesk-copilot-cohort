@@ -34,7 +34,7 @@ It removes known provider keys from these offline teaching subprocesses. Do not
 install a session package into the running application's `.venv`. Export it and
 create a separate environment for a standalone learner project.
 
-Local course Git tags `cohort-session-01` through `cohort-session-04` will point to
+Local course Git tags `cohort-session-01` through `cohort-session-04` now point to
 complete exported projects (source, tests, package metadata and data). Clone a tag
 into a fresh folder rather than checking it out over the running main application:
 

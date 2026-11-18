@@ -102,3 +102,5 @@ the offline checks. Sessions 05–40 remain explicitly planned as cumulative sou
 implementations, even though their original documentation/experiments exist.
 
 See `sessions/IMPLEMENTATION_GUIDE.md` and `sessions/implementation_manifest.json`.
+
+Foundation batch verification: 88 integrated tests passed; session solutions passed 17, 21, 24 and 28 checks respectively. Starters preserve the preceding tests and intentionally fail the new acceptance checks. A fresh clone of cohort-session-04 passed all 28 checkpoint checks. Local tags identify real complete cumulative projects. No GitHub repository or paid-provider call is claimed.
