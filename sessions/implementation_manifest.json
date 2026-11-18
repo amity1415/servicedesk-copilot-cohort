@@ -20,8 +20,9 @@
       "live_gate": null,
       "checkpoint_commit": "2f15e2ca4bac94d9062f2348338e521a18391f7f",
       "checkpoint_export_verified": true,
-      "completion_state": "verified_awaiting_commit",
-      "completion_blocker": "main-tests failed; inspect reports\\completion\\session-01"
+      "completion_state": "verified_committed",
+      "completion_commit": "7f255165b39e768773d8fd88cff45eea1df474f0",
+      "completion_evidence": "sessions/01-kickoff-and-project-setup/verification/runtime-gate.json"
     },
     {
       "session": 2,
