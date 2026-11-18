@@ -50,9 +50,19 @@ def main(argv: Sequence[str] | None = None) -> int:
     serve.add_argument("--host", default="127.0.0.1", help="bind address (default: local only)")
     serve.add_argument("--port", type=int, default=8082, help="API port (default: 8082)")
 
+    from copilot.foundation_cli import register
+
+    register(commands)
+
     args = parser.parse_args(argv)
     settings = get_settings()
     configure_logging(settings.log_level, settings.log_format)
+
+    from copilot.foundation_cli import execute
+
+    foundation_result = execute(args, settings, Path("reports/integrated"))
+    if foundation_result is not None:
+        return foundation_result
 
     if args.command == "tickets-stats":
         return _tickets_stats(args.by, args.path)

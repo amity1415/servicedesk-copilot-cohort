@@ -1,0 +1,72 @@
+{
+  "session": 1,
+  "verified_at_utc": "2026-11-18T06:53:59.546490+00:00",
+  "source_state": "d0d1d0e374f6e2d6a72466fad4f754dbdd8b218c",
+  "checks": [
+    {
+      "name": "session-tests",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "1"
+      ],
+      "exit_code": 0,
+      "output_sha256": "9cd8ed5985521bdaab22bee5053bc7e634bde6fb78526f59384bb6640281a033"
+    },
+    {
+      "name": "main-tests",
+      "command": [
+        "-m",
+        "pytest",
+        "--tb=short"
+      ],
+      "exit_code": 0,
+      "output_sha256": "8161d2647bab62d5e87576bbc4fbacd253e0de1577256da946ccb3c83ad70149"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "output_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "format",
+      "command": [
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "output_sha256": "ba7e85d912b6d5519a506dac9aae1c15faa23e3bf83c85ec80ae51e60c61514f"
+    },
+    {
+      "name": "session-run",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "1"
+      ],
+      "exit_code": 0,
+      "output_sha256": "62fabf39dcd853bf16c79cca280842edd95315202fc17faa8961778f17589e26"
+    },
+    {
+      "name": "main-run",
+      "command": [
+        "-m",
+        "copilot",
+        "tickets-stats"
+      ],
+      "exit_code": 0,
+      "output_sha256": "4f0a15f3f0053d9bb545066ef0d6efc061a460f5dd0d4aadfce12c7f3d35d79e"
+    }
+  ],
+  "runtime_scope": "actual session source and integrated main application",
+  "paid_calls": 0
+}

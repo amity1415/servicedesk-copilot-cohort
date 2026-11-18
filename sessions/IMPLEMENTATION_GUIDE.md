@@ -51,3 +51,8 @@ release tag is created. Use `git show-ref --tags` to confirm available checkpoin
 Next implementation batch: sessions 5–8 with a working baseline RAG pipeline and
 trusted ingestion/chunking metadata. Provider-dependent tests, external Git hosting,
 Docker deployment and Jenkins administration remain separate decisions.
+
+
+## Required execution and commit gate
+
+Source availability is separate from audited completion. Run `python scripts/complete_session.py N` in order. This executes both session and integrated application features, passes tests, saves evidence and commits before the next session is allowed. See [the completion policy](../docs/SESSION_COMPLETION_POLICY.md). A required live comparison cannot pass on a mock.

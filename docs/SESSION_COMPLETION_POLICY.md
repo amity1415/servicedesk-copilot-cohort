@@ -1,0 +1,37 @@
+# Session completion and commit policy
+
+Confirmed on 18 November 2026: a source tree existing is not a completed session.
+
+Before advancing from session N:
+
+1. Implement the learner starter and cumulative solution contracts.
+2. Execute the session solution against the actual training data.
+3. Execute the corresponding feature through the integrated application's source,
+   independently of the session launcher.
+4. Pass the accumulated session acceptance tests and main regression checks.
+5. Inspect real output artifacts and confirm required metadata, split and scope.
+6. Complete required live/service checks. A mock, preflight or unknown result does
+   not certify a required live capability.
+7. Save evidence, review the scoped diff, and commit the verified implementation.
+8. Record that commit as the session completion pointer before beginning N+1.
+
+`scripts/complete_session.py N` enforces the currently defined runtime gates and
+previous-session commit dependency. It stops on any failure and makes no paid
+calls. Live-gated sessions remain pending until their real acceptance runner and
+bounded, authorized environment exist. Each new session requires its own gate
+definition; undefined later gates fail closed.
+
+The `status` field in `sessions/implementation_manifest.json` describes source
+availability. The separate `completion_state` describes audited completion:
+`pending_verification`, `verification_failed`, `verified_awaiting_commit`,
+`verified_committed` or an explicit pending live requirement. Only
+`verified_committed`, with a real commit and evidence, permits advancement.
+
+Earlier cohort tags preserve historical source checkpoints. They are not rewritten
+to pretend these stricter runtime checks occurred before the policy was adopted.
+Current completion evidence and commit pointers provide the audit trail.
+
+The runtime gate for session 3 reports a declared unit-rate cost forecast and its
+assumptions, not billed provider usage or validation that a deployment model is
+available. Refresh pricing/model decisions before live work. All unrelated live,
+security and production release gates remain required by the program's build plan.
