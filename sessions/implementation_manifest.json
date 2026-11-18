@@ -226,7 +226,7 @@
     {
       "session": 9,
       "status": "implemented",
-      "completion_state": "verified_awaiting_commit",
+      "completion_state": "verified_committed",
       "starter": "sessions/09-embeddings/starter",
       "solution": "sessions/09-embeddings/solution",
       "previous_tests": [
@@ -248,7 +248,8 @@
       "default_command": [
         "rag-embedding-compare"
       ],
-      "completion_blocker": "main-tests failed; inspect reports\\completion\\session-09"
+      "completion_commit": "a7626db0580aa5cf5db0b9f118424678c82a3cb5",
+      "completion_evidence": "sessions/09-embeddings/verification/runtime-gate.json"
     },
     {
       "session": 10,
