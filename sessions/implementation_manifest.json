@@ -45,7 +45,7 @@
       "live_gate": null,
       "checkpoint_commit": "9fb14018fc5fcb08c4e642070560349bd6d8e3e2",
       "checkpoint_export_verified": true,
-      "completion_state": "pending_verification"
+      "completion_state": "verified_awaiting_commit"
     },
     {
       "session": 3,
