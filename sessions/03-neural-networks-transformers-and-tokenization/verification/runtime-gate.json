@@ -1,0 +1,117 @@
+{
+  "session": 3,
+  "verified_at_utc": "2026-11-18T06:55:15.843974+00:00",
+  "source_state": "4eda5b322363dd5327c7d3ae833a80700a57b7cc",
+  "checks": [
+    {
+      "name": "session-tests",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "3"
+      ],
+      "exit_code": 0,
+      "output_sha256": "af86b098335bee2ad0daa570696c56c44b3fb4a6ba2090fc0727e1ba3bf60f87"
+    },
+    {
+      "name": "main-tests",
+      "command": [
+        "-m",
+        "pytest",
+        "--tb=short"
+      ],
+      "exit_code": 0,
+      "output_sha256": "299fad3b938ba51a401b6bc86aad5ac0e60b4f989a6799d63f35100e34d8df44"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "output_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "format",
+      "command": [
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "output_sha256": "ba7e85d912b6d5519a506dac9aae1c15faa23e3bf83c85ec80ae51e60c61514f"
+    },
+    {
+      "name": "session-run",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "3"
+      ],
+      "exit_code": 0,
+      "output_sha256": "7ec37421d62e87c5029ca5d4c5b7ec9df195435ad06d95d6dc49e72457afbf26"
+    },
+    {
+      "name": "main-run",
+      "command": [
+        "-m",
+        "copilot",
+        "compare"
+      ],
+      "exit_code": 0,
+      "output_sha256": "80445b0d81d369ce01858dcfc348f78fc7af6acc85cb6d514eff5b8d221e3856"
+    },
+    {
+      "name": "session-token-run",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "3",
+        "--",
+        "token-report",
+        "--encoding",
+        "o200k_base",
+        "--input-price-per-million",
+        "0.4",
+        "--output-price-per-million",
+        "1.6"
+      ],
+      "exit_code": 0,
+      "output_sha256": "ce3baf53302020b77665c55bdecb9c698adc89cef798ed7ea774728b6274ea13"
+    },
+    {
+      "name": "main-token-run",
+      "command": [
+        "-m",
+        "copilot",
+        "token-report",
+        "--encoding",
+        "o200k_base",
+        "--input-price-per-million",
+        "0.4",
+        "--output-price-per-million",
+        "1.6"
+      ],
+      "exit_code": 0,
+      "output_sha256": "7bddd2138a2babf7aa84760853977fce706f08f579553b8ebc567331619c8171"
+    }
+  ],
+  "runtime_scope": "actual session source and integrated main application",
+  "paid_calls": 0,
+  "forecast_pricing": {
+    "scenario": "GPT-4.1-mini published unit-rate forecast, not model deployment selection",
+    "input_usd_per_million": 0.4,
+    "output_usd_per_million": 1.6,
+    "encoding": "o200k_base",
+    "output_tokens_assumed": 128,
+    "source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini",
+    "checked_date": "2026-11-18",
+    "actual_provider_cost": null,
+    "limitations": "Request-text estimate excludes prompts, context and chat framing."
+  }
+}
