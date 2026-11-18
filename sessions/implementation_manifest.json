@@ -98,7 +98,8 @@
       "live_gate": "not run; paid calls disabled",
       "checkpoint_commit": "b175c8d8860f3dca9314371ab141c832549e89a7",
       "checkpoint_export_verified": true,
-      "completion_state": "pending_verification"
+      "completion_state": "pending_live_validation",
+      "completion_blocker": "Live-model classification/summarization and measured comparison are not verified. A rotated local key, bounded live runner and explicit model/pricing are required."
     },
     {
       "session": 5,
