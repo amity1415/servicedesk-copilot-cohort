@@ -58,6 +58,7 @@ class VectorRag:
         semantic_encoder=None,
         retrieval_encoder=None,
         persistent_index=None,
+        hybrid=False,
     ):
         from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -72,13 +73,14 @@ class VectorRag:
         ]
         self.retrieval_encoder = retrieval_encoder
         self.persistent_index = persistent_index
+        self.hybrid = hybrid
         self.mode = "neural-vector-extractive" if retrieval_encoder else "tfidf-vector-extractive"
         self.vectorizer = TfidfVectorizer(ngram_range=(1, 2), sublinear_tf=True)
         texts = [str(c.metadata.get("title", "")) + "\n" + c.text for c in self.chunks]
         self.matrix = None
         if persistent_index:
             self.generation = persistent_index.publish(self.chunks, texts, retrieval_encoder)
-            self.mode = "pgvector-extractive"
+            self.mode = "hybrid-extractive" if hybrid else "pgvector-extractive"
         elif texts and retrieval_encoder:
             import numpy as np
 
@@ -107,26 +109,37 @@ class VectorRag:
         backend = os.getenv("COPILOT_RETRIEVAL_BACKEND", "tfidf")
         if backend == "tfidf":
             return cls.from_data(data)
-        if backend in {"neural", "pgvector"}:
+        if backend in {"pgvector", "hybrid"}:
+            return cls.with_postgres(data, hybrid=backend == "hybrid")
+        if backend == "neural":
             from copilot.rag.semantic_encoder import OnnxEncoder
 
-            encoder = OnnxEncoder(cache=os.getenv("COPILOT_EMBEDDING_CACHE"))
-            if backend == "neural":
-                return cls.from_data(data, retrieval_encoder=encoder)
-            from copilot.config import get_settings
-            from copilot.rag.postgres_index import PersistentIndex
-
-            index = PersistentIndex(
-                get_settings().database_url.get_secret_value(),
-                encoder.identity,
-                encoder.manifest["dimension"],
+            return cls.from_data(
+                data, retrieval_encoder=OnnxEncoder(cache=os.getenv("COPILOT_EMBEDDING_CACHE"))
             )
-            return cls(
-                documents_from(data), "recursive", retrieval_encoder=encoder, persistent_index=index
-            )
-        raise ValueError("COPILOT_RETRIEVAL_BACKEND must be tfidf, neural, or pgvector")
+        raise ValueError("COPILOT_RETRIEVAL_BACKEND must be tfidf, neural, pgvector, or hybrid")
 
-    def search(self, query, role="employee", os_name=None, region=None, k=5):
+    @classmethod
+    def with_postgres(cls, data, *, hybrid=False):
+        from copilot.config import get_settings
+        from copilot.rag.postgres_index import PersistentIndex
+        from copilot.rag.semantic_encoder import OnnxEncoder
+
+        encoder = OnnxEncoder(cache=os.getenv("COPILOT_EMBEDDING_CACHE"))
+        index = PersistentIndex(
+            get_settings().database_url.get_secret_value(),
+            encoder.identity,
+            encoder.manifest["dimension"],
+        )
+        return cls(
+            documents_from(data),
+            "recursive",
+            retrieval_encoder=encoder,
+            persistent_index=index,
+            hybrid=hybrid,
+        )
+
+    def search(self, query, role="employee", os_name=None, region=None, k=5, *, ranking=None):
         if k < 1:
             raise ValueError("k must be positive")
         candidates = [
@@ -153,9 +166,7 @@ class VectorRag:
             return []
         if self.persistent_index:
             authorized = {self.chunks[i].id: self.chunks[i] for i in candidates}
-            vector = self.retrieval_encoder.encode([query])[0]
-            ranked = self.persistent_index.search(self.generation, list(authorized), vector, k)
-            return [authorized[chunk_id] for chunk_id, score in ranked if score > 0.02]
+            return self._search_postgres(query, authorized, k, ranking)
         if self.matrix is None:
             return []
         if self.retrieval_encoder:
@@ -166,6 +177,26 @@ class VectorRag:
             scores = (self.matrix[candidates] @ vector.T).toarray().ravel()
         ranked = sorted(zip(candidates, scores, strict=True), key=lambda row: row[1], reverse=True)
         return [self.chunks[index] for index, score in ranked if score > 0.02][:k]
+
+    def _search_postgres(self, query, authorized, k, ranking):
+        from copilot.rag.rank_fusion import reciprocal_rank_fusion
+
+        ranking = ranking or ("hybrid" if self.hybrid else "vector")
+        if ranking not in {"vector", "keyword", "hybrid"}:
+            raise ValueError("Unknown PostgreSQL ranking")
+        ids = list(authorized)
+        limit = max(k, 30) if ranking == "hybrid" else k
+        dense, sparse = [], []
+        if ranking != "keyword":
+            vector = self.retrieval_encoder.encode([query])[0]
+            hits = self.persistent_index.search(self.generation, ids, vector, limit)
+            dense = [authorized[chunk_id] for chunk_id, score in hits if score > 0.02]
+        if ranking != "vector":
+            hits = self.persistent_index.keyword(self.generation, ids, query, limit)
+            sparse = [authorized[chunk_id] for chunk_id, _ in hits]
+        if ranking == "hybrid":
+            return reciprocal_rank_fusion([dense, sparse], k=k)
+        return dense if ranking == "vector" else sparse
 
     def answer(self, query, **kwargs):
         hits = self.search(query, **kwargs)

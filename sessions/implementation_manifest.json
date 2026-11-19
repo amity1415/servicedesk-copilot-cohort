@@ -312,8 +312,33 @@
     },
     {
       "session": 12,
-      "status": "planned",
-      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+      "status": "implemented",
+      "completion_state": "verified_awaiting_commit",
+      "starter": "sessions/12-hybrid-search/starter",
+      "solution": "sessions/12-hybrid-search/solution",
+      "previous_tests": [
+        "test_config.py",
+        "test_inference.py",
+        "test_logging_setup.py",
+        "test_ml.py",
+        "test_rag_baseline.py",
+        "test_rag_embeddings.py",
+        "test_rag_ingestion.py",
+        "test_rag_metadata.py",
+        "test_rag_postgres.py",
+        "test_rag_recursive.py",
+        "test_rag_semantic.py",
+        "test_source_identity.py",
+        "test_tickets.py",
+        "test_tokens.py"
+      ],
+      "new_tests": [
+        "test_rag_hybrid.py"
+      ],
+      "default_command": [
+        "rag-hybrid-compare"
+      ],
+      "completion_blocker": "session-tests failed; inspect reports\\completion\\session-12"
     },
     {
       "session": 13,

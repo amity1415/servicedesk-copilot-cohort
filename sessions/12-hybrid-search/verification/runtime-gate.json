@@ -1,0 +1,913 @@
+{
+  "session": 12,
+  "verified_at_utc": "2026-11-19T08:25:41.771930+00:00",
+  "source_state": "d7648df03485f8fdf83d50f86fae76640fc81840",
+  "checks": [
+    {
+      "name": "session-tests",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "12"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "73ae017d5e0c9403746a3090f02ba5f6900c96f65cf4fbbf42d43bac7d253569"
+    },
+    {
+      "name": "main-tests",
+      "command": [
+        "-m",
+        "pytest",
+        "--tb=short",
+        "--basetemp=.work/pytest-gate-bc897004326140b7b376753acc354024"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "b3e73cd2600fef0c0796fd447f0c2a195c7924c80bfa96faf798f507aafde5f7"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "format",
+      "command": [
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "36e9beedf3ad1d0eff03eadc6436ea48604b1b40d706a71f09ac77af6039f398"
+    },
+    {
+      "name": "session-run",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "12"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "7b5348c81c83dab766c9a24056f911f7c481099c12d24c043b15b2d823c5c1d1"
+    },
+    {
+      "name": "main-run",
+      "command": [
+        "-m",
+        "copilot",
+        "rag-hybrid-compare"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "c634a046d87d20e3ce0bb25e8b419a341d7de0a7993174ab1c974d738b35d86c"
+    },
+    {
+      "name": "starter-inherited",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "12",
+        "--variant",
+        "starter",
+        "--previous-only"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "c1fe5324d25f63bc221e021348585e00b1b1978a4a2e1cd7952579b4c323317b"
+    },
+    {
+      "name": "starter-new",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "12",
+        "--variant",
+        "starter"
+      ],
+      "exit_code": 1,
+      "expected_failure": true,
+      "output_sha256": "edafd5e24707d612b5649f5db847227b3f61222ff6bd30ab235ff41aef42c1b6"
+    },
+    {
+      "name": "main-http-runtime",
+      "command": [
+        "scripts/verify_embedding_runtime.py",
+        "--hybrid"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "bf43cb95e7e7129bfaa9c86e28d4fa5324772fbfffe996cdfdaac0483125b3f9"
+    }
+  ],
+  "runtime_scope": "actual session source and integrated main application",
+  "paid_calls": 0,
+  "hybrid": {
+    "mode": "postgres-hybrid-comparison",
+    "label_status": "draft, requires instructor review",
+    "question_count": 20,
+    "rankings": {
+      "vector": {
+        "subsets": {
+          "code": {
+            "cases": 5,
+            "recall_at_5": 0.4
+          },
+          "paraphrase": {
+            "cases": 15,
+            "recall_at_5": 1.0
+          }
+        },
+        "mean_query_ms": 17.903679999290034,
+        "cases": [
+          {
+            "id": "rag05-01",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1017",
+              "KB-1020",
+              "KB-1023",
+              "KB-1026",
+              "POL-006_v1.4"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 21.635999997670297
+          },
+          {
+            "id": "rag05-02",
+            "subset": "code",
+            "retrieved": [
+              "KB-1018"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 19.992800000181887
+          },
+          {
+            "id": "rag05-03",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1001",
+              "KB-1002",
+              "KB-1013",
+              "KB-1060"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 21.00629999767989
+          },
+          {
+            "id": "rag05-04",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1017",
+              "KB-1020",
+              "KB-1021",
+              "KB-1023",
+              "KB-1024"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 32.75230000144802
+          },
+          {
+            "id": "rag05-05",
+            "subset": "code",
+            "retrieved": [],
+            "recall_at_5": 0.0,
+            "query_ms": 1.1518999963300303
+          },
+          {
+            "id": "rag05-06",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1043",
+              "KB-1048",
+              "KB-1050",
+              "KB-1067",
+              "KB-1099"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 21.457599999848753
+          },
+          {
+            "id": "rag05-07",
+            "subset": "code",
+            "retrieved": [],
+            "recall_at_5": 0.0,
+            "query_ms": 1.1157000044477172
+          },
+          {
+            "id": "rag05-08",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1043",
+              "KB-1048",
+              "KB-1049",
+              "KB-1067",
+              "KB-1099"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 21.948699999484234
+          },
+          {
+            "id": "rag05-09",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1008",
+              "KB-1009",
+              "KB-1075",
+              "KB-1077",
+              "KB-1082"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 21.1053000020911
+          },
+          {
+            "id": "rag05-10",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1018",
+              "KB-1021",
+              "KB-1036",
+              "KB-1037",
+              "KB-1079"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 18.363299997872673
+          },
+          {
+            "id": "rag05-11",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1063",
+              "KB-1064",
+              "KB-1065",
+              "KB-1066",
+              "KB-1085"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 17.228400000021793
+          },
+          {
+            "id": "rag05-12",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1054",
+              "KB-1056",
+              "KB-1069",
+              "KB-1086"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 18.847199993615504
+          },
+          {
+            "id": "rag05-13",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1075",
+              "KB-1078",
+              "KB-1079",
+              "KB-1082"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 32.1165999994264
+          },
+          {
+            "id": "rag05-14",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1010",
+              "KB-1050",
+              "POL-002_v2.1",
+              "POL-003_v4.0"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 17.36479999817675
+          },
+          {
+            "id": "rag05-15",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1090",
+              "KB-1091",
+              "POL-009_v2.2"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 18.34699999744771
+          },
+          {
+            "id": "rag05-16",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1021",
+              "KB-1022",
+              "KB-1025",
+              "KB-1027",
+              "KB-1033"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 18.79699999699369
+          },
+          {
+            "id": "rag05-17",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1002",
+              "KB-1015",
+              "KB-1036",
+              "KB-1037",
+              "KB-1085"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 18.43609999923501
+          },
+          {
+            "id": "rag05-18",
+            "subset": "code",
+            "retrieved": [],
+            "recall_at_5": 0.0,
+            "query_ms": 0.9355000001960434
+          },
+          {
+            "id": "rag05-19",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1045",
+              "KB-1059",
+              "KB-1068",
+              "KB-1070",
+              "KB-1080"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 18.150100004277192
+          },
+          {
+            "id": "rag05-20",
+            "subset": "code",
+            "retrieved": [
+              "KB-1024"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 17.32099999935599
+          }
+        ]
+      },
+      "keyword": {
+        "subsets": {
+          "code": {
+            "cases": 5,
+            "recall_at_5": 0.4
+          },
+          "paraphrase": {
+            "cases": 15,
+            "recall_at_5": 0.9333333333333333
+          }
+        },
+        "mean_query_ms": 19.62606000015512,
+        "cases": [
+          {
+            "id": "rag05-01",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1017",
+              "KB-1020",
+              "KB-1023",
+              "KB-1061",
+              "POL-006_v1.4"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 16.799299999547657
+          },
+          {
+            "id": "rag05-02",
+            "subset": "code",
+            "retrieved": [
+              "KB-1018"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 26.14739999989979
+          },
+          {
+            "id": "rag05-03",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1002",
+              "KB-1021",
+              "KB-1054",
+              "KB-1062",
+              "KB-1069"
+            ],
+            "recall_at_5": 0.0,
+            "query_ms": 16.296099995088298
+          },
+          {
+            "id": "rag05-04",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1017",
+              "KB-1020",
+              "KB-1023",
+              "POL-006_v1.4",
+              "REF-002"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 20.22969999961788
+          },
+          {
+            "id": "rag05-05",
+            "subset": "code",
+            "retrieved": [],
+            "recall_at_5": 0.0,
+            "query_ms": 1.0249000042676926
+          },
+          {
+            "id": "rag05-06",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1042",
+              "KB-1043",
+              "KB-1048",
+              "KB-1049",
+              "KB-1050"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 29.96010000060778
+          },
+          {
+            "id": "rag05-07",
+            "subset": "code",
+            "retrieved": [],
+            "recall_at_5": 0.0,
+            "query_ms": 0.8793000015430152
+          },
+          {
+            "id": "rag05-08",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1042",
+              "KB-1043",
+              "KB-1095",
+              "KB-1099",
+              "POL-003_v4.0"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 17.675900002359413
+          },
+          {
+            "id": "rag05-09",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1008",
+              "KB-1009",
+              "KB-1010",
+              "KB-1077",
+              "REF-002"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 19.174500004737638
+          },
+          {
+            "id": "rag05-10",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1018",
+              "KB-1019",
+              "KB-1027",
+              "KB-1036",
+              "KB-1094"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 18.410500000754837
+          },
+          {
+            "id": "rag05-11",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1063",
+              "KB-1064",
+              "KB-1065",
+              "KB-1066",
+              "REF-003"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 18.57969999400666
+          },
+          {
+            "id": "rag05-12",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1013",
+              "KB-1018",
+              "KB-1054",
+              "KB-1079",
+              "REF-002"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 17.91590000357246
+          },
+          {
+            "id": "rag05-13",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1008",
+              "KB-1009",
+              "KB-1075",
+              "KB-1078",
+              "REF-002"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 17.62820000294596
+          },
+          {
+            "id": "rag05-14",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1008",
+              "KB-1009",
+              "KB-1010",
+              "KB-1042",
+              "KB-1043"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 16.89009999972768
+          },
+          {
+            "id": "rag05-15",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1055",
+              "KB-1070",
+              "KB-1090",
+              "KB-1091",
+              "POL-009_v2.2"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 17.88249999663094
+          },
+          {
+            "id": "rag05-16",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1025",
+              "KB-1027",
+              "KB-1029",
+              "KB-1030",
+              "KB-1031"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 18.675100000109524
+          },
+          {
+            "id": "rag05-17",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1002",
+              "KB-1037",
+              "KB-1060",
+              "POL-003_v4.0",
+              "REF-002"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 31.773299997439608
+          },
+          {
+            "id": "rag05-18",
+            "subset": "code",
+            "retrieved": [],
+            "recall_at_5": 0.0,
+            "query_ms": 1.1487999945529737
+          },
+          {
+            "id": "rag05-19",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1059",
+              "KB-1061",
+              "KB-1070",
+              "KB-1080",
+              "KB-1081"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 37.696300001698546
+          },
+          {
+            "id": "rag05-20",
+            "subset": "code",
+            "retrieved": [
+              "KB-1024"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 47.73360000399407
+          }
+        ]
+      },
+      "hybrid": {
+        "subsets": {
+          "code": {
+            "cases": 5,
+            "recall_at_5": 0.4
+          },
+          "paraphrase": {
+            "cases": 15,
+            "recall_at_5": 1.0
+          }
+        },
+        "mean_query_ms": 38.625795000916696,
+        "cases": [
+          {
+            "id": "rag05-01",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1017",
+              "KB-1020",
+              "KB-1023",
+              "KB-1024",
+              "POL-006_v1.4"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 57.15249999775551
+          },
+          {
+            "id": "rag05-02",
+            "subset": "code",
+            "retrieved": [
+              "KB-1018"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 34.38019999885
+          },
+          {
+            "id": "rag05-03",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1001",
+              "KB-1002",
+              "KB-1054",
+              "KB-1069",
+              "KB-1078"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 35.66159999900265
+          },
+          {
+            "id": "rag05-04",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1017",
+              "KB-1020",
+              "KB-1023",
+              "KB-1033",
+              "POL-006_v1.4"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 42.383100000733975
+          },
+          {
+            "id": "rag05-05",
+            "subset": "code",
+            "retrieved": [],
+            "recall_at_5": 0.0,
+            "query_ms": 0.8498000024701469
+          },
+          {
+            "id": "rag05-06",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1043",
+              "KB-1048",
+              "KB-1049",
+              "KB-1050",
+              "KB-1099"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 37.795200005348306
+          },
+          {
+            "id": "rag05-07",
+            "subset": "code",
+            "retrieved": [],
+            "recall_at_5": 0.0,
+            "query_ms": 0.887399997736793
+          },
+          {
+            "id": "rag05-08",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1042",
+              "KB-1043",
+              "KB-1067",
+              "KB-1095",
+              "KB-1099"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 34.96479999739677
+          },
+          {
+            "id": "rag05-09",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1008",
+              "KB-1009",
+              "KB-1010",
+              "KB-1077",
+              "KB-1083"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 37.78050000255462
+          },
+          {
+            "id": "rag05-10",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1018",
+              "KB-1019",
+              "KB-1036",
+              "KB-1037",
+              "KB-1079"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 37.51829999964684
+          },
+          {
+            "id": "rag05-11",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1063",
+              "KB-1064",
+              "KB-1065",
+              "KB-1066",
+              "KB-1094"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 63.11000000278
+          },
+          {
+            "id": "rag05-12",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1054",
+              "KB-1056",
+              "KB-1079",
+              "KB-1086"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 36.377700002049096
+          },
+          {
+            "id": "rag05-13",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1009",
+              "KB-1075",
+              "KB-1078",
+              "KB-1079"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 36.6654000026756
+          },
+          {
+            "id": "rag05-14",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1008",
+              "KB-1009",
+              "KB-1010",
+              "KB-1090",
+              "POL-002_v2.1"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 36.81409999990137
+          },
+          {
+            "id": "rag05-15",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1090",
+              "KB-1091",
+              "POL-009_v2.2"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 36.666100000729784
+          },
+          {
+            "id": "rag05-16",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1018",
+              "KB-1022",
+              "KB-1025",
+              "KB-1027",
+              "KB-1086"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 51.352599999518134
+          },
+          {
+            "id": "rag05-17",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1002",
+              "KB-1003",
+              "KB-1015",
+              "KB-1037",
+              "POL-003_v4.0"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 103.69460000219988
+          },
+          {
+            "id": "rag05-18",
+            "subset": "code",
+            "retrieved": [],
+            "recall_at_5": 0.0,
+            "query_ms": 1.1719000031007454
+          },
+          {
+            "id": "rag05-19",
+            "subset": "paraphrase",
+            "retrieved": [
+              "KB-1059",
+              "KB-1061",
+              "KB-1070",
+              "KB-1080",
+              "KB-1081"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 42.286399999284185
+          },
+          {
+            "id": "rag05-20",
+            "subset": "code",
+            "retrieved": [
+              "KB-1024"
+            ],
+            "recall_at_5": 1.0,
+            "query_ms": 45.00370000459952
+          }
+        ]
+      }
+    }
+  },
+  "http_runtime": {
+    "question": "How do I set up VPN on my Mac?",
+    "backends": {
+      "tfidf": {
+        "health": {
+          "status": "ok",
+          "mode": "tfidf-vector-extractive",
+          "documents": 209
+        },
+        "citations": [
+          "KB-1017"
+        ],
+        "cache_rows": []
+      },
+      "neural": {
+        "health": {
+          "status": "ok",
+          "mode": "neural-vector-extractive",
+          "documents": 209
+        },
+        "citations": [
+          "KB-1017"
+        ],
+        "cache_rows": [
+          209,
+          210,
+          210
+        ]
+      },
+      "pgvector": {
+        "health": {
+          "status": "ok",
+          "mode": "pgvector-extractive",
+          "documents": 209
+        },
+        "citations": [
+          "KB-1017"
+        ],
+        "cache_rows": []
+      },
+      "hybrid": {
+        "health": {
+          "status": "ok",
+          "mode": "hybrid-extractive",
+          "documents": 209
+        },
+        "citations": [
+          "KB-1017"
+        ],
+        "cache_rows": []
+      }
+    }
+  }
+}

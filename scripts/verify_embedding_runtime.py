@@ -52,7 +52,7 @@ def cache_count(cache):
         return db.execute("SELECT count(*) FROM vectors").fetchone()[0]
 
 
-def verify(include_pgvector=False):
+def verify(include_pgvector=False, include_hybrid=False):
     results = {}
     with TemporaryDirectory() as directory:
         cache = Path(directory) / "vectors.sqlite3"
@@ -60,8 +60,10 @@ def verify(include_pgvector=False):
             ("tfidf", "tfidf-vector-extractive"),
             ("neural", "neural-vector-extractive"),
         ]
-        if include_pgvector:
+        if include_pgvector or include_hybrid:
             backends.append(("pgvector", "pgvector-extractive"))
+        if include_hybrid:
+            backends.append(("hybrid", "hybrid-extractive"))
         for mode, expected in backends:
             with running_api(mode, cache, Path(directory) / f"{mode}.sqlite3") as client:
                 health = client.get("/health").raise_for_status().json()
@@ -92,9 +94,16 @@ def verify(include_pgvector=False):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--pgvector", action="store_true")
+    parser.add_argument("--hybrid", action="store_true")
     args = parser.parse_args()
-    result = verify(include_pgvector=args.pgvector)
-    name = "postgres-runtime.json" if args.pgvector else "embedding-runtime.json"
+    result = verify(include_pgvector=args.pgvector, include_hybrid=args.hybrid)
+    name = (
+        "hybrid-runtime.json"
+        if args.hybrid
+        else "postgres-runtime.json"
+        if args.pgvector
+        else "embedding-runtime.json"
+    )
     target = Path("reports/integrated/rag") / name
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")

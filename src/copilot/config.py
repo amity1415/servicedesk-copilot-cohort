@@ -31,7 +31,7 @@ class Settings(BaseSettings):
 
     # Used from session 10 (PostgreSQL with pgvector in Docker Compose).
     database_url: SecretStr = SecretStr(
-        "postgresql://copilot:copilot_dev_only@localhost:5432/copilot"
+        "postgresql://copilot:copilot_dev_only@127.0.0.1:5432/copilot"
     )
 
     # Used from session 17 (trainer-provided ticketing mock).

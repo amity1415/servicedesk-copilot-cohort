@@ -37,6 +37,8 @@ def register(commands, stage=8):
         commands.add_parser("rag-postgres-verify", help="verify retrieval in a pgvector database")
     if stage >= 11:
         commands.add_parser("rag-metadata-verify", help="verify retrieval visibility")
+    if stage >= 12:
+        commands.add_parser("rag-hybrid-compare", help="compare PostgreSQL retrieval rankings")
     if stage >= 5:
         commands.add_parser("rag-benchmark", help="measure the session's chunking strategies")
 
@@ -72,6 +74,10 @@ def execute(args, settings, stage=8):
         from copilot.rag.metadata_report import verify_metadata
 
         result = verify_metadata(data)
+    elif args.command == "rag-hybrid-compare":
+        from copilot.rag.hybrid_benchmark import compare_hybrid
+
+        result = compare_hybrid(data)
     elif args.command == "rag-ingest":
         from copilot.rag.loaders import ingest
 

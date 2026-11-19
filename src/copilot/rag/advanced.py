@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 
 from copilot.rag.pipeline import Chunk, Document, Retriever, allowed, chunk
+from copilot.rag.rank_fusion import reciprocal_rank_fusion
 
 
 class Embeddings:
@@ -53,15 +54,6 @@ def semantic_chunks(
         Chunk(f"{document.id}:semantic:{i}", document.id, text, document.metadata, document.source)
         for i, text in enumerate(sections)
     ]
-
-
-def reciprocal_rank_fusion(rankings: list[list[Chunk]], k: int = 5) -> list[Chunk]:
-    scores, chunks = {}, {}
-    for ranking in rankings:
-        for rank, item in enumerate(ranking, 1):
-            scores[item.id] = scores.get(item.id, 0) + 1 / (60 + rank)
-            chunks[item.id] = item
-    return [chunks[key] for key in sorted(scores, key=scores.get, reverse=True)[:k]]
 
 
 class NeuralRetriever(Retriever):

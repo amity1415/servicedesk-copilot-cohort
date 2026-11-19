@@ -62,7 +62,7 @@ def complete(number):
         git("commit", "-m", "Keep session 04 pending until live acceptance is verified")
         print(item["completion_blocker"], flush=True)
         return 2
-    if number not in {1, 2, 3, 9, 10, 11}:
+    if number not in {1, 2, 3, 9, 10, 11, 12}:
         raise RuntimeError("No complete runtime-gate definition exists for this session yet")
     evidence_dir = ROOT / "sessions" / Path(item["solution"]).parts[1] / "verification"
     evidence_dir.mkdir(parents=True, exist_ok=True)
@@ -94,15 +94,18 @@ def complete(number):
         9: "rag-embedding-compare",
         10: "rag-postgres-verify",
         11: "rag-metadata-verify",
+        12: "rag-hybrid-compare",
     }[number]
     commands.append(("main-run", ["-m", "copilot", runtime_command]))
-    if number in {9, 10, 11}:
+    if number in {9, 10, 11, 12}:
         starter = ["scripts/session.py", "test", str(number), "--variant", "starter"]
         runtime = ["scripts/verify_embedding_runtime.py"]
         if number == 10:
             runtime.append("--pgvector")
         if number == 11:
             runtime = ["scripts/verify_metadata_runtime.py"]
+        if number == 12:
+            runtime.append("--hybrid")
         commands.extend(
             [
                 ("starter-inherited", [*starter, "--previous-only"]),
@@ -235,6 +238,16 @@ def complete(number):
             raise RuntimeError("Integrated and standalone metadata results differ")
         evidence["metadata"] = report
         evidence["http_runtime"] = json.loads((main_rag / "metadata-runtime.json").read_text())
+    if number == 12:
+        main_rag = ROOT / "reports/integrated/rag"
+        report = json.loads((main_rag / "rag-hybrid-compare.json").read_text())
+        checkpoint = ROOT / "reports/cohort/session-12/solution/rag-hybrid-compare.json"
+        cohort = json.loads(checkpoint.read_text())
+        for ranking in ("vector", "keyword", "hybrid"):
+            if report["rankings"][ranking]["subsets"] != cohort["rankings"][ranking]["subsets"]:
+                raise RuntimeError(f"Integrated and standalone results differ for {ranking}")
+        evidence["hybrid"] = report
+        evidence["http_runtime"] = json.loads((main_rag / "hybrid-runtime.json").read_text())
     record = evidence_dir / "runtime-gate.json"
     record.write_text(json.dumps(evidence, indent=2) + "\n")
     item["completion_state"] = "verified_awaiting_commit"
@@ -302,7 +315,24 @@ def complete(number):
             "src/copilot/rag/metadata_report.py",
             "tests/test_rag_metadata.py",
         ]
-    if number in {9, 10, 11} and git("diff", "--cached", "--name-only"):
+    if number == 12:
+        paths = [
+            ".env.example",
+            "sessions/12-hybrid-search",
+            "sessions/implementation_manifest.json",
+            "scripts/complete_session.py",
+            "scripts/verify_embedding_runtime.py",
+            "src/copilot/cli.py",
+            "src/copilot/config.py",
+            "src/copilot/rag/advanced.py",
+            "src/copilot/rag/cli.py",
+            "src/copilot/rag/hybrid_benchmark.py",
+            "src/copilot/rag/postgres_index.py",
+            "src/copilot/rag/rank_fusion.py",
+            "src/copilot/rag/service.py",
+            "tests/test_rag_hybrid.py",
+        ]
+    if number in {9, 10, 11, 12} and git("diff", "--cached", "--name-only"):
         raise RuntimeError("The Git index has staged changes. Preserve them before completion.")
     git("add", "--", *paths)
     git("diff", "--cached", "--check")

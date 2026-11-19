@@ -18,7 +18,11 @@ Work through these implementation decisions: Add PostgreSQL full-text search; ru
 
 - [src/copilot/rag/advanced.py](../../src/copilot/rag/advanced.py)
 
-Run the adjacent `reference.py` from the project root. It executes the session experiment through the shared application code. Its JSON report declares whether it is an offline experiment or an integration preflight. A preflight does not satisfy the integration gate.
+Run `scripts/session.py run 12` for the standalone comparison or
+`copilot rag-hybrid-compare` for the shared application comparison. Both
+use PostgreSQL and report vector, keyword, and hybrid Recall@5 and
+latency on the same draft questions. Use `COPILOT_RETRIEVAL_BACKEND=hybrid`
+to enable the fused rankings in the API and documents server.
 
 ## Deliberate failure exercise
 
