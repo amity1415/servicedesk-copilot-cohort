@@ -19,7 +19,11 @@ Work through these implementation decisions: Retrieve 30 authorized candidates; 
 - [src/copilot/rag/advanced.py](../../src/copilot/rag/advanced.py)
 - [src/copilot/tools/runtime.py](../../src/copilot/tools/runtime.py)
 
-Run the adjacent `reference.py` from the project root. It executes the session experiment through the shared application code. Its JSON report declares whether it is an offline experiment or an integration preflight. A preflight does not satisfy the integration gate.
+Prepare the pinned cross-encoder with `copilot rag-reranker-prepare`. With
+pgvector running, use `scripts/session.py run 13` for the standalone
+comparison and `copilot rag-rerank-compare` for the integrated comparison.
+The optional `COPILOT_RETRIEVAL_BACKEND=reranked` mode serves the cross-encoder
+through the shared API. The benchmark records Recall@5 and p95 latency.
 
 ## Deliberate failure exercise
 

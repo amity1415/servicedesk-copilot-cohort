@@ -84,6 +84,7 @@ def main(argv=None):
         return 0
     environment = os.environ.copy()
     environment["PYTHONPATH"] = str(snapshot / "src")
+    environment.setdefault("COPILOT_LOCAL_RERANKER_DIR", str(ROOT / ".work/models/reranker"))
     environment["COPILOT_LOCAL_MODEL_DIR"] = str(ROOT / ".work/models/minilm")
     environment.setdefault("OMP_NUM_THREADS", "1")
     environment.setdefault("OPENBLAS_NUM_THREADS", "1")

@@ -62,7 +62,7 @@ def complete(number):
         git("commit", "-m", "Keep session 04 pending until live acceptance is verified")
         print(item["completion_blocker"], flush=True)
         return 2
-    if number not in {1, 2, 3, 9, 10, 11, 12}:
+    if number not in {1, 2, 3, 9, 10, 11, 12, 13}:
         raise RuntimeError("No complete runtime-gate definition exists for this session yet")
     evidence_dir = ROOT / "sessions" / Path(item["solution"]).parts[1] / "verification"
     evidence_dir.mkdir(parents=True, exist_ok=True)
@@ -95,9 +95,10 @@ def complete(number):
         10: "rag-postgres-verify",
         11: "rag-metadata-verify",
         12: "rag-hybrid-compare",
+        13: "rag-rerank-compare",
     }[number]
     commands.append(("main-run", ["-m", "copilot", runtime_command]))
-    if number in {9, 10, 11, 12}:
+    if number in {9, 10, 11, 12, 13}:
         starter = ["scripts/session.py", "test", str(number), "--variant", "starter"]
         runtime = ["scripts/verify_embedding_runtime.py"]
         if number == 10:
@@ -106,6 +107,9 @@ def complete(number):
             runtime = ["scripts/verify_metadata_runtime.py"]
         if number == 12:
             runtime.append("--hybrid")
+        if number == 13:
+            runtime.append("--reranked")
+            commands.append(("followup-http-runtime", ["scripts/verify_followup_runtime.py"]))
         commands.extend(
             [
                 ("starter-inherited", [*starter, "--previous-only"]),
@@ -248,6 +252,20 @@ def complete(number):
                 raise RuntimeError(f"Integrated and standalone results differ for {ranking}")
         evidence["hybrid"] = report
         evidence["http_runtime"] = json.loads((main_rag / "hybrid-runtime.json").read_text())
+    if number == 13:
+        main_rag = ROOT / "reports/integrated/rag"
+        report = json.loads((main_rag / "rag-rerank-compare.json").read_text())
+        checkpoint = ROOT / "reports/cohort/session-13/solution/rag-rerank-compare.json"
+        cohort = json.loads(checkpoint.read_text())
+        for ranking in ("hybrid", "reranked"):
+            if (
+                report["rankings"][ranking]["recall_at_5"]
+                != cohort["rankings"][ranking]["recall_at_5"]
+            ):
+                raise RuntimeError(f"Integrated and standalone results differ for {ranking}")
+        evidence["reranking"] = report
+        evidence["http_runtime"] = json.loads((main_rag / "reranked-runtime.json").read_text())
+        evidence["followups"] = json.loads((main_rag / "followup-runtime.json").read_text())
     record = evidence_dir / "runtime-gate.json"
     record.write_text(json.dumps(evidence, indent=2) + "\n")
     item["completion_state"] = "verified_awaiting_commit"
@@ -332,7 +350,27 @@ def complete(number):
             "src/copilot/rag/service.py",
             "tests/test_rag_hybrid.py",
         ]
-    if number in {9, 10, 11, 12} and git("diff", "--cached", "--name-only"):
+    if number == 13:
+        paths = [
+            "policies/reranker_model.json",
+            "sessions/13-reranking-and-query-rewriting",
+            "sessions/implementation_manifest.json",
+            "scripts/complete_session.py",
+            "scripts/session.py",
+            "scripts/verify_embedding_runtime.py",
+            "scripts/verify_followup_runtime.py",
+            "src/copilot/agents/engine.py",
+            "src/copilot/cli.py",
+            "src/copilot/rag/advanced.py",
+            "src/copilot/rag/cli.py",
+            "src/copilot/rag/query.py",
+            "src/copilot/rag/reranker.py",
+            "src/copilot/rag/reranker_benchmark.py",
+            "src/copilot/rag/semantic_encoder.py",
+            "src/copilot/rag/service.py",
+            "tests/test_rag_reranking.py",
+        ]
+    if number in {9, 10, 11, 12, 13} and git("diff", "--cached", "--name-only"):
         raise RuntimeError("The Git index has staged changes. Preserve them before completion.")
     git("add", "--", *paths)
     git("diff", "--cached", "--check")

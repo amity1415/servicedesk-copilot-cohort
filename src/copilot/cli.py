@@ -56,7 +56,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     from copilot.rag.cli import register as register_rag
 
-    register_rag(commands, stage=12)
+    register_rag(commands, stage=13)
 
     args = parser.parse_args(argv)
     settings = get_settings()
@@ -65,7 +65,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     from copilot.foundation_cli import execute
     from copilot.rag.cli import execute as execute_rag
 
-    rag_result = execute_rag(args, settings, stage=12)
+    rag_result = execute_rag(args, settings, stage=13)
     if rag_result is not None:
         return rag_result
 

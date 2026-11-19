@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 
 from copilot.rag.pipeline import Chunk, Document, Retriever, allowed, chunk
+from copilot.rag.query import rewrite as rewrite
 from copilot.rag.rank_fusion import reciprocal_rank_fusion
 
 
@@ -93,14 +94,6 @@ class NeuralRetriever(Retriever):
                 )
             ]
         return fused[:k]
-
-
-def rewrite(query: str, previous: str = "") -> str:
-    if previous and any(
-        part in query.lower() for part in ("still", "doesn't work", "same problem")
-    ):
-        return previous + " " + query
-    return query.replace("MFA", "multi-factor authentication MFA")
 
 
 def grounded_answer(query: str, hits: list[Chunk], client) -> dict:

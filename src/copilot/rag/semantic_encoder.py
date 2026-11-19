@@ -43,46 +43,52 @@ def prepare_model(directory=None, pin_file=None):
         if pin and checksums[filename] != pin["files"][filename]:
             raise ValueError("downloaded artifact does not match approved model pin")
     manifest = {
-        "repository": repository,
-        "revision": revision,
-        "files": checksums,
         "pooling": "attention-mask mean then L2 normalization",
         "max_tokens": 256,
         "dimension": 384,
+        **(pin or {}),
+        "repository": repository,
+        "revision": revision,
+        "files": checksums,
         "provider": "CPUExecutionProvider",
     }
     (destination / "MODEL_MANIFEST.json").write_text(json.dumps(manifest, indent=2))
     return manifest
 
 
+def load_onnx_model(destination):
+    import onnxruntime as ort
+    from tokenizers import Tokenizer
+
+    manifest_file = destination / "MODEL_MANIFEST.json"
+    if not manifest_file.exists():
+        raise RuntimeError(f"Local ONNX model manifest is missing at {manifest_file}")
+    manifest = json.loads(manifest_file.read_text())
+    for filename, expected in manifest["files"].items():
+        actual = hashlib.sha256((destination / filename).read_bytes()).hexdigest()
+        if actual != expected:
+            raise ValueError(f"model artifact checksum mismatch: {filename}")
+    tokenizer = Tokenizer.from_file(str(destination / "tokenizer.json"))
+    tokenizer.enable_truncation(max_length=manifest["max_tokens"])
+    tokenizer.enable_padding(pad_id=0, pad_token="[PAD]")
+    options = ort.SessionOptions()
+    options.intra_op_num_threads = 1
+    options.inter_op_num_threads = 1
+    session = ort.InferenceSession(
+        str(destination / "onnx/model_quint8_avx2.onnx"),
+        options,
+        providers=["CPUExecutionProvider"],
+    )
+    return manifest, tokenizer, session
+
+
 class OnnxEncoder:
     def __init__(self, directory=None, cache=None):
-        import onnxruntime as ort
-        from tokenizers import Tokenizer
-
         destination = Path(directory or model_directory())
-        manifest_file = destination / "MODEL_MANIFEST.json"
-        if not manifest_file.exists():
-            raise RuntimeError("Local semantic model missing; run rag-model-prepare first")
-        self.manifest = json.loads(manifest_file.read_text())
-        for filename, expected in self.manifest["files"].items():
-            actual = hashlib.sha256((destination / filename).read_bytes()).hexdigest()
-            if actual != expected:
-                raise ValueError(f"model artifact checksum mismatch: {filename}")
+        self.manifest, self.tokenizer, self.session = load_onnx_model(destination)
         self.identity = hashlib.sha256(
             json.dumps(self.manifest, sort_keys=True).encode()
         ).hexdigest()
-        self.tokenizer = Tokenizer.from_file(str(destination / "tokenizer.json"))
-        self.tokenizer.enable_truncation(max_length=256)
-        self.tokenizer.enable_padding(pad_id=0, pad_token="[PAD]")
-        options = ort.SessionOptions()
-        options.intra_op_num_threads = 1
-        options.inter_op_num_threads = 1
-        self.session = ort.InferenceSession(
-            str(destination / "onnx/model_quint8_avx2.onnx"),
-            options,
-            providers=["CPUExecutionProvider"],
-        )
         self.cache = Path(cache or destination / "vectors.sqlite3")
         self.cache.parent.mkdir(parents=True, exist_ok=True)
         self.encoded_misses = 0

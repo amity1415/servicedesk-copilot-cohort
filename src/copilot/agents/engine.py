@@ -9,8 +9,8 @@ from __future__ import annotations
 import re
 
 from copilot.guardrails.checks import suspicious
-from copilot.rag.advanced import rewrite
 from copilot.rag.pipeline import Retriever
+from copilot.rag.query import rewrite
 from copilot.telemetry import traced
 from copilot.tools.runtime import Runtime
 from copilot.tools.ticketing import TicketDraft, TicketingClient
@@ -127,15 +127,17 @@ class Engine:
                     )
         else:
             assets = self.runtime.assets(actor, actor)
+            retrieval_query = rewrite(query, state.get("last_query", ""))
+            scope_query = lower if "mac" in lower or "windows" in lower else retrieval_query.lower()
             os_name = (
                 "macos"
-                if "mac" in lower
+                if "mac" in scope_query
                 else "windows"
-                if "windows" in lower
+                if "windows" in scope_query
                 else (assets[0]["os"] if assets else None)
             )
             result = self.retriever.answer(
-                rewrite(query, state.get("last_query", "")),
+                retrieval_query,
                 role=employee["role"],
                 os_name=os_name,
                 region=employee["region"],

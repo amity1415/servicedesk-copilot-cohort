@@ -1,0 +1,659 @@
+{
+  "session": 13,
+  "verified_at_utc": "2026-11-19T08:33:58.933114+00:00",
+  "source_state": "0b044858da7962013a7bf400862faa807b37ddc5",
+  "checks": [
+    {
+      "name": "session-tests",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "13"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "e688934c3742c2a1013b50decf04a6d7ba3163ad58e466d04a62aee9c7d99a67"
+    },
+    {
+      "name": "main-tests",
+      "command": [
+        "-m",
+        "pytest",
+        "--tb=short",
+        "--basetemp=.work/pytest-gate-75a90e1c9359437386471dcefe7991ad"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "bb4a6940dfc4d4553a97aa743761ecd3652b1f3e59e090a5ef6ccace27f65411"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "format",
+      "command": [
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "1b37dc5b08ffefd7c37be2853071ac36c63d989f6d18053603e77b148969ea74"
+    },
+    {
+      "name": "session-run",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "13"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "396b74dd9bc5d6895b2fd23dbc0c2aee1f5a8ce517d058a5bf602d64fb835120"
+    },
+    {
+      "name": "main-run",
+      "command": [
+        "-m",
+        "copilot",
+        "rag-rerank-compare"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "1668b3e3df4ceca7bba0ed1553f233002a7bd7356ffd40984ba0c6eef43a4187"
+    },
+    {
+      "name": "followup-http-runtime",
+      "command": [
+        "scripts/verify_followup_runtime.py"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "c9cd1d011a79d95eb587bddc2effdd2f9a34e0e69e000c463b42810c0e2e15bb"
+    },
+    {
+      "name": "starter-inherited",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "13",
+        "--variant",
+        "starter",
+        "--previous-only"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "361b88217f9ba78a5dae8cbfe02c21a386737f091dd5c800556e22ca57ce56e1"
+    },
+    {
+      "name": "starter-new",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "13",
+        "--variant",
+        "starter"
+      ],
+      "exit_code": 1,
+      "expected_failure": true,
+      "output_sha256": "f300327ee8064bc10d93ef066611ea7fcd4bf194f8b6e8cf8d5d6d9814589271"
+    },
+    {
+      "name": "main-http-runtime",
+      "command": [
+        "scripts/verify_embedding_runtime.py",
+        "--reranked"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "0ba573c216fff1f012f23b4d3170faec11efb1579f046766a99880eaa29e8ada"
+    }
+  ],
+  "runtime_scope": "actual session source and integrated main application",
+  "paid_calls": 0,
+  "reranking": {
+    "mode": "local-reranking-comparison",
+    "question_count": 20,
+    "label_status": "draft, requires instructor review",
+    "model": {
+      "repository": "cross-encoder/ms-marco-MiniLM-L6-v2",
+      "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+      "files": {
+        "config.json": "380e02c93f431831be65d99a4e7e5f67c133985bf2e77d9d4eba46847190bacc",
+        "tokenizer.json": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+        "onnx/model_quint8_avx2.onnx": "c80a8b34256ea453093d612e3ac48d3d965a0c0a48c7906709af8b8e28461bf9"
+      },
+      "max_tokens": 256,
+      "dimension": 1,
+      "pooling": "sequence-classification logits",
+      "provider": "CPUExecutionProvider"
+    },
+    "rankings": {
+      "hybrid": {
+        "recall_at_5": 0.85,
+        "p95_latency_ms": 72.37779000133742,
+        "cases": [
+          {
+            "id": "rag05-01",
+            "retrieved": [
+              "KB-1017",
+              "KB-1020",
+              "KB-1023",
+              "KB-1024",
+              "POL-006_v1.4"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 40.43909999745665
+          },
+          {
+            "id": "rag05-02",
+            "retrieved": [
+              "KB-1018"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 58.84430000151042
+          },
+          {
+            "id": "rag05-03",
+            "retrieved": [
+              "KB-1001",
+              "KB-1002",
+              "KB-1054",
+              "KB-1069",
+              "KB-1078"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 63.76820000150474
+          },
+          {
+            "id": "rag05-04",
+            "retrieved": [
+              "KB-1017",
+              "KB-1020",
+              "KB-1023",
+              "KB-1033",
+              "POL-006_v1.4"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 51.5947000021697
+          },
+          {
+            "id": "rag05-05",
+            "retrieved": [],
+            "recall_at_5": 0.0,
+            "latency_ms": 1.5044000028865412
+          },
+          {
+            "id": "rag05-06",
+            "retrieved": [
+              "KB-1043",
+              "KB-1048",
+              "KB-1049",
+              "KB-1050",
+              "KB-1099"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 70.39780000195606
+          },
+          {
+            "id": "rag05-07",
+            "retrieved": [],
+            "recall_at_5": 0.0,
+            "latency_ms": 1.2668999988818541
+          },
+          {
+            "id": "rag05-08",
+            "retrieved": [
+              "KB-1042",
+              "KB-1043",
+              "KB-1067",
+              "KB-1095",
+              "KB-1099"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 47.17460000392748
+          },
+          {
+            "id": "rag05-09",
+            "retrieved": [
+              "KB-1008",
+              "KB-1009",
+              "KB-1010",
+              "KB-1077",
+              "KB-1083"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 67.46689999999944
+          },
+          {
+            "id": "rag05-10",
+            "retrieved": [
+              "KB-1018",
+              "KB-1019",
+              "KB-1036",
+              "KB-1037",
+              "KB-1079"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 64.77169999561738
+          },
+          {
+            "id": "rag05-11",
+            "retrieved": [
+              "KB-1063",
+              "KB-1064",
+              "KB-1065",
+              "KB-1066",
+              "KB-1094"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 40.00819999782834
+          },
+          {
+            "id": "rag05-12",
+            "retrieved": [
+              "KB-1054",
+              "KB-1056",
+              "KB-1079",
+              "KB-1086"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 39.745699999912176
+          },
+          {
+            "id": "rag05-13",
+            "retrieved": [
+              "KB-1009",
+              "KB-1075",
+              "KB-1078",
+              "KB-1079"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 43.59000000113156
+          },
+          {
+            "id": "rag05-14",
+            "retrieved": [
+              "KB-1008",
+              "KB-1009",
+              "KB-1010",
+              "KB-1090",
+              "POL-002_v2.1"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 38.26249999838183
+          },
+          {
+            "id": "rag05-15",
+            "retrieved": [
+              "KB-1090",
+              "KB-1091",
+              "POL-009_v2.2"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 38.1993999981205
+          },
+          {
+            "id": "rag05-16",
+            "retrieved": [
+              "KB-1018",
+              "KB-1022",
+              "KB-1025",
+              "KB-1027",
+              "KB-1086"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 41.50579999986803
+          },
+          {
+            "id": "rag05-17",
+            "retrieved": [
+              "KB-1002",
+              "KB-1003",
+              "KB-1015",
+              "KB-1037",
+              "POL-003_v4.0"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 72.0833000013954
+          },
+          {
+            "id": "rag05-18",
+            "retrieved": [],
+            "recall_at_5": 0.0,
+            "latency_ms": 0.8794999957899563
+          },
+          {
+            "id": "rag05-19",
+            "retrieved": [
+              "KB-1059",
+              "KB-1061",
+              "KB-1070",
+              "KB-1080",
+              "KB-1081"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 77.97310000023572
+          },
+          {
+            "id": "rag05-20",
+            "retrieved": [
+              "KB-1024"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 40.20750000199769
+          }
+        ]
+      },
+      "reranked": {
+        "recall_at_5": 0.8,
+        "p95_latency_ms": 2179.0044399960607,
+        "cases": [
+          {
+            "id": "rag05-01",
+            "retrieved": [
+              "KB-1017",
+              "KB-1020",
+              "KB-1023",
+              "KB-1026",
+              "KB-1059"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 1842.2538999948301
+          },
+          {
+            "id": "rag05-02",
+            "retrieved": [
+              "KB-1018"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 182.88849999953527
+          },
+          {
+            "id": "rag05-03",
+            "retrieved": [
+              "KB-1002",
+              "KB-1054",
+              "KB-1062",
+              "KB-1069"
+            ],
+            "recall_at_5": 0.0,
+            "latency_ms": 1827.0720000000438
+          },
+          {
+            "id": "rag05-04",
+            "retrieved": [
+              "KB-1017",
+              "KB-1020",
+              "KB-1021",
+              "KB-1028",
+              "POL-006_v1.4"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 1976.0241999974824
+          },
+          {
+            "id": "rag05-05",
+            "retrieved": [],
+            "recall_at_5": 0.0,
+            "latency_ms": 1.1241999964113347
+          },
+          {
+            "id": "rag05-06",
+            "retrieved": [
+              "KB-1043",
+              "KB-1048",
+              "KB-1050",
+              "KB-1067",
+              "KB-1099"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 1813.3527000027243
+          },
+          {
+            "id": "rag05-07",
+            "retrieved": [],
+            "recall_at_5": 0.0,
+            "latency_ms": 0.8439000012003817
+          },
+          {
+            "id": "rag05-08",
+            "retrieved": [
+              "KB-1042",
+              "KB-1043",
+              "KB-1067",
+              "KB-1099",
+              "REF-001"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 2047.9046999971615
+          },
+          {
+            "id": "rag05-09",
+            "retrieved": [
+              "KB-1008",
+              "KB-1009",
+              "KB-1010",
+              "KB-1011",
+              "POL-002_v2.1"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 1854.6040000001085
+          },
+          {
+            "id": "rag05-10",
+            "retrieved": [
+              "KB-1013",
+              "KB-1036",
+              "KB-1046",
+              "KB-1078",
+              "KB-1079"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 1911.4412999988417
+          },
+          {
+            "id": "rag05-11",
+            "retrieved": [
+              "KB-1063",
+              "KB-1064",
+              "KB-1065",
+              "KB-1066",
+              "POL-007_v3.1"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 1912.1993000007933
+          },
+          {
+            "id": "rag05-12",
+            "retrieved": [
+              "KB-1013",
+              "KB-1054",
+              "KB-1056",
+              "KB-1079"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 2345.483199998853
+          },
+          {
+            "id": "rag05-13",
+            "retrieved": [
+              "KB-1013",
+              "KB-1036",
+              "KB-1066",
+              "KB-1078",
+              "KB-1079"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 2003.1339000051958
+          },
+          {
+            "id": "rag05-14",
+            "retrieved": [
+              "KB-1009",
+              "KB-1010",
+              "KB-1011",
+              "KB-1090",
+              "POL-003_v4.0"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 1983.4322000024258
+          },
+          {
+            "id": "rag05-15",
+            "retrieved": [
+              "KB-1091",
+              "POL-009_v2.2",
+              "REF-001"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 1946.2963999976637
+          },
+          {
+            "id": "rag05-16",
+            "retrieved": [
+              "KB-1025",
+              "KB-1027",
+              "KB-1079",
+              "KB-1086",
+              "KB-1089"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 1990.0479999996605
+          },
+          {
+            "id": "rag05-17",
+            "retrieved": [
+              "KB-1001",
+              "KB-1002",
+              "KB-1037",
+              "KB-1049",
+              "KB-1085"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 2064.0031000002637
+          },
+          {
+            "id": "rag05-18",
+            "retrieved": [],
+            "recall_at_5": 0.0,
+            "latency_ms": 1.0104999964823946
+          },
+          {
+            "id": "rag05-19",
+            "retrieved": [
+              "KB-1045",
+              "KB-1055",
+              "KB-1059",
+              "KB-1080"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 2170.2423999959137
+          },
+          {
+            "id": "rag05-20",
+            "retrieved": [
+              "KB-1024"
+            ],
+            "recall_at_5": 1.0,
+            "latency_ms": 124.32629999966593
+          }
+        ]
+      }
+    }
+  },
+  "http_runtime": {
+    "question": "How do I set up VPN on my Mac?",
+    "backends": {
+      "tfidf": {
+        "health": {
+          "status": "ok",
+          "mode": "tfidf-vector-extractive",
+          "documents": 209
+        },
+        "citations": [
+          "KB-1017"
+        ],
+        "cache_rows": []
+      },
+      "neural": {
+        "health": {
+          "status": "ok",
+          "mode": "neural-vector-extractive",
+          "documents": 209
+        },
+        "citations": [
+          "KB-1017"
+        ],
+        "cache_rows": [
+          209,
+          210,
+          210
+        ]
+      },
+      "pgvector": {
+        "health": {
+          "status": "ok",
+          "mode": "pgvector-extractive",
+          "documents": 209
+        },
+        "citations": [
+          "KB-1017"
+        ],
+        "cache_rows": []
+      },
+      "hybrid": {
+        "health": {
+          "status": "ok",
+          "mode": "hybrid-extractive",
+          "documents": 209
+        },
+        "citations": [
+          "KB-1017"
+        ],
+        "cache_rows": []
+      },
+      "reranked": {
+        "health": {
+          "status": "ok",
+          "mode": "reranked-hybrid-extractive",
+          "documents": 209
+        },
+        "citations": [
+          "KB-1017"
+        ],
+        "cache_rows": []
+      }
+    }
+  },
+  "followups": {
+    "conversations": [
+      {
+        "actor": "first-actor",
+        "error_code": "809",
+        "citations": [
+          "KB-9809"
+        ]
+      },
+      {
+        "actor": "second-actor",
+        "error_code": "806",
+        "citations": [
+          "KB-9806"
+        ]
+      }
+    ],
+    "cross_actor_http": 403
+  }
+}

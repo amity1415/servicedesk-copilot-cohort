@@ -39,6 +39,9 @@ def register(commands, stage=8):
         commands.add_parser("rag-metadata-verify", help="verify retrieval visibility")
     if stage >= 12:
         commands.add_parser("rag-hybrid-compare", help="compare PostgreSQL retrieval rankings")
+    if stage >= 13:
+        commands.add_parser("rag-reranker-prepare", help="prepare the pinned CPU cross-encoder")
+        commands.add_parser("rag-rerank-compare", help="measure reranking recall and p95 latency")
     if stage >= 5:
         commands.add_parser("rag-benchmark", help="measure the session's chunking strategies")
 
@@ -78,6 +81,14 @@ def execute(args, settings, stage=8):
         from copilot.rag.hybrid_benchmark import compare_hybrid
 
         result = compare_hybrid(data)
+    elif args.command == "rag-reranker-prepare":
+        from copilot.rag.reranker import prepare_reranker
+
+        result = prepare_reranker()
+    elif args.command == "rag-rerank-compare":
+        from copilot.rag.reranker_benchmark import compare_reranker
+
+        result = compare_reranker(data)
     elif args.command == "rag-ingest":
         from copilot.rag.loaders import ingest
 

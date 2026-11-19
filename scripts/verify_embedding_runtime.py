@@ -52,7 +52,7 @@ def cache_count(cache):
         return db.execute("SELECT count(*) FROM vectors").fetchone()[0]
 
 
-def verify(include_pgvector=False, include_hybrid=False):
+def verify(include_pgvector=False, include_hybrid=False, include_reranked=False):
     results = {}
     with TemporaryDirectory() as directory:
         cache = Path(directory) / "vectors.sqlite3"
@@ -60,10 +60,12 @@ def verify(include_pgvector=False, include_hybrid=False):
             ("tfidf", "tfidf-vector-extractive"),
             ("neural", "neural-vector-extractive"),
         ]
-        if include_pgvector or include_hybrid:
+        if include_pgvector or include_hybrid or include_reranked:
             backends.append(("pgvector", "pgvector-extractive"))
-        if include_hybrid:
+        if include_hybrid or include_reranked:
             backends.append(("hybrid", "hybrid-extractive"))
+        if include_reranked:
+            backends.append(("reranked", "reranked-hybrid-extractive"))
         for mode, expected in backends:
             with running_api(mode, cache, Path(directory) / f"{mode}.sqlite3") as client:
                 health = client.get("/health").raise_for_status().json()
@@ -95,10 +97,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--pgvector", action="store_true")
     parser.add_argument("--hybrid", action="store_true")
+    parser.add_argument("--reranked", action="store_true")
     args = parser.parse_args()
-    result = verify(include_pgvector=args.pgvector, include_hybrid=args.hybrid)
+    result = verify(
+        include_pgvector=args.pgvector,
+        include_hybrid=args.hybrid,
+        include_reranked=args.reranked,
+    )
     name = (
-        "hybrid-runtime.json"
+        "reranked-runtime.json"
+        if args.reranked
+        else "hybrid-runtime.json"
         if args.hybrid
         else "postgres-runtime.json"
         if args.pgvector
