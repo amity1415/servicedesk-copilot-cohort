@@ -283,7 +283,7 @@
     {
       "session": 11,
       "status": "implemented",
-      "completion_state": "verified_awaiting_commit",
+      "completion_state": "verified_committed",
       "starter": "sessions/11-retrieval-and-metadata-filtering/starter",
       "solution": "sessions/11-retrieval-and-metadata-filtering/solution",
       "previous_tests": [
@@ -306,7 +306,9 @@
       ],
       "default_command": [
         "rag-metadata-verify"
-      ]
+      ],
+      "completion_commit": "77cdd3cf62e5a5d984419c2ad78dea730fd6fb6a",
+      "completion_evidence": "sessions/11-retrieval-and-metadata-filtering/verification/runtime-gate.json"
     },
     {
       "session": 12,
