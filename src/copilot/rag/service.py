@@ -57,6 +57,7 @@ class VectorRag:
         overlap=120,
         semantic_encoder=None,
         retrieval_encoder=None,
+        persistent_index=None,
     ):
         from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -70,11 +71,15 @@ class VectorRag:
             for c in make_chunks(doc, strategy, size, overlap, encoder=semantic_encoder)
         ]
         self.retrieval_encoder = retrieval_encoder
+        self.persistent_index = persistent_index
         self.mode = "neural-vector-extractive" if retrieval_encoder else "tfidf-vector-extractive"
         self.vectorizer = TfidfVectorizer(ngram_range=(1, 2), sublinear_tf=True)
         texts = [str(c.metadata.get("title", "")) + "\n" + c.text for c in self.chunks]
         self.matrix = None
-        if texts and retrieval_encoder:
+        if persistent_index:
+            self.generation = persistent_index.publish(self.chunks, texts, retrieval_encoder)
+            self.mode = "pgvector-extractive"
+        elif texts and retrieval_encoder:
             import numpy as np
 
             self.matrix = np.asarray(retrieval_encoder.encode(texts), dtype=np.float32)
@@ -102,13 +107,24 @@ class VectorRag:
         backend = os.getenv("COPILOT_RETRIEVAL_BACKEND", "tfidf")
         if backend == "tfidf":
             return cls.from_data(data)
-        if backend == "neural":
+        if backend in {"neural", "pgvector"}:
             from copilot.rag.semantic_encoder import OnnxEncoder
 
-            return cls.from_data(
-                data, retrieval_encoder=OnnxEncoder(cache=os.getenv("COPILOT_EMBEDDING_CACHE"))
+            encoder = OnnxEncoder(cache=os.getenv("COPILOT_EMBEDDING_CACHE"))
+            if backend == "neural":
+                return cls.from_data(data, retrieval_encoder=encoder)
+            from copilot.config import get_settings
+            from copilot.rag.postgres_index import PersistentIndex
+
+            index = PersistentIndex(
+                get_settings().database_url.get_secret_value(),
+                encoder.identity,
+                encoder.manifest["dimension"],
             )
-        raise ValueError("COPILOT_RETRIEVAL_BACKEND must be tfidf or neural")
+            return cls(
+                documents_from(data), "recursive", retrieval_encoder=encoder, persistent_index=index
+            )
+        raise ValueError("COPILOT_RETRIEVAL_BACKEND must be tfidf, neural, or pgvector")
 
     def search(self, query, role="employee", os_name=None, region=None, k=5):
         if k < 1:
@@ -133,7 +149,14 @@ class VectorRag:
                     for code in exact
                 )
             ]
-        if not candidates or self.matrix is None:
+        if not candidates:
+            return []
+        if self.persistent_index:
+            authorized = {self.chunks[i].id: self.chunks[i] for i in candidates}
+            vector = self.retrieval_encoder.encode([query])[0]
+            ranked = self.persistent_index.search(self.generation, list(authorized), vector, k)
+            return [authorized[chunk_id] for chunk_id, score in ranked if score > 0.02]
+        if self.matrix is None:
             return []
         if self.retrieval_encoder:
             vector = self.retrieval_encoder.encode([query])[0]

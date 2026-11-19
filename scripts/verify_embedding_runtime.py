@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import os
 import socket
@@ -39,7 +40,7 @@ def running_api(mode, cache, state):
                     raise RuntimeError("API did not start")
                 time.sleep(0.05)
             url = f"http://127.0.0.1:{listener.getsockname()[1]}"
-            with httpx.Client(base_url=url, trust_env=False) as client:
+            with httpx.Client(base_url=url, trust_env=False, timeout=30.0) as client:
                 yield client
         finally:
             server.should_exit = True
@@ -51,14 +52,17 @@ def cache_count(cache):
         return db.execute("SELECT count(*) FROM vectors").fetchone()[0]
 
 
-def verify():
+def verify(include_pgvector=False):
     results = {}
     with TemporaryDirectory() as directory:
         cache = Path(directory) / "vectors.sqlite3"
-        for mode, expected in (
+        backends = [
             ("tfidf", "tfidf-vector-extractive"),
             ("neural", "neural-vector-extractive"),
-        ):
+        ]
+        if include_pgvector:
+            backends.append(("pgvector", "pgvector-extractive"))
+        for mode, expected in backends:
             with running_api(mode, cache, Path(directory) / f"{mode}.sqlite3") as client:
                 health = client.get("/health").raise_for_status().json()
                 if health["status"] != "ok" or health["mode"] != expected:
@@ -86,8 +90,12 @@ def verify():
 
 
 if __name__ == "__main__":
-    result = verify()
-    target = Path("reports/integrated/rag/embedding-runtime.json")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--pgvector", action="store_true")
+    args = parser.parse_args()
+    result = verify(include_pgvector=args.pgvector)
+    name = "postgres-runtime.json" if args.pgvector else "embedding-runtime.json"
+    target = Path("reports/integrated/rag") / name
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(result))

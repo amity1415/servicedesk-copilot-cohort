@@ -1,0 +1,242 @@
+{
+  "session": 10,
+  "verified_at_utc": "2026-11-19T08:14:11.747237+00:00",
+  "source_state": "d4b40e098a765158d159649072568f004417bc1c",
+  "checks": [
+    {
+      "name": "session-tests",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "10"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "ee8c59cf589a5d11ae8223d1f7014f0daf702cf0c9f550c62a255bec82dc8d4e"
+    },
+    {
+      "name": "main-tests",
+      "command": [
+        "-m",
+        "pytest",
+        "--tb=short",
+        "--basetemp=.work/pytest-gate-b2d8b1d60b8944a59abf1fc793159687"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "b53e2551cc7b48f1f2c0b3bc1cd851e70088fa5c237d1c190c1edf177d1a9198"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "format",
+      "command": [
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "f2372896b04d98e47116412036afc371242bdb328d08d18e213bde31353b14d8"
+    },
+    {
+      "name": "session-run",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "10"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "9635d6f5afe066f1768e49d05b8a18b7642841d5e07661b00b122be89f49f5b1"
+    },
+    {
+      "name": "main-run",
+      "command": [
+        "-m",
+        "copilot",
+        "rag-postgres-verify"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "4d7a7bd69cc1fd1e6613fdb1c548e2b675a4873fcb4e2ae5a94372478586aea5"
+    },
+    {
+      "name": "starter-inherited",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "10",
+        "--variant",
+        "starter",
+        "--previous-only"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "14e778ffee57e58e78eb32871b29bf368d25921fd9433a6cdbcac9bdcb82c383"
+    },
+    {
+      "name": "starter-new",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "10",
+        "--variant",
+        "starter"
+      ],
+      "exit_code": 1,
+      "expected_failure": true,
+      "output_sha256": "57fc8c153408f731baf7852a6d6f8d48427aa749b0da719a083e8028e92cf222"
+    },
+    {
+      "name": "main-http-runtime",
+      "command": [
+        "scripts/verify_embedding_runtime.py",
+        "--pgvector"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "71a496d34ea1a797647bc9e305406909fe40293cba68710c97f2561972a01a44"
+    }
+  ],
+  "runtime_scope": "actual session source and integrated main application",
+  "paid_calls": 0,
+  "postgres": {
+    "mode": "pgvector-extractive",
+    "pgvector_version": "0.8.7",
+    "dimension": 384,
+    "published_chunks": 209,
+    "publish_ms": 8092.339300004824,
+    "query": "How do I set up VPN on my Mac?",
+    "search_document_ids": [
+      "KB-1017",
+      "KB-1026",
+      "KB-1020",
+      "KB-1023",
+      "POL-006_v1.4"
+    ],
+    "first_query_ms": 5037.664600000426,
+    "repeat_query_ms": [
+      5023.761700002069,
+      5044.671900002868,
+      5037.745100002212,
+      5030.13039999496,
+      5045.406500001263
+    ],
+    "exact_top5_chunk_ids": [
+      "KB-1017:recursive:9b9ea2f835e2c40e:0",
+      "KB-1026:recursive:b7b2968a8ae153dd:0",
+      "KB-1020:recursive:e342046c95fb3689:0",
+      "KB-1016:recursive:8e77f2e54be86294:0",
+      "KB-1018:recursive:31cdc78bfbe98fa2:0"
+    ],
+    "approximate_top5_chunk_ids": [
+      "KB-1017:recursive:9b9ea2f835e2c40e:0",
+      "KB-1026:recursive:b7b2968a8ae153dd:0",
+      "KB-1020:recursive:e342046c95fb3689:0",
+      "KB-1016:recursive:8e77f2e54be86294:0",
+      "KB-1018:recursive:31cdc78bfbe98fa2:0"
+    ],
+    "top5_overlap": 1.0,
+    "hnsw_plan": [
+      {
+        "Plan": {
+          "Node Type": "Limit",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 218.09,
+          "Total Cost": 226.3,
+          "Plan Rows": 5,
+          "Plan Width": 53,
+          "Actual Startup Time": 0.189,
+          "Actual Total Time": 0.194,
+          "Actual Rows": 5,
+          "Actual Loops": 1,
+          "Plans": [
+            {
+              "Node Type": "Index Scan",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Scan Direction": "Forward",
+              "Index Name": "copilot_rag_vectors_hnsw",
+              "Relation Name": "copilot_rag_vectors",
+              "Alias": "copilot_rag_vectors",
+              "Startup Cost": 218.09,
+              "Total Cost": 434.74,
+              "Plan Rows": 132,
+              "Plan Width": 53,
+              "Actual Startup Time": 0.188,
+              "Actual Total Time": 0.192,
+              "Actual Rows": 5,
+              "Actual Loops": 1,
+              "Order By": "(embedding <=> '[-0.00777796,-0.040858172,0.012446266,-0.022449927,-0.02866573,0.06316789,0.0047340556,0.011052922,0.004901657,-0.008486676,0.03786793,0.010546666,-0.03581716,-0.0043052407,0.022639485,-0.036892664,-0.008877121,-0.017845113,0.071890004,-0.023235347,0.05880806,-0.05093958,-0.00090030715,-0.05684666,0.033409435,0.0070651146,0.10249518,0.011006333,-0.0075496617,0.07103829,-0.038925245,-0.089269936,0.013966035,-0.004301162,-0.02951118,-0.05686377,0.0026895625,0.014127044,-0.13137953,0.059760615,-0.023123143,0.010135112,0.05611464,0.04946374,0.0770984,-0.011881957,0.07350875,0.025777323,0.1182005,-0.054791056,0.077397846,-0.09745527,0.040106513,0.009631816,0.010149725,0.03172068,-0.06226793,-0.02020867,0.056020066,0.020669585,0.05350567,0.028487295,-0.0611468,0.024963284,-0.08041198,-0.012590061,0.07394306,0.08633968,0.029505473,0.02009457,-0.026737923,0.028995655,0.021316461,0.008576655,-0.08024778,-0.048565257,0.07599234,-0.054803547,-0.021112436,0.046646588,-0.010922099,0.088748984,-0.035349056,0.034754395,0.019902453,-0.061668295,0.022961617,0.0029368636,0.02937528,0.0748634,0.0046715527,0.055322062,-0.0578225,0.037554834,0.011629526,0.024787776,0.033745553,0.011577891,-0.05747188,0.019529553,-0.052840367,-0.0318113,-0.005825793,-0.018878803,-0.005968057,-0.03896327,0.04403923,0.03294298,0.12883203,0.05675567,-0.0057534897,-0.07096813,0.0031929067,-0.01956413,-0.10193438,0.052095585,-0.065679565,0.0044429353,-0.009195231,0.010651559,-0.0015271856,-0.03405551,-0.021856869,-0.020810481,-0.016474653,0.033377137,-0.0069843573,-2.9784779e-33,-0.011468994,-0.03850666,-0.039624292,-0.0030910377,0.036818687,0.01621309,0.027537595,-0.023725657,-0.032046653,0.026204707,0.016043045,-0.040016785,-0.07252715,0.02992178,-0.07359757,-0.023034746,0.0148518365,-0.013608692,0.06942122,0.06323121,-0.030260041,-0.005869773,0.06969132,-0.076464474,-0.030328836,0.009048652,-0.027218834,-0.046651397,0.0529579,-0.014467875,0.049069855,0.0010473175,-0.049447116,-0.038595337,0.045163274,0.007947547,-0.03351443,0.0303704,0.06447859,-0.032196056,-0.054865543,-0.048629913,-0.00598954,-0.09646661,0.072760604,-0.015693828,0.02252503,0.0496615,-0.03063999,0.041132115,0.00421793,-0.03135889,-0.06286443,0.04240915,-0.020611275,0.05911295,0.03670308,0.04082505,-0.044553358,-0.052818224,0.06430021,0.06878945,0.03399879,-0.04246849,0.027257226,0.010661342,-0.10114299,-0.015492542,0.095552474,-0.039932348,-0.06448837,0.0024019775,0.001601731,0.053928196,-0.04166917,-0.00017587695,-0.07747843,0.12505671,-0.064655505,0.061989076,-0.058557477,0.06308702,0.05127443,0.10091905,0.0121271545,0.054050922,0.038033992,0.070120424,0.04938813,0.052440163,-0.041465193,0.027683122,0.065127425,-0.03546459,-0.08056659,1.989209e-33,-0.0070013935,-0.0384858,-0.06308917,0.015098503,-0.08450256,0.057145424,-0.03999707,0.043829616,-0.08002538,-0.007738691,0.002953676,-0.015448007,0.106529385,-0.107728004,0.047865186,-0.020535842,-0.06449086,0.019491196,-0.038000863,-0.09216806,-0.07363833,0.025394905,-0.0021451942,0.06925258,0.004499308,-0.07488919,0.13555011,0.023674553,-0.054053277,0.020600274,-0.061350696,-0.045536358,-0.08729612,-0.03404004,0.027796233,0.01151227,0.05061209,0.04842175,0.003706586,-0.038270652,0.008364785,-0.118834816,-0.11474465,0.055426754,0.01015468,-0.025897946,0.032573815,0.018324157,-0.04058893,-0.056104857,-0.004410686,-0.06660413,-0.037316784,0.01728886,0.06052215,0.034582764,0.040503506,0.031078646,0.14271688,0.07046618,-0.022303188,-0.060679384,0.033704165,0.06615112,0.012327705,-0.017960375,-0.046481755,0.02070303,0.055111933,0.0021793498,-0.050939526,0.053425673,0.122255094,-0.0087839225,0.015772315,-0.038344476,0.09512254,0.039825156,-0.023201423,0.017574867,0.07130484,-0.003189745,0.034812894,-0.053173095,-0.023048483,0.055211775,0.07595376,0.010174155,0.02582822,0.029703366,-0.05960034,-0.033894204,-0.017251015,-0.027683074,-0.0351627,-1.4736702e-08,-0.059876755,0.022692755,0.058893763,-0.02653042,-0.013430349,0.08829249,0.030299209,-0.016370397,-0.01715482,-0.03600886,0.031862155,-0.0150814615,-0.06722812,0.005717942,-0.06831635,-0.020887297,-0.028267106,0.09662616,0.026906189,0.02333171,-0.011901171,-0.0188037,-0.04160973,0.06465237,0.067835756,-0.0075058634,-0.058404934,0.09061248,-0.044251386,0.04764903,-0.0004435288,-0.047310755,-0.057722107,-0.05695903,-0.055717096,0.049058132,-0.10444942,0.074077755,-0.011627975,-0.06913377,-0.024568034,-0.008347518,0.03766771,-0.049518038,-0.08020374,0.0015893785,-0.027460115,0.054435655,-0.005417779,0.03502378,0.17712776,-0.046780374,0.03027893,-0.009979099,-0.06032167,-0.020808278,0.060082927,-0.15943792,-0.093033634,0.056060035,-0.06575198,-0.022803055,-0.0009483134,0.045341637]'::vector)",
+              "Filter": "((generation = '2fd6e0f035053dc26acf18c987809e14ee02fa448949d9b14e41988e04ff2d70'::text) AND (id = ANY ('{KB-1001:recursive:24c523ce41c80db1:0,KB-1002:recursive:843b9aaa6a6060ba:0,KB-1002:recursive:843b9aaa6a6060ba:1,KB-1003:recursive:c6ee2191117f4f87:0,KB-1004:recursive:c007251ef5759079:0,KB-1005:recursive:3311860d33d0074f:0,KB-1006:recursive:8b27cc1dafeffa77:0,KB-1006:recursive:8b27cc1dafeffa77:1,KB-1007:recursive:325ee00b612d0a30:0,KB-1008:recursive:a0f01d5318809651:0,KB-1009:recursive:22b54b5543535388:0,KB-1010:recursive:82fdf956cb56225d:0,KB-1011:recursive:c5751bc34bdeaaea:0,KB-1012:recursive:5837df33c7a7b766:0,KB-1013:recursive:3670f58555e63745:0,KB-1014:recursive:1b67aec44b18c938:0,KB-1015:recursive:fd2ce7d44975af18:0,KB-1016:recursive:8e77f2e54be86294:0,KB-1017:recursive:9b9ea2f835e2c40e:0,KB-1018:recursive:31cdc78bfbe98fa2:0,KB-1018:recursive:31cdc78bfbe98fa2:1,KB-1019:recursive:32093751843c122f:0,KB-1020:recursive:e342046c95fb3689:0,KB-1021:recursive:c5231432d4b9a6b1:0,KB-1021:recursive:c5231432d4b9a6b1:1,KB-1022:recursive:c4734ef4d64d897e:0,KB-1023:recursive:fb712df8ddea4818:0,KB-1024:recursive:d3474b081ae6b24f:0,KB-1025:recursive:a9a6f2d5b37969db:0,KB-1026:recursive:b7b2968a8ae153dd:0,KB-1027:recursive:fe066efb1ee9729d:0,KB-1028:recursive:24f0349014584e0f:0,KB-1029:recursive:85ab698bbb109df8:0,KB-1030:recursive:4fd1c6956e6b54e4:0,KB-1031:recursive:123a0e1c71a30a7c:0,KB-1032:recursive:865fd872953ef948:0,KB-1033:recursive:8cc8f7f3bb85ccbe:0,KB-1034:recursive:420631d3ba6d2d1b:0,KB-1035:recursive:4567afabeaa52abe:0,KB-1036:recursive:c7901d9f73adbeaf:0,KB-1037:recursive:c5596c983bbd016e:0,KB-1038:recursive:5fcf6d9752ad28b0:0,KB-1039:recursive:e20e05d4b7a3821d:0,KB-1040:recursive:5b522a621b87fc88:0,KB-1041:recursive:5b2b450c6c5a0c1b:0,KB-1042:recursive:1eac4220fa9e93e7:0,KB-1043:recursive:08fc739af6428d44:0,KB-1044:recursive:dc8cf7c39f421852:0,KB-1045:recursive:18c1b73131aec822:0,KB-1046:recursive:b46bb76e2a4459a2:0,KB-1046:recursive:b46bb76e2a4459a2:1,KB-1047:recursive:b90012a7f1b42d10:0,KB-1048:recursive:6e7583d67685063f:0,KB-1049:recursive:f52d55e8faad30ad:0,KB-1050:recursive:2870a68030ccb269:0,KB-1051:recursive:b0811f998630704e:0,KB-1052:recursive:f261cc4a01c02aae:0,KB-1053:recursive:6c474556947b7720:0,KB-1054:recursive:6de4fb5672a71bb5:0,KB-1054:recursive:6de4fb5672a71bb5:1,KB-1055:recursive:3a2bf5907463c427:0,KB-1055:recursive:3a2bf5907463c427:1,KB-1056:recursive:7889e7dfc3fc4ec4:0,KB-1057:recursive:127e1e8255a1616c:0,KB-1058:recursive:20d49b945e5f6dd7:0,KB-1059:recursive:125d1bc892324929:0,KB-1060:recursive:6ba11488fd3117f2:0,KB-1060:recursive:6ba11488fd3117f2:1,KB-1061:recursive:804fa9dca9d46e43:0,KB-1061:recursive:804fa9dca9d46e43:1,KB-1062:recursive:1dae088ffa4a283e:0,KB-1063:recursive:3bad7feade2adc42:0,KB-1064:recursive:6e2885eafd1e5da1:0,KB-1065:recursive:211bca7a478d93db:0,KB-1066:recursive:2d23289dbc1fffbd:0,KB-1067:recursive:1a71b67b96897463:0,KB-1068:recursive:be0c1d623a789eec:0,KB-1069:recursive:70baaaffb9de0c2c:0,KB-1070:recursive:f88289c1d5ae9bce:0,KB-1071:recursive:4d658db29baf0618:0,KB-1072:recursive:c5080975152fa412:0,KB-1073:recursive:f7de6b8bcb9f9525:0,KB-1074:recursive:6e826fb61d00fbef:0,KB-1075:recursive:dba7a6de59d97225:0,KB-1076:recursive:88b9635ff521884c:0,KB-1077:recursive:33d75bdde0292780:0,KB-1078:recursive:c7f7a1472280e557:0,KB-1078:recursive:c7f7a1472280e557:1,KB-1079:recursive:56bc30ddbdb88ec3:0,KB-1080:recursive:bea00cadcce704e8:0,KB-1081:recursive:0e2a7c40c1c2949d:0,KB-1082:recursive:3415513cc0df6008:0,KB-1083:recursive:88cf0404b8f09539:0,KB-1084:recursive:678c4f824930a0e3:0,KB-1084:recursive:678c4f824930a0e3:1,KB-1085:recursive:a6017a98b8521778:0,KB-1086:recursive:b9ef5f96d9c4c4c5:0,KB-1087:recursive:f6fad031f32b2ebe:0,KB-1088:recursive:b22387a5e998ab46:0,KB-1089:recursive:3e6401327125e579:0,KB-1090:recursive:f15cdc11b3ef2b85:0,KB-1090:recursive:f15cdc11b3ef2b85:1,KB-1091:recursive:0c12f2cd957587e9:0,KB-1091:recursive:0c12f2cd957587e9:1,KB-1092:recursive:7b2861ea5c746df4:0,KB-1093:recursive:feeecd651617fbfd:0,KB-1094:recursive:f5ef91fc4522595b:0,KB-1095:recursive:961c5cb2114030d9:0,KB-1096:recursive:04ecbffcbeac6d05:0,KB-1097:recursive:6e9fa65dbfa66931:0,KB-1098:recursive:a116c3ba63c8f5d5:0,KB-1099:recursive:d7ce47dec992a1a7:0,KB-1100:recursive:adc235cdb9750d08:0,KB-1101:recursive:0ef68026b0b97b5f:0,KB-1102:recursive:ec29e14920a5a941:0,KB-1103:recursive:61af63e0dbce036b:0,KB-1104:recursive:c0f1b2b2cec21eea:0,KB-1105:recursive:e96c8cc4c7ca68ee:0,KB-1106:recursive:15be4160c483944c:0,KB-1107:recursive:b3a1c6459e30f6e9:0,KB-1108:recursive:70a732d5c2600371:0,KB-1109:recursive:a7b54b194df3d5de:0,KB-1110:recursive:0a042bdd4dc4cb43:0,KB-1111:recursive:fbb01796e58c9507:0,KB-1112:recursive:3e735f4ab65dff96:0,KB-1113:recursive:1356c1bff8e588c1:0,KB-1114:recursive:94253fa5802d7fa7:0,KB-1115:recursive:08d7843e5b84cfaa:0,KB-1116:recursive:bfc1eb6dfd6dda8f:0,KB-1117:recursive:a023e1f95243d37b:0,KB-1118:recursive:c1199b5c421951f8:0,KB-1119:recursive:74fd7cd78b779cf7:0,KB-1120:recursive:1f73656b09477e86:0,POL-001_v3.0:recursive:eaa41d740693e928:0,POL-001_v3.0:recursive:eaa41d740693e928:1,POL-001_v3.0:recursive:eaa41d740693e928:2,POL-001_v3.0:recursive:eaa41d740693e928:3,POL-002_v2.0:recursive:ba8b692ef4bb5ce1:0,POL-002_v2.0:recursive:ba8b692ef4bb5ce1:1,POL-002_v2.0:recursive:ba8b692ef4bb5ce1:2,POL-002_v2.0:recursive:ba8b692ef4bb5ce1:3,POL-002_v2.1:recursive:380e20593a00f589:0,POL-002_v2.1:recursive:380e20593a00f589:1,POL-002_v2.1:recursive:380e20593a00f589:2,POL-002_v2.1:recursive:380e20593a00f589:3,POL-003_v3.2:recursive:27b039d35a5346ac:0,POL-003_v3.2:recursive:27b039d35a5346ac:1,POL-003_v3.2:recursive:27b039d35a5346ac:2,POL-003_v4.0:recursive:5645e251065a8e95:0,POL-003_v4.0:recursive:5645e251065a8e95:1,POL-003_v4.0:recursive:5645e251065a8e95:2,POL-003_v4.0:recursive:5645e251065a8e95:3,POL-004_v2.3:recursive:ef3307726352a284:0,POL-004_v2.3:recursive:ef3307726352a284:1,POL-004_v2.3:recursive:ef3307726352a284:2,POL-005_v2.0:recursive:e3b364afa2edbd9c:0,POL-005_v2.0:recursive:e3b364afa2edbd9c:1,POL-005_v2.0:recursive:e3b364afa2edbd9c:2,POL-006_v1.4:recursive:6271c54f1b00a7cd:0,POL-006_v1.4:recursive:6271c54f1b00a7cd:1,POL-006_v1.4:recursive:6271c54f1b00a7cd:2,POL-007_v3.1:recursive:f696087580f3816f:0,POL-007_v3.1:recursive:f696087580f3816f:1,POL-007_v3.1:recursive:f696087580f3816f:2,POL-007_v3.1:recursive:f696087580f3816f:3,POL-008_v1.2:recursive:47ac54ef28d88462:0,POL-008_v1.2:recursive:47ac54ef28d88462:1,POL-008_v1.2:recursive:47ac54ef28d88462:2,POL-009_v2.2:recursive:af4588e64c45d36d:0,POL-009_v2.2:recursive:af4588e64c45d36d:1,POL-009_v2.2:recursive:af4588e64c45d36d:2,POL-010_v2.0:recursive:940861521736d192:0,POL-010_v2.0:recursive:940861521736d192:1,POL-010_v2.0:recursive:940861521736d192:2,RB-001:recursive:a0d946b7f6ebda2f:0,RB-001:recursive:a0d946b7f6ebda2f:1,RB-002:recursive:f17a50d65f94b04e:0,RB-002:recursive:f17a50d65f94b04e:1,RB-003:recursive:2fa415238c8cfdc4:0,RB-003:recursive:2fa415238c8cfdc4:1,RB-004:recursive:f7b2280e4a919584:0,RB-004:recursive:f7b2280e4a919584:1,RB-005:recursive:995aa5694959443f:0,RB-005:recursive:995aa5694959443f:1,RB-006:recursive:c6b798d13141c3c4:0,RB-006:recursive:c6b798d13141c3c4:1,RB-007:recursive:3823eabf2a2fe4fa:0,RB-007:recursive:3823eabf2a2fe4fa:1,RB-008:recursive:36db0ad6dac324ba:0,RB-009:recursive:e9287ac39f94a7a8:0,RB-009:recursive:e9287ac39f94a7a8:1,RB-010:recursive:abd28560bce01499:0,RB-010:recursive:abd28560bce01499:1,RB-011:recursive:a5c30c55ce834f97:0,RB-012:recursive:b5701639cb514608:0,RB-012:recursive:b5701639cb514608:1,RB-013:recursive:4b16919639f1c1a3:0,RB-014:recursive:45050a0ceaceae2c:0,RB-015:recursive:f81cee2a011d8d7f:0,RB-015:recursive:f81cee2a011d8d7f:1,REF-003:recursive:9389d98c321b0c4c:0,REF-001:recursive:714f5d53b92022b0:0,REF-001:recursive:714f5d53b92022b0:1,REF-001:recursive:714f5d53b92022b0:2,REF-001:recursive:714f5d53b92022b0:3,REF-001:recursive:714f5d53b92022b0:4,REF-002:recursive:478f9651d325a75e:0,REF-002:recursive:478f9651d325a75e:1,REF-002:recursive:478f9651d325a75e:2}'::text[])))",
+              "Rows Removed by Filter": 0
+            }
+          ]
+        },
+        "Planning Time": 0.502,
+        "Triggers": [],
+        "Execution Time": 0.258
+      }
+    ],
+    "replaced_old_chunks": 1,
+    "failed_replace_rolled_back": true,
+    "withdrawn_chunks": 1
+  },
+  "http_runtime": {
+    "question": "How do I set up VPN on my Mac?",
+    "backends": {
+      "tfidf": {
+        "health": {
+          "status": "ok",
+          "mode": "tfidf-vector-extractive",
+          "documents": 209
+        },
+        "citations": [
+          "KB-1017"
+        ],
+        "cache_rows": []
+      },
+      "neural": {
+        "health": {
+          "status": "ok",
+          "mode": "neural-vector-extractive",
+          "documents": 209
+        },
+        "citations": [
+          "KB-1017"
+        ],
+        "cache_rows": [
+          209,
+          210,
+          210
+        ]
+      },
+      "pgvector": {
+        "health": {
+          "status": "ok",
+          "mode": "pgvector-extractive",
+          "documents": 209
+        },
+        "citations": [
+          "KB-1017"
+        ],
+        "cache_rows": []
+      }
+    }
+  }
+}

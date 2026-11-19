@@ -17,7 +17,7 @@ services:
       POSTGRES_PASSWORD: copilot_dev_only
       POSTGRES_DB: copilot
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       # Scripts in this folder run once, in name order, when the volume is first created.
       - ./data/db/00_extensions.sql:/docker-entrypoint-initdb.d/00_extensions.sql:ro

@@ -62,7 +62,7 @@ def complete(number):
         git("commit", "-m", "Keep session 04 pending until live acceptance is verified")
         print(item["completion_blocker"], flush=True)
         return 2
-    if number not in {1, 2, 3, 9}:
+    if number not in {1, 2, 3, 9, 10}:
         raise RuntimeError("No complete runtime-gate definition exists for this session yet")
     evidence_dir = ROOT / "sessions" / Path(item["solution"]).parts[1] / "verification"
     evidence_dir.mkdir(parents=True, exist_ok=True)
@@ -87,19 +87,24 @@ def complete(number):
         ("format", ["-m", "ruff", "format", "--check", "."]),
         ("session-run", ["scripts/session.py", "run", str(number)]),
     ]
-    runtime_command = {1: "tickets-stats", 2: "train", 3: "compare", 9: "rag-embedding-compare"}[
-        number
-    ]
+    runtime_command = {
+        1: "tickets-stats",
+        2: "train",
+        3: "compare",
+        9: "rag-embedding-compare",
+        10: "rag-postgres-verify",
+    }[number]
     commands.append(("main-run", ["-m", "copilot", runtime_command]))
-    if number == 9:
+    if number in {9, 10}:
+        starter = ["scripts/session.py", "test", str(number), "--variant", "starter"]
+        runtime = ["scripts/verify_embedding_runtime.py"]
+        if number == 10:
+            runtime.append("--pgvector")
         commands.extend(
             [
-                (
-                    "starter-inherited",
-                    ["scripts/session.py", "test", "9", "--variant", "starter", "--previous-only"],
-                ),
-                ("starter-new", ["scripts/session.py", "test", "9", "--variant", "starter"]),
-                ("main-http-runtime", ["scripts/verify_embedding_runtime.py"]),
+                ("starter-inherited", [*starter, "--previous-only"]),
+                ("starter-new", starter),
+                ("main-http-runtime", runtime),
             ]
         )
     if number == 3:
@@ -133,7 +138,7 @@ def complete(number):
         (logs / f"{label}.log").write_text(output, encoding="utf-8")
         expected_failure = label == "starter-new"
         passed = (
-            result.returncode == 1 and "1 failed" in output and "test_rag_embeddings.py" in output
+            result.returncode == 1 and "1 failed" in output and item["new_tests"][0] in output
             if expected_failure
             else result.returncode == 0
         )
@@ -202,6 +207,23 @@ def complete(number):
                 raise RuntimeError("Integrated and standalone embedding results differ")
         evidence["comparison"] = report
         evidence["http_runtime"] = json.loads((main_rag / "embedding-runtime.json").read_text())
+    if number == 10:
+        main_rag = ROOT / "reports/integrated/rag"
+        report = json.loads((main_rag / "rag-postgres-verify.json").read_text())
+        checkpoint = ROOT / "reports/cohort/session-10/solution/rag-postgres-verify.json"
+        cohort = json.loads(checkpoint.read_text())
+        for field in (
+            "published_chunks",
+            "search_document_ids",
+            "top5_overlap",
+            "replaced_old_chunks",
+            "withdrawn_chunks",
+            "failed_replace_rolled_back",
+        ):
+            if report[field] != cohort[field]:
+                raise RuntimeError(f"Integrated and standalone database results differ for {field}")
+        evidence["postgres"] = report
+        evidence["http_runtime"] = json.loads((main_rag / "postgres-runtime.json").read_text())
     record = evidence_dir / "runtime-gate.json"
     record.write_text(json.dumps(evidence, indent=2) + "\n")
     item["completion_state"] = "verified_awaiting_commit"
@@ -239,7 +261,22 @@ def complete(number):
             "src/copilot/rag/service.py",
             "tests/test_rag_embeddings.py",
         ]
-    if number == 9 and git("diff", "--cached", "--name-only"):
+    if number == 10:
+        paths = [
+            "docs/IMPLEMENTATION_STATUS.md",
+            "docker-compose.yml",
+            "sessions/10-vector-database-and-indexing",
+            "sessions/implementation_manifest.json",
+            "scripts/complete_session.py",
+            "scripts/verify_embedding_runtime.py",
+            "src/copilot/cli.py",
+            "src/copilot/rag/cli.py",
+            "src/copilot/rag/postgres_benchmark.py",
+            "src/copilot/rag/postgres_index.py",
+            "src/copilot/rag/service.py",
+            "tests/test_rag_postgres.py",
+        ]
+    if number in {9, 10} and git("diff", "--cached", "--name-only"):
         raise RuntimeError("The Git index has staged changes. Preserve them before completion.")
     git("add", "--", *paths)
     git("diff", "--cached", "--check")

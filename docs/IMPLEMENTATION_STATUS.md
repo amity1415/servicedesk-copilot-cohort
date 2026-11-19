@@ -5,6 +5,17 @@ live integration checks and release gates are separate. A successful offline run
 does not certify production readiness, model quality, protocol interoperability or
 the numerical release targets.
 
+## Local embedding retrieval and pgvector indexing, sessions 09–10
+
+Session 09 added pinned CPU ONNX retrieval and a persistent embedding cache.
+Session 10 adds the opt-in `COPILOT_RETRIEVAL_BACKEND=pgvector` backend.
+The local database starts with `docker compose up -d db`. The
+`rag-postgres-verify` command runs a real database experiment in its own schema
+and validates top-k search, replacement rollback, and source withdrawal. The
+completion gate also exercises the shared API in each retrieval mode.
+Consult the [session manifest](../sessions/implementation_manifest.json) for
+audited completion and evidence.
+
 ## Validated cumulative RAG batch, sessions 05–08
 
 Implemented in both the integrated application and independent cumulative session
@@ -24,8 +35,8 @@ These are draft-label development results, not reviewed release scores.
 Local tags cohort-session-05 through cohort-session-08 contain standalone projects.
 Evidence: reports/baselines/rag-batch-verification.json and
 sessions/implementation_manifest.json. Session 04 remains pending live validation.
-GitHub publishing, PostgreSQL indexing, live generation, Jenkins and Docker runtime
-validation remain unfinished. Existing API/UI processes need restart to load code.
+At that checkpoint, GitHub publishing, PostgreSQL indexing, live generation,
+Jenkins, and Docker runtime validation were still pending.
 
 ## Delivered teaching material
 
@@ -77,9 +88,9 @@ over ASGI transport. Docker networking remains untested.
 - Configure a provider, model revision and per-learner budget before paid calls.
   Tokenization/cost reports, model comparisons and live structured-output samples
   still need their session experiments completed.
-- Wire the chosen neural/PostgreSQL retriever into the API/documents server;
-  complete policy-register metadata enrichment, withdrawals and database
-  SELECT-only role checks. The current assets server reads fixed CSV snapshots.
+- Complete policy-register metadata enrichment, release-grade withdrawal
+  recovery, and database SELECT-only role checks. The current assets server
+  reads fixed CSV snapshots.
 - Run the actual model-driven graph and specialist comparisons; finish consented
   token-budgeted memory, reflection, approval editing/reapproval and PostgreSQL
   restart/recovery checks. Graph and loop references are not the default API path.
@@ -94,10 +105,10 @@ over ASGI transport. Docker networking remains untested.
   OS, then run the clean-machine Compose walkthrough. `constraints-tested.txt`
   records this Windows/Python authoring environment; it is not a multi-platform lock.
 
-Docker CLI engine inspection failed in this environment, including an internal
-Docker CLI panic. No Docker build, deployment, CI-hosted run, paid model call or
-production release tag is claimed. See `reports/session_validation.json` for local
-experiment results; the later-session preflights explicitly preserve their gaps.
+The initial Docker engine inspection failed. Session 10 started the local
+pgvector container and exercised it from the host application. Full-stack Docker
+build and deployment, CI-hosted runs, paid model calls, and a production release
+remain open.
 
 ## Verification recorded on 17 November 2026
 

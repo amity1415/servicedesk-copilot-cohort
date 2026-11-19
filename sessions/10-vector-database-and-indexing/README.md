@@ -16,10 +16,14 @@ Work through these implementation decisions: Start pgvector; initialize chunk ta
 
 ## Reference implementation
 
-- [src/copilot/rag/advanced.py](../../src/copilot/rag/advanced.py)
+- [Persistent vector index](../../src/copilot/rag/postgres_index.py)
 - [docker-compose.yml](../../docker-compose.yml)
 
-Run the adjacent `reference.py` from the project root. It executes the session experiment through the shared application code. Its JSON report declares whether it is an offline experiment or an integration preflight. A preflight does not satisfy the integration gate.
+Start the local database with `docker compose up -d db` and prepare MiniLM
+with `copilot rag-model-prepare`. Run the standalone experiment with
+`scripts/session.py run 10` and the integrated one with
+`copilot rag-postgres-verify`. Set `COPILOT_RETRIEVAL_BACKEND=pgvector`
+before launching the API to use the persistent index from the chat app.
 
 ## Deliberate failure exercise
 

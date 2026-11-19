@@ -1,0 +1,313 @@
+{
+  "policies/POL-001_v3.0.pdf": {
+    "audience": "employee",
+    "os": "any",
+    "region": "global",
+    "trust_basis": "Authored policy scope inspected; register controls version/effective status"
+  },
+  "policies/POL-002_v2.1.pdf": {
+    "audience": "employee",
+    "os": "any",
+    "region": "global",
+    "trust_basis": "Authored policy scope inspected; register controls version/effective status"
+  },
+  "policies/POL-003_v4.0.pdf": {
+    "audience": "employee",
+    "os": "any",
+    "region": "global",
+    "trust_basis": "Authored policy scope inspected; register controls version/effective status"
+  },
+  "policies/POL-004_v2.3.pdf": {
+    "audience": "employee",
+    "os": "any",
+    "region": "global",
+    "trust_basis": "Authored policy scope inspected; register controls version/effective status"
+  },
+  "policies/POL-005_v2.0.pdf": {
+    "audience": "employee",
+    "os": "any",
+    "region": "global",
+    "trust_basis": "Authored policy scope inspected; register controls version/effective status"
+  },
+  "policies/POL-006_v1.4.pdf": {
+    "audience": "employee",
+    "os": "any",
+    "region": "global",
+    "trust_basis": "Authored policy scope inspected; register controls version/effective status"
+  },
+  "policies/POL-007_v3.1.pdf": {
+    "audience": "employee",
+    "os": "any",
+    "region": "global",
+    "trust_basis": "Authored policy scope inspected; register controls version/effective status"
+  },
+  "policies/POL-008_v1.2.pdf": {
+    "audience": "employee",
+    "os": "any",
+    "region": "global",
+    "trust_basis": "Authored policy scope inspected; register controls version/effective status"
+  },
+  "policies/POL-009_v2.2.pdf": {
+    "audience": "employee",
+    "os": "any",
+    "region": "global",
+    "trust_basis": "Authored policy scope inspected; register controls version/effective status"
+  },
+  "policies/POL-010_v2.0.pdf": {
+    "audience": "employee",
+    "os": "any",
+    "region": "global",
+    "trust_basis": "Authored policy scope inspected; register controls version/effective status"
+  },
+  "policies/POL-002_v2.0.pdf": {
+    "audience": "employee",
+    "os": "any",
+    "region": "global",
+    "trust_basis": "Authored policy scope inspected; register controls version/effective status"
+  },
+  "policies/POL-003_v3.2.pdf": {
+    "audience": "employee",
+    "os": "any",
+    "region": "global",
+    "trust_basis": "Authored policy scope inspected; register controls version/effective status"
+  },
+  "runbooks/RB-001.docx": {
+    "id": "RB-001",
+    "title": "Unlock a LarkID account",
+    "audience": "it-staff",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "owner": "Service Desk L1",
+    "version": "1.0",
+    "effective_date": "2026-01-12",
+    "risk": "low-risk write",
+    "approval": "None. Identity verification is required."
+  },
+  "runbooks/RB-002.docx": {
+    "id": "RB-002",
+    "title": "Reset MFA and issue a temporary access pass",
+    "audience": "it-staff",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "owner": "Identity & Access",
+    "version": "1.0",
+    "effective_date": "2026-01-12",
+    "risk": "approval-required",
+    "approval": "A second Identity and Access analyst."
+  },
+  "runbooks/RB-003.docx": {
+    "id": "RB-003",
+    "title": "Grant application access after approval",
+    "audience": "it-staff",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "owner": "Identity & Access",
+    "version": "1.0",
+    "effective_date": "2026-01-12",
+    "risk": "approval-required",
+    "approval": "Line manager; also the data owner for FinSight, CoreERP and PeopleHub administration."
+  },
+  "runbooks/RB-004.docx": {
+    "id": "RB-004",
+    "title": "Provision a new joiner",
+    "audience": "it-staff",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "owner": "Onboarding Team",
+    "version": "1.0",
+    "effective_date": "2026-01-12",
+    "risk": "approval-required",
+    "approval": "The hiring manager's new joiner request, and a complete PeopleHub record from HR."
+  },
+  "runbooks/RB-005.docx": {
+    "id": "RB-005",
+    "title": "Offboard a leaver",
+    "audience": "it-staff",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "owner": "Onboarding Team",
+    "version": "1.0",
+    "effective_date": "2026-01-12",
+    "risk": "approval-required",
+    "approval": "The manager's leaver request; HR for an immediate disable."
+  },
+  "runbooks/RB-006.docx": {
+    "id": "RB-006",
+    "title": "Lock or wipe a lost device",
+    "audience": "it-staff",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "owner": "Security Operations",
+    "version": "1.0",
+    "effective_date": "2026-01-12",
+    "risk": "approval-required",
+    "approval": "None for a lock. The IT duty manager for a full wipe."
+  },
+  "runbooks/RB-007.docx": {
+    "id": "RB-007",
+    "title": "Check VPN gateway health and fail over",
+    "audience": "it-staff",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "owner": "Network Operations",
+    "version": "1.0",
+    "effective_date": "2026-01-12",
+    "risk": "approval-required",
+    "approval": "None to check health. The Network Operations duty manager to fail over."
+  },
+  "runbooks/RB-008.docx": {
+    "id": "RB-008",
+    "title": "Clear a stuck FollowMe print queue",
+    "audience": "it-staff",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "owner": "Workplace Engineering",
+    "version": "1.0",
+    "effective_date": "2026-01-12",
+    "risk": "low-risk write",
+    "approval": "None."
+  },
+  "runbooks/RB-009.docx": {
+    "id": "RB-009",
+    "title": "Re-image a laptop",
+    "audience": "it-staff",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "owner": "Workplace Engineering",
+    "version": "1.0",
+    "effective_date": "2026-01-12",
+    "risk": "approval-required",
+    "approval": "The laptop's user, in writing in the ticket, because local data is erased."
+  },
+  "runbooks/RB-010.docx": {
+    "id": "RB-010",
+    "title": "Isolate a device suspected of malware",
+    "audience": "it-staff",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "owner": "Security Operations",
+    "version": "1.0",
+    "effective_date": "2026-01-12",
+    "risk": "low-risk write",
+    "approval": "None. Security Operations may isolate without notice."
+  },
+  "runbooks/RB-011.docx": {
+    "id": "RB-011",
+    "title": "Create a shared mailbox",
+    "audience": "it-staff",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "owner": "Messaging & Collaboration",
+    "version": "1.0",
+    "effective_date": "2026-01-12",
+    "risk": "approval-required",
+    "approval": "The manager of the requested owner."
+  },
+  "runbooks/RB-012.docx": {
+    "id": "RB-012",
+    "title": "Reclaim an unused licence",
+    "audience": "it-staff",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "owner": "Software Packaging",
+    "version": "1.0",
+    "effective_date": "2026-01-12",
+    "risk": "low-risk write",
+    "approval": "None after 60 days without use. The holder's agreement before that."
+  },
+  "runbooks/RB-013.docx": {
+    "id": "RB-013",
+    "title": "Run a priority 1 incident",
+    "audience": "it-staff",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "owner": "Service Desk L1",
+    "version": "1.0",
+    "effective_date": "2026-01-12",
+    "risk": "low-risk write",
+    "approval": "None. The incident manager on duty leads."
+  },
+  "runbooks/RB-014.docx": {
+    "id": "RB-014",
+    "title": "Give a user their disk recovery key",
+    "audience": "it-staff",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "owner": "Service Desk L1",
+    "version": "1.0",
+    "effective_date": "2026-01-12",
+    "risk": "read",
+    "approval": "None. Identity verification is required because the key unlocks the disk."
+  },
+  "runbooks/RB-015.docx": {
+    "id": "RB-015",
+    "title": "Grant temporary administrator rights",
+    "audience": "it-staff",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "owner": "Security Operations",
+    "version": "1.0",
+    "effective_date": "2026-01-12",
+    "risk": "approval-required",
+    "approval": "The line manager and Security Operations, both recorded in the elevation workflow."
+  },
+  "reference/glossary.md": {
+    "id": "REF-003",
+    "title": "Glossary of IT terms and abbreviations",
+    "audience": "employee",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "effective_date": "2026-09-01",
+    "owner": "Service Desk L1",
+    "version": "1.4"
+  },
+  "reference/sla_matrix.pdf": {
+    "id": "REF-001",
+    "title": "IT Service Level Targets",
+    "audience": "employee",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "effective_date": "2026-01-05",
+    "owner": "Head of IT Service Management",
+    "version": "3.0"
+  },
+  "reference/software_catalogue.csv": {
+    "id": "REF-002",
+    "title": "Software catalogue",
+    "audience": "employee",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "effective_date": "2026-11-02",
+    "owner": "IT Asset Manager",
+    "version": "2026.11"
+  },
+  "reference/software_catalogue.html": {
+    "id": "REF-002",
+    "title": "Software catalogue",
+    "audience": "employee",
+    "os": "any",
+    "region": "global",
+    "status": "current",
+    "effective_date": "2026-11-02",
+    "owner": "IT Asset Manager",
+    "version": "2026.11"
+  }
+}
