@@ -344,7 +344,7 @@
     {
       "session": 13,
       "status": "implemented",
-      "completion_state": "verified_awaiting_commit",
+      "completion_state": "verified_committed",
       "starter": "sessions/13-reranking-and-query-rewriting/starter",
       "solution": "sessions/13-reranking-and-query-rewriting/solution",
       "previous_tests": [
@@ -369,7 +369,9 @@
       ],
       "default_command": [
         "rag-rerank-compare"
-      ]
+      ],
+      "completion_commit": "ebd2b28713ade8e6c8542c4ddf04d04f84a13927",
+      "completion_evidence": "sessions/13-reranking-and-query-rewriting/verification/runtime-gate.json"
     },
     {
       "session": 14,
