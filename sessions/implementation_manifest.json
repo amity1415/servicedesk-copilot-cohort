@@ -254,7 +254,7 @@
     {
       "session": 10,
       "status": "implemented",
-      "completion_state": "verified_awaiting_commit",
+      "completion_state": "verified_committed",
       "starter": "sessions/10-vector-database-and-indexing/starter",
       "solution": "sessions/10-vector-database-and-indexing/solution",
       "previous_tests": [
@@ -277,7 +277,8 @@
       "default_command": [
         "rag-postgres-verify"
       ],
-      "completion_blocker": "main-http-runtime failed; inspect reports\\completion\\session-10"
+      "completion_commit": "e0b38038a5ac4ae1c069efba47d5a4e0663859e2",
+      "completion_evidence": "sessions/10-vector-database-and-indexing/verification/runtime-gate.json"
     },
     {
       "session": 11,
