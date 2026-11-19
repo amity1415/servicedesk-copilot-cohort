@@ -62,6 +62,8 @@ def complete(number):
         git("commit", "-m", "Keep session 04 pending until live acceptance is verified")
         print(item["completion_blocker"], flush=True)
         return 2
+    if number == 14 and item.get("completion_state") == "pending_live_validation":
+        raise RuntimeError(item["completion_blocker"])
     if number not in {1, 2, 3, 9, 10, 11, 12, 13}:
         raise RuntimeError("No complete runtime-gate definition exists for this session yet")
     evidence_dir = ROOT / "sessions" / Path(item["solution"]).parts[1] / "verification"

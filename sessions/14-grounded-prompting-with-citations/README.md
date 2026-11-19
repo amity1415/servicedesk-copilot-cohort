@@ -16,10 +16,20 @@ Work through these implementation decisions: Version the grounded prompt; delimi
 
 ## Reference implementation
 
-- [src/copilot/rag/advanced.py](../../src/copilot/rag/advanced.py)
-- [src/copilot/guardrails/checks.py](../../src/copilot/guardrails/checks.py)
+- [Passage selection and validation](../../src/copilot/rag/grounded.py)
+- [Versioned grounded prompt](../../src/copilot/rag/prompts/grounded-v2.md)
 
-Run the adjacent `reference.py` from the project root. It executes the session experiment through the shared application code. Its JSON report declares whether it is an offline experiment or an integration preflight. A preflight does not satisfy the integration gate.
+Run `scripts/session.py run 14` for the standalone contract fixture,
+`copilot rag-grounded-verify` for the shared source fixture, and
+`python scripts/verify_grounded_runtime.py` for the HTTP fixture.
+
+After provider, model, and spend are authorized, configure
+`COPILOT_ANSWER_MODE=grounded`, `COPILOT_LLM_MODEL`, and
+`COPILOT_LLM_API_KEY` locally. Set `COPILOT_LLM_BASE_URL` when using
+a different OpenAI-compatible endpoint. Restart the API and capture the
+Mac VPN and Windows VPN 809 transcripts. Check that an unknown policy
+abstains. Have a human reviewer compare each accepted excerpt with the
+question and underlying source before recording completion.
 
 ## Deliberate failure exercise
 

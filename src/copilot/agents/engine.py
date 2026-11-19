@@ -9,6 +9,7 @@ from __future__ import annotations
 import re
 
 from copilot.guardrails.checks import suspicious
+from copilot.rag.grounded import MODE as GROUNDED_MODE
 from copilot.rag.pipeline import Retriever
 from copilot.rag.query import rewrite
 from copilot.telemetry import traced
@@ -142,7 +143,14 @@ class Engine:
                 os_name=os_name,
                 region=employee["region"],
             )
-            result.update(status="answered", steps=["search_kb"])
+            status = (
+                "abstained"
+                if result.get("mode") == GROUNDED_MODE and result.get("abstained")
+                else "answered"
+            )
+            result.update(status=status, steps=["search_kb"])
         state.update(last_query=query, last_result=result)
         self.runtime.save_thread(actor, thread, state)
+        if result.get("mode") == GROUNDED_MODE:
+            return result
         return {**result, "mode": "deterministic-offline-workflow"}

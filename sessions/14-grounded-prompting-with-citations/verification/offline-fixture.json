@@ -1,0 +1,82 @@
+{
+  "session": 14,
+  "verified_at_utc": "2026-11-19T08:40:54.108314+00:00",
+  "scope": "offline transport fixtures and authenticated local HTTP using an HTTP provider fixture",
+  "standalone_tests_passed": 51,
+  "main_tests_passed": 117,
+  "starter_inherited_tests_passed": 50,
+  "starter_new_acceptance_failed_as_expected": true,
+  "standalone_and_integrated_outcomes_match": true,
+  "paid_provider_calls": 0,
+  "human_review_completed": false,
+  "live_generation_verified": false,
+  "http": {
+    "health": {
+      "status": "ok",
+      "mode": "grounded-source-selection",
+      "documents": 209
+    },
+    "provider": "local-http-fixture",
+    "live_generation_verified": false,
+    "provider_calls": 2,
+    "cases": [
+      {
+        "question": "How do I set up VPN on my Mac?",
+        "result": {
+          "answer": "SecureTunnel is the company VPN; install it from App Hub and sign in with LarkID to reach internal systems from outside the office.",
+          "citations": [
+            {
+              "chunk_id": "KB-1017:recursive:9b9ea2f835e2c40e:0",
+              "document_id": "KB-1017",
+              "source": "data\\kb\\KB-1017.html",
+              "quote": "SecureTunnel is the company VPN; install it from App Hub and sign in with LarkID to reach internal systems from outside the office."
+            }
+          ],
+          "abstained": false,
+          "mode": "grounded-source-selection",
+          "prompt_version": "grounded-v2",
+          "status": "answered",
+          "steps": [
+            "search_kb"
+          ]
+        }
+      },
+      {
+        "question": "How do I fix Windows VPN error 809?",
+        "result": {
+          "answer": "1. Connect the laptop to a phone hotspot and try the VPN. If it works, the first network is blocking it.",
+          "citations": [
+            {
+              "chunk_id": "KB-1018:recursive:31cdc78bfbe98fa2:0",
+              "document_id": "KB-1018",
+              "source": "data\\kb\\KB-1018.md",
+              "quote": "1. Connect the laptop to a phone hotspot and try the VPN. If it works, the first network is blocking it."
+            }
+          ],
+          "abstained": false,
+          "mode": "grounded-source-selection",
+          "prompt_version": "grounded-v2",
+          "status": "answered",
+          "steps": [
+            "search_kb"
+          ]
+        }
+      },
+      {
+        "question": "What does policy POL-999999999 require?",
+        "result": {
+          "answer": "I couldn\u2019t verify an answer from the available sources.",
+          "citations": [],
+          "abstained": true,
+          "mode": "grounded-source-selection",
+          "reason": "no_supporting_source",
+          "prompt_version": "grounded-v2",
+          "status": "abstained",
+          "steps": [
+            "search_kb"
+          ]
+        }
+      }
+    ]
+  }
+}

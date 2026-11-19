@@ -41,6 +41,7 @@ class Settings(BaseSettings):
     # Filled in session 4.
     llm_provider: str | None = None
     llm_model: str | None = None
+    llm_base_url: str = "https://api.openai.com/v1"
     llm_api_key: SecretStr | None = None
     request_timeout_s: float = Field(default=30.0, gt=0)
 

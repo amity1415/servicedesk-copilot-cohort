@@ -31,11 +31,13 @@ class ModelClient:
         timeout: float = 30,
         attempts: int = 3,
         transport=None,
+        max_tokens: int | None = None,
     ):
         if attempts < 1:
             raise ValueError("attempts must be positive")
         self.model, self.base_url, self.api_key = model, base_url, api_key
         self.timeout, self.attempts, self.transport = timeout, attempts, transport
+        self.max_tokens = max_tokens
 
     @traced("model.complete")
     def complete(
@@ -57,6 +59,8 @@ class ModelClient:
         if not self.api_key:
             raise ValueError("a live model requires an API key")
         body = {"model": self.model, "messages": messages, "temperature": temperature}
+        if self.max_tokens is not None:
+            body["max_tokens"] = self.max_tokens
         if tools:
             body["tools"] = tools
         with httpx.Client(timeout=self.timeout, transport=self.transport) as client:

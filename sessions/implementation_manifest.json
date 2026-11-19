@@ -375,8 +375,36 @@
     },
     {
       "session": 14,
-      "status": "planned",
-      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+      "status": "implemented",
+      "completion_state": "pending_live_validation",
+      "completion_blocker": "Live model transcripts need an authorized provider, model, and spend limit; human entailment review is required.",
+      "starter": "sessions/14-grounded-prompting-with-citations/starter",
+      "solution": "sessions/14-grounded-prompting-with-citations/solution",
+      "previous_tests": [
+        "test_config.py",
+        "test_inference.py",
+        "test_logging_setup.py",
+        "test_ml.py",
+        "test_rag_baseline.py",
+        "test_rag_embeddings.py",
+        "test_rag_hybrid.py",
+        "test_rag_ingestion.py",
+        "test_rag_metadata.py",
+        "test_rag_postgres.py",
+        "test_rag_recursive.py",
+        "test_rag_reranking.py",
+        "test_rag_semantic.py",
+        "test_source_identity.py",
+        "test_tickets.py",
+        "test_tokens.py"
+      ],
+      "new_tests": [
+        "test_rag_grounded.py"
+      ],
+      "default_command": [
+        "rag-grounded-verify"
+      ],
+      "offline_evidence": "sessions/14-grounded-prompting-with-citations/verification/offline-fixture.json"
     },
     {
       "session": 15,

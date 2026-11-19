@@ -14,8 +14,8 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
 from copilot.agents.engine import Engine
+from copilot.rag.grounded import configured_rag
 from copilot.rag.pipeline import ingest
-from copilot.rag.service import VectorRag
 from copilot.telemetry import configure, dashboard, span
 from copilot.tools.runtime import Runtime
 from copilot.tools.ticketing import TicketingClient
@@ -45,7 +45,7 @@ def create_app(
         if not token:
             raise ValueError("empty bearer tokens are forbidden")
         runtime.employee(employee_id)
-    engine = Engine(runtime, VectorRag.configured(data), ticketing)
+    engine = Engine(runtime, configured_rag(data), ticketing)
     app = FastAPI(title="Larkhaven Copilot", version="0.2.0")
     app.state.runtime = runtime
 

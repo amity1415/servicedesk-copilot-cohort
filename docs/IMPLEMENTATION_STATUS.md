@@ -5,7 +5,7 @@ live integration checks and release gates are separate. A successful offline run
 does not certify production readiness, model quality, protocol interoperability or
 the numerical release targets.
 
-## Local embedding retrieval and pgvector indexing, sessions 09–10
+## Local retrieval, sessions 09–13
 
 Session 09 added pinned CPU ONNX retrieval and a persistent embedding cache.
 Session 10 adds the opt-in `COPILOT_RETRIEVAL_BACKEND=pgvector` backend.
@@ -15,6 +15,16 @@ and validates top-k search, replacement rollback, and source withdrawal. The
 completion gate also exercises the shared API in each retrieval mode.
 Consult the [session manifest](../sessions/implementation_manifest.json) for
 audited completion and evidence.
+
+Session 11 verifies OS, regional, audience, and register-controlled policy
+visibility. Session 12 adds PostgreSQL keyword and vector fusion. Session 13
+adds thread-scoped follow-up rewriting and an opt-in pinned CPU cross-encoder.
+Hybrid search remains enabled in the running local app because the cross-encoder
+reduced draft Recall@5 and increased p95 latency.
+
+Session 14's citation validation and grounded API passed local fixture checks.
+The live model transcripts and human entailment review are pending. The
+current app continues serving the local extractive workflow.
 
 ## Validated cumulative RAG batch, sessions 05–08
 

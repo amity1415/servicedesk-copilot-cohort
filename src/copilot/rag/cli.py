@@ -42,6 +42,8 @@ def register(commands, stage=8):
     if stage >= 13:
         commands.add_parser("rag-reranker-prepare", help="prepare the pinned CPU cross-encoder")
         commands.add_parser("rag-rerank-compare", help="measure reranking recall and p95 latency")
+    if stage >= 14:
+        commands.add_parser("rag-grounded-verify", help="exercise the offline citation contract")
     if stage >= 5:
         commands.add_parser("rag-benchmark", help="measure the session's chunking strategies")
 
@@ -89,6 +91,10 @@ def execute(args, settings, stage=8):
         from copilot.rag.reranker_benchmark import compare_reranker
 
         result = compare_reranker(data)
+    elif args.command == "rag-grounded-verify":
+        from copilot.rag.grounded_fixture import verify_grounded_fixture
+
+        result = verify_grounded_fixture(data)
     elif args.command == "rag-ingest":
         from copilot.rag.loaders import ingest
 

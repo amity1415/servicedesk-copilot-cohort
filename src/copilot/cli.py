@@ -56,7 +56,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     from copilot.rag.cli import register as register_rag
 
-    register_rag(commands, stage=13)
+    register_rag(commands, stage=14)
 
     args = parser.parse_args(argv)
     settings = get_settings()
@@ -65,7 +65,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     from copilot.foundation_cli import execute
     from copilot.rag.cli import execute as execute_rag
 
-    rag_result = execute_rag(args, settings, stage=13)
+    rag_result = execute_rag(args, settings, stage=14)
     if rag_result is not None:
         return rag_result
 
@@ -114,9 +114,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         from copilot.tools.runtime import Runtime
 
         runtime = Runtime(Path(".work/runtime.sqlite3"), settings.data_dir)
-        from copilot.rag.service import VectorRag
+        from copilot.rag.grounded import configured_rag
 
-        engine = Engine(runtime, VectorRag.configured(settings.data_dir))
+        engine = Engine(runtime, configured_rag(settings.data_dir))
         print(json.dumps(engine.run(args.employee, args.question, args.thread), indent=2))
         return 0
     if args.command == "serve":

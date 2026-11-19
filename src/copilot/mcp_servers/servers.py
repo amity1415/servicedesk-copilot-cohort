@@ -10,7 +10,7 @@ import functools
 import os
 from pathlib import Path
 
-from copilot.rag.service import VectorRag
+from copilot.rag.grounded import configured_rag
 from copilot.tools.runtime import Runtime
 from copilot.tools.ticketing import TicketDraft
 
@@ -41,7 +41,7 @@ def make_server(
         return register
 
     if name == "documents":
-        retriever = VectorRag.configured(data)
+        retriever = configured_rag(data)
 
         @tool()
         def search_kb(query: str, os_name: str | None = None) -> dict:
