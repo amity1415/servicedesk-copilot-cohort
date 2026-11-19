@@ -52,12 +52,12 @@ def make_server(
 
         @server.resource("kb://articles/{article_id}")
         def article(article_id: str) -> str:
-            from copilot.rag.pipeline import allowed, load_document
+            from copilot.rag.loaders import is_allowed, load_document
 
             # Identifier allow-list prevents path traversal and direct resource leaks.
             paths = {p.stem: p for p in (data / "kb").glob("*") if p.suffix in {".md", ".html"}}
             document = load_document(paths[article_id])
-            if not allowed(document.metadata, employee["role"], None, employee["region"]):
+            if not is_allowed(document.metadata, employee["role"], region=employee["region"]):
                 raise PermissionError("article unavailable to this identity")
             return document.text
 

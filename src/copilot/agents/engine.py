@@ -89,7 +89,10 @@ class Engine:
             ]
             steps.extend(["get_assets", "check_service_status", "search_kb"])
             answer = self.retriever.answer(
-                "laptop slow performance", os_name=assets[0]["os"] if assets else None
+                "laptop slow performance",
+                role=employee["role"],
+                os_name=assets[0]["os"] if assets else None,
+                region=employee["region"],
             )
             result = {
                 **answer,
@@ -132,7 +135,10 @@ class Engine:
                 else (assets[0]["os"] if assets else None)
             )
             result = self.retriever.answer(
-                rewrite(query, state.get("last_query", "")), role=employee["role"], os_name=os_name
+                rewrite(query, state.get("last_query", "")),
+                role=employee["role"],
+                os_name=os_name,
+                region=employee["region"],
             )
             result.update(status="answered", steps=["search_kb"])
         state.update(last_query=query, last_result=result)

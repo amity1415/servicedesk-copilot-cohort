@@ -22,11 +22,11 @@ QUESTION = "How do I set up VPN on my Mac?"
 
 
 @contextmanager
-def running_api(mode, cache, state):
+def running_api(mode, cache, state, *, data=Path("data"), tokens=None):
     os.environ["COPILOT_RETRIEVAL_BACKEND"] = mode
     os.environ["COPILOT_EMBEDDING_CACHE"] = str(cache)
     os.environ["COPILOT_TRANSPORT"] = "direct"
-    app = create_app(state=state, tokens={"runtime-test": "E1261"})
+    app = create_app(data=data, state=state, tokens=tokens or {"runtime-test": "E1261"})
     config = uvicorn.Config(app, host="127.0.0.1", port=0, log_level="warning")
     server = uvicorn.Server(config)
     with socket.socket() as listener:

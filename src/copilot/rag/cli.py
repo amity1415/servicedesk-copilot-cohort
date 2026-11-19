@@ -35,6 +35,8 @@ def register(commands, stage=8):
         commands.add_parser("rag-embedding-model-prepare", help="prepare the second CPU model")
     if stage >= 10:
         commands.add_parser("rag-postgres-verify", help="verify retrieval in a pgvector database")
+    if stage >= 11:
+        commands.add_parser("rag-metadata-verify", help="verify retrieval visibility")
     if stage >= 5:
         commands.add_parser("rag-benchmark", help="measure the session's chunking strategies")
 
@@ -66,6 +68,10 @@ def execute(args, settings, stage=8):
         from copilot.rag.postgres_benchmark import verify_postgres
 
         result = verify_postgres(data, settings.database_url.get_secret_value())
+    elif args.command == "rag-metadata-verify":
+        from copilot.rag.metadata_report import verify_metadata
+
+        result = verify_metadata(data)
     elif args.command == "rag-ingest":
         from copilot.rag.loaders import ingest
 

@@ -10,8 +10,17 @@ from dataclasses import asdict
 from datetime import date
 from pathlib import Path
 
-PARSER_VERSION = "cohort-ingest-v1"
+PARSER_VERSION = "cohort-ingest-v2"
 FORMATS = {".md", ".html", ".pdf", ".docx"}
+SCOPE_ALIASES = {
+    "os": {"mac": "macos", "mac os": "macos", "os x": "macos", "win": "windows"},
+    "region": {"asia pacific": "apac", "asia-pacific": "apac", "worldwide": "global"},
+}
+
+
+def normalize_scope(key, value):
+    normalized = " ".join(str(value).casefold().split())
+    return SCOPE_ALIASES.get(key, {}).get(normalized, normalized)
 
 
 def _html(path):
@@ -55,6 +64,7 @@ def _trusted_metadata(path):
     metadata = dict(trusted.get(relative, {}))
     if path.parent.name == "policies":
         register = path.parent / "register.csv"
+        metadata["status"] = "unregistered"
         if register.exists():
             with register.open(encoding="utf-8", newline="") as stream:
                 row = next((r for r in csv.DictReader(stream) if r["file"] == path.name), None)
@@ -76,7 +86,7 @@ def load_document(path: Path):
 
         text = path.read_text(encoding="utf-8")
         if text.startswith("---"):
-            match = re.match(r"\A---\s*\n(.*?)\n---\s*\n?(.*)\Z", text, re.S)
+            match = re.match(r"\A---\s*\n(.*?)\n---\s*\n?(.*)\Z", text, re.DOTALL)
             if not match:
                 raise ValueError("invalid Markdown frontmatter boundary")
             metadata = yaml.safe_load(match.group(1)) or {}
@@ -114,7 +124,7 @@ def load_document(path: Path):
             metadata[key] = str(metadata[key])
     for key in ("audience", "os", "region", "status"):
         if key in metadata:
-            metadata[key] = str(metadata[key]).lower()
+            metadata[key] = normalize_scope(key, metadata[key])
     if isinstance(metadata.get("error_codes"), str):
         try:
             metadata["error_codes"] = json.loads(metadata["error_codes"])
@@ -141,8 +151,8 @@ def is_allowed(metadata, role="employee", os_name=None, region=None):
         except ValueError:
             return False
     for key, desired in (("os", os_name), ("region", region)):
-        if desired and str(metadata.get(key, "any")).lower() not in {
-            str(desired).lower(),
+        if desired and normalize_scope(key, metadata.get(key, "any")) not in {
+            normalize_scope(key, desired),
             "any",
             "global",
         }:

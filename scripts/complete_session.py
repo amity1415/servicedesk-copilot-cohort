@@ -62,7 +62,7 @@ def complete(number):
         git("commit", "-m", "Keep session 04 pending until live acceptance is verified")
         print(item["completion_blocker"], flush=True)
         return 2
-    if number not in {1, 2, 3, 9, 10}:
+    if number not in {1, 2, 3, 9, 10, 11}:
         raise RuntimeError("No complete runtime-gate definition exists for this session yet")
     evidence_dir = ROOT / "sessions" / Path(item["solution"]).parts[1] / "verification"
     evidence_dir.mkdir(parents=True, exist_ok=True)
@@ -93,13 +93,16 @@ def complete(number):
         3: "compare",
         9: "rag-embedding-compare",
         10: "rag-postgres-verify",
+        11: "rag-metadata-verify",
     }[number]
     commands.append(("main-run", ["-m", "copilot", runtime_command]))
-    if number in {9, 10}:
+    if number in {9, 10, 11}:
         starter = ["scripts/session.py", "test", str(number), "--variant", "starter"]
         runtime = ["scripts/verify_embedding_runtime.py"]
         if number == 10:
             runtime.append("--pgvector")
+        if number == 11:
+            runtime = ["scripts/verify_metadata_runtime.py"]
         commands.extend(
             [
                 ("starter-inherited", [*starter, "--previous-only"]),
@@ -224,6 +227,14 @@ def complete(number):
                 raise RuntimeError(f"Integrated and standalone database results differ for {field}")
         evidence["postgres"] = report
         evidence["http_runtime"] = json.loads((main_rag / "postgres-runtime.json").read_text())
+    if number == 11:
+        main_rag = ROOT / "reports/integrated/rag"
+        report = json.loads((main_rag / "rag-metadata-verify.json").read_text())
+        checkpoint = ROOT / "reports/cohort/session-11/solution/rag-metadata-verify.json"
+        if report != json.loads(checkpoint.read_text()):
+            raise RuntimeError("Integrated and standalone metadata results differ")
+        evidence["metadata"] = report
+        evidence["http_runtime"] = json.loads((main_rag / "metadata-runtime.json").read_text())
     record = evidence_dir / "runtime-gate.json"
     record.write_text(json.dumps(evidence, indent=2) + "\n")
     item["completion_state"] = "verified_awaiting_commit"
@@ -276,7 +287,22 @@ def complete(number):
             "src/copilot/rag/service.py",
             "tests/test_rag_postgres.py",
         ]
-    if number in {9, 10} and git("diff", "--cached", "--name-only"):
+    if number == 11:
+        paths = [
+            "sessions/11-retrieval-and-metadata-filtering",
+            "sessions/implementation_manifest.json",
+            "scripts/complete_session.py",
+            "scripts/verify_embedding_runtime.py",
+            "scripts/verify_metadata_runtime.py",
+            "src/copilot/agents/engine.py",
+            "src/copilot/cli.py",
+            "src/copilot/mcp_servers/servers.py",
+            "src/copilot/rag/cli.py",
+            "src/copilot/rag/loaders.py",
+            "src/copilot/rag/metadata_report.py",
+            "tests/test_rag_metadata.py",
+        ]
+    if number in {9, 10, 11} and git("diff", "--cached", "--name-only"):
         raise RuntimeError("The Git index has staged changes. Preserve them before completion.")
     git("add", "--", *paths)
     git("diff", "--cached", "--check")
