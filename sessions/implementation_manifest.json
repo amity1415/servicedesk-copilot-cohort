@@ -313,7 +313,7 @@
     {
       "session": 12,
       "status": "implemented",
-      "completion_state": "verified_awaiting_commit",
+      "completion_state": "verified_committed",
       "starter": "sessions/12-hybrid-search/starter",
       "solution": "sessions/12-hybrid-search/solution",
       "previous_tests": [
@@ -338,7 +338,8 @@
       "default_command": [
         "rag-hybrid-compare"
       ],
-      "completion_blocker": "session-tests failed; inspect reports\\completion\\session-12"
+      "completion_commit": "cc9699e33810025cd7e3d10ec5a55fec8329f281",
+      "completion_evidence": "sessions/12-hybrid-search/verification/runtime-gate.json"
     },
     {
       "session": 13,
