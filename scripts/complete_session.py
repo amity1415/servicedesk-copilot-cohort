@@ -39,7 +39,28 @@ def git(*arguments):
     return result.stdout.strip()
 
 
-def complete(number, *, live_report=None, human_review=None):
+def reviewed_evaluation_dataset(path):
+    from copilot.rag.evaluation import load_cases
+
+    path = path.resolve()
+    original = ROOT / "evals/rag_golden.jsonl"
+    if not path.is_relative_to(ROOT / "evals") or path == original or path.suffix != ".jsonl":
+        raise RuntimeError("Save the reviewed dataset as a new JSON Lines file under evals/")
+    raw = path.read_bytes()
+    cases = load_cases(raw)
+    draft = load_cases(original.read_bytes())
+    identity = {(case.id, case.split, case.source_ticket) for case in cases}
+    if identity != {(case.id, case.split, case.source_ticket) for case in draft}:
+        raise RuntimeError("Review must preserve the case IDs, ticket provenance and frozen splits")
+    if (
+        any(case.review_status != "reviewed" for case in cases)
+        or sum(not case.expected_articles for case in cases) < 10
+    ):
+        raise RuntimeError("Every label needs review, including at least ten unanswerable cases")
+    return path, hashlib.sha256(raw).hexdigest()
+
+
+def complete(number, *, live_report=None, human_review=None, evaluation_dataset=None):
     path = ROOT / "sessions/implementation_manifest.json"
     manifest = json.loads(path.read_text())
     item = next(row for row in manifest["sessions"] if row["session"] == number)
@@ -70,7 +91,15 @@ def complete(number, *, live_report=None, human_review=None):
         live_transcript, reviewed_transcript = read_review(live_report, human_review, ROOT)
     elif live_report is not None or human_review is not None:
         raise RuntimeError("Grounded live evidence applies to Session 14")
-    if number not in {1, 2, 3, 9, 10, 11, 12, 13, 14}:
+    evaluation_options = []
+    if number == 15:
+        if evaluation_dataset is None:
+            raise RuntimeError(item["completion_blocker"])
+        reviewed_path, dataset_digest = reviewed_evaluation_dataset(evaluation_dataset)
+        evaluation_options = ["--dataset", str(reviewed_path)]
+    elif evaluation_dataset is not None:
+        raise RuntimeError("Reviewed RAG evaluation data applies to Session 15")
+    if number not in {1, 2, 3, 9, 10, 11, 12, 13, 14, 15}:
         raise RuntimeError("No complete runtime-gate definition exists for this session yet")
     evidence_dir = ROOT / "sessions" / Path(item["solution"]).parts[1] / "verification"
     evidence_dir.mkdir(parents=True, exist_ok=True)
@@ -93,7 +122,11 @@ def complete(number, *, live_report=None, human_review=None):
         ),
         ("lint", ["-m", "ruff", "check", "."]),
         ("format", ["-m", "ruff", "format", "--check", "."]),
-        ("session-run", ["scripts/session.py", "run", str(number)]),
+        (
+            "session-run",
+            ["scripts/session.py", "run", str(number)]
+            + (["--", "rag-evaluate", *evaluation_options] if number == 15 else []),
+        ),
     ]
     runtime_command = {
         1: "tickets-stats",
@@ -105,9 +138,10 @@ def complete(number, *, live_report=None, human_review=None):
         12: "rag-hybrid-compare",
         13: "rag-rerank-compare",
         14: "rag-grounded-verify",
+        15: "rag-evaluate",
     }[number]
-    commands.append(("main-run", ["-m", "copilot", runtime_command]))
-    if number in {9, 10, 11, 12, 13, 14}:
+    commands.append(("main-run", ["-m", "copilot", runtime_command, *evaluation_options]))
+    if number in {9, 10, 11, 12, 13, 14, 15}:
         starter = ["scripts/session.py", "test", str(number), "--variant", "starter"]
         runtime = ["scripts/verify_embedding_runtime.py"]
         if number == 10:
@@ -119,7 +153,7 @@ def complete(number, *, live_report=None, human_review=None):
         if number == 13:
             runtime.append("--reranked")
             commands.append(("followup-http-runtime", ["scripts/verify_followup_runtime.py"]))
-        if number == 14:
+        if number in {14, 15}:
             runtime = ["scripts/verify_grounded_runtime.py"]
         commands.extend(
             [
@@ -296,6 +330,26 @@ def complete(number, *, live_report=None, human_review=None):
             live_transcript=live_transcript,
             human_review=reviewed_transcript,
         )
+    if number == 15:
+        from copilot.rag.evaluation import METRICS, SPLITS
+
+        main_rag = ROOT / "reports/integrated/rag"
+        cohort = ROOT / "reports/cohort/session-15/solution"
+        report = json.loads((main_rag / "rag-evaluate.json").read_text(encoding="utf-8"))
+        standalone = json.loads((cohort / "rag-evaluate.json").read_text(encoding="utf-8"))
+        if report != standalone or report["dataset"]["sha256"] != dataset_digest:
+            raise RuntimeError("The integrated and standalone evaluation must use the same data")
+        if report["dataset"]["scope_conflicts"] or any(
+            report["splits"][split][metric][side]["mean"] is None
+            for split in SPLITS
+            for metric in METRICS
+            for side in ("baseline", "current")
+        ):
+            raise RuntimeError("Both pipelines must report all four metrics on scoped labels")
+        if len(report["failure_examples"]) < 10:
+            raise RuntimeError("The evaluation needs ten observed failure examples")
+        evidence["evaluation"] = {key: value for key, value in report.items() if key != "cases"}
+        evidence["http_runtime"] = json.loads((main_rag / "grounded-runtime.json").read_text())
     record = evidence_dir / "runtime-gate.json"
     record.write_text(json.dumps(evidence, indent=2) + "\n")
     item["completion_state"] = "verified_awaiting_commit"
@@ -418,7 +472,24 @@ def complete(number, *, live_report=None, human_review=None):
             "tests/test_rag_grounded.py",
             "tests/test_grounded_live.py",
         ]
-    if number in {9, 10, 11, 12, 13, 14} and git("diff", "--cached", "--name-only"):
+    if number == 15:
+        paths = [
+            "docs/IMPLEMENTATION_STATUS.md",
+            "docs/SESSION_COMPLETION_POLICY.md",
+            "evals/README.md",
+            "evals/rag_session15_candidate.jsonl",
+            str(reviewed_path.relative_to(ROOT)),
+            "scripts/complete_session.py",
+            "sessions/15-rag-evaluation",
+            "sessions/implementation_manifest.json",
+            "src/copilot/cli.py",
+            "src/copilot/course/experiments.py",
+            "src/copilot/rag/cli.py",
+            "src/copilot/rag/evaluation.py",
+            "src/copilot/rag/loaders.py",
+            "tests/test_rag_evaluation.py",
+        ]
+    if number in {9, 10, 11, 12, 13, 14, 15} and git("diff", "--cached", "--name-only"):
         raise RuntimeError("The Git index has staged changes. Preserve them before completion.")
     git("add", "--", *paths)
     git("diff", "--cached", "--check")
@@ -442,7 +513,13 @@ if __name__ == "__main__":
     parser.add_argument("number", type=int, choices=range(1, 41))
     parser.add_argument("--live-report", type=Path, help="Session 14 live runtime transcript")
     parser.add_argument("--human-review", type=Path, help="Session 14 human citation review")
+    parser.add_argument("--evaluation-dataset", type=Path, help="Session 15 reviewed case dataset")
     options = parser.parse_args()
     raise SystemExit(
-        complete(options.number, live_report=options.live_report, human_review=options.human_review)
+        complete(
+            options.number,
+            live_report=options.live_report,
+            human_review=options.human_review,
+            evaluation_dataset=options.evaluation_dataset,
+        )
     )

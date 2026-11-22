@@ -37,6 +37,12 @@ to produce a transcript and a human review template. Supply both with
 `--live-report` and `--human-review` when running the completion command.
 The command validates reviewed evidence and reruns the offline checks.
 
+Session 15 supplies a [review candidate](../evals/rag_session15_candidate.jsonl)
+for the frozen cases. Run the completion command with `--evaluation-dataset`
+pointing to the reviewed copy in `evals/`. Both pipeline measurements must
+match across the standalone and integrated commands before the gate commits
+the reviewed data and results.
+
 The `status` field in `sessions/implementation_manifest.json` describes source
 availability. The separate `completion_state` describes audited completion:
 `pending_verification`, `verification_failed`, `verified_awaiting_commit`,

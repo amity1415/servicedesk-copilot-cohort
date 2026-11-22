@@ -27,8 +27,14 @@ Both live replies reached the first run's output ceiling and failed response
 validation. The revised prompt asks for excerpts and abstention status, and the
 app assembles the answer. The live retry returned valid citations for both VPN
 questions and abstained on the unknown policy. Both live citations passed human review.
-Session 15 starts after the Session 14 completion commit is pushed and verified.
+The Session 14 completion and pointer commits were pushed to the private origin.
+[Hosted verification](https://github.com/amity1415/servicedesk-copilot-cohort/actions/runs/45019610927)
 [Live acceptance](../sessions/14-grounded-prompting-with-citations/README.md#live-acceptance)
+
+Session 15 adds a paired evaluator for the two local extractive pipelines.
+The 100-case candidate preserves both splits and includes checked excerpts.
+The instructor approved the reviewed copy for the completion gate.
+[Session 15](../sessions/15-rag-evaluation/README.md)
 
 ## Validated cumulative RAG batch, sessions 05–08
 

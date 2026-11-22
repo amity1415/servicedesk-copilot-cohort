@@ -44,6 +44,9 @@ def register(commands, stage=8):
         commands.add_parser("rag-rerank-compare", help="measure reranking recall and p95 latency")
     if stage >= 14:
         commands.add_parser("rag-grounded-verify", help="exercise the offline citation contract")
+    if stage >= 15:
+        evaluation = commands.add_parser("rag-evaluate", help="compare both local RAG pipelines")
+        evaluation.add_argument("--dataset", type=Path, help="evaluation cases in JSON Lines")
     if stage >= 5:
         commands.add_parser("rag-benchmark", help="measure the session's chunking strategies")
 
@@ -95,6 +98,10 @@ def execute(args, settings, stage=8):
         from copilot.rag.grounded_fixture import verify_grounded_fixture
 
         result = verify_grounded_fixture(data)
+    elif args.command == "rag-evaluate":
+        from copilot.rag.evaluation import dataset_path, evaluate
+
+        result = evaluate(data, args.dataset or dataset_path(data))
     elif args.command == "rag-ingest":
         from copilot.rag.loaders import ingest
 
@@ -146,6 +153,8 @@ def execute(args, settings, stage=8):
     output.write_text(json.dumps(result, indent=2), encoding="utf-8")
     if args.command in {"rag-ask", "rag-demo"}:
         print(json.dumps(result, indent=2))
+    elif args.command == "rag-evaluate":
+        print(json.dumps({"report": str(output), "splits": result["splits"]}, indent=2))
     else:
         print(
             json.dumps(

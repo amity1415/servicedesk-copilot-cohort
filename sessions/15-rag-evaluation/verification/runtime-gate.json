@@ -1,0 +1,485 @@
+{
+  "session": 15,
+  "verified_at_utc": "2026-11-22T12:41:38.662608+00:00",
+  "source_state": "f5571abb1e6446c16d487bcacbe2e1e233926e3a",
+  "checks": [
+    {
+      "name": "session-tests",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "15"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "02b2330d740004f1fdff4e7530d64e8797e92109c5a5b04a6cd836112477b85c"
+    },
+    {
+      "name": "main-tests",
+      "command": [
+        "-m",
+        "pytest",
+        "--tb=short",
+        "--basetemp=.work/pytest-gate-07a048e6c147404596b0a83c7033c127"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "413813eef85e2ae644d7a64f73acc823a884c42c43c14c4c9808c600f6c727c8"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "format",
+      "command": [
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "89afc6cca952f9a0b1b96be6b7f2d32ab9d983f506032479941d9aa62eff7f54"
+    },
+    {
+      "name": "session-run",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "15",
+        "--",
+        "rag-evaluate",
+        "--dataset",
+        "D:\\AI-Engineering\\servicedesk-copilot\\evals\\rag_session15_reviewed.jsonl"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "c0411e14c532b4cdba72d49d5ab6c39bf93c2c5f39f5314b6854ba254b4cf7f3"
+    },
+    {
+      "name": "main-run",
+      "command": [
+        "-m",
+        "copilot",
+        "rag-evaluate",
+        "--dataset",
+        "D:\\AI-Engineering\\servicedesk-copilot\\evals\\rag_session15_reviewed.jsonl"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "9907a0af7c1e32e0e5f542b3261f02ff1bab76db1049a3c6a3c752d92397c16c"
+    },
+    {
+      "name": "starter-inherited",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "15",
+        "--variant",
+        "starter",
+        "--previous-only"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "6040c4fc41583e4a1ebb64f08bc214cfbb7d9d5b538b13adefed5ddbebb28cde"
+    },
+    {
+      "name": "starter-new",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "15",
+        "--variant",
+        "starter"
+      ],
+      "exit_code": 1,
+      "expected_failure": true,
+      "output_sha256": "79c2d095193db6e72962a1f70df3b3441fc8fb395354006ddcbb5a3c7f42ca24"
+    },
+    {
+      "name": "main-http-runtime",
+      "command": [
+        "scripts/verify_grounded_runtime.py"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "819831b9b5ef8a3cc29fe1902aab12946ec979a152d72dd3b138ffe232d753ae"
+    }
+  ],
+  "runtime_scope": "actual session source and integrated main application",
+  "paid_calls": 0,
+  "evaluation": {
+    "mode": "local-extractive-rag-evaluation",
+    "provider_calls": 0,
+    "effective_date": "2026-11-22",
+    "dataset": {
+      "sha256": "386af9cb92fb6cd80f9379a5b823fb3782b969b9f5f8a13753d5c49059d2072e",
+      "case_count": 100,
+      "unanswerable_count": 10,
+      "review_status": {
+        "reviewed": 100
+      },
+      "scope_conflicts": 0,
+      "shared_articles_across_splits": [
+        "KB-1034",
+        "KB-1035"
+      ]
+    },
+    "pipelines": {
+      "baseline": {
+        "corpus": "session-05-fixture",
+        "corpus_sha256": "89d54b5ccdb552049387a60ce1decbe0a7ac01352f9227c66d1f3319872729e6",
+        "documents": 20,
+        "chunks": 30,
+        "chunking": "fixed",
+        "query_rewrite": false
+      },
+      "current": {
+        "corpus": "synthetic-data-pack",
+        "corpus_sha256": "d56411a5054a58dcfd92dbbfa7c39a1ad024838772db49288fcadc0a64da1d6e",
+        "documents": 150,
+        "chunks": 209,
+        "chunking": "recursive",
+        "query_rewrite": true
+      }
+    },
+    "judge": {
+      "method": "exact-evidence-extractive-v1",
+      "recall_at_5": "Expected article coverage among the first five chunks",
+      "context_precision": "Returned chunks containing a labelled source excerpt",
+      "faithfulness": "Answer lines found verbatim in valid cited passages",
+      "answer_relevance": "Expected article evidence in the answer or correct abstention",
+      "bootstrap": {
+        "samples": 1000,
+        "seed": 15,
+        "paired": true
+      },
+      "scope": "Extractive answers on the supplied case labels"
+    },
+    "splits": {
+      "development": {
+        "count": 60,
+        "answerable": 60,
+        "corpus_coverage": {
+          "baseline": 20,
+          "current": 60
+        },
+        "recall_at_5": {
+          "baseline": {
+            "mean": 0.26666666666666666,
+            "count": 60
+          },
+          "current": {
+            "mean": 0.7,
+            "count": 60
+          },
+          "paired_delta": {
+            "estimate": 0.43333333333333335,
+            "ci95": [
+              0.31666666666666665,
+              0.5666666666666667
+            ],
+            "count": 60
+          }
+        },
+        "context_precision": {
+          "baseline": {
+            "mean": 0.086,
+            "count": 50
+          },
+          "current": {
+            "mean": 0.18600000000000003,
+            "count": 50
+          },
+          "paired_delta": {
+            "estimate": 0.1,
+            "ci95": [
+              0.07200000000000001,
+              0.128
+            ],
+            "count": 50
+          }
+        },
+        "faithfulness": {
+          "baseline": {
+            "mean": 1.0,
+            "count": 50
+          },
+          "current": {
+            "mean": 1.0,
+            "count": 50
+          },
+          "paired_delta": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "count": 50
+          }
+        },
+        "answer_relevance": {
+          "baseline": {
+            "mean": 0.21666666666666667,
+            "count": 60
+          },
+          "current": {
+            "mean": 0.4666666666666667,
+            "count": 60
+          },
+          "paired_delta": {
+            "estimate": 0.25,
+            "ci95": [
+              0.11666666666666667,
+              0.4
+            ],
+            "count": 60
+          }
+        }
+      },
+      "heldout": {
+        "count": 40,
+        "answerable": 30,
+        "corpus_coverage": {
+          "baseline": 0,
+          "current": 30
+        },
+        "recall_at_5": {
+          "baseline": {
+            "mean": 0.0,
+            "count": 30
+          },
+          "current": {
+            "mean": 0.7666666666666667,
+            "count": 30
+          },
+          "paired_delta": {
+            "estimate": 0.7666666666666667,
+            "ci95": [
+              0.6,
+              0.9
+            ],
+            "count": 30
+          }
+        },
+        "context_precision": {
+          "baseline": {
+            "mean": 0.0,
+            "count": 37
+          },
+          "current": {
+            "mean": 0.12972972972972974,
+            "count": 37
+          },
+          "paired_delta": {
+            "estimate": 0.12972972972972974,
+            "ci95": [
+              0.0918918918918919,
+              0.16216216216216217
+            ],
+            "count": 37
+          }
+        },
+        "faithfulness": {
+          "baseline": {
+            "mean": 1.0,
+            "count": 37
+          },
+          "current": {
+            "mean": 1.0,
+            "count": 37
+          },
+          "paired_delta": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "count": 37
+          }
+        },
+        "answer_relevance": {
+          "baseline": {
+            "mean": 0.025,
+            "count": 40
+          },
+          "current": {
+            "mean": 0.45,
+            "count": 40
+          },
+          "paired_delta": {
+            "estimate": 0.425,
+            "ci95": [
+              0.275,
+              0.575
+            ],
+            "count": 40
+          }
+        }
+      }
+    },
+    "failure_examples": [
+      {
+        "id": "rag-001",
+        "split": "development",
+        "side": "current",
+        "cause": "retrieval_miss"
+      },
+      {
+        "id": "rag-003",
+        "split": "development",
+        "side": "current",
+        "cause": "retrieval_miss"
+      },
+      {
+        "id": "rag-005",
+        "split": "development",
+        "side": "current",
+        "cause": "retrieval_miss"
+      },
+      {
+        "id": "rag-007",
+        "split": "development",
+        "side": "current",
+        "cause": "generation"
+      },
+      {
+        "id": "rag-009",
+        "split": "development",
+        "side": "current",
+        "cause": "generation"
+      },
+      {
+        "id": "rag-011",
+        "split": "development",
+        "side": "current",
+        "cause": "generation"
+      },
+      {
+        "id": "rag-015",
+        "split": "development",
+        "side": "current",
+        "cause": "generation"
+      },
+      {
+        "id": "rag-016",
+        "split": "development",
+        "side": "current",
+        "cause": "generation"
+      },
+      {
+        "id": "rag-017",
+        "split": "development",
+        "side": "current",
+        "cause": "retrieval_miss"
+      },
+      {
+        "id": "rag-020",
+        "split": "development",
+        "side": "current",
+        "cause": "bad_chunk"
+      }
+    ]
+  },
+  "http_runtime": {
+    "health": {
+      "status": "ok",
+      "mode": "grounded-source-selection",
+      "documents": 209
+    },
+    "retrieval_backend": "tfidf",
+    "transport": "direct",
+    "cases": [
+      {
+        "question": "How do I set up VPN on my Mac?",
+        "request_id": "739c325c-9a25-41e2-8699-c6a737e73dae",
+        "elapsed_s": 0.2337,
+        "result": {
+          "answer": "SecureTunnel is the company VPN; install it from App Hub and sign in with LarkID to reach internal systems from outside the office.",
+          "citations": [
+            {
+              "chunk_id": "KB-1017:recursive:9b9ea2f835e2c40e:0",
+              "document_id": "KB-1017",
+              "source": "data\\kb\\KB-1017.html",
+              "quote": "SecureTunnel is the company VPN; install it from App Hub and sign in with LarkID to reach internal systems from outside the office."
+            }
+          ],
+          "abstained": false,
+          "mode": "grounded-source-selection",
+          "prompt_version": "grounded-v3",
+          "status": "answered",
+          "steps": [
+            "search_kb"
+          ]
+        }
+      },
+      {
+        "question": "How do I fix Windows VPN error 809?",
+        "request_id": "c8c7b805-6ad1-4243-bf6a-7b4cf9b3240f",
+        "elapsed_s": 0.2683,
+        "result": {
+          "answer": "1. Connect the laptop to a phone hotspot and try the VPN. If it works, the first network is blocking it.",
+          "citations": [
+            {
+              "chunk_id": "KB-1018:recursive:31cdc78bfbe98fa2:0",
+              "document_id": "KB-1018",
+              "source": "data\\kb\\KB-1018.md",
+              "quote": "1. Connect the laptop to a phone hotspot and try the VPN. If it works, the first network is blocking it."
+            }
+          ],
+          "abstained": false,
+          "mode": "grounded-source-selection",
+          "prompt_version": "grounded-v3",
+          "status": "answered",
+          "steps": [
+            "search_kb"
+          ]
+        }
+      },
+      {
+        "question": "What does policy POL-999999999 require?",
+        "request_id": "3259c9a4-31f1-4e9e-8420-e190a74aa4e2",
+        "elapsed_s": 0.0115,
+        "result": {
+          "answer": "I couldn\u2019t verify an answer from the available sources. I can help you raise a support ticket.",
+          "citations": [],
+          "abstained": true,
+          "mode": "grounded-source-selection",
+          "reason": "no_supporting_source",
+          "prompt_version": "grounded-v3",
+          "status": "abstained",
+          "steps": [
+            "search_kb"
+          ]
+        }
+      }
+    ],
+    "workflow_smoke": {
+      "question": "We have a new joiner next week.",
+      "status": "needs_details"
+    },
+    "provider": "local-http-fixture",
+    "live_generation_verified": false,
+    "provider_calls": 2,
+    "fixture_request_sizes": [
+      {
+        "question": "How do I set up virtual private network VPN on my Mac?",
+        "request_bytes": 6440
+      },
+      {
+        "question": "How do I fix Windows virtual private network VPN error 809?",
+        "request_bytes": 2813
+      }
+    ]
+  }
+}

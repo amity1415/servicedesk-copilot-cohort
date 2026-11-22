@@ -22,7 +22,10 @@ Read [the complete generation lineage](../../docs/DATASET_PROVENANCE.md) and [th
 
 - [evals/rag_golden.jsonl](../../evals/rag_golden.jsonl)
 
-First 90 distinct linked KB IDs encountered in historical ticket order yield 90 provisional question/answer pairs; ten authored unanswerables are appended. Distinct IDs are not a guarantee of independent template families. Current evaluator ignores split and reports on the supplied pool, so its score is not a heldout-only result.
+The first 90 distinct linked KB IDs encountered in historical ticket order
+yield 90 provisional question and answer pairs. Ten authored unanswerables
+are appended. The Session 15 evaluator reports development and heldout cases
+separately and records article overlap. Distinct IDs can still share template families.
 
 **Observed review status:** draft: 100.
 
@@ -103,7 +106,11 @@ DOCX files contain paragraphs and tables. They are not intended for employee ret
 
 ## How this session uses the data
 
-The supplied pool has 90 answerable drafts and ten authored unanswerables; preserve source_ticket and split, review labels, and never tune on the heldout subset.
+The supplied pool has 90 answerable drafts and ten authored unanswerables.
+The [review candidate](../../evals/rag_session15_candidate.jsonl) preserves their
+IDs and splits, adds source-checked excerpts, and proposes platform corrections
+for six mobile cases. Review the relevance and scope of each label before
+using the heldout results for a completion decision.
 
 ## Outputs and evidence
 
@@ -122,6 +129,8 @@ The curriculum exit criterion is: Four-metric report with judge configuration, b
 ## Reference implementation and scope
 
 - [evals/](../../evals/)
-- [src/copilot/course/experiments.py](../../src/copilot/course/experiments.py)
+- [Session 15 evaluator](../../src/copilot/rag/evaluation.py)
 
-The adjacent `reference.py` currently launches shared application code. Some sessions execute offline fixtures or preflights; that does not establish that the full live-model, database or deployment requirement has run. Consult [implementation status](../../docs/IMPLEMENTATION_STATUS.md).
+The adjacent `reference.py` runs the current local extractive comparison.
+Consult the [implementation status](../../docs/IMPLEMENTATION_STATUS.md) for
+the reviewed-label and publication checkpoints.

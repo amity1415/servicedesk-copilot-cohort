@@ -69,7 +69,11 @@ def experiment(number: int, root: Path) -> dict:
         if second["changed"] != 0 or first["skipped"]:
             raise AssertionError("ingestion not repeatable or files skipped")
         return {"first": first, "repeat": second}
-    if number in {5, 7, 8, 9, 10, 11, 12, 13, 14, 15}:
+    if number == 15:
+        from copilot.rag.evaluation import dataset_path, evaluate
+
+        return evaluate(data, dataset_path(data))
+    if number in {5, 7, 8, 9, 10, 11, 12, 13, 14}:
         from copilot.rag.advanced import reciprocal_rank_fusion, rewrite
         from copilot.rag.pipeline import Document, chunk
 
@@ -109,7 +113,7 @@ def experiment(number: int, root: Path) -> dict:
         if number == 14:
             output["answer"] = retriever.answer("VPN setup Mac", os_name="macos")
             output["live_grounding"] = "requires model and human entailment check"
-        if number in {8, 9, 10, 15}:
+        if number in {8, 9, 10}:
             output["integration_gate"] = (
                 "requires neural models, PostgreSQL or reviewed metric labels; "
                 "not satisfied by lexical reference"

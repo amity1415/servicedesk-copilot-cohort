@@ -13,7 +13,13 @@ from pathlib import Path
 PARSER_VERSION = "cohort-ingest-v2"
 FORMATS = {".md", ".html", ".pdf", ".docx"}
 SCOPE_ALIASES = {
-    "os": {"mac": "macos", "mac os": "macos", "os x": "macos", "win": "windows"},
+    "os": {
+        "mac": "macos",
+        "mac os": "macos",
+        "os x": "macos",
+        "win": "windows",
+        "windows 11": "windows",
+    },
     "region": {"asia pacific": "apac", "asia-pacific": "apac", "worldwide": "global"},
 }
 
