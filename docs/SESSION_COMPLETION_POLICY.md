@@ -43,6 +43,12 @@ pointing to the reviewed copy in `evals/`. Both pipeline measurements must
 match across the standalone and integrated commands before the gate commits
 the reviewed data and results.
 
+Session 16 runs `rag-http-verify` against a fresh loopback API from each source
+tree. The reports must match across the two VPN walkthroughs, the Windows
+follow-up, the SSE response, request IDs and ingestion authorization. Confirm
+GitHub Actions on the published `main` commit and publish `v0.2-rag` at that
+verified commit before advancing.
+
 The `status` field in `sessions/implementation_manifest.json` describes source
 availability. The separate `completion_state` describes audited completion:
 `pending_verification`, `verification_failed`, `verified_awaiting_commit`,

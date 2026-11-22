@@ -34,7 +34,14 @@ The Session 14 completion and pointer commits were pushed to the private origin.
 Session 15 adds a paired evaluator for the two local extractive pipelines.
 The 100-case candidate preserves both splits and includes checked excerpts.
 The instructor approved the reviewed copy for the completion gate.
+The posted completion commit passed [GitHub Actions](https://github.com/amity1415/servicedesk-copilot-cohort/actions/runs/45023640589).
 [Session 15](../sessions/15-rag-evaluation/README.md)
+
+Session 16 adds typed FastAPI routes, authenticated asks, administrator ingestion,
+request IDs, and persistent citations in the Streamlit conversation. The
+standalone and integrated verification commands start their own loopback server
+and exercise both VPN scenarios plus the Windows follow-up using local TF-IDF.
+[Session 16](../sessions/16-rag-as-a-fastapi-service/README.md)
 
 ## Validated cumulative RAG batch, sessions 05–08
 

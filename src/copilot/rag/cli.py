@@ -47,6 +47,8 @@ def register(commands, stage=8):
     if stage >= 15:
         evaluation = commands.add_parser("rag-evaluate", help="compare both local RAG pipelines")
         evaluation.add_argument("--dataset", type=Path, help="evaluation cases in JSON Lines")
+    if stage >= 16:
+        commands.add_parser("rag-http-verify", help="exercise the local API and Streamlit chat")
     if stage >= 5:
         commands.add_parser("rag-benchmark", help="measure the session's chunking strategies")
 
@@ -102,6 +104,10 @@ def execute(args, settings, stage=8):
         from copilot.rag.evaluation import dataset_path, evaluate
 
         result = evaluate(data, args.dataset or dataset_path(data))
+    elif args.command == "rag-http-verify":
+        from copilot.api.verify import verify_http_service
+
+        result = verify_http_service(data)
     elif args.command == "rag-ingest":
         from copilot.rag.loaders import ingest
 

@@ -1,42 +1,18 @@
 """Run with streamlit run src/copilot/ui/chat.py."""
 
 import os
-import uuid
 
 import httpx
 import streamlit as st
+
+from copilot.ui.rag_chat import show_chat
 
 st.set_page_config(page_title="Larkhaven IT", page_icon="🛠")
 st.title("Larkhaven IT Service Desk")
 base = st.sidebar.text_input("API URL", os.getenv("COPILOT_UI_API_URL", "http://localhost:8082"))
 token = st.sidebar.text_input("Your access token", type="password")
 headers = {"Authorization": f"Bearer {token}"}
-if "thread" not in st.session_state:
-    st.session_state.thread = str(uuid.uuid4())
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.write(message["content"])
-query = st.chat_input("Describe your IT issue")
-if query:
-    st.session_state.messages.append({"role": "user", "content": query})
-    try:
-        response = httpx.post(
-            base + "/ask",
-            headers=headers,
-            json={"question": query, "thread_id": st.session_state.thread},
-            timeout=40,
-        )
-        response.raise_for_status()
-        result = response.json()
-        st.session_state.messages.append({"role": "assistant", "content": result["answer"]})
-        st.write(result["answer"])
-        st.json(result.get("citations", []))
-        if "request" in result:
-            st.info(f"Request {result['request']['id']}: {result['request']['status']}")
-    except httpx.HTTPError as exc:
-        st.error(str(exc))
+show_chat(base, token)
 with st.expander("Manager approvals"):
     if st.button("Load my pending requests"):
         response = httpx.get(base + "/approvals", headers=headers, timeout=10)

@@ -444,8 +444,36 @@
     },
     {
       "session": 16,
-      "status": "planned",
-      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+      "status": "implemented",
+      "completion_state": "verified_awaiting_commit",
+      "starter": "sessions/16-rag-as-a-fastapi-service/starter",
+      "solution": "sessions/16-rag-as-a-fastapi-service/solution",
+      "previous_tests": [
+        "test_config.py",
+        "test_inference.py",
+        "test_logging_setup.py",
+        "test_ml.py",
+        "test_rag_baseline.py",
+        "test_rag_embeddings.py",
+        "test_rag_grounded.py",
+        "test_rag_hybrid.py",
+        "test_rag_ingestion.py",
+        "test_rag_metadata.py",
+        "test_rag_postgres.py",
+        "test_rag_recursive.py",
+        "test_rag_reranking.py",
+        "test_rag_semantic.py",
+        "test_source_identity.py",
+        "test_tickets.py",
+        "test_tokens.py",
+        "test_rag_evaluation.py"
+      ],
+      "new_tests": [
+        "test_rag_http.py"
+      ],
+      "default_command": [
+        "rag-http-verify"
+      ]
     },
     {
       "session": 17,
@@ -570,9 +598,9 @@
   ],
   "git_history": {
     "remote": "https://github.com/amity1415/servicedesk-copilot-cohort.git",
-    "publishing": "Session 14 completion and pointer pushed and verified on origin/main",
-    "published_through_session": 14,
-    "verified_remote_head": "f5571abb1e6446c16d487bcacbe2e1e233926e3a",
+    "publishing": "Session 15 completion and pointer pushed and verified on origin/main",
+    "published_through_session": 15,
+    "verified_remote_head": "1eedcb0329b902066839a2b66c1338fe2ea4b562",
     "author": "automated Codex Course Builder",
     "root_branch": "main",
     "course_history": "independent linear cumulative source history"

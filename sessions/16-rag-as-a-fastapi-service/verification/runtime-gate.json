@@ -1,0 +1,157 @@
+{
+  "session": 16,
+  "verified_at_utc": "2026-11-22T17:39:42.152057+00:00",
+  "source_state": "1eedcb0329b902066839a2b66c1338fe2ea4b562",
+  "checks": [
+    {
+      "name": "session-tests",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "16"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "28e36b8e76b361d0ae90e0388a746c1e5378006b40db2963b322d39e524d8d34"
+    },
+    {
+      "name": "main-tests",
+      "command": [
+        "-m",
+        "pytest",
+        "--tb=short",
+        "--basetemp=.work/pytest-gate-70926db6409140f98531699eda757df9"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "4b3435929bd793507418c36aadef0582743405edc444b004dbf720462bfaa3a6"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "format",
+      "command": [
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "d1d3bcfe551ab465b11469bb01c32ba4964c13e80d0323c302978bdbfc0a0f9c"
+    },
+    {
+      "name": "session-run",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "16"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "db1ca5629adc84a8955cc027f7700024d35e8d60e16e82c8eb0b3937b3478af1"
+    },
+    {
+      "name": "main-run",
+      "command": [
+        "-m",
+        "copilot",
+        "rag-http-verify"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "35a201cfb80b6c47f0d2bec8da800f9cc474779ecd1a10141542fe7a7db50213"
+    },
+    {
+      "name": "starter-inherited",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "16",
+        "--variant",
+        "starter",
+        "--previous-only"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "dceb7c83fc1e6943aedad17578c0d3c43fceb7eef39221f0434cb26597ed4640"
+    },
+    {
+      "name": "starter-new",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "16",
+        "--variant",
+        "starter"
+      ],
+      "exit_code": 1,
+      "expected_failure": true,
+      "output_sha256": "906b6493dbfa23f552f79b8e34bf66839acfdf912e5f836b21189d37c51cbd02"
+    },
+    {
+      "name": "course-check",
+      "command": [
+        "scripts/check_course.py"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "1f346c19de1390fbb72e3d29d316a6abce56d94435421a161c96a19477fe2157"
+    }
+  ],
+  "runtime_scope": "actual session source and integrated main application",
+  "paid_calls": 0,
+  "http_and_ui": {
+    "mode": "live-loopback-rag-service",
+    "backend": "tfidf",
+    "answer_mode": "extractive",
+    "health": {
+      "status": "ok",
+      "mode": "tfidf-vector-extractive",
+      "documents": 209
+    },
+    "requests": {
+      "missing_token": 401,
+      "oversize": 422,
+      "cross_employee_thread": 403,
+      "employee_ingest": 403,
+      "admin_ingest_documents": 150,
+      "sse_documents": [
+        "KB-1017"
+      ],
+      "request_id_observed": true
+    },
+    "ui": {
+      "mac": {
+        "question": "How do I set up VPN on my Mac?",
+        "documents": [
+          "KB-1017"
+        ],
+        "citation_survived_rerun": true
+      },
+      "windows": {
+        "question": "How do I fix Windows VPN error 809?",
+        "documents": [
+          "KB-1018"
+        ],
+        "citation_survived_rerun": true,
+        "followup": "It still doesn't work.",
+        "followup_documents": [
+          "KB-1018"
+        ]
+      }
+    },
+    "paid_calls": 0
+  }
+}

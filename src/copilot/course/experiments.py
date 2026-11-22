@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import importlib.util
 import json
-import tempfile
 import time
 from dataclasses import asdict
 from pathlib import Path
@@ -120,28 +119,9 @@ def experiment(number: int, root: Path) -> dict:
             )
         return output
     if number == 16:
-        from fastapi.testclient import TestClient
+        from copilot.api.verify import verify_http_service
 
-        from copilot.api.app import create_app
-
-        with (
-            tempfile.TemporaryDirectory(dir=root / ".work") as temporary,
-            TestClient(
-                create_app(data, Path(temporary) / "api.sqlite3", tokens={"fixture": "E1261"})
-            ) as client,
-        ):
-            denied = client.post("/ask", json={"question": "VPN", "thread_id": "one"})
-            success = client.post(
-                "/ask",
-                json={"question": "VPN setup Mac", "thread_id": "one"},
-                headers={"Authorization": "Bearer fixture"},
-            )
-            assert denied.status_code == 401 and success.status_code == 200
-            return {
-                "unauthenticated": denied.status_code,
-                "authenticated": success.json(),
-                "request_id": success.headers["X-Request-ID"],
-            }
+        return verify_http_service(data)
     if number in {17, 18, 24}:
         from copilot.tools.ticketing import TicketDraft
 

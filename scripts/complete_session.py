@@ -99,7 +99,7 @@ def complete(number, *, live_report=None, human_review=None, evaluation_dataset=
         evaluation_options = ["--dataset", str(reviewed_path)]
     elif evaluation_dataset is not None:
         raise RuntimeError("Reviewed RAG evaluation data applies to Session 15")
-    if number not in {1, 2, 3, 9, 10, 11, 12, 13, 14, 15}:
+    if number not in {1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16}:
         raise RuntimeError("No complete runtime-gate definition exists for this session yet")
     evidence_dir = ROOT / "sessions" / Path(item["solution"]).parts[1] / "verification"
     evidence_dir.mkdir(parents=True, exist_ok=True)
@@ -139,10 +139,15 @@ def complete(number, *, live_report=None, human_review=None, evaluation_dataset=
         13: "rag-rerank-compare",
         14: "rag-grounded-verify",
         15: "rag-evaluate",
+        16: "rag-http-verify",
     }[number]
     commands.append(("main-run", ["-m", "copilot", runtime_command, *evaluation_options]))
-    if number in {9, 10, 11, 12, 13, 14, 15}:
+    if number >= 9:
         starter = ["scripts/session.py", "test", str(number), "--variant", "starter"]
+        commands.extend(
+            [("starter-inherited", [*starter, "--previous-only"]), ("starter-new", starter)]
+        )
+    if number in {9, 10, 11, 12, 13, 14, 15}:
         runtime = ["scripts/verify_embedding_runtime.py"]
         if number == 10:
             runtime.append("--pgvector")
@@ -155,13 +160,9 @@ def complete(number, *, live_report=None, human_review=None, evaluation_dataset=
             commands.append(("followup-http-runtime", ["scripts/verify_followup_runtime.py"]))
         if number in {14, 15}:
             runtime = ["scripts/verify_grounded_runtime.py"]
-        commands.extend(
-            [
-                ("starter-inherited", [*starter, "--previous-only"]),
-                ("starter-new", starter),
-                ("main-http-runtime", runtime),
-            ]
-        )
+        commands.append(("main-http-runtime", runtime))
+    if number == 16:
+        commands.append(("course-check", ["scripts/check_course.py"]))
     if number == 3:
         pricing = [
             "token-report",
@@ -350,6 +351,21 @@ def complete(number, *, live_report=None, human_review=None, evaluation_dataset=
             raise RuntimeError("The evaluation needs ten observed failure examples")
         evidence["evaluation"] = {key: value for key, value in report.items() if key != "cases"}
         evidence["http_runtime"] = json.loads((main_rag / "grounded-runtime.json").read_text())
+    if number == 16:
+        main = ROOT / "reports/integrated/rag/rag-http-verify.json"
+        checkpoint = ROOT / "reports/cohort/session-16/solution/rag-http-verify.json"
+        report = json.loads(main.read_text(encoding="utf-8"))
+        if report != json.loads(checkpoint.read_text(encoding="utf-8")):
+            raise RuntimeError("The integrated and standalone HTTP or Streamlit checks differ")
+        if (
+            report["mode"] != "live-loopback-rag-service"
+            or report["paid_calls"] != 0
+            or report["requests"]["admin_ingest_documents"] != 150
+            or report["ui"]["mac"]["documents"] != ["KB-1017"]
+            or report["ui"]["windows"]["followup_documents"] != ["KB-1018"]
+        ):
+            raise RuntimeError("The HTTP walkthrough did not verify the full Session 16 scope")
+        evidence["http_and_ui"] = report
     record = evidence_dir / "runtime-gate.json"
     record.write_text(json.dumps(evidence, indent=2) + "\n")
     item["completion_state"] = "verified_awaiting_commit"
@@ -489,7 +505,25 @@ def complete(number, *, live_report=None, human_review=None, evaluation_dataset=
             "src/copilot/rag/loaders.py",
             "tests/test_rag_evaluation.py",
         ]
-    if number in {9, 10, 11, 12, 13, 14, 15} and git("diff", "--cached", "--name-only"):
+    if number == 16:
+        paths = [
+            "docs/IMPLEMENTATION_STATUS.md",
+            "docs/SESSION_COMPLETION_POLICY.md",
+            "scripts/complete_session.py",
+            "sessions/16-rag-as-a-fastapi-service",
+            "sessions/IMPLEMENTATION_GUIDE.md",
+            "sessions/implementation_manifest.json",
+            "src/copilot/api/app.py",
+            "src/copilot/api/http.py",
+            "src/copilot/api/verify.py",
+            "src/copilot/cli.py",
+            "src/copilot/course/experiments.py",
+            "src/copilot/rag/cli.py",
+            "src/copilot/ui/chat.py",
+            "src/copilot/ui/rag_chat.py",
+            "tests/test_rag_http.py",
+        ]
+    if number >= 9 and git("diff", "--cached", "--name-only"):
         raise RuntimeError("The Git index has staged changes. Preserve them before completion.")
     git("add", "--", *paths)
     git("diff", "--cached", "--check")

@@ -2,29 +2,30 @@
 
 from __future__ import annotations
 
-import json
 import os
-import secrets
-import time
-import uuid
 from pathlib import Path
+from threading import Lock
 
-from fastapi import Depends, FastAPI, Header, HTTPException, Request
-from fastapi.responses import StreamingResponse
-from pydantic import BaseModel, Field
+from fastapi import Depends, FastAPI, HTTPException
+from pydantic import BaseModel
 
 from copilot.agents.engine import Engine
+from copilot.api.http import (
+    ASK_RESPONSES,
+    Answer,
+    Ask,
+    Health,
+    IngestResult,
+    completed_result,
+    configured_tokens,
+    identify_with,
+    register_http,
+)
 from copilot.rag.grounded import configured_rag
 from copilot.rag.pipeline import ingest
-from copilot.telemetry import configure, dashboard, span
+from copilot.telemetry import configure, dashboard
 from copilot.tools.runtime import Runtime
 from copilot.tools.ticketing import TicketingClient
-
-
-class Ask(BaseModel):
-    question: str = Field(min_length=1, max_length=8000)
-    thread_id: str = Field(min_length=1, max_length=128)
-    stream: bool = False
 
 
 class Decision(BaseModel):
@@ -37,17 +38,16 @@ def create_app(
     tokens: dict[str, str] | None = None,
     ticketing=None,
 ) -> FastAPI:
-    configured = (
-        tokens if tokens is not None else json.loads(os.environ.get("COPILOT_AUTH_TOKENS", "{}"))
-    )
+    configured = configured_tokens(tokens)
     runtime = Runtime(state, data)
-    for token, employee_id in configured.items():
-        if not token:
-            raise ValueError("empty bearer tokens are forbidden")
+    for employee_id in configured.values():
         runtime.employee(employee_id)
     engine = Engine(runtime, configured_rag(data), ticketing)
     app = FastAPI(title="Larkhaven Copilot", version="0.2.0")
     app.state.runtime = runtime
+    identify = identify_with(configured)
+    ingestion_lock = Lock()
+    register_http(app)
 
     def remote_tools(actor):
         from copilot.tools.remote import RemoteTools
@@ -59,30 +59,7 @@ def create_app(
         }
         return RemoteTools(token, urls)
 
-    def identity(authorization: str = Header(default="")) -> str:
-        supplied = authorization.removeprefix("Bearer ")
-        for token, employee in configured.items():
-            if secrets.compare_digest(supplied, token):
-                return employee
-        raise HTTPException(401, "invalid bearer token")
-
-    @app.middleware("http")
-    async def request_id(request: Request, call_next):
-        request.state.request_id = str(uuid.uuid4())
-        start = time.monotonic()
-        with span("api.request", dict(request.headers)):
-            response = await call_next(request)
-        response.headers["X-Request-ID"] = request.state.request_id
-        response.headers["X-Elapsed-Seconds"] = f"{time.monotonic() - start:.4f}"
-        return response
-
-    @app.exception_handler(PermissionError)
-    async def permission_error(request, exc):
-        from fastapi.responses import JSONResponse
-
-        return JSONResponse(status_code=403, content={"error": str(exc)})
-
-    @app.get("/health")
+    @app.get("/health", response_model=Health)
     def health():
         return {
             "status": "ok",
@@ -90,8 +67,10 @@ def create_app(
             "documents": len(engine.retriever.chunks),
         }
 
-    @app.post("/ask")
-    def ask(body: Ask, actor: str = Depends(identity)):
+    @app.post(
+        "/ask", response_model=Answer, response_model_exclude_unset=True, responses=ASK_RESPONSES
+    )
+    def ask(body: Ask, actor: str = Depends(identify)):
         selected_engine = engine
         if os.getenv("COPILOT_TRANSPORT", "direct") == "mcp":
             from copilot.tools.remote import RemoteRetriever, RemoteRuntime, RemoteTicketing
@@ -106,22 +85,17 @@ def create_app(
                 ),
             )
         result = selected_engine.run(actor, body.question, body.thread_id)
-        if body.stream:
-            # Event stream of completed workflow output, not fake model tokens.
-            return StreamingResponse(
-                iter(["event: result\ndata: " + json.dumps(result) + "\n\n"]),
-                media_type="text/event-stream",
-            )
-        return result
+        return completed_result(result, body.stream)
 
-    @app.post("/ingest")
-    def ingest_documents(actor: str = Depends(identity)):
+    @app.post("/ingest", response_model=IngestResult)
+    def ingest_documents(actor: str = Depends(identify)):
         if runtime.employee(actor)["role"] != "admin":
             raise HTTPException(403, "ingestion requires admin")
-        return ingest(data, state.parent / "documents.json")
+        with ingestion_lock:
+            return ingest(data, state.parent / "documents.json")
 
     @app.get("/approvals")
-    def approvals(actor: str = Depends(identity)):
+    def approvals(actor: str = Depends(identify)):
         with runtime.connect() as db:
             return [
                 dict(r)
@@ -133,7 +107,7 @@ def create_app(
             ]
 
     @app.post("/approvals/{request_id}")
-    def decide(request_id: int, body: Decision, actor: str = Depends(identity)):
+    def decide(request_id: int, body: Decision, actor: str = Depends(identify)):
         try:
             if os.getenv("COPILOT_TRANSPORT", "direct") == "mcp":
                 return remote_tools(actor).call(
@@ -146,7 +120,7 @@ def create_app(
             raise HTTPException(409, str(exc)) from exc
 
     @app.post("/approvals/{request_id}/fulfil")
-    def fulfil(request_id: int, actor: str = Depends(identity)):
+    def fulfil(request_id: int, actor: str = Depends(identify)):
         if os.getenv("COPILOT_TRANSPORT", "direct") == "mcp":
             return remote_tools(actor).call(
                 "ticketing", "fulfil_access", {"request_id": request_id}
@@ -154,19 +128,19 @@ def create_app(
         return runtime.fulfil(actor, request_id)
 
     @app.delete("/memory")
-    def delete_memory(actor: str = Depends(identity)):
+    def delete_memory(actor: str = Depends(identify)):
         runtime.memory(actor, delete=True)
         return {"deleted": True}
 
     @app.post("/feedback")
-    def feedback(body: dict, actor: str = Depends(identity)):
+    def feedback(body: dict, actor: str = Depends(identify)):
         if body.get("rating") not in {1, -1}:
             raise HTTPException(422, "rating must be 1 or -1")
         runtime.audit(actor, "feedback", str(body["rating"]))
         return {"recorded": True}
 
     @app.get("/metrics")
-    def metrics(actor: str = Depends(identity)):
+    def metrics(actor: str = Depends(identify)):
         if runtime.employee(actor)["role"] not in {"admin", "analyst"}:
             raise HTTPException(403, "metrics requires an operator role")
         return dashboard()
