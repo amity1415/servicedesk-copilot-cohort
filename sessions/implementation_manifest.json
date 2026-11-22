@@ -376,8 +376,9 @@
     {
       "session": 14,
       "status": "implemented",
-      "completion_state": "pending_live_validation",
-      "completion_blocker": "Live model transcripts need an authorized provider, model, and spend limit; human entailment review is required.",
+      "completion_state": "verified_awaiting_commit",
+      "completion_blocker": "The revised GPT-6 Luna run passed. Human review of its two cited answers is pending.",
+      "live_runner": "scripts/verify_grounded_live.py",
       "starter": "sessions/14-grounded-prompting-with-citations/starter",
       "solution": "sessions/14-grounded-prompting-with-citations/solution",
       "previous_tests": [
@@ -538,8 +539,8 @@
     }
   ],
   "git_history": {
-    "remote": null,
-    "publishing": "not performed",
+    "remote": "https://github.com/amity1415/servicedesk-copilot-cohort.git",
+    "publishing": "private origin verified; first push pending Session 14 live review and completion commit",
     "author": "automated Codex Course Builder",
     "root_branch": "main",
     "course_history": "independent linear cumulative source history"

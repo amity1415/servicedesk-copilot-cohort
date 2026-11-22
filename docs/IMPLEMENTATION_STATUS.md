@@ -23,8 +23,12 @@ Hybrid search remains enabled in the running local app because the cross-encoder
 reduced draft Recall@5 and increased p95 latency.
 
 Session 14's citation validation and grounded API passed local fixture checks.
-The live model transcripts and human entailment review are pending. The
-current app continues serving the local extractive workflow.
+Both live replies reached the first run's output ceiling and failed response
+validation. The revised prompt asks for excerpts and abstention status, and the
+app assembles the answer. The live retry returned valid citations for both VPN
+questions and abstained on the unknown policy. Both live citations passed human review.
+Session 15 starts after the Session 14 completion commit is pushed and verified.
+[Live acceptance](../sessions/14-grounded-prompting-with-citations/README.md#live-acceptance)
 
 ## Validated cumulative RAG batch, sessions 05–08
 
@@ -66,13 +70,13 @@ Jenkins, and Docker runtime validation were still pending.
 | Model client | Configurable compatible chat endpoint, bounded retry, tokens/latency | Mock transport; no paid calls |
 | Retrieval | Mixed-format parsers, trusted metadata, four chunking strategies, TF-IDF cosine with pre-scoring authorization | Full-corpus parsing and repeatability; source/OS/error-code tests |
 | Neural/database adapters | Sentence embeddings, cache, semantic chunks, RRF, cross-encoder, pgvector schema/search | Pinned CPU ONNX semantic chunking exercised; PostgreSQL, dense retrieval and reranking runtime not exercised |
-| API/UI | Authenticated ask, completed-result SSE, ingestion restriction, approvals, feedback, Streamlit | API exercised; UI source compiled, no visual browser review |
+| API/UI | Authenticated ask, completed-result SSE, ingestion restriction, approvals, feedback, Streamlit | Authenticated API and Streamlit service health checked in Docker |
 | Actions/state | Durable local threads, memory deletion, stable ticket draft/key, dual approval, licence allocation | Ownership, duplicate/rejection, approval and effect tests |
 | Agent references | Bounded hand-written loop, specialist allow-lists, dependency executor, typed LangGraph decision/tool loop | Scripted decisions and in-memory checkpoints; PostgreSQL saver not exercised |
 | MCP | Three stdio/HTTP server references, actual SDK client, server-derived identity and per-tool audit | SDK client/server over ASGI HTTP, permission denial, resource/prompt access, schema snapshots |
 | HR/A2A | Agent card, authenticated task execution, candidate/date binding, onboarding dependency | Actual A2A SDK task over in-process HTTP |
 | Evaluation | Draft retrieval runner, exact trajectory rules, end-state scoring adapters, judge rubric, agreement interval, fail-closed release gate | Deterministic scoring tests; judge calibration and release scores unmeasured |
-| Operations | Named spans, safe token attributes, W3C outbound headers, basic metrics, CI, non-root image and Compose overlay | Local tests/lint; no clean Docker startup, image scan or full cross-service trace dashboard |
+| Operations | Named spans, safe token attributes, W3C outbound headers, basic metrics, CI, non-root image and Compose overlay | Local tests, lint, Compose build and network acceptance |
 
 ## Actual cumulative acceptance test
 
@@ -91,7 +95,9 @@ applications and an HR A2A application using in-process HTTP bridges. It checks:
 The bridge replaces network transport only. The default orchestration is a
 deterministic teaching workflow, not a claimed autonomous-model benchmark. The
 separate SDK-client test exercises real MCP initialization, listing and invocation
-over ASGI transport. Docker networking remains untested.
+over ASGI transport. On 22 November 2026, all six flows also passed through an
+isolated Docker Compose stack with a real network between the API and its service
+dependencies. [Session 14 evidence](../sessions/14-grounded-prompting-with-citations/evidence.md)
 
 ## Current limitations and remaining syllabus gates
 
@@ -115,9 +121,9 @@ over ASGI transport. Docker networking remains untested.
   OS, then run the clean-machine Compose walkthrough. `constraints-tested.txt`
   records this Windows/Python authoring environment; it is not a multi-platform lock.
 
-The initial Docker engine inspection failed. Session 10 started the local
-pgvector container and exercised it from the host application. Full-stack Docker
-build and deployment, CI-hosted runs, paid model calls, and a production release
+Session 10 exercised pgvector from the host application. Session 14's Docker
+verification built the local full stack, checked pgvector and exercised the
+assembled application. Hosted CI, live model calls and production deployment
 remain open.
 
 ## Verification recorded on 17 November 2026

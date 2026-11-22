@@ -10,7 +10,8 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 from copilot.rag.pipeline import tokens
 
 MODE = "grounded-source-selection"
-PROMPT = Path(__file__).with_name("prompts") / "grounded-v2.md"
+PROMPT = Path(__file__).with_name("prompts") / "grounded-v3.md"
+MAX_OUTPUT_TOKENS = 550
 GENERIC = frozenset(
     {"a", "do", "for", "how", "i", "is", "me", "my", "on", "the", "to", "up", "what"}
 )
@@ -26,7 +27,8 @@ class Citation(BaseModel):
 class Selection(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
 
-    answer: str = Field(max_length=6000)
+    # Older provider adapters can still return the v2 answer field.
+    answer: str = Field(default="", max_length=6000)
     abstained: bool
     citations: list[Citation] = Field(max_length=5)
 
@@ -36,8 +38,11 @@ def normalize(text):
 
 
 def abstain(reason):
+    answer = "I couldn’t verify an answer from the available sources."
+    if reason in {"no_supporting_source", "model_abstained"}:
+        answer += " I can help you raise a support ticket."
     return {
-        "answer": "I couldn’t verify an answer from the available sources.",
+        "answer": answer,
         "citations": [],
         "abstained": True,
         "mode": MODE,
@@ -103,7 +108,10 @@ def select_passages(query, hits, client):
                 "quote": quote,
             }
         )
-    if not quotes or normalize(selection.answer) != normalize(" ".join(quotes)):
+    if not quotes or (
+        "answer" in selection.model_fields_set
+        and normalize(selection.answer) != normalize(" ".join(quotes))
+    ):
         return abstain("unsupported_answer")
     return {
         "answer": "\n\n".join(quotes),
@@ -137,7 +145,7 @@ def configured_rag(data):
         return retriever
 
     from copilot.config import get_settings
-    from copilot.llm.client import ModelClient
+    from copilot.llm.client import LUNA_MODEL, ModelClient
 
     settings = get_settings()
     if not settings.llm_model or settings.llm_model == "offline" or not settings.llm_api_key:
@@ -148,6 +156,7 @@ def configured_rag(data):
         api_key=settings.llm_api_key.get_secret_value(),
         timeout=settings.request_timeout_s,
         attempts=1,
-        max_tokens=400,
+        max_tokens=MAX_OUTPUT_TOKENS,
+        json_response=settings.llm_model == LUNA_MODEL,
     )
     return GroundedRag(retriever, client)

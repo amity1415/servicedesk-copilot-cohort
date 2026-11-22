@@ -17,7 +17,9 @@ python sessions/14-grounded-prompting-with-citations/reference.py
 ```
 
 10. Perform the deliberate failure exercise in the session README. Record the observed failure and the corrective change in `evidence.md`.
-11. Validate `Requests 1 and 2 transcripts plus citation-membership tests and human entailment review`. The reference experiment alone is insufficient for any live-system requirement.
+11. Run [live acceptance](README.md#live-acceptance) with an approved model and
+    spend. Review the Mac VPN and Windows VPN 809 excerpts against their cited
+    sources. Verify that the unknown policy abstains without a provider call.
 12. Run regression checks:
 
 ```bash
@@ -26,5 +28,7 @@ ruff check .
 ruff format --check .
 ```
 
-13. Complete the evidence template, review the diff and commit only this increment and its reviewed evidence. Do not commit `.env`, runtime databases or tokens.
-14. Continue to session 15 without replacing the repository. Consult [integration steps](../../docs/INTEGRATION_STEPS.md) at module boundaries.
+13. Complete the evidence template, review the diff, and run the completion
+    command with the live transcript and human review.
+14. Continue to session 15 after the Session 14 completion commit is recorded.
+    Consult [integration steps](../../docs/INTEGRATION_STEPS.md) at module boundaries.

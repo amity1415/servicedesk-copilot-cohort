@@ -30,7 +30,9 @@ def test_grounded_contract_rejects_fabrications_and_irrelevant_citations():
     ]
     question = "How do I install VPN?"
     client = Client()
-    assert select_passages(question, [], client)["reason"] == "no_supporting_source"
+    unknown = select_passages(question, [], client)
+    assert unknown["reason"] == "no_supporting_source"
+    assert "support ticket" in unknown["answer"]
     assert client.calls == 0
     for text, reason in (
         ("[]", "invalid_model_output"),
@@ -49,3 +51,11 @@ def test_grounded_contract_rejects_fabrications_and_irrelevant_citations():
     result = select_passages(question, chunks, client)
     assert result["answer"] == "Install VPN from App Hub."
     assert [item["document_id"] for item in result["citations"]] == ["KB-1017"]
+
+    client.payload = json.dumps(
+        {
+            "abstained": False,
+            "citations": [{"chunk_id": "vpn", "quote": "Install VPN from App Hub."}],
+        }
+    )
+    assert select_passages(question, chunks, client) == result

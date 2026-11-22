@@ -39,7 +39,7 @@ def git(*arguments):
     return result.stdout.strip()
 
 
-def complete(number):
+def complete(number, *, live_report=None, human_review=None):
     path = ROOT / "sessions/implementation_manifest.json"
     manifest = json.loads(path.read_text())
     item = next(row for row in manifest["sessions"] if row["session"] == number)
@@ -62,9 +62,15 @@ def complete(number):
         git("commit", "-m", "Keep session 04 pending until live acceptance is verified")
         print(item["completion_blocker"], flush=True)
         return 2
-    if number == 14 and item.get("completion_state") == "pending_live_validation":
-        raise RuntimeError(item["completion_blocker"])
-    if number not in {1, 2, 3, 9, 10, 11, 12, 13}:
+    if number == 14:
+        if live_report is None or human_review is None:
+            raise RuntimeError(item["completion_blocker"])
+        from verify_grounded_live import read_review
+
+        live_transcript, reviewed_transcript = read_review(live_report, human_review, ROOT)
+    elif live_report is not None or human_review is not None:
+        raise RuntimeError("Grounded live evidence applies to Session 14")
+    if number not in {1, 2, 3, 9, 10, 11, 12, 13, 14}:
         raise RuntimeError("No complete runtime-gate definition exists for this session yet")
     evidence_dir = ROOT / "sessions" / Path(item["solution"]).parts[1] / "verification"
     evidence_dir.mkdir(parents=True, exist_ok=True)
@@ -98,9 +104,10 @@ def complete(number):
         11: "rag-metadata-verify",
         12: "rag-hybrid-compare",
         13: "rag-rerank-compare",
+        14: "rag-grounded-verify",
     }[number]
     commands.append(("main-run", ["-m", "copilot", runtime_command]))
-    if number in {9, 10, 11, 12, 13}:
+    if number in {9, 10, 11, 12, 13, 14}:
         starter = ["scripts/session.py", "test", str(number), "--variant", "starter"]
         runtime = ["scripts/verify_embedding_runtime.py"]
         if number == 10:
@@ -112,6 +119,8 @@ def complete(number):
         if number == 13:
             runtime.append("--reranked")
             commands.append(("followup-http-runtime", ["scripts/verify_followup_runtime.py"]))
+        if number == 14:
+            runtime = ["scripts/verify_grounded_runtime.py"]
         commands.extend(
             [
                 ("starter-inherited", [*starter, "--previous-only"]),
@@ -164,10 +173,12 @@ def complete(number):
             }
         )
         if not passed:
-            item["completion_state"] = "verification_failed"
-            item["completion_blocker"] = f"{label} failed; inspect {logs.relative_to(ROOT)}"
-            path.write_text(json.dumps(manifest, indent=2) + "\n")
-            raise RuntimeError(item["completion_blocker"])
+            message = f"{label} failed; inspect {logs.relative_to(ROOT)}"
+            if number != 14:
+                item["completion_state"] = "verification_failed"
+                item["completion_blocker"] = message
+                path.write_text(json.dumps(manifest, indent=2) + "\n")
+            raise RuntimeError(message)
     # Validate outputs exist and reflect full corpus execution, not just a zero exit.
     if number in {2, 3}:
         main_report = json.loads((ROOT / "reports/integrated/ml.json").read_text())
@@ -268,6 +279,23 @@ def complete(number):
         evidence["reranking"] = report
         evidence["http_runtime"] = json.loads((main_rag / "reranked-runtime.json").read_text())
         evidence["followups"] = json.loads((main_rag / "followup-runtime.json").read_text())
+    if number == 14:
+        main_rag = ROOT / "reports/integrated/rag"
+        cohort = ROOT / "reports/cohort/session-14/solution"
+        integrated = json.loads((main_rag / "rag-grounded-verify.json").read_text())
+        standalone = json.loads((cohort / "rag-grounded-verify.json").read_text())
+        for report in (integrated, standalone):
+            for case in report["cases"]:
+                for citation in case["result"]["citations"]:
+                    citation["source"] = Path(citation["source"]).name
+        if integrated != standalone:
+            raise RuntimeError("Integrated and standalone grounded fixture results differ")
+        evidence.update(
+            offline_citation_contract=integrated,
+            http_runtime=json.loads((main_rag / "grounded-runtime.json").read_text()),
+            live_transcript=live_transcript,
+            human_review=reviewed_transcript,
+        )
     record = evidence_dir / "runtime-gate.json"
     record.write_text(json.dumps(evidence, indent=2) + "\n")
     item["completion_state"] = "verified_awaiting_commit"
@@ -372,7 +400,25 @@ def complete(number):
             "src/copilot/rag/service.py",
             "tests/test_rag_reranking.py",
         ]
-    if number in {9, 10, 11, 12, 13} and git("diff", "--cached", "--name-only"):
+    if number == 14:
+        paths = [
+            "docs/IMPLEMENTATION_STATUS.md",
+            "docs/SESSION_COMPLETION_POLICY.md",
+            "docs/engineering-design/DECISIONS.md",
+            "sessions/IMPLEMENTATION_GUIDE.md",
+            "sessions/14-grounded-prompting-with-citations",
+            "sessions/implementation_manifest.json",
+            "scripts/complete_session.py",
+            "scripts/verify_grounded_live.py",
+            "scripts/verify_grounded_runtime.py",
+            "src/copilot/llm/client.py",
+            "src/copilot/rag/grounded.py",
+            "src/copilot/rag/grounded_fixture.py",
+            "src/copilot/rag/prompts/grounded-v3.md",
+            "tests/test_rag_grounded.py",
+            "tests/test_grounded_live.py",
+        ]
+    if number in {9, 10, 11, 12, 13, 14} and git("diff", "--cached", "--name-only"):
         raise RuntimeError("The Git index has staged changes. Preserve them before completion.")
     git("add", "--", *paths)
     git("diff", "--cached", "--check")
@@ -394,4 +440,9 @@ def complete(number):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("number", type=int, choices=range(1, 41))
-    raise SystemExit(complete(parser.parse_args().number))
+    parser.add_argument("--live-report", type=Path, help="Session 14 live runtime transcript")
+    parser.add_argument("--human-review", type=Path, help="Session 14 human citation review")
+    options = parser.parse_args()
+    raise SystemExit(
+        complete(options.number, live_report=options.live_report, human_review=options.human_review)
+    )

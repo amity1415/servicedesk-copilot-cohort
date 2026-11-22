@@ -22,13 +22,20 @@ Before advancing from session N:
    Record the running-app configuration, startup or restart, readiness, the
    feature and smoke-test inputs, and observed results. Keep credentials out of
    the evidence. Leave the session pending if a required runtime check cannot run.
-8. Record that commit as the session completion pointer before beginning N+1.
+8. Record that commit as the session completion pointer. For Session 14 onward,
+   push the verified implementation and completion pointer to the agreed private
+   GitHub repository and confirm they are on the remote branch before beginning N+1.
 
 `scripts/complete_session.py N` enforces the currently defined runtime gates and
 previous-session commit dependency. It stops on any failure and makes no paid
-calls. Live-gated sessions remain pending until their real acceptance runner and
-bounded, authorized environment exist. Each new session requires its own gate
-definition; undefined later gates fail closed.
+calls. Live-gated sessions remain pending until their required live evidence and
+reviews exist. Each new session requires its own gate definition. Undefined
+later gates fail closed.
+
+Session 14 uses the [bounded live runner](../sessions/14-grounded-prompting-with-citations/README.md#live-acceptance)
+to produce a transcript and a human review template. Supply both with
+`--live-report` and `--human-review` when running the completion command.
+The command validates reviewed evidence and reruns the offline checks.
 
 The `status` field in `sessions/implementation_manifest.json` describes source
 availability. The separate `completion_state` describes audited completion:

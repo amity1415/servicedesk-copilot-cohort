@@ -33,7 +33,6 @@ def verify_grounded_fixture(data):
                 if target in line
             )
             answer = {
-                "answer": quote,
                 "abstained": False,
                 "citations": [{"chunk_id": source["chunk_id"], "quote": quote}],
             }

@@ -1,14 +1,14 @@
 # Actual session implementations
 
-Sessions 01–04 now contain actual cumulative Python source. Sessions 05–40 still
-have the earlier experiment/preflight launchers and are explicitly planned in
-`implementation_manifest.json`; they are not claimed as finished implementations.
+Sessions 01–14 contain cumulative Python source. The
+[implementation manifest](implementation_manifest.json) records verified
+completion separately and tracks the pending live gates for Sessions 04 and 14.
+Sessions 15–40 have lesson material and reference launchers.
 
 Each implemented folder contains `starter/src/copilot`, `solution/src/copilot`,
-acceptance tests in both trees, and `BUILD_GUIDE.md`. The starter for sessions 2–4
-retains the previous solution and adds the next tests and TODO interfaces. Its
-inherited tests pass; its new tests intentionally fail until the learner implements
-the increment. Existing problem/data guides and learner evidence are retained.
+acceptance tests in both trees, and build instructions. The starter retains the
+previous solution and adds the next tests and exercise interfaces. Its inherited
+tests pass. Its new tests fail until the learner implements the increment.
 
 From `D:\AI-Engineering\servicedesk-copilot`:
 
@@ -48,9 +48,8 @@ Tags are created only after solution and checkpoint validation. The initial loca
 history is authored as automated Codex course work; no remote push or production
 release tag is created. Use `git show-ref --tags` to confirm available checkpoints.
 
-Next implementation batch: sessions 5–8 with a working baseline RAG pipeline and
-trusted ingestion/chunking metadata. Provider-dependent tests, external Git hosting,
-Docker deployment and Jenkins administration remain separate decisions.
+The active gate is [Session 14 live acceptance](14-grounded-prompting-with-citations/README.md#live-acceptance).
+Session 15 adds RAG evaluation after the Session 14 completion commit.
 
 
 ## Required execution and commit gate
