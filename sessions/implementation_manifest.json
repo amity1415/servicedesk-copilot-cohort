@@ -516,8 +516,7 @@
     {
       "session": 18,
       "status": "implemented",
-      "completion_state": "verified_awaiting_commit",
-      "completion_blocker": "A bounded live tool-choice and structured-draft evaluation is required.",
+      "completion_state": "verified_committed",
       "starter": "sessions/18-tool-calling-and-structured-output/starter",
       "solution": "sessions/18-tool-calling-and-structured-output/solution",
       "previous_tests": [
@@ -547,7 +546,9 @@
       ],
       "default_command": [
         "tools-verify"
-      ]
+      ],
+      "completion_commit": "3d9d615df354c7fe32fd3048f96e2123c61d6a56",
+      "completion_evidence": "sessions/18-tool-calling-and-structured-output/verification/runtime-gate.json"
     },
     {
       "session": 19,
