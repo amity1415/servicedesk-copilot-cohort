@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import re
 
+from copilot.agents.diagnostics import run_diagnostics
 from copilot.guardrails.checks import suspicious
 from copilot.rag.grounded import MODE as GROUNDED_MODE
 from copilot.rag.pipeline import Retriever
@@ -15,6 +16,7 @@ from copilot.rag.query import rewrite
 from copilot.telemetry import traced
 from copilot.tools.password_reset import asks_for_password_reset, open_password_reset_ticket
 from copilot.tools.runtime import Runtime
+from copilot.tools.service_desk import ServiceDeskTools
 from copilot.tools.ticketing import TicketDraft, TicketingClient
 
 
@@ -25,9 +27,15 @@ class Engine:
         retriever: Retriever,
         ticketing: TicketingClient | None = None,
         onboard_handler=None,
+        *,
+        diagnostic_decision=None,
+        diagnostic_max_steps: int = 6,
     ):
         self.runtime, self.retriever, self.ticketing = runtime, retriever, ticketing
         self.onboard_handler = onboard_handler
+        self.tools = ServiceDeskTools(runtime, retriever, ticketing)
+        self.diagnostic_decision = diagnostic_decision
+        self.diagnostic_max_steps = diagnostic_max_steps
 
     @traced("agent.run")
     def run(self, actor: str, query: str, thread: str = "demo") -> dict:
@@ -85,29 +93,19 @@ class Engine:
                     onboarding=completed,
                 )
         elif "slow" in lower or state.get("diagnostics"):
-            assets = self.runtime.assets(actor, actor)
-            incidents = [
-                r
-                for r in self.runtime.rows("service_incidents")
-                if r["region"] in {employee["region"], "global"} and not r["resolved_at"]
-            ]
-            steps.extend(["get_assets", "check_service_status", "search_kb"])
-            answer = self.retriever.answer(
-                "laptop slow performance",
-                role=employee["role"],
-                os_name=assets[0]["os"] if assets else None,
-                region=employee["region"],
+            result = run_diagnostics(
+                self.tools,
+                actor,
+                query,
+                decide=self.diagnostic_decision,
+                max_steps=self.diagnostic_max_steps,
             )
-            result = {
-                **answer,
-                "assets": assets,
-                "incidents": incidents,
-                "steps": steps,
-                "status": "suggested_fixes",
-            }
             state["diagnostics"] = True
-            if any(t in lower for t in ("still", "failed", "raise", "create ticket")):
+            if result["status"] != "blocked" and any(
+                t in lower for t in ("still", "failed", "raise", "create ticket")
+            ):
                 if self.ticketing:
+                    assets = result["assets"]
                     draft = TicketDraft(
                         category="Hardware & Devices",
                         priority="P3",
@@ -123,7 +121,7 @@ class Engine:
                         self.runtime.save_thread(actor, thread, state)
                     result["ticket"] = self.ticketing.create(actor, draft, f"{actor}:{thread}:slow")
                     result["status"] = "ticket_created"
-                    steps.append("create_ticket")
+                    result["steps"].append("create_ticket")
                 else:
                     result.update(
                         status="escalated",
@@ -154,6 +152,6 @@ class Engine:
             result.update(status=status, steps=["search_kb"])
         state.update(last_query=query, last_result=result)
         self.runtime.save_thread(actor, thread, state)
-        if result.get("mode") == GROUNDED_MODE:
+        if result.get("mode") == GROUNDED_MODE or result.get("decision_source") == "configured":
             return result
         return {**result, "mode": "deterministic-offline-workflow"}

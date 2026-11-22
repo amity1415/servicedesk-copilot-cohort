@@ -101,7 +101,8 @@ Join assigned_to to the requester, apply incident region and unresolved status, 
 
 ## Outputs and evidence
 
-Bounded trajectory and explicit success or escalation; the local loop fixture uses scripted decisions.
+The local HTTP trajectory uses deterministic decisions. The bounded live run
+records model decisions for the same synthetic request and the same typed tools.
 
 The curriculum exit criterion is: Bounded trajectory for slow laptop and a runaway-loop regression test. Save observed results in this session's `evidence.md`; do not treat a requested target value as an observed score.
 
@@ -117,4 +118,6 @@ The curriculum exit criterion is: Bounded trajectory for slow laptop and a runaw
 
 - [src/copilot/agents/react.py](../../src/copilot/agents/react.py)
 
-The adjacent `reference.py` currently launches shared application code. Some sessions execute offline fixtures or preflights; that does not establish that the full live-model, database or deployment requirement has run. Consult [implementation status](../../docs/IMPLEMENTATION_STATUS.md).
+The adjacent `reference.py` runs the integrated HTTP verification. The
+[live model runner](README.md#live-model-trajectory) records the GPT-6 Luna
+trajectory and provider usage.

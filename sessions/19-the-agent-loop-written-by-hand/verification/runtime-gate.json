@@ -1,0 +1,329 @@
+{
+  "session": 19,
+  "verified_at_utc": "2026-11-22T18:44:03.701662+00:00",
+  "source_state": "c317e8997a68ef4ddad50ee25bd8b9f327797c3d",
+  "checks": [
+    {
+      "name": "session-tests",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "19"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "7cd0ac3881d163b3c2cd653f4d3c6a2da5030a77b81d52501df0d9c7309a04a2"
+    },
+    {
+      "name": "main-tests",
+      "command": [
+        "-m",
+        "pytest",
+        "--tb=short",
+        "--basetemp=.work/pytest-gate-c14988a9cb1242b5b89d524ad22944ef"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "7c4b6acc7ca0d715cf7d12889692378961bc21cbd213101f3e36bf86b4ba8e1a"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "format",
+      "command": [
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "2db2d6c4dfb5fd617730be72e893f451a96e6ad303fb66b6d7177a226fc2fb20"
+    },
+    {
+      "name": "session-run",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "19"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "3909d9f055d6640b4a611e683e841cb6407d93b7d51dba82a408a429a1490717"
+    },
+    {
+      "name": "main-run",
+      "command": [
+        "-m",
+        "copilot",
+        "react-verify"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "4b24438b342a8474f3ad0c3e466e1c33ff2f3bd6b8d414415ed7ae38d07d558f"
+    },
+    {
+      "name": "starter-inherited",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "19",
+        "--variant",
+        "starter",
+        "--previous-only"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "3f5f8ec1888d8e0f45809bf0cff89f860ec993a43395136b6e62d9b0fce714d8"
+    },
+    {
+      "name": "starter-new",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "19",
+        "--variant",
+        "starter"
+      ],
+      "exit_code": 1,
+      "expected_failure": true,
+      "output_sha256": "e5cd3a36aa520b29f3e32bf350c661563427a316df3b988e77e37e4cc895ef49"
+    },
+    {
+      "name": "course-check",
+      "command": [
+        "scripts/check_course.py"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "1f346c19de1390fbb72e3d29d316a6abce56d94435421a161c96a19477fe2157"
+    },
+    {
+      "name": "mcp-contracts",
+      "command": [
+        "scripts/snapshot_contracts.py"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "e54a79714237d11173069b31d965416c83a94d1ab18564115953602b82e48623"
+    }
+  ],
+  "runtime_scope": "actual session source and integrated main application",
+  "paid_calls": 4,
+  "http_diagnostics": {
+    "mode": "live-loopback-diagnostics",
+    "loop_sha256": "d482540ab4ac6c8ed743e504ba7f03ac400d1721f0af467b129edad5316629ab",
+    "readiness": {
+      "status": "ok",
+      "mode": "tfidf-vector-extractive",
+      "documents": 209
+    },
+    "inherited_asset_tool": "LH-L-00166",
+    "trajectory": {
+      "status": "suggested_fixes",
+      "decision_source": "local",
+      "documents": [
+        "KB-1054"
+      ],
+      "events": [
+        {
+          "step": 0,
+          "tool": "get_assets",
+          "arguments": {},
+          "outcome": "observed",
+          "observation": {
+            "devices": [
+              {
+                "asset_tag": "LH-L-00166",
+                "device_type": "laptop",
+                "os": "windows",
+                "pending_updates": "9"
+              }
+            ]
+          }
+        },
+        {
+          "step": 1,
+          "tool": "check_service_status",
+          "arguments": {},
+          "outcome": "observed",
+          "observation": {
+            "active_incidents": [
+              {
+                "incident_id": "1",
+                "service": "SecureTunnel VPN",
+                "region": "APAC",
+                "status": "degraded"
+              }
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "tool": "search_kb",
+          "arguments": {
+            "query": "laptop slow performance",
+            "os_name": "windows"
+          },
+          "outcome": "observed",
+          "observation": {
+            "excerpt": "# Speed up a slow laptop on Windows\n\nMost slow laptops are fixed by a restart, pending updates or freeing disk space; laptops with 8 GB of memory or older than four years may qualify for replacement.\n\n**Applies to:** Windows | All regions | All employees\n\n## Symptoms\n\n- Applications take a long time to open.\n- The fan runs constantly and typing lags.\n- Calls stutter while other apps are open.\n\n## Likely causes\n\n- The laptop has not been restarted for more than a week.\n- Updates are waiting for a restart.\n- Less than 15 percent of the disk is free.\n- Too many apps start automatically.\n- 8 GB of memory is not enough for the applications in use.\n\n## Resolution\n\n1. Restart the laptop; choose Restart, not Shut down, so updates finish installing.\n\n2. Open Settings, Windows Update, install everything offered and restart again.\n\n3. Press Ctrl + Shift + Esc to open Task Manager and sort Processes by Memory and by CPU. Close what you do not need.\n\n4. In Task Manager open Startup apps and disable those you do not use daily.\n\n5. Open Settings, System, Storage, and free space until at least 15 percent of the disk is free.\n\n6. If Task Manager shows memory above 85 percent with only your normal apps open, raise a ticket; include the laptop asset tag.\n\n## Good to know\n\n- A regional service incident can also make everything feel slow. Check the service status page in HelpHub first.\n- Laptops are replaced after 48 months. A laptop with 8 GB of memory can be replaced earlier when IT confirms the memory is the cause.\n\n## Still not working?\n\nRaise a ticket in HelpHub under Hardware & Devices, Performance. It is handled by Workplace Engineering. Include the exact error message and your asset tag.\n\n*Related policy: POL-004 Device and Endpoint Policy.*",
+            "document_ids": [
+              "KB-1054"
+            ]
+          }
+        }
+      ],
+      "answer": "# Speed up a slow laptop on Windows\n\nMost slow laptops are fixed by a restart, pending updates or freeing disk space; laptops with 8 GB of memory or older than four years may qualify for replacement.\n\n**Applies to:** Windows | All regions | All employees\n\n## Symptoms\n\n- Applications take a long time to open.\n- The fan runs constantly and typing lags.\n- Calls stutter while other apps are open.\n\n## Likely causes\n\n- The laptop has not been restarted for more than a week.\n- Updates are waiting for a restart.\n- Less than 15 percent of the disk is free.\n- Too many apps start automatically.\n- 8 GB of memory is not enough for the applications in use.\n\n## Resolution\n\n1. Restart the laptop; choose Restart, not Shut down, so updates finish installing.\n\n2. Open Settings, Windows Update, install everything offered and restart again.\n\n3. Press Ctrl + Shift + Esc to open Task Manager and sort Processes by Memory and by CPU. Close what you do not need.\n\n4. In Task Manager open Startup apps and disable those you do not use daily.\n\n5. Open Settings, System, Storage, and free space until at least 15 percent of the disk is free.\n\n6. If Task Manager shows memory above 85 percent with only your normal apps open, raise a ticket; include the laptop asset tag.\n\n## Good to know\n\n- A regional service incident can also make everything feel slow. Check the service status page in HelpHub first.\n- Laptops are replaced after 48 months. A laptop with 8 GB of memory can be replaced earlier when IT confirms the memory is the cause.\n\n## Still not working?\n\nRaise a ticket in HelpHub under Hardware & Devices, Performance. It is handled by Workplace Engineering. Include the exact error message and your asset tag.\n\n*Related policy: POL-004 Device and Endpoint Policy.*"
+    },
+    "runaway": {
+      "status": "escalated",
+      "reason": "step_limit",
+      "steps": [
+        "get_assets",
+        "get_assets"
+      ]
+    },
+    "tickets_written": 0,
+    "paid_calls": 0
+  },
+  "live_diagnostic_evaluation": {
+    "status": "complete",
+    "mode": "live-openai-diagnostics",
+    "model": "gpt-6-luna",
+    "source_head": "c317e8997a68ef4ddad50ee25bd8b9f327797c3d",
+    "run_at_utc": "2026-11-22T18:39:01.071981+00:00",
+    "pricing_source": "https://developers.openai.com/api/docs/models/gpt-6-luna",
+    "budget_usd": "0.02",
+    "http_verification": {
+      "mode": "live-loopback-diagnostics",
+      "loop_sha256": "d482540ab4ac6c8ed743e504ba7f03ac400d1721f0af467b129edad5316629ab",
+      "readiness": {
+        "status": "ok",
+        "mode": "tfidf-vector-extractive",
+        "documents": 209
+      },
+      "inherited_asset_tool": "LH-L-00166",
+      "trajectory": {
+        "status": "suggested_fixes",
+        "decision_source": "configured",
+        "documents": [
+          "KB-1054"
+        ],
+        "events": [
+          {
+            "step": 0,
+            "tool": "get_assets",
+            "arguments": {},
+            "outcome": "observed",
+            "observation": {
+              "devices": [
+                {
+                  "asset_tag": "LH-L-00166",
+                  "device_type": "laptop",
+                  "os": "windows",
+                  "pending_updates": "9"
+                }
+              ]
+            }
+          },
+          {
+            "step": 1,
+            "tool": "check_service_status",
+            "arguments": {},
+            "outcome": "observed",
+            "observation": {
+              "active_incidents": [
+                {
+                  "incident_id": "1",
+                  "service": "SecureTunnel VPN",
+                  "region": "APAC",
+                  "status": "degraded"
+                }
+              ]
+            }
+          },
+          {
+            "step": 2,
+            "tool": "search_kb",
+            "arguments": {
+              "query": "laptop slow performance",
+              "os_name": "windows"
+            },
+            "outcome": "observed",
+            "observation": {
+              "excerpt": "# Speed up a slow laptop on Windows\n\nMost slow laptops are fixed by a restart, pending updates or freeing disk space; laptops with 8 GB of memory or older than four years may qualify for replacement.\n\n**Applies to:** Windows | All regions | All employees\n\n## Symptoms\n\n- Applications take a long time to open.\n- The fan runs constantly and typing lags.\n- Calls stutter while other apps are open.\n\n## Likely causes\n\n- The laptop has not been restarted for more than a week.\n- Updates are waiting for a restart.\n- Less than 15 percent of the disk is free.\n- Too many apps start automatically.\n- 8 GB of memory is not enough for the applications in use.\n\n## Resolution\n\n1. Restart the laptop; choose Restart, not Shut down, so updates finish installing.\n\n2. Open Settings, Windows Update, install everything offered and restart again.\n\n3. Press Ctrl + Shift + Esc to open Task Manager and sort Processes by Memory and by CPU. Close what you do not need.\n\n4. In Task Manager open Startup apps and disable those you do not use daily.\n\n5. Open Settings, System, Storage, and free space until at least 15 percent of the disk is free.\n\n6. If Task Manager shows memory above 85 percent with only your normal apps open, raise a ticket; include the laptop asset tag.\n\n## Good to know\n\n- A regional service incident can also make everything feel slow. Check the service status page in HelpHub first.\n- Laptops are replaced after 48 months. A laptop with 8 GB of memory can be replaced earlier when IT confirms the memory is the cause.\n\n## Still not working?\n\nRaise a ticket in HelpHub under Hardware & Devices, Performance. It is handled by Workplace Engineering. Include the exact error message and your asset tag.\n\n*Related policy: POL-004 Device and Endpoint Policy.*",
+              "document_ids": [
+                "KB-1054"
+              ]
+            }
+          }
+        ],
+        "answer": "1. Restart your laptop using **Restart** (not Shut down), then install the 9 pending updates in **Settings \u2192 Windows Update** and restart again.\n2. Open Task Manager with **Ctrl + Shift + Esc**. Sort Processes by CPU and Memory, and close apps you don\u2019t need. In **Startup apps**, disable apps you don\u2019t use daily.\n3. Go to **Settings \u2192 System \u2192 Storage** and free space until at least 15% of the disk is available.\n4. If memory stays above 85% with only your usual apps open, raise a HelpHub ticket under **Hardware & Devices \u2192 Performance** and include asset tag **LH-L-00166**.\n\nThere is also a degraded **SecureTunnel VPN** incident in APAC, which may affect perceived performance if you\u2019re in that region and using the VPN."
+      },
+      "runaway": {
+        "status": "escalated",
+        "reason": "step_limit",
+        "steps": [
+          "get_assets",
+          "get_assets"
+        ]
+      },
+      "tickets_written": 0
+    },
+    "calls": [
+      {
+        "input_token_bound": 1143,
+        "observations": 0,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_5aaab7348bce4790a7a7e6a83ed0f82d",
+        "prompt_tokens": 141,
+        "completion_tokens": 22,
+        "decision": "{\"tool\":\"get_assets\",\"arguments\":{}}"
+      },
+      {
+        "input_token_bound": 1373,
+        "observations": 1,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_1f69b9c9d9974e848d671b017f55981b",
+        "prompt_tokens": 206,
+        "completion_tokens": 23,
+        "decision": "{\"tool\":\"check_service_status\",\"arguments\":{}}"
+      },
+      {
+        "input_token_bound": 1622,
+        "observations": 2,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_66377d2d328b4e54bf2f4a6c63adf9b3",
+        "prompt_tokens": 272,
+        "completion_tokens": 27,
+        "decision": "{\"tool\":\"search_kb\",\"arguments\":{\"query\":\"laptop slow performance\",\"os_name\":\"windows\"}}"
+      },
+      {
+        "input_token_bound": 3687,
+        "observations": 3,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_86a0376ee10c466c85341c6adeffeb94",
+        "prompt_tokens": 754,
+        "completion_tokens": 187,
+        "decision": "{\"answer\":\"1. Restart your laptop using **Restart** (not Shut down), then install the 9 pending updates in **Settings \u2192 Windows Update** and restart again.\\n2. Open Task Manager with **Ctrl + Shift + Esc**. Sort Processes by CPU and Memory, and close apps you don\u2019t need. In **Startup apps**, disable apps you don\u2019t use daily.\\n3. Go to **Settings \u2192 System \u2192 Storage** and free space until at least 15% of the disk is available.\\n4. If memory stays above 85% with only your usual apps open, raise a HelpHub ticket under **Hardware & Devices \u2192 Performance** and include asset tag **LH-L-00166**.\\n\\nThere is also a degraded **SecureTunnel VPN** incident in APAC, which may affect perceived performance if you\u2019re in that region and using the VPN.\"}"
+      }
+    ],
+    "estimated_usd": "0.000301125"
+  }
+}

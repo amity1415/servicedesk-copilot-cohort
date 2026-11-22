@@ -149,7 +149,11 @@ def experiment(number: int, root: Path) -> dict:
                 "no remote write made by this schema exercise"
             ),
         }
-    if number in {19, 23, 26}:
+    if number == 19:
+        from copilot.agents.verify_react import verify_react
+
+        return verify_react(data)
+    if number in {23, 26}:
         from copilot.agents.react import run_loop, specialist
 
         tools = {"get_assets": lambda: _runtime(root).assets("E1166", "E1166")}

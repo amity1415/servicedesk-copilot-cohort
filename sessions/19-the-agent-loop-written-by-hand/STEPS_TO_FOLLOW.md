@@ -9,14 +9,15 @@ Run every command from `servicedesk-copilot/` with the environment activated. Se
 5. Add max steps and deadline.
 6. Run device check, outages and KB lookup.
 7. Stop with an explicit escalation status.
-8. Run the reference experiment:
+8. Run the standalone solution and integrated HTTP check.
 
 ```bash
-python sessions/19-the-agent-loop-written-by-hand/reference.py
+python scripts/session.py run 19
+python -m copilot react-verify
 ```
 
 9. Perform the deliberate failure exercise in the session README. Record the observed failure and the corrective change in `evidence.md`.
-10. Validate `Bounded trajectory for slow laptop and a runaway-loop regression test`. The reference experiment alone is insufficient for any live-system requirement.
+10. Run the bounded live evaluation from the README. Compare the observed device, incidents and article with the two local runs.
 11. Run regression checks:
 
 ```bash
@@ -26,4 +27,4 @@ ruff format --check .
 ```
 
 12. Complete the evidence template, review the diff and commit only this increment and its reviewed evidence. Do not commit `.env`, runtime databases or tokens.
-13. Continue to session 20 without replacing the repository. Consult [integration steps](../../docs/INTEGRATION_STEPS.md) at module boundaries.
+13. Push the verified checkpoint and confirm CI before continuing to Session 20. Consult [integration steps](../../docs/INTEGRATION_STEPS.md) at module boundaries.

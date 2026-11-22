@@ -57,6 +57,12 @@ creation, and analyst updates. GPT-6 Luna picked the expected tool in all 10
 synthetic cases and returned 20 schema-valid ticket drafts. The estimated cost
 was $0.00227. [Session 18](../sessions/18-tool-calling-and-structured-output/README.md)
 
+Session 19 runs the slow-laptop investigation through the typed asset, incident,
+and knowledge-base tools. The local and live GPT-6 Luna runs cited `KB-1054`
+after observing the assigned Windows laptop and an active APAC incident. A
+repeating decision escalated after two calls, with zero ticket writes.
+[Session 19](../sessions/19-the-agent-loop-written-by-hand/README.md)
+
 ## Validated cumulative RAG batch, sessions 05–08
 
 Implemented in both the integrated application and independent cumulative session

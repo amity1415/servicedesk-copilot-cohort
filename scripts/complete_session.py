@@ -62,7 +62,13 @@ def reviewed_evaluation_dataset(path):
 
 
 def complete(
-    number, *, live_report=None, human_review=None, evaluation_dataset=None, tool_evaluation=None
+    number,
+    *,
+    live_report=None,
+    human_review=None,
+    evaluation_dataset=None,
+    tool_evaluation=None,
+    diagnostic_evaluation=None,
 ):
     path = ROOT / "sessions/implementation_manifest.json"
     manifest = json.loads(path.read_text())
@@ -110,7 +116,15 @@ def complete(
         tool_evidence = read_live_report(tool_evaluation)
     elif tool_evaluation is not None:
         raise RuntimeError("Live tool evaluation applies to Session 18")
-    if number not in {1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18}:
+    if number == 19:
+        if diagnostic_evaluation is None:
+            raise RuntimeError(item["completion_blocker"])
+        from verify_react_live import read_live_report
+
+        diagnostic_evidence = read_live_report(diagnostic_evaluation)
+    elif diagnostic_evaluation is not None:
+        raise RuntimeError("Live diagnostic evaluation applies to Session 19")
+    if number not in {1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19}:
         raise RuntimeError("No complete runtime-gate definition exists for this session yet")
     evidence_dir = ROOT / "sessions" / Path(item["solution"]).parts[1] / "verification"
     evidence_dir.mkdir(parents=True, exist_ok=True)
@@ -153,6 +167,7 @@ def complete(
         16: "rag-http-verify",
         17: "workflow-verify",
         18: "tools-verify",
+        19: "react-verify",
     }[number]
     commands.append(("main-run", ["-m", "copilot", runtime_command, *evaluation_options]))
     if number >= 9:
@@ -174,9 +189,9 @@ def complete(
         if number in {14, 15}:
             runtime = ["scripts/verify_grounded_runtime.py"]
         commands.append(("main-http-runtime", runtime))
-    if number in {16, 17, 18}:
+    if number in {16, 17, 18, 19}:
         commands.append(("course-check", ["scripts/check_course.py"]))
-    if number == 18:
+    if number in {18, 19}:
         commands.append(("mcp-contracts", ["scripts/snapshot_contracts.py"]))
     if number == 3:
         pricing = [
@@ -208,7 +223,7 @@ def complete(
         output = (result.stdout or "") + (result.stderr or "")
         (logs / f"{label}.log").write_text(output, encoding="utf-8")
         expected_failure = label == "starter-new"
-        failure_count = 2 if number == 18 else 1
+        failure_count = 2 if number in {18, 19} else 1
         passed = (
             result.returncode == 1
             and re.search(rf"\b{failure_count} failed\b", output) is not None
@@ -441,6 +456,33 @@ def complete(
         evidence["http_tools"] = integrated
         evidence["live_tool_evaluation"] = tool_evidence
         evidence["paid_calls"] = len(tool_evidence["calls"])
+    if number == 19:
+        main = ROOT / "reports/integrated/agents/react-verify.json"
+        checkpoint = ROOT / "reports/cohort/session-19/solution/react-verify.json"
+        integrated = json.loads(main.read_text(encoding="utf-8"))
+        standalone = json.loads(checkpoint.read_text(encoding="utf-8"))
+        if (
+            integrated != standalone
+            or integrated["loop_sha256"] != diagnostic_evidence["http_verification"]["loop_sha256"]
+        ):
+            raise RuntimeError(
+                "The learner, integrated, and live runs must use the same diagnostic loop"
+            )
+        if (
+            integrated["mode"] != "live-loopback-diagnostics"
+            or integrated["paid_calls"] != 0
+            or integrated["trajectory"]["status"] != "suggested_fixes"
+            or integrated["trajectory"]["documents"] != ["KB-1054"]
+            or integrated["runaway"]["reason"] != "step_limit"
+            or len(integrated["runaway"]["steps"]) != 2
+            or integrated["tickets_written"] != 0
+        ):
+            raise RuntimeError(
+                "Session 19 requires the complete diagnostic trajectory and runaway evidence"
+            )
+        evidence["http_diagnostics"] = integrated
+        evidence["live_diagnostic_evaluation"] = diagnostic_evidence
+        evidence["paid_calls"] = len(diagnostic_evidence["calls"])
     record = evidence_dir / "runtime-gate.json"
     record.write_text(json.dumps(evidence, indent=2) + "\n")
     item["completion_state"] = "verified_awaiting_commit"
@@ -643,6 +685,24 @@ def complete(
             "tests/contracts/mcp_schemas.json",
             "tests/test_service_desk_tools.py",
         ]
+    if number == 19:
+        paths = [
+            "docs/IMPLEMENTATION_STATUS.md",
+            "docs/SESSION_COMPLETION_POLICY.md",
+            "scripts/complete_session.py",
+            "scripts/verify_react_live.py",
+            "sessions/19-the-agent-loop-written-by-hand",
+            "sessions/IMPLEMENTATION_GUIDE.md",
+            "sessions/implementation_manifest.json",
+            "src/copilot/agents/diagnostics.py",
+            "src/copilot/agents/engine.py",
+            "src/copilot/agents/react.py",
+            "src/copilot/agents/verify_react.py",
+            "src/copilot/api/app.py",
+            "src/copilot/cli.py",
+            "src/copilot/course/experiments.py",
+            "tests/test_react_diagnostics.py",
+        ]
     if number >= 9 and git("diff", "--cached", "--name-only"):
         raise RuntimeError("The Git index has staged changes. Preserve them before completion.")
     git("add", "--", *paths)
@@ -671,6 +731,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "--tool-evaluation", type=Path, help="Session 18 live tool and draft report"
     )
+    parser.add_argument(
+        "--diagnostic-evaluation", type=Path, help="Session 19 live diagnostic report"
+    )
     options = parser.parse_args()
     raise SystemExit(
         complete(
@@ -679,5 +742,6 @@ if __name__ == "__main__":
             human_review=options.human_review,
             evaluation_dataset=options.evaluation_dataset,
             tool_evaluation=options.tool_evaluation,
+            diagnostic_evaluation=options.diagnostic_evaluation,
         )
     )

@@ -1,0 +1,3 @@
+# Runtime dependencies of the ticketing mock container.
+fastapi>=0.111,<1
+uvicorn>=0.30,<1

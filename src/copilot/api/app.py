@@ -27,7 +27,6 @@ from copilot.rag.grounded import configured_rag
 from copilot.rag.pipeline import ingest
 from copilot.telemetry import configure, dashboard
 from copilot.tools.runtime import Runtime
-from copilot.tools.service_desk import ServiceDeskTools
 from copilot.tools.ticketing import TicketingClient
 
 
@@ -40,18 +39,27 @@ def create_app(
     state: Path = Path(".work/runtime.sqlite3"),
     tokens: dict[str, str] | None = None,
     ticketing=None,
+    *,
+    diagnostic_decision=None,
+    diagnostic_max_steps: int = 6,
 ) -> FastAPI:
     configured = configured_tokens(tokens)
     runtime = Runtime(state, data)
     for employee_id in configured.values():
         runtime.employee(employee_id)
-    engine = Engine(runtime, configured_rag(data), ticketing)
+    engine = Engine(
+        runtime,
+        configured_rag(data),
+        ticketing,
+        diagnostic_decision=diagnostic_decision,
+        diagnostic_max_steps=diagnostic_max_steps,
+    )
     app = FastAPI(title="Larkhaven Copilot", version="0.2.0")
     app.state.runtime = runtime
     identify = identify_with(configured)
     ingestion_lock = Lock()
     register_http(app)
-    register_tools(app, ServiceDeskTools(runtime, engine.retriever, ticketing), identify)
+    register_tools(app, engine.tools, identify)
 
     def remote_tools(actor):
         from copilot.tools.remote import RemoteTools
@@ -87,6 +95,8 @@ def create_app(
                 onboard_handler=lambda candidate, start: remote.call(
                     "ticketing", "onboard", {"candidate_id": candidate, "start_date": start}
                 ),
+                diagnostic_decision=diagnostic_decision,
+                diagnostic_max_steps=diagnostic_max_steps,
             )
         result = selected_engine.run(actor, body.question, body.thread_id)
         return completed_result(result, body.stream)

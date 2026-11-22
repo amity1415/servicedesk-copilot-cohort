@@ -50,6 +50,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "workflow-verify", help="verify the password-reset workflow on local services"
     )
     commands.add_parser("tools-verify", help="verify the typed tools on local HTTP services")
+    commands.add_parser("react-verify", help="verify the bounded laptop diagnostic loop")
     serve = commands.add_parser("serve", help="start authenticated teaching API")
     serve.add_argument("--host", default="127.0.0.1", help="bind address (default: local only)")
     serve.add_argument("--port", type=int, default=8082, help="API port (default: 8082)")
@@ -83,6 +84,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         return run_check(settings)
     if args.command == "tools-verify":
         from copilot.tools.verify_tools import run_check
+
+        return run_check(settings.data_dir)
+    if args.command == "react-verify":
+        from copilot.agents.verify_react import run_check
 
         return run_check(settings.data_dir)
     if args.command == "tickets-stats":

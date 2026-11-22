@@ -59,6 +59,11 @@ mock in each source tree. Supply `--tool-evaluation` with the completed
 `verify_tools_live.py` report. The gate checks all ten expected tool choices,
 twenty validated drafts, provider usage, and matching schema fingerprints.
 
+Session 19 runs `react-verify` through the authenticated `/ask` route of each
+source tree. Supply `--diagnostic-evaluation` with the live model report. The
+gate compares the loop source, the three tool observations, the supporting
+article, and the two-step runaway escalation.
+
 The `status` field in `sessions/implementation_manifest.json` describes source
 availability. The separate `completion_state` describes audited completion:
 `pending_verification`, `verification_failed`, `verified_awaiting_commit`,

@@ -1,0 +1,10 @@
+version: 1
+default: deny
+employee:
+  tools: [search_kb, get_employee, get_assets, check_service_status, create_ticket, request_access]
+  scope: own_records
+analyst:
+  tools: [search_kb, get_employee, get_assets, check_service_status, create_ticket, update_ticket, fulfil_access]
+admin:
+  tools: [search_kb, get_employee, get_assets, check_service_status, create_ticket, update_ticket, fulfil_access, ingest]
+approval_identity: named_manager_or_data_owner
