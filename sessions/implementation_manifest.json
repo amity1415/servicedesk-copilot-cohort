@@ -480,7 +480,7 @@
     {
       "session": 17,
       "status": "implemented",
-      "completion_state": "verified_awaiting_commit",
+      "completion_state": "verified_committed",
       "starter": "sessions/17-agents-versus-workflows/starter",
       "solution": "sessions/17-agents-versus-workflows/solution",
       "previous_tests": [
@@ -509,7 +509,9 @@
       ],
       "default_command": [
         "workflow-verify"
-      ]
+      ],
+      "completion_commit": "8dc0fce29131261828b03e9669f0c1b0fd9ad988",
+      "completion_evidence": "sessions/17-agents-versus-workflows/verification/runtime-gate.json"
     },
     {
       "session": 18,
