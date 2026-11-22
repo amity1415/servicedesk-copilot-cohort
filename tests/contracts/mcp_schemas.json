@@ -73,21 +73,48 @@
     "create_ticket": {
       "$defs": {
         "TicketDraft": {
+          "additionalProperties": false,
           "properties": {
             "asset": {
+              "pattern": "^(?:LH-[LP]-[0-9]{5}|unknown|not applicable)$",
               "title": "Asset",
               "type": "string"
             },
             "assignment_group": {
+              "enum": [
+                "Service Desk L1",
+                "Identity & Access",
+                "Network Operations",
+                "Workplace Engineering",
+                "Messaging & Collaboration",
+                "Software Packaging",
+                "Security Operations",
+                "Onboarding Team"
+              ],
               "title": "Assignment Group",
               "type": "string"
             },
             "category": {
+              "enum": [
+                "Access & Identity",
+                "Network & VPN",
+                "Email & Collaboration",
+                "Hardware & Devices",
+                "Software",
+                "Security",
+                "Onboarding & Offboarding",
+                "General Enquiry"
+              ],
               "title": "Category",
               "type": "string"
             },
             "priority": {
-              "pattern": "^P[1-4]$",
+              "enum": [
+                "P1",
+                "P2",
+                "P3",
+                "P4"
+              ],
               "title": "Priority",
               "type": "string"
             },

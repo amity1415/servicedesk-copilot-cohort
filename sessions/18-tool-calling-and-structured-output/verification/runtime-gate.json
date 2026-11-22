@@ -1,0 +1,829 @@
+{
+  "session": 18,
+  "verified_at_utc": "2026-11-22T18:26:27.014697+00:00",
+  "source_state": "149255d2310f27e35456ea0978b3205faef737ce",
+  "checks": [
+    {
+      "name": "session-tests",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "18"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "22c66ee934623d95996cf131f6dbca78eb783903f8155cb2063a69dc353c4081"
+    },
+    {
+      "name": "main-tests",
+      "command": [
+        "-m",
+        "pytest",
+        "--tb=short",
+        "--basetemp=.work/pytest-gate-f3c252b246a74bafa4c4cc31616bdddc"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "957646d545589f05fb22663a6cf8c370366a525d35fee49458476c9af8d4c0e2"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "format",
+      "command": [
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "1f6040bd7bfe36b146bd5678349f1bedf959513fb84fe19d162683a1dbf0ec90"
+    },
+    {
+      "name": "session-run",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "18"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "276c9326b98e5feb65fdc52ae04437a3f1f3f6bfe100bed251650df1424f9d00"
+    },
+    {
+      "name": "main-run",
+      "command": [
+        "-m",
+        "copilot",
+        "tools-verify"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "df42f41583748e12767ac5a33e1e39aff00e87b18c3ae442bac0b21ab7f88d9f"
+    },
+    {
+      "name": "starter-inherited",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "18",
+        "--variant",
+        "starter",
+        "--previous-only"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "30504a2ea4a949f45ea6a57d7b538b973f45c325e908b7a9a40c80febb2d1d22"
+    },
+    {
+      "name": "starter-new",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "18",
+        "--variant",
+        "starter"
+      ],
+      "exit_code": 1,
+      "expected_failure": true,
+      "output_sha256": "f07d6af14b11877c20da220e94a22f9e910f0e6d5299c807a8219597d7b0d213"
+    },
+    {
+      "name": "course-check",
+      "command": [
+        "scripts/check_course.py"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "1f346c19de1390fbb72e3d29d316a6abce56d94435421a161c96a19477fe2157"
+    },
+    {
+      "name": "mcp-contracts",
+      "command": [
+        "scripts/snapshot_contracts.py"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "e54a79714237d11173069b31d965416c83a94d1ab18564115953602b82e48623"
+    }
+  ],
+  "runtime_scope": "actual session source and integrated main application",
+  "paid_calls": 30,
+  "http_tools": {
+    "mode": "live-loopback-service-desk-tools",
+    "contract_sha256": "2699b28c692da9cdcf461a771d032b89633917db36cd6cb1aa9037281a8743f7",
+    "paid_calls": 0,
+    "employee_tools": [
+      "check_service_status",
+      "create_ticket",
+      "get_assets",
+      "get_employee",
+      "search_kb"
+    ],
+    "analyst_tools": [
+      "check_service_status",
+      "create_ticket",
+      "get_assets",
+      "get_employee",
+      "search_kb",
+      "update_ticket"
+    ],
+    "search_documents": [
+      "KB-1017"
+    ],
+    "employee": "E1261",
+    "assets": [
+      "LH-L-00261",
+      "LH-P-00001"
+    ],
+    "incident_ids": [
+      "2"
+    ],
+    "rejected_calls": {
+      "invalid_draft": 422,
+      "foreign_asset": 403,
+      "missing_idempotency_key": 400,
+      "employee_update": 403
+    },
+    "ticket": {
+      "ticket_id": "INC0020061",
+      "status": "Awaiting User",
+      "idempotent_replay": true
+    },
+    "inherited_password_reset": "INC0020062"
+  },
+  "live_tool_evaluation": {
+    "mode": "live-openai-tool-evaluation",
+    "status": "complete",
+    "source_head": "149255d2310f27e35456ea0978b3205faef737ce",
+    "run_at_utc": "2026-11-22T18:20:10.390497+00:00",
+    "model": "gpt-6-luna",
+    "dataset_sha256": "a364d6c64c3baf2ae66bd7264ec974a4322f0c570311920f69f31582a0c3dcc2",
+    "contract_sha256": "2699b28c692da9cdcf461a771d032b89633917db36cd6cb1aa9037281a8743f7",
+    "pricing_source": "https://developers.openai.com/api/docs/models/gpt-6-luna",
+    "input_usd_per_million_upper_estimate": "0.125",
+    "output_usd_per_million": "0.50",
+    "budget_usd": "0.08",
+    "tool_choices": [
+      {
+        "id": "T01",
+        "expected": "search_kb",
+        "selected": "search_kb",
+        "arguments": {
+          "query": "Instructions for setting up VPN on a Mac",
+          "os_name": "macos"
+        }
+      },
+      {
+        "id": "T02",
+        "expected": "get_employee",
+        "selected": "get_employee",
+        "arguments": {}
+      },
+      {
+        "id": "T03",
+        "expected": "get_assets",
+        "selected": "get_assets",
+        "arguments": {}
+      },
+      {
+        "id": "T04",
+        "expected": "check_service_status",
+        "selected": "check_service_status",
+        "arguments": {
+          "service": "SecureTunnel VPN"
+        }
+      },
+      {
+        "id": "T05",
+        "expected": "create_ticket",
+        "selected": "create_ticket",
+        "arguments": {
+          "draft": {
+            "category": "Hardware & Devices",
+            "priority": "P3",
+            "summary": "Laptop will not charge",
+            "steps_tried": [
+              "Tried another outlet"
+            ],
+            "asset": "unknown",
+            "assignment_group": "Workplace Engineering"
+          }
+        }
+      },
+      {
+        "id": "T06",
+        "expected": "update_ticket",
+        "selected": "update_ticket",
+        "arguments": {
+          "ticket_id": "INC0020042",
+          "changes": {
+            "status": "Awaiting User"
+          }
+        }
+      },
+      {
+        "id": "T07",
+        "expected": "search_kb",
+        "selected": "search_kb",
+        "arguments": {
+          "query": "Windows VPN error 809 troubleshooting article",
+          "os_name": "windows"
+        }
+      },
+      {
+        "id": "T08",
+        "expected": "check_service_status",
+        "selected": "check_service_status",
+        "arguments": {
+          "service": "FollowMe Printing"
+        }
+      },
+      {
+        "id": "T09",
+        "expected": "create_ticket",
+        "selected": "create_ticket",
+        "arguments": {
+          "draft": {
+            "category": "Software",
+            "priority": "P3",
+            "summary": "Spreadsheet application crashes when opening a file",
+            "steps_tried": [],
+            "asset": "unknown",
+            "assignment_group": "Software Packaging"
+          }
+        }
+      },
+      {
+        "id": "T10",
+        "expected": "update_ticket",
+        "selected": "update_ticket",
+        "arguments": {
+          "ticket_id": "INC0020048",
+          "changes": {
+            "priority": "P2"
+          }
+        }
+      }
+    ],
+    "drafts": [
+      {
+        "id": "D01",
+        "attempts": 1,
+        "draft": {
+          "category": "Access & Identity",
+          "priority": "P3",
+          "summary": "Unable to sign in to LarkID after password expired",
+          "steps_tried": [
+            "Restarted and tried signing in again"
+          ],
+          "asset": "unknown",
+          "assignment_group": "Identity & Access"
+        }
+      },
+      {
+        "id": "D02",
+        "attempts": 1,
+        "draft": {
+          "category": "Network & VPN",
+          "priority": "P3",
+          "summary": "SecureTunnel VPN disconnects on Mac",
+          "steps_tried": [
+            "Restarted the client"
+          ],
+          "asset": "LH-L-00261",
+          "assignment_group": "Network Operations"
+        }
+      },
+      {
+        "id": "D03",
+        "attempts": 1,
+        "draft": {
+          "category": "Network & VPN",
+          "priority": "P3",
+          "summary": "Windows VPN error 809 after restart",
+          "steps_tried": [],
+          "asset": "LH-L-00166",
+          "assignment_group": "Network Operations"
+        }
+      },
+      {
+        "id": "D04",
+        "attempts": 1,
+        "draft": {
+          "category": "Email & Collaboration",
+          "priority": "P3",
+          "summary": "Outlook email remains stuck in Outbox",
+          "steps_tried": [
+            "Restarted Outlook; message remains in Outbox."
+          ],
+          "asset": "unknown",
+          "assignment_group": "Messaging & Collaboration"
+        }
+      },
+      {
+        "id": "D05",
+        "attempts": 1,
+        "draft": {
+          "category": "Hardware & Devices",
+          "priority": "P3",
+          "summary": "Video meeting app cannot detect USB microphone",
+          "steps_tried": [
+            "Unplugged and reconnected the USB microphone"
+          ],
+          "asset": "unknown",
+          "assignment_group": "Workplace Engineering"
+        }
+      },
+      {
+        "id": "D06",
+        "attempts": 1,
+        "draft": {
+          "category": "Hardware & Devices",
+          "priority": "P3",
+          "summary": "Work laptop won't charge",
+          "steps_tried": [
+            "Tried a second power outlet",
+            "Inspected the cable"
+          ],
+          "asset": "unknown",
+          "assignment_group": "Workplace Engineering"
+        }
+      },
+      {
+        "id": "D07",
+        "attempts": 1,
+        "draft": {
+          "category": "Hardware & Devices",
+          "priority": "P3",
+          "summary": "Laptop touchpad stopped responding",
+          "steps_tried": [
+            "Connected a USB mouse, which works",
+            "Restarted the laptop"
+          ],
+          "asset": "LH-L-00166",
+          "assignment_group": "Workplace Engineering"
+        }
+      },
+      {
+        "id": "D08",
+        "attempts": 1,
+        "draft": {
+          "category": "Hardware & Devices",
+          "priority": "P3",
+          "summary": "Company phone will not turn on after charging",
+          "steps_tried": [
+            "Charged the phone for an hour"
+          ],
+          "asset": "LH-P-00001",
+          "assignment_group": "Workplace Engineering"
+        }
+      },
+      {
+        "id": "D09",
+        "attempts": 1,
+        "draft": {
+          "category": "Software",
+          "priority": "P3",
+          "summary": "Spreadsheet app closes when opening a workbook",
+          "steps_tried": [
+            "Updated the app yesterday"
+          ],
+          "asset": "unknown",
+          "assignment_group": "Service Desk L1"
+        }
+      },
+      {
+        "id": "D10",
+        "attempts": 1,
+        "draft": {
+          "category": "Software",
+          "priority": "P3",
+          "summary": "Approved PDF editor installation fails in Software Center",
+          "steps_tried": [
+            "Attempted installation through Software Center; received an installation error."
+          ],
+          "asset": "unknown",
+          "assignment_group": "Software Packaging"
+        }
+      },
+      {
+        "id": "D11",
+        "attempts": 1,
+        "draft": {
+          "category": "Security",
+          "priority": "P2",
+          "summary": "Suspicious email requests employee passwords",
+          "steps_tried": [
+            "Reported the email without opening the link"
+          ],
+          "asset": "unknown",
+          "assignment_group": "Security Operations"
+        }
+      },
+      {
+        "id": "D12",
+        "attempts": 1,
+        "draft": {
+          "category": "Hardware & Devices",
+          "priority": "P2",
+          "summary": "Company phone lost on train",
+          "steps_tried": [],
+          "asset": "LH-P-00001",
+          "assignment_group": "Workplace Engineering"
+        }
+      },
+      {
+        "id": "D13",
+        "attempts": 1,
+        "draft": {
+          "category": "Onboarding & Offboarding",
+          "priority": "P3",
+          "summary": "Prepare laptop for new joiner starting Monday",
+          "steps_tried": [],
+          "asset": "unknown",
+          "assignment_group": "Onboarding Team"
+        }
+      },
+      {
+        "id": "D14",
+        "attempts": 1,
+        "draft": {
+          "category": "Onboarding & Offboarding",
+          "priority": "P3",
+          "summary": "Arrange collection of company laptop at contract end",
+          "steps_tried": [],
+          "asset": "LH-L-00261",
+          "assignment_group": "Onboarding Team"
+        }
+      },
+      {
+        "id": "D15",
+        "attempts": 1,
+        "draft": {
+          "category": "General Enquiry",
+          "priority": "P4",
+          "summary": "Ask which IT support desk handles London office requests",
+          "steps_tried": [],
+          "asset": "unknown",
+          "assignment_group": "Service Desk L1"
+        }
+      },
+      {
+        "id": "D16",
+        "attempts": 1,
+        "draft": {
+          "category": "Hardware & Devices",
+          "priority": "P3",
+          "summary": "FollowMe Printing job will not release at printer",
+          "steps_tried": [
+            "Submitted the job again"
+          ],
+          "asset": "unknown",
+          "assignment_group": "Workplace Engineering"
+        }
+      },
+      {
+        "id": "D17",
+        "attempts": 1,
+        "draft": {
+          "category": "Access & Identity",
+          "priority": "P3",
+          "summary": "Authenticator prompts stopped after work phone replacement",
+          "steps_tried": [
+            "Tried the backup sign-in method"
+          ],
+          "asset": "unknown",
+          "assignment_group": "Identity & Access"
+        }
+      },
+      {
+        "id": "D18",
+        "attempts": 1,
+        "draft": {
+          "category": "Network & VPN",
+          "priority": "P3",
+          "summary": "Office Wi-Fi disconnects every ten minutes",
+          "steps_tried": [
+            "Forgot the network and reconnected"
+          ],
+          "asset": "unknown",
+          "assignment_group": "Network Operations"
+        }
+      },
+      {
+        "id": "D19",
+        "attempts": 1,
+        "draft": {
+          "category": "Email & Collaboration",
+          "priority": "P2",
+          "summary": "Team reports delayed incoming email; delay confirmed with test message",
+          "steps_tried": [
+            "Checked mailbox and confirmed the delay using a test message"
+          ],
+          "asset": "unknown",
+          "assignment_group": "Messaging & Collaboration"
+        }
+      },
+      {
+        "id": "D20",
+        "attempts": 1,
+        "draft": {
+          "category": "Access & Identity",
+          "priority": "P3",
+          "summary": "Unable to access shared project folder after changing teams",
+          "steps_tried": [
+            "Confirmed the folder path with its owner."
+          ],
+          "asset": "unknown",
+          "assignment_group": "Identity & Access"
+        }
+      }
+    ],
+    "calls": [
+      {
+        "case_id": "T01",
+        "input_token_bound": 4596,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_80b3bed4f2134f40aae80539764deb87",
+        "prompt_tokens": 764,
+        "completion_tokens": 31
+      },
+      {
+        "case_id": "T02",
+        "input_token_bound": 4592,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_c732f46e2667486aa0f7a46c106acead",
+        "prompt_tokens": 762,
+        "completion_tokens": 13
+      },
+      {
+        "case_id": "T03",
+        "input_token_bound": 4597,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_ec171a4daf2c4c8ea337eac2466178a1",
+        "prompt_tokens": 765,
+        "completion_tokens": 18
+      },
+      {
+        "case_id": "T04",
+        "input_token_bound": 4595,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_7f2e46aab10945ad831e14e81cbbd793",
+        "prompt_tokens": 764,
+        "completion_tokens": 20
+      },
+      {
+        "case_id": "T05",
+        "input_token_bound": 4617,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_66a2e448049341b39fe020974e1a55ae",
+        "prompt_tokens": 769,
+        "completion_tokens": 54
+      },
+      {
+        "case_id": "T06",
+        "input_token_bound": 4581,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_015c911b90aa42e5b0e8e4964878baa7",
+        "prompt_tokens": 763,
+        "completion_tokens": 47
+      },
+      {
+        "case_id": "T07",
+        "input_token_bound": 4589,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_0bd8d5884d45414d8c26a82c969e8dcb",
+        "prompt_tokens": 762,
+        "completion_tokens": 29
+      },
+      {
+        "case_id": "T08",
+        "input_token_bound": 4599,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_31558789ee69495496e4eb28c862ad54",
+        "prompt_tokens": 764,
+        "completion_tokens": 20
+      },
+      {
+        "case_id": "T09",
+        "input_token_bound": 4619,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_530decbb90414dc195e1c310b1e5f8e7",
+        "prompt_tokens": 768,
+        "completion_tokens": 49
+      },
+      {
+        "case_id": "T10",
+        "input_token_bound": 4596,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_3f2b6e4f6a4849f2b3b9da9a222650fb",
+        "prompt_tokens": 768,
+        "completion_tokens": 46
+      },
+      {
+        "case_id": "D01",
+        "input_token_bound": 1756,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_5ec8752a90404fb5989c392219febbaa",
+        "prompt_tokens": 244,
+        "completion_tokens": 58
+      },
+      {
+        "case_id": "D02",
+        "input_token_bound": 1747,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_e21bce3b18064d3d87421fbfcc4eca20",
+        "prompt_tokens": 245,
+        "completion_tokens": 54
+      },
+      {
+        "case_id": "D03",
+        "input_token_bound": 1756,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_1a2e04dd4a3a4372a46f909cad0e2f0c",
+        "prompt_tokens": 248,
+        "completion_tokens": 49
+      },
+      {
+        "case_id": "D04",
+        "input_token_bound": 1760,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_4a47bd61bfaf43ffab523c3df1116496",
+        "prompt_tokens": 246,
+        "completion_tokens": 57
+      },
+      {
+        "case_id": "D05",
+        "input_token_bound": 1756,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_ad575d4025dc47e5ad8b6bff40acebce",
+        "prompt_tokens": 244,
+        "completion_tokens": 56
+      },
+      {
+        "case_id": "D06",
+        "input_token_bound": 1749,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_b3cf73f8edab4d8e82e706c9aaafd217",
+        "prompt_tokens": 241,
+        "completion_tokens": 55
+      },
+      {
+        "case_id": "D07",
+        "input_token_bound": 1765,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_2622cd2bb23444f0ad86af38d264b077",
+        "prompt_tokens": 247,
+        "completion_tokens": 61
+      },
+      {
+        "case_id": "D08",
+        "input_token_bound": 1738,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_3b81f4d3ba1b41a4858ec78195945c38",
+        "prompt_tokens": 242,
+        "completion_tokens": 59
+      },
+      {
+        "case_id": "D09",
+        "input_token_bound": 1757,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_0548e395816f48b882ac2175fb6742a0",
+        "prompt_tokens": 240,
+        "completion_tokens": 50
+      },
+      {
+        "case_id": "D10",
+        "input_token_bound": 1761,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_1fa952fe386649e6a5243557b6fad958",
+        "prompt_tokens": 241,
+        "completion_tokens": 56
+      },
+      {
+        "case_id": "D11",
+        "input_token_bound": 1804,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_03da42866de143cc9505bb224c5588d7",
+        "prompt_tokens": 249,
+        "completion_tokens": 50
+      },
+      {
+        "case_id": "D12",
+        "input_token_bound": 1747,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_338296c4619240858b2a211219e48442",
+        "prompt_tokens": 245,
+        "completion_tokens": 48
+      },
+      {
+        "case_id": "D13",
+        "input_token_bound": 1764,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_3842d3d3636543df89cbb7033380ad9d",
+        "prompt_tokens": 244,
+        "completion_tokens": 49
+      },
+      {
+        "case_id": "D14",
+        "input_token_bound": 1769,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_2f4744ddcb84400fb79a6506964c810e",
+        "prompt_tokens": 247,
+        "completion_tokens": 53
+      },
+      {
+        "case_id": "D15",
+        "input_token_bound": 1743,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_79c54a1ce49c4c7d85f5b16ff46e54bf",
+        "prompt_tokens": 239,
+        "completion_tokens": 49
+      },
+      {
+        "case_id": "D16",
+        "input_token_bound": 1766,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_35e84bc6d4fb4cc986c926cfe327344f",
+        "prompt_tokens": 244,
+        "completion_tokens": 53
+      },
+      {
+        "case_id": "D17",
+        "input_token_bound": 1765,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_6290c61bb49f496aaf960c10b11b9c0a",
+        "prompt_tokens": 244,
+        "completion_tokens": 54
+      },
+      {
+        "case_id": "D18",
+        "input_token_bound": 1750,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_eb412a78bdbe4dc88f1d5a46f89649b2",
+        "prompt_tokens": 242,
+        "completion_tokens": 53
+      },
+      {
+        "case_id": "D19",
+        "input_token_bound": 1796,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_ea9a9e97d7dc4867aef8ee2cbc157da2",
+        "prompt_tokens": 249,
+        "completion_tokens": 61
+      },
+      {
+        "case_id": "D20",
+        "input_token_bound": 1768,
+        "http_status": 200,
+        "provider_model": "gpt-6-luna",
+        "request_id": "req_6dbe2cfe06684877b1da01003b56bbae",
+        "prompt_tokens": 244,
+        "completion_tokens": 56
+      }
+    ],
+    "estimated_usd": "0.002270750"
+  }
+}

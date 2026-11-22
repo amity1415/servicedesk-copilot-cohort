@@ -7,17 +7,18 @@ Run every command from `servicedesk-copilot/` with the environment activated. Se
 3. Define typed TicketDraft.
 4. Expose search, employee, assets, service status and ticket tools.
 5. Validate all inputs.
-6. Capture model tool choices on ten requests.
-7. Produce 20 ticket drafts.
+6. Use the bounded live runner in the README to capture model tool choices on ten synthetic requests.
+7. Validate the twenty drafts from the same run against `TicketDraft`.
 8. Test one repair attempt.
-9. Run the reference experiment:
+9. Run the standalone and integrated HTTP verification commands.
 
 ```bash
-python sessions/18-tool-calling-and-structured-output/reference.py
+python scripts/session.py run 18
+python -m copilot tools-verify
 ```
 
 10. Perform the deliberate failure exercise in the session README. Record the observed failure and the corrective change in `evidence.md`.
-11. Validate `Tool-choice sample, 20 validated drafts and invalid-output escalation test`. The reference experiment alone is insufficient for any live-system requirement.
+11. Confirm the tool-choice scores, the twenty validated drafts, and the invalid-output escalation test.
 12. Run regression checks:
 
 ```bash
@@ -27,4 +28,4 @@ ruff format --check .
 ```
 
 13. Complete the evidence template, review the diff and commit only this increment and its reviewed evidence. Do not commit `.env`, runtime databases or tokens.
-14. Continue to session 19 without replacing the repository. Consult [integration steps](../../docs/INTEGRATION_STEPS.md) at module boundaries.
+14. Push and verify the completion commits before starting Session 19. Consult [integration steps](../../docs/INTEGRATION_STEPS.md) at module boundaries.

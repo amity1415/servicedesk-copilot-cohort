@@ -113,21 +113,27 @@ def verify_ticket(copilot: httpx.Client, tickets: httpx.Client) -> tuple[dict, d
     )
 
 
-def verify_failure(data: Path, state: Path) -> dict:
+def seeded_ticketing(data: Path, key: str, *, error_rate: float = 0):
     mock_directory = Path(__file__).resolve().parents[3] / "services/ticketing_mock"
+    if not mock_directory.is_dir():
+        mock_directory = Path("services/ticketing_mock").resolve()
     with patch.object(sys, "path", [str(mock_directory), *sys.path]):
         from mockapi.main import MockSettings
         from mockapi.main import create_app as create_ticketing
         from mockapi.models import FaultSettings
 
-    mock = create_ticketing(
+    return create_ticketing(
         MockSettings(
-            api_key="fault-fixture",
+            api_key=key,
             seed_path=data / "tickets/open_tickets.json",
             employees_path=data / "db/csv/employees.csv",
-            faults=FaultSettings(error_rate=1),
+            faults=FaultSettings(error_rate=error_rate),
         )
     )
+
+
+def verify_failure(data: Path, state: Path) -> dict:
+    mock = seeded_ticketing(data, "fault-fixture", error_rate=1)
     with (
         running_server(mock) as url,
         httpx.Client(

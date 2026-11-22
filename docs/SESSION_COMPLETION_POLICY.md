@@ -54,6 +54,11 @@ ticketing services. Each source tree must create one ticket, read it back,
 replay the same request, and recover from a `503` using its own isolated
 mock. The gate also records the default-deny risk inventory and the VPN smoke test.
 
+Session 18 runs `tools-verify` through a fresh loopback API and seeded ticketing
+mock in each source tree. Supply `--tool-evaluation` with the completed
+`verify_tools_live.py` report. The gate checks all ten expected tool choices,
+twenty validated drafts, provider usage, and matching schema fingerprints.
+
 The `status` field in `sessions/implementation_manifest.json` describes source
 availability. The separate `completion_state` describes audited completion:
 `pending_verification`, `verification_failed`, `verified_awaiting_commit`,

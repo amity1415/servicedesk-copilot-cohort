@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "source": "Authored synthetic Larkhaven IT requests for Session 18",
+  "tool_choices": [
+    {"id": "T01", "request": "Find the knowledge base instructions for setting up VPN on my Mac.", "expected": "search_kb"},
+    {"id": "T02", "request": "Which office and department are listed in my employee profile?", "expected": "get_employee"},
+    {"id": "T03", "request": "List the asset tags of the laptop and phone assigned to my account.", "expected": "get_assets"},
+    {"id": "T04", "request": "Check whether SecureTunnel VPN has a service outage in my region.", "expected": "check_service_status"},
+    {"id": "T05", "request": "Open a new service desk ticket. My laptop will not charge after I tried another outlet.", "expected": "create_ticket"},
+    {"id": "T06", "request": "Update existing ticket INC0020042 to Awaiting User.", "expected": "update_ticket"},
+    {"id": "T07", "request": "Find the troubleshooting article for Windows VPN error 809.", "expected": "search_kb"},
+    {"id": "T08", "request": "Check for current or recent FollowMe Printing incidents in my region.", "expected": "check_service_status"},
+    {"id": "T09", "request": "Please open a new ticket for the spreadsheet application that crashes when I open a file.", "expected": "create_ticket"},
+    {"id": "T10", "request": "Change ticket INC0020048 to priority P2. It is an existing ticket.", "expected": "update_ticket"}
+  ],
+  "drafts": [
+    {"id": "D01", "request": "My LarkID password expired and I can't sign in. I tried signing in again after restarting."},
+    {"id": "D02", "request": "SecureTunnel VPN disconnects on my Mac. I restarted the client. Asset LH-L-00261."},
+    {"id": "D03", "request": "Windows VPN shows error 809 after a restart. I can still browse the web. Asset LH-L-00166."},
+    {"id": "D04", "request": "Outlook is stuck sending an email. I restarted Outlook, and the message is still in my outbox."},
+    {"id": "D05", "request": "Our video meeting app cannot see my USB microphone. I unplugged it and plugged it back in."},
+    {"id": "D06", "request": "My work laptop won't charge. I tried a second power outlet and inspected the cable."},
+    {"id": "D07", "request": "The touchpad on laptop LH-L-00166 stopped responding. A USB mouse works and I restarted the laptop."},
+    {"id": "D08", "request": "My company phone LH-P-00001 will not turn on after charging for an hour."},
+    {"id": "D09", "request": "The spreadsheet application closes whenever I open a workbook. I updated the app yesterday."},
+    {"id": "D10", "request": "I need the approved PDF editor installed for work. Software Center shows an installation error."},
+    {"id": "D11", "request": "Please check a suspicious email that asks employees to enter their password on an unfamiliar site. I reported it without opening the link."},
+    {"id": "D12", "request": "My company phone was lost on the train this morning. The asset tag is LH-P-00001."},
+    {"id": "D13", "request": "Prepare a laptop for a synthetic new joiner who starts Monday. No equipment has been assigned yet."},
+    {"id": "D14", "request": "I am returning a company laptop LH-L-00261 at the end of my contract. Please arrange device collection."},
+    {"id": "D15", "request": "I need to know which IT support desk handles requests from the London office."},
+    {"id": "D16", "request": "FollowMe Printing queues the job but the printer won't release it. I tried submitting the job again."},
+    {"id": "D17", "request": "My authenticator prompts stopped after I replaced my work phone. I tried the backup sign-in method."},
+    {"id": "D18", "request": "The office Wi-Fi drops every ten minutes. I forgot the network and then reconnected."},
+    {"id": "D19", "request": "Every member of my team reports that incoming email is delayed. I checked my mailbox and confirmed the delay using a test message."},
+    {"id": "D20", "request": "I can't open a shared project folder after changing teams. I confirmed the folder path with its owner."}
+  ]
+}

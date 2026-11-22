@@ -127,7 +127,11 @@ def experiment(number: int, root: Path) -> dict:
         from copilot.tools.verify_workflow import verify_workflow
 
         return verify_workflow(data, get_settings())
-    if number in {18, 24}:
+    if number == 18:
+        from copilot.tools.verify_tools import verify_tools
+
+        return verify_tools(data)
+    if number == 24:
         from copilot.tools.ticketing import TicketDraft
 
         draft = TicketDraft(

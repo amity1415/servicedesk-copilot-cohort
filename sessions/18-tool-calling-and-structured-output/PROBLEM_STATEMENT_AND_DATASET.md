@@ -172,7 +172,9 @@ TicketDraft fields are category, priority, summary, steps_tried, asset and assig
 
 ## Outputs and evidence
 
-Typed tool/draft examples and schema failure/repair checks; live model tool-choice scoring needs configured model calls.
+The live evaluation uses ten labeled tool requests and twenty draft prompts
+from the [synthetic fixture](../../evals/session18_tools.json). The HTTP checks
+use the seeded local data to verify tool execution and authorization.
 
 The curriculum exit criterion is: Tool-choice sample, 20 validated drafts and invalid-output escalation test. Save observed results in this session's `evidence.md`; do not treat a requested target value as an observed score.
 
@@ -189,4 +191,6 @@ The curriculum exit criterion is: Tool-choice sample, 20 validated drafts and in
 - [src/copilot/tools/ticketing.py](../../src/copilot/tools/ticketing.py)
 - [src/copilot/tools/runtime.py](../../src/copilot/tools/runtime.py)
 
-The adjacent `reference.py` currently launches shared application code. Some sessions execute offline fixtures or preflights; that does not establish that the full live-model, database or deployment requirement has run. Consult [implementation status](../../docs/IMPLEMENTATION_STATUS.md).
+The adjacent `reference.py` runs the integrated HTTP verification. Run the
+bounded provider evaluation from the [session README](README.md#live-evaluation)
+to measure actual model tool choices and draft validity.

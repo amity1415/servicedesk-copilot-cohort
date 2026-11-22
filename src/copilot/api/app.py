@@ -21,11 +21,13 @@ from copilot.api.http import (
     identify_with,
     register_http,
 )
+from copilot.api.tools import register_tools
 from copilot.config import get_settings
 from copilot.rag.grounded import configured_rag
 from copilot.rag.pipeline import ingest
 from copilot.telemetry import configure, dashboard
 from copilot.tools.runtime import Runtime
+from copilot.tools.service_desk import ServiceDeskTools
 from copilot.tools.ticketing import TicketingClient
 
 
@@ -49,6 +51,7 @@ def create_app(
     identify = identify_with(configured)
     ingestion_lock = Lock()
     register_http(app)
+    register_tools(app, ServiceDeskTools(runtime, engine.retriever, ticketing), identify)
 
     def remote_tools(actor):
         from copilot.tools.remote import RemoteTools

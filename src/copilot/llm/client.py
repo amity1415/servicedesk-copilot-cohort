@@ -21,6 +21,12 @@ class Completion:
     tokens: int
     latency_s: float
     model: str
+    tool_calls: tuple[dict, ...] = ()
+    finish_reason: str | None = None
+    refused: bool = False
+    input_tokens: int | None = None
+    output_tokens: int | None = None
+    provider_model: str | None = None
 
 
 class ModelClient:
@@ -45,7 +51,13 @@ class ModelClient:
 
     @traced("model.complete")
     def complete(
-        self, messages: list[dict], temperature: float = 0, tools: list | None = None
+        self,
+        messages: list[dict],
+        temperature: float = 0,
+        tools: list | None = None,
+        *,
+        require_tool: bool = False,
+        response_schema: dict | None = None,
     ) -> Completion:
         start = time.monotonic()
         if self.model == "offline":
@@ -70,10 +82,16 @@ class ModelClient:
             token_field = "max_completion_tokens"
         if self.max_tokens is not None:
             body[token_field] = self.max_tokens
-        if self.json_response:
+        if response_schema is not None:
+            body["response_format"] = {"type": "json_schema", "json_schema": response_schema}
+        elif self.json_response:
             body["response_format"] = {"type": "json_object"}
         if tools:
             body["tools"] = tools
+        if require_tool:
+            if not tools:
+                raise ValueError("a required tool call needs tool definitions")
+            body.update(tool_choice="required", parallel_tool_calls=False)
         with httpx.Client(timeout=self.timeout, transport=self.transport) as client:
             for attempt in range(self.attempts):
                 try:
@@ -82,16 +100,23 @@ class ModelClient:
                         headers={**outbound_headers(), "Authorization": f"Bearer {self.api_key}"},
                         json=body,
                     )
-                    if response.status_code == 429 or response.status_code >= 500:
-                        response.raise_for_status()
                     response.raise_for_status()
                     data = response.json()
+                    choice = data["choices"][0]
+                    message = choice["message"]
+                    calls = message.get("tool_calls") or []
+                    usage = data.get("usage") or {}
                     result = Completion(
-                        data["choices"][0]["message"].get("content")
-                        or json.dumps(data["choices"][0]["message"].get("tool_calls", [])),
-                        data.get("usage", {}).get("total_tokens", 0),
+                        message.get("content") or json.dumps(calls),
+                        usage.get("total_tokens", 0),
                         time.monotonic() - start,
                         self.model,
+                        tool_calls=tuple(calls),
+                        finish_reason=choice.get("finish_reason"),
+                        refused=bool(message.get("refusal")),
+                        input_tokens=usage.get("prompt_tokens"),
+                        output_tokens=usage.get("completion_tokens"),
+                        provider_model=data.get("model"),
                     )
                     log.info(
                         "model=%s tokens=%d latency_s=%.3f",

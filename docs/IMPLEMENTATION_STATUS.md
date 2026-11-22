@@ -51,6 +51,12 @@ device tables, checks that a repeated request returns the original ticket,
 and recovers from an isolated ticketing `503` on the same thread.
 [Session 17](../sessions/17-agents-versus-workflows/README.md)
 
+Session 18 exposes six typed service desk tools through the authenticated API.
+The HTTP checks exercise authorization, scoped reads, idempotent ticket
+creation, and analyst updates. GPT-6 Luna picked the expected tool in all 10
+synthetic cases and returned 20 schema-valid ticket drafts. The estimated cost
+was $0.00227. [Session 18](../sessions/18-tool-calling-and-structured-output/README.md)
+
 ## Validated cumulative RAG batch, sessions 05–08
 
 Implemented in both the integrated application and independent cumulative session

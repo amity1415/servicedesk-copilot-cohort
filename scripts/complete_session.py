@@ -10,6 +10,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import subprocess
 import sys
 from datetime import UTC, datetime
@@ -60,7 +61,9 @@ def reviewed_evaluation_dataset(path):
     return path, hashlib.sha256(raw).hexdigest()
 
 
-def complete(number, *, live_report=None, human_review=None, evaluation_dataset=None):
+def complete(
+    number, *, live_report=None, human_review=None, evaluation_dataset=None, tool_evaluation=None
+):
     path = ROOT / "sessions/implementation_manifest.json"
     manifest = json.loads(path.read_text())
     item = next(row for row in manifest["sessions"] if row["session"] == number)
@@ -99,7 +102,15 @@ def complete(number, *, live_report=None, human_review=None, evaluation_dataset=
         evaluation_options = ["--dataset", str(reviewed_path)]
     elif evaluation_dataset is not None:
         raise RuntimeError("Reviewed RAG evaluation data applies to Session 15")
-    if number not in {1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 17}:
+    if number == 18:
+        if tool_evaluation is None:
+            raise RuntimeError(item["completion_blocker"])
+        from verify_tools_live import read_live_report
+
+        tool_evidence = read_live_report(tool_evaluation)
+    elif tool_evaluation is not None:
+        raise RuntimeError("Live tool evaluation applies to Session 18")
+    if number not in {1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18}:
         raise RuntimeError("No complete runtime-gate definition exists for this session yet")
     evidence_dir = ROOT / "sessions" / Path(item["solution"]).parts[1] / "verification"
     evidence_dir.mkdir(parents=True, exist_ok=True)
@@ -141,6 +152,7 @@ def complete(number, *, live_report=None, human_review=None, evaluation_dataset=
         15: "rag-evaluate",
         16: "rag-http-verify",
         17: "workflow-verify",
+        18: "tools-verify",
     }[number]
     commands.append(("main-run", ["-m", "copilot", runtime_command, *evaluation_options]))
     if number >= 9:
@@ -162,8 +174,10 @@ def complete(number, *, live_report=None, human_review=None, evaluation_dataset=
         if number in {14, 15}:
             runtime = ["scripts/verify_grounded_runtime.py"]
         commands.append(("main-http-runtime", runtime))
-    if number in {16, 17}:
+    if number in {16, 17, 18}:
         commands.append(("course-check", ["scripts/check_course.py"]))
+    if number == 18:
+        commands.append(("mcp-contracts", ["scripts/snapshot_contracts.py"]))
     if number == 3:
         pricing = [
             "token-report",
@@ -194,8 +208,11 @@ def complete(number, *, live_report=None, human_review=None, evaluation_dataset=
         output = (result.stdout or "") + (result.stderr or "")
         (logs / f"{label}.log").write_text(output, encoding="utf-8")
         expected_failure = label == "starter-new"
+        failure_count = 2 if number == 18 else 1
         passed = (
-            result.returncode == 1 and "1 failed" in output and item["new_tests"][0] in output
+            result.returncode == 1
+            and re.search(rf"\b{failure_count} failed\b", output) is not None
+            and item["new_tests"][0] in output
             if expected_failure
             else result.returncode == 0
         )
@@ -400,6 +417,30 @@ def complete(number, *, live_report=None, human_review=None, evaluation_dataset=
             "integrated": integrated_observed,
             "standalone": standalone_observed,
         }
+    if number == 18:
+        main = ROOT / "reports/integrated/tools/tools-verify.json"
+        checkpoint = ROOT / "reports/cohort/session-18/solution/tools-verify.json"
+        integrated = json.loads(main.read_text(encoding="utf-8"))
+        standalone = json.loads(checkpoint.read_text(encoding="utf-8"))
+        if (
+            integrated != standalone
+            or integrated["contract_sha256"] != tool_evidence["contract_sha256"]
+        ):
+            raise RuntimeError(
+                "Both local tool contracts must match the successful live evaluation"
+            )
+        if (
+            integrated["mode"] != "live-loopback-service-desk-tools"
+            or integrated["paid_calls"] != 0
+            or len(integrated["analyst_tools"]) != 6
+            or not integrated["ticket"]["idempotent_replay"]
+            or integrated["ticket"]["status"] != "Awaiting User"
+            or integrated["rejected_calls"]["foreign_asset"] != 403
+        ):
+            raise RuntimeError("The local HTTP tool execution did not verify the Session 18 scope")
+        evidence["http_tools"] = integrated
+        evidence["live_tool_evaluation"] = tool_evidence
+        evidence["paid_calls"] = len(tool_evidence["calls"])
     record = evidence_dir / "runtime-gate.json"
     record.write_text(json.dumps(evidence, indent=2) + "\n")
     item["completion_state"] = "verified_awaiting_commit"
@@ -576,6 +617,32 @@ def complete(number, *, live_report=None, human_review=None, evaluation_dataset=
             "src/copilot/tools/verify_workflow.py",
             "tests/test_password_reset_workflow.py",
         ]
+    if number == 18:
+        paths = [
+            "docs/IMPLEMENTATION_STATUS.md",
+            "docs/SESSION_COMPLETION_POLICY.md",
+            "evals/session18_tools.json",
+            "scripts/complete_session.py",
+            "scripts/verify_tools_live.py",
+            "sessions/18-tool-calling-and-structured-output",
+            "sessions/IMPLEMENTATION_GUIDE.md",
+            "sessions/implementation_manifest.json",
+            "src/copilot/api/app.py",
+            "src/copilot/api/tools.py",
+            "src/copilot/cli.py",
+            "src/copilot/course/experiments.py",
+            "src/copilot/llm/client.py",
+            "src/copilot/llm/service_desk.py",
+            "src/copilot/tools/directory.py",
+            "src/copilot/tools/password_reset.py",
+            "src/copilot/tools/runtime.py",
+            "src/copilot/tools/service_desk.py",
+            "src/copilot/tools/ticketing.py",
+            "src/copilot/tools/verify_tools.py",
+            "src/copilot/tools/verify_workflow.py",
+            "tests/contracts/mcp_schemas.json",
+            "tests/test_service_desk_tools.py",
+        ]
     if number >= 9 and git("diff", "--cached", "--name-only"):
         raise RuntimeError("The Git index has staged changes. Preserve them before completion.")
     git("add", "--", *paths)
@@ -601,6 +668,9 @@ if __name__ == "__main__":
     parser.add_argument("--live-report", type=Path, help="Session 14 live runtime transcript")
     parser.add_argument("--human-review", type=Path, help="Session 14 human citation review")
     parser.add_argument("--evaluation-dataset", type=Path, help="Session 15 reviewed case dataset")
+    parser.add_argument(
+        "--tool-evaluation", type=Path, help="Session 18 live tool and draft report"
+    )
     options = parser.parse_args()
     raise SystemExit(
         complete(
@@ -608,5 +678,6 @@ if __name__ == "__main__":
             live_report=options.live_report,
             human_review=options.human_review,
             evaluation_dataset=options.evaluation_dataset,
+            tool_evaluation=options.tool_evaluation,
         )
     )

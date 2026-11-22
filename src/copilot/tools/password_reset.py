@@ -13,7 +13,14 @@ import yaml
 from copilot.tools.ticketing import TicketDraft
 
 log = logging.getLogger(__name__)
-ACTION_POLICY_PATH = Path(__file__).resolve().parents[3] / "policies/actions.yaml"
+
+
+def policy_path(filename: str) -> Path:
+    source = Path(__file__).resolve().parents[3] / "policies" / filename
+    return source if source.is_file() else Path("policies") / filename
+
+
+ACTION_POLICY_PATH = policy_path("actions.yaml")
 RISK_TIERS = ("read", "low_risk_write", "approval_required", "forbidden")
 PASSWORD_RESET_PLAN = {"get_employee": "read", "create_ticket": "low_risk_write"}
 PASSWORD_RESET = re.compile(

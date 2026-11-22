@@ -1,9 +1,9 @@
 # Actual session implementations
 
-Sessions 01–17 contain cumulative Python source. The
+Sessions 01–18 contain cumulative Python source. The
 [implementation manifest](implementation_manifest.json) records verified
 completion separately and tracks the pending live gate for Session 04.
-Sessions 18–40 have lesson material and reference launchers.
+Sessions 19–40 have lesson material and reference launchers.
 
 Each implemented folder contains `starter/src/copilot`, `solution/src/copilot`,
 acceptance tests in both trees, and build instructions. The starter retains the
@@ -53,6 +53,7 @@ Session 15 uses the reviewed RAG evaluation set. Session 16 verifies the
 [FastAPI service and Streamlit UI](16-rag-as-a-fastapi-service/README.md).
 Session 17 adds the [fixed ticket workflow](17-agents-versus-workflows/README.md)
 and verifies it with the local Compose services.
+Session 18 adds [typed service desk tools and ticket drafting](18-tool-calling-and-structured-output/README.md).
 
 
 ## Required execution and commit gate

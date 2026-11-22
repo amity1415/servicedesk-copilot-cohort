@@ -6,17 +6,19 @@ All mutation checks live here, outside model control.
 
 from __future__ import annotations
 
-import csv
 import json
 import sqlite3
 from contextlib import contextmanager
 from datetime import UTC, datetime
 from pathlib import Path
 
+from copilot.tools.directory import Directory
 
-class Runtime:
+
+class Runtime(Directory):
     def __init__(self, path: Path, data: Path):
-        self.path, self.data = path, data
+        super().__init__(data)
+        self.path = path
         path.parent.mkdir(parents=True, exist_ok=True)
         with self.connect() as db:
             db.executescript("""
@@ -50,23 +52,6 @@ class Runtime:
         finally:
             db.close()
 
-    def rows(self, table: str) -> list[dict]:
-        if table not in {
-            "employees",
-            "devices",
-            "service_incidents",
-            "software_catalogue",
-            "entitlements",
-        }:
-            raise ValueError("unknown reference table")
-        with (self.data / "db" / "csv" / f"{table}.csv").open(
-            encoding="utf-8", newline=""
-        ) as stream:
-            return list(csv.DictReader(stream))
-
-    def employee(self, employee_id: str) -> dict:
-        return next(row for row in self.rows("employees") if row["employee_id"] == employee_id)
-
     def audit(self, actor: str, action: str, outcome: str):
         with self.connect() as db:
             db.execute(
@@ -75,10 +60,11 @@ class Runtime:
             )
 
     def assets(self, actor: str, employee_id: str) -> list[dict]:
-        if actor != employee_id and self.employee(actor)["role"] not in {"admin", "analyst"}:
+        try:
+            return super().assets(actor, employee_id)
+        except PermissionError:
             self.audit(actor, "get_assets", "denied")
-            raise PermissionError("employees may only read their own assets")
-        return [row for row in self.rows("devices") if row["assigned_to"] == employee_id]
+            raise
 
     def request_access(self, actor: str, app: str, key: str) -> dict:
         employee = self.employee(actor)
