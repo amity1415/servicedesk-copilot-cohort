@@ -445,7 +445,7 @@
     {
       "session": 16,
       "status": "implemented",
-      "completion_state": "verified_awaiting_commit",
+      "completion_state": "verified_committed",
       "starter": "sessions/16-rag-as-a-fastapi-service/starter",
       "solution": "sessions/16-rag-as-a-fastapi-service/solution",
       "previous_tests": [
@@ -473,7 +473,9 @@
       ],
       "default_command": [
         "rag-http-verify"
-      ]
+      ],
+      "completion_commit": "8f6d5a01aa47708d1f0d1b7690c78d3ad1d18826",
+      "completion_evidence": "sessions/16-rag-as-a-fastapi-service/verification/runtime-gate.json"
     },
     {
       "session": 17,
