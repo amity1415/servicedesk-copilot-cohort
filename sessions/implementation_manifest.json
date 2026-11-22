@@ -553,8 +553,7 @@
     {
       "session": 19,
       "status": "implemented",
-      "completion_state": "verified_awaiting_commit",
-      "completion_blocker": "A bounded live diagnostic trajectory and the local runaway check are required.",
+      "completion_state": "verified_committed",
       "starter": "sessions/19-the-agent-loop-written-by-hand/starter",
       "solution": "sessions/19-the-agent-loop-written-by-hand/solution",
       "previous_tests": [
@@ -585,7 +584,9 @@
       ],
       "default_command": [
         "react-verify"
-      ]
+      ],
+      "completion_commit": "4d6cdfe4e1dd31e7caaf1ce8563fdf08d5c71b42",
+      "completion_evidence": "sessions/19-the-agent-loop-written-by-hand/verification/runtime-gate.json"
     },
     {
       "session": 20,
