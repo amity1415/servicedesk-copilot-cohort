@@ -411,8 +411,7 @@
     {
       "session": 15,
       "status": "implemented",
-      "completion_state": "verified_awaiting_commit",
-      "completion_blocker": "The four-metric comparison runs on 100 source-checked draft candidates. Provide reviewed case labels before recording completion.",
+      "completion_state": "verified_committed",
       "starter": "sessions/15-rag-evaluation/starter",
       "solution": "sessions/15-rag-evaluation/solution",
       "previous_tests": [
@@ -439,7 +438,9 @@
       ],
       "default_command": [
         "rag-evaluate"
-      ]
+      ],
+      "completion_commit": "dffd32303a9e63abade743101df1b17852387076",
+      "completion_evidence": "sessions/15-rag-evaluation/verification/runtime-gate.json"
     },
     {
       "session": 16,
