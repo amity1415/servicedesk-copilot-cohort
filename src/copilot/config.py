@@ -33,6 +33,7 @@ class Settings(BaseSettings):
     database_url: SecretStr = SecretStr(
         "postgresql://copilot:copilot_dev_only@127.0.0.1:5432/copilot"
     )
+    postgres_diagnostics_enabled: bool = False
 
     # Used from session 17 (trainer-provided ticketing mock).
     ticketing_base_url: str = "http://localhost:8081"

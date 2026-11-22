@@ -1,0 +1,178 @@
+{
+  "session": 20,
+  "verified_at_utc": "2026-11-22T19:01:19.325114+00:00",
+  "source_state": "095592c09e6a9bc10196ae343241f1479f22966f",
+  "checks": [
+    {
+      "name": "session-tests",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "20"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "0f2a99dceb6c30bf30bdb7823ed7d1aa71aa4182ae45292fd222e77cefb0b275"
+    },
+    {
+      "name": "main-tests",
+      "command": [
+        "-m",
+        "pytest",
+        "--tb=short",
+        "--basetemp=.work/pytest-gate-b791061b6ede46a48194a48109614dc5"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "83489694d0f57d80d239b68d483377f9aeaf9e804eb4eccc51db325a817c33e5"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "format",
+      "command": [
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "2e2a97fbfb0aac00d51f762c9dcea6361f2f57a451cb60582dcb16ee291825ff"
+    },
+    {
+      "name": "session-run",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "20"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "214488331fee0c82281a7b3205e5fa822f8cd8e05fb6e13829ac2c6614cbf2ef"
+    },
+    {
+      "name": "main-run",
+      "command": [
+        "-m",
+        "copilot",
+        "graph-verify"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "cf51dddeda654f4cc68e0dbaf5d6c23a49d92fe62069004f94c1ee753f263609"
+    },
+    {
+      "name": "starter-inherited",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "20",
+        "--variant",
+        "starter",
+        "--previous-only"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "63719ec143a7810ba9763bc69a5492a35e9f8837a06c6d69e2d6eadd66417f7d"
+    },
+    {
+      "name": "starter-new",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "20",
+        "--variant",
+        "starter"
+      ],
+      "exit_code": 1,
+      "expected_failure": true,
+      "output_sha256": "2c4d78c40597d7ae62003eb89acfc67e9d336d31d848a2f78947bef7804d5d33"
+    },
+    {
+      "name": "course-check",
+      "command": [
+        "scripts/check_course.py"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "1f346c19de1390fbb72e3d29d316a6abce56d94435421a161c96a19477fe2157"
+    },
+    {
+      "name": "mcp-contracts",
+      "command": [
+        "scripts/snapshot_contracts.py"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "e54a79714237d11173069b31d965416c83a94d1ab18564115953602b82e48623"
+    }
+  ],
+  "runtime_scope": "actual session source and integrated main application",
+  "paid_calls": 0,
+  "postgres_graph": {
+    "mode": "live-postgres-langgraph",
+    "directory": {
+      "employees": 300,
+      "devices": 450,
+      "test_employee_devices": 2
+    },
+    "request_3": {
+      "initial_tools": [
+        "get_assets"
+      ],
+      "resumed_tools": [
+        "check_service_status",
+        "search_kb"
+      ],
+      "documents": [
+        "KB-1054"
+      ],
+      "foreign_resume_status": 403,
+      "ticket_id": "INC0020061",
+      "ticket_category": "Hardware & Devices",
+      "ticket_priority": "P3",
+      "ticket_requester": "E1166",
+      "ticket_asset": "LH-L-00166",
+      "ticket_assignment_group": "Workplace Engineering",
+      "tickets_created": 1,
+      "ticket_replayed_after_restart": true
+    },
+    "paid_calls": 0
+  },
+  "observed": {
+    "integrated": {
+      "schema": "copilot_s20_eb61d4bb3a614f9a81c53ec8a07849be",
+      "process_ids": [
+        4240,
+        25232,
+        16292
+      ],
+      "paused_checkpoint": "1f1e6a6f-b083-69f8-8002-255bc2bdbe10",
+      "resumed_checkpoint": "1f1e6a70-04aa-6a23-8008-0ec0680cb83e",
+      "ticket_checkpoint": "1f1e6a70-0804-6648-800c-8004776a9a0a"
+    },
+    "standalone": {
+      "schema": "copilot_s20_13f87239cedd4a11aedd275329164917",
+      "process_ids": [
+        15076,
+        8476,
+        20188
+      ],
+      "paused_checkpoint": "1f1e6a6e-7e1d-68d6-8002-e98f6a0ca1ee",
+      "resumed_checkpoint": "1f1e6a6e-c396-65be-8008-038a4e15d124",
+      "ticket_checkpoint": "1f1e6a6e-c6a2-6c1d-800c-cb3bb96ffebf"
+    }
+  }
+}

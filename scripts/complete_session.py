@@ -124,7 +124,7 @@ def complete(
         diagnostic_evidence = read_live_report(diagnostic_evaluation)
     elif diagnostic_evaluation is not None:
         raise RuntimeError("Live diagnostic evaluation applies to Session 19")
-    if number not in {1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19}:
+    if number not in {1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}:
         raise RuntimeError("No complete runtime-gate definition exists for this session yet")
     evidence_dir = ROOT / "sessions" / Path(item["solution"]).parts[1] / "verification"
     evidence_dir.mkdir(parents=True, exist_ok=True)
@@ -168,6 +168,7 @@ def complete(
         17: "workflow-verify",
         18: "tools-verify",
         19: "react-verify",
+        20: "graph-verify",
     }[number]
     commands.append(("main-run", ["-m", "copilot", runtime_command, *evaluation_options]))
     if number >= 9:
@@ -189,9 +190,9 @@ def complete(
         if number in {14, 15}:
             runtime = ["scripts/verify_grounded_runtime.py"]
         commands.append(("main-http-runtime", runtime))
-    if number in {16, 17, 18, 19}:
+    if number in {16, 17, 18, 19, 20}:
         commands.append(("course-check", ["scripts/check_course.py"]))
-    if number in {18, 19}:
+    if number in {18, 19, 20}:
         commands.append(("mcp-contracts", ["scripts/snapshot_contracts.py"]))
     if number == 3:
         pricing = [
@@ -483,6 +484,39 @@ def complete(
         evidence["http_diagnostics"] = integrated
         evidence["live_diagnostic_evaluation"] = diagnostic_evidence
         evidence["paid_calls"] = len(diagnostic_evidence["calls"])
+    if number == 20:
+        main = ROOT / "reports/integrated/agents/graph-verify.json"
+        checkpoint = ROOT / "reports/cohort/session-20/solution/graph-verify.json"
+        integrated = json.loads(main.read_text(encoding="utf-8"))
+        standalone = json.loads(checkpoint.read_text(encoding="utf-8"))
+        integrated_observed = integrated.pop("observed")
+        standalone_observed = standalone.pop("observed")
+        if (
+            integrated != standalone
+            or integrated_observed["schema"] == standalone_observed["schema"]
+        ):
+            raise RuntimeError(
+                "Both source trees must pass request 3 in separate PostgreSQL schemas"
+            )
+        proof = integrated["request_3"]
+        if (
+            integrated["mode"] != "live-postgres-langgraph"
+            or integrated["paid_calls"] != 0
+            or proof["initial_tools"] != ["get_assets"]
+            or proof["resumed_tools"] != ["check_service_status", "search_kb"]
+            or proof["documents"] != ["KB-1054"]
+            or proof["foreign_resume_status"] != 403
+            or proof["tickets_created"] != 1
+            or not proof["ticket_replayed_after_restart"]
+            or len(set(integrated_observed["process_ids"])) != 3
+            or len(set(standalone_observed["process_ids"])) != 3
+        ):
+            raise RuntimeError("Session 20 needs proof of restart, ownership, and ticket replay")
+        evidence["postgres_graph"] = integrated
+        evidence["observed"] = {
+            "integrated": integrated_observed,
+            "standalone": standalone_observed,
+        }
     record = evidence_dir / "runtime-gate.json"
     record.write_text(json.dumps(evidence, indent=2) + "\n")
     item["completion_state"] = "verified_awaiting_commit"
@@ -702,6 +736,25 @@ def complete(
             "src/copilot/cli.py",
             "src/copilot/course/experiments.py",
             "tests/test_react_diagnostics.py",
+        ]
+    if number == 20:
+        paths = [
+            "docs/IMPLEMENTATION_STATUS.md",
+            "docs/SESSION_COMPLETION_POLICY.md",
+            "scripts/complete_session.py",
+            "sessions/20-langgraph-and-state-management",
+            "sessions/IMPLEMENTATION_GUIDE.md",
+            "sessions/implementation_manifest.json",
+            "src/copilot/agents/checkpointed_diagnostics.py",
+            "src/copilot/agents/diagnostic_graph.py",
+            "src/copilot/agents/diagnostics.py",
+            "src/copilot/agents/verify_graph.py",
+            "src/copilot/api/app.py",
+            "src/copilot/api/diagnostic_graph.py",
+            "src/copilot/cli.py",
+            "src/copilot/config.py",
+            "src/copilot/course/experiments.py",
+            "tests/test_diagnostic_graph.py",
         ]
     if number >= 9 and git("diff", "--cached", "--name-only"):
         raise RuntimeError("The Git index has staged changes. Preserve them before completion.")

@@ -51,6 +51,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     commands.add_parser("tools-verify", help="verify the typed tools on local HTTP services")
     commands.add_parser("react-verify", help="verify the bounded laptop diagnostic loop")
+    commands.add_parser("graph-verify", help="verify a diagnostic restart using PostgreSQL")
     serve = commands.add_parser("serve", help="start authenticated teaching API")
     serve.add_argument("--host", default="127.0.0.1", help="bind address (default: local only)")
     serve.add_argument("--port", type=int, default=8082, help="API port (default: 8082)")
@@ -90,6 +91,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         from copilot.agents.verify_react import run_check
 
         return run_check(settings.data_dir)
+    if args.command == "graph-verify":
+        from copilot.agents.verify_graph import run_check
+
+        return run_check(settings)
     if args.command == "tickets-stats":
         return _tickets_stats(args.by, args.path)
     if args.command == "session":

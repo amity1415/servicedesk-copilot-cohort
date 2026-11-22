@@ -64,6 +64,11 @@ source tree. Supply `--diagnostic-evaluation` with the live model report. The
 gate compares the loop source, the three tool observations, the supporting
 article, and the two-step runaway escalation.
 
+Session 20 runs `graph-verify` with local PostgreSQL. The gate compares the
+standalone and integrated reports from separate schemas. Each run starts
+three API processes, checks ownership before reading a checkpoint, and
+verifies that request 3 produces one ticket across restarts.
+
 The `status` field in `sessions/implementation_manifest.json` describes source
 availability. The separate `completion_state` describes audited completion:
 `pending_verification`, `verification_failed`, `verified_awaiting_commit`,

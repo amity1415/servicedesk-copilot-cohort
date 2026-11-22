@@ -109,7 +109,9 @@ The curriculum exit criterion is: Request 3 end state plus restart-and-resume tr
 
 ## Reference implementation and scope
 
-- [src/copilot/agents/graph.py](../../src/copilot/agents/graph.py)
-- [src/copilot/tools/runtime.py](../../src/copilot/tools/runtime.py)
+- [Typed diagnostic graph](solution/src/copilot/agents/diagnostic_graph.py)
+- [PostgreSQL checkpoint ownership](solution/src/copilot/agents/checkpointed_diagnostics.py)
 
-The adjacent `reference.py` currently launches shared application code. Some sessions execute offline fixtures or preflights; that does not establish that the full live-model, database or deployment requirement has run. Consult [implementation status](../../docs/IMPLEMENTATION_STATUS.md).
+The [session commands](STEPS_TO_FOLLOW.md) run the application against local
+PostgreSQL and a seeded ticketing mock. The adjacent `reference.py` runs the
+integrated version of that check.

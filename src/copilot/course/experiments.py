@@ -173,7 +173,12 @@ def experiment(number: int, root: Path) -> dict:
             "specialist": specialist("My laptop is slow"),
             "decision_source": "scripted fixture; model comparison not measured",
         }
-    if number in {20, 22}:
+    if number == 20:
+        from copilot.agents.verify_graph import verify_graph
+        from copilot.config import get_settings
+
+        return verify_graph(data, get_settings())
+    if number == 22:
         runtime = _runtime(root)
         runtime.save_thread("E1166", "course-resume", {"step": "device_checked"})
         reloaded = _runtime(root).load_thread("E1166", "course-resume")

@@ -63,6 +63,11 @@ after observing the assigned Windows laptop and an active APAC incident. A
 repeating decision escalated after two calls, with zero ticket writes.
 [Session 19](../sessions/19-the-agent-loop-written-by-hand/README.md)
 
+Session 20 streams laptop diagnostics from LangGraph and saves progress in
+PostgreSQL. A fresh process resumes after the device observation. The thread
+owner can then escalate to ticketing and replay the same ticket after another
+restart. [Session 20](../sessions/20-langgraph-and-state-management/README.md)
+
 ## Validated cumulative RAG batch, sessions 05–08
 
 Implemented in both the integrated application and independent cumulative session

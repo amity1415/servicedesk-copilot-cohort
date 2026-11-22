@@ -1,9 +1,9 @@
 # Actual session implementations
 
-Sessions 01–19 contain cumulative Python source. The
+Sessions 01–20 contain cumulative Python source. The
 [implementation manifest](implementation_manifest.json) records verified
 completion separately and tracks the pending live gate for Session 04.
-Sessions 20–40 have lesson material and reference launchers.
+Sessions 21–40 have lesson material and reference launchers.
 
 Each implemented folder contains `starter/src/copilot`, `solution/src/copilot`,
 acceptance tests in both trees, and build instructions. The starter retains the
@@ -55,6 +55,7 @@ Session 17 adds the [fixed ticket workflow](17-agents-versus-workflows/README.md
 and verifies it with the local Compose services.
 Session 18 adds [typed service desk tools and ticket drafting](18-tool-calling-and-structured-output/README.md).
 Session 19 adds the [bounded laptop diagnostic loop](19-the-agent-loop-written-by-hand/README.md).
+Session 20 adds [streaming LangGraph diagnostics with PostgreSQL checkpoints](20-langgraph-and-state-management/README.md).
 
 
 ## Required execution and commit gate

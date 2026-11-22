@@ -11,14 +11,15 @@ Run every command from `servicedesk-copilot/` with the environment activated. Se
 7. Stream updates.
 8. Kill and restart after a tool observation.
 9. Resume same thread.
-10. Run the reference experiment:
+10. Run the standalone and integrated PostgreSQL verification commands.
 
 ```bash
-python sessions/20-langgraph-and-state-management/reference.py
+python scripts/session.py run 20
+python -m copilot graph-verify
 ```
 
 11. Perform the deliberate failure exercise in the session README. Record the observed failure and the corrective change in `evidence.md`.
-12. Validate `Request 3 end state plus restart-and-resume transcript against PostgreSQL`. The reference experiment alone is insufficient for any live-system requirement.
+12. Confirm the paused checkpoint was stored in PostgreSQL, the next process resumed it, and only one ticket was created for request 3.
 13. Run regression checks:
 
 ```bash
@@ -28,4 +29,4 @@ ruff format --check .
 ```
 
 14. Complete the evidence template, review the diff and commit only this increment and its reviewed evidence. Do not commit `.env`, runtime databases or tokens.
-15. Continue to session 21 without replacing the repository. Consult [integration steps](../../docs/INTEGRATION_STEPS.md) at module boundaries.
+15. Push and verify the checkpoint before continuing to Session 21. Consult [integration steps](../../docs/INTEGRATION_STEPS.md) at module boundaries.

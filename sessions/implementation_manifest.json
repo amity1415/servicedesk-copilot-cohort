@@ -590,8 +590,40 @@
     },
     {
       "session": 20,
-      "status": "planned",
-      "note": "Legacy experiment/preflight remains; real cumulative source is not implemented yet"
+      "status": "implemented",
+      "completion_state": "verified_awaiting_commit",
+      "starter": "sessions/20-langgraph-and-state-management/starter",
+      "solution": "sessions/20-langgraph-and-state-management/solution",
+      "previous_tests": [
+        "test_config.py",
+        "test_inference.py",
+        "test_logging_setup.py",
+        "test_ml.py",
+        "test_rag_baseline.py",
+        "test_rag_embeddings.py",
+        "test_rag_grounded.py",
+        "test_rag_hybrid.py",
+        "test_rag_ingestion.py",
+        "test_rag_metadata.py",
+        "test_rag_postgres.py",
+        "test_rag_recursive.py",
+        "test_rag_reranking.py",
+        "test_rag_semantic.py",
+        "test_source_identity.py",
+        "test_tickets.py",
+        "test_tokens.py",
+        "test_rag_evaluation.py",
+        "test_rag_http.py",
+        "test_password_reset_workflow.py",
+        "test_service_desk_tools.py",
+        "test_react_diagnostics.py"
+      ],
+      "new_tests": [
+        "test_diagnostic_graph.py"
+      ],
+      "default_command": [
+        "graph-verify"
+      ]
     },
     {
       "session": 21,
@@ -696,9 +728,9 @@
   ],
   "git_history": {
     "remote": "https://github.com/amity1415/servicedesk-copilot-cohort.git",
-    "publishing": "Session 18 completion and pointer pushed to origin/main and verified in GitHub Actions",
-    "published_through_session": 18,
-    "verified_remote_head": "c317e8997a68ef4ddad50ee25bd8b9f327797c3d",
+    "publishing": "Session 19 completion and pointer pushed to origin/main and verified in GitHub Actions",
+    "published_through_session": 19,
+    "verified_remote_head": "095592c09e6a9bc10196ae343241f1479f22966f",
     "author": "automated Codex Course Builder",
     "root_branch": "main",
     "course_history": "independent linear cumulative source history"

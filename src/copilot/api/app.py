@@ -9,7 +9,9 @@ from threading import Lock
 from fastapi import Depends, FastAPI, HTTPException
 from pydantic import BaseModel
 
+from copilot.agents.checkpointed_diagnostics import CheckpointedDiagnostics
 from copilot.agents.engine import Engine
+from copilot.api.diagnostic_graph import register_graph
 from copilot.api.http import (
     ASK_RESPONSES,
     Answer,
@@ -42,6 +44,8 @@ def create_app(
     *,
     diagnostic_decision=None,
     diagnostic_max_steps: int = 6,
+    diagnostic_database_url: str | None = None,
+    graph_interrupt_after_tool: bool = False,
 ) -> FastAPI:
     configured = configured_tokens(tokens)
     runtime = Runtime(state, data)
@@ -60,6 +64,11 @@ def create_app(
     ingestion_lock = Lock()
     register_http(app)
     register_tools(app, engine.tools, identify)
+    if diagnostic_database_url is not None:
+        graph = CheckpointedDiagnostics(
+            diagnostic_database_url, engine.tools, interrupt_after_tool=graph_interrupt_after_tool
+        )
+        register_graph(app, graph, identify)
 
     def remote_tools(actor):
         from copilot.tools.remote import RemoteTools
@@ -168,4 +177,10 @@ def production_app():
     ticketing = TicketingClient(
         settings.ticketing_base_url, settings.ticketing_api_key.get_secret_value()
     )
-    return create_app(data=settings.data_dir, ticketing=ticketing)
+    return create_app(
+        data=settings.data_dir,
+        ticketing=ticketing,
+        diagnostic_database_url=settings.database_url.get_secret_value()
+        if settings.postgres_diagnostics_enabled
+        else None,
+    )

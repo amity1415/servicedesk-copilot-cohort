@@ -32,35 +32,30 @@ def local_decision(query: str, events: list[dict]) -> dict:
     return {"tool": "search_kb", "arguments": arguments}
 
 
-def run_diagnostics(
-    tools: ServiceDeskTools, actor: str, query: str, *, decide=None, max_steps: int = 6
-) -> dict:
-    observed = {}
-
-    def observe(name, **arguments):
-        result = tools.execute(actor, name, arguments)
-        if name == "check_service_status":
-            result = {"rows": [row for row in result["rows"] if not row["resolved_at"]]}
-        observed[name] = result
-        if name == "get_assets":
-            return {
-                "devices": [
-                    {field: row[field] for field in DEVICE_FIELDS} for row in result["rows"]
-                ]
-            }
-        if name == "check_service_status":
-            return {
-                "active_incidents": [
-                    {field: row[field] for field in INCIDENT_FIELDS} for row in result["rows"]
-                ]
-            }
-        return {
+def observe_diagnostic(
+    tools: ServiceDeskTools, actor: str, name: str, arguments: dict
+) -> tuple[dict, dict]:
+    result = tools.execute(actor, name, arguments)
+    if name == "get_assets":
+        observation = {
+            "devices": [{field: row[field] for field in DEVICE_FIELDS} for row in result["rows"]]
+        }
+    elif name == "check_service_status":
+        result = {"rows": [row for row in result["rows"] if not row["resolved_at"]]}
+        observation = {
+            "active_incidents": [
+                {field: row[field] for field in INCIDENT_FIELDS} for row in result["rows"]
+            ]
+        }
+    else:
+        observation = {
             "excerpt": result["answer"][:3200],
             "document_ids": sorted({citation["document_id"] for citation in result["citations"]}),
         }
+    return result, observation
 
-    bound = {name: partial(observe, name) for name in DIAGNOSTIC_TOOLS}
-    outcome = run_loop(decide or local_decision, bound, query, max_steps=max_steps)
+
+def summarize_diagnostic(outcome: dict, observed: dict, *, decision_source: str = "local") -> dict:
     article = observed.get("search_kb", {})
     citations = article.get("citations", [])
     status = outcome["status"]
@@ -69,9 +64,9 @@ def run_diagnostics(
             status = "suggested_fixes"
         else:
             status = "escalated"
-            outcome["reason"] = "missing_diagnostic_evidence"
+            outcome = {**outcome, "reason": "missing_diagnostic_evidence"}
     if status == "suggested_fixes":
-        answer = outcome["answer"] if decide else article["answer"]
+        answer = article["answer"] if decision_source == "local" else outcome["answer"]
     else:
         answer = "The laptop diagnosis needs review by a service desk analyst."
     return {
@@ -79,9 +74,26 @@ def run_diagnostics(
         "status": status,
         "answer": answer,
         "mode": article.get("mode", "diagnostic-loop"),
-        "decision_source": "configured" if decide else "local",
+        "decision_source": decision_source,
         "citations": citations,
         "steps": [event["tool"] for event in outcome["events"]],
         "assets": observed.get("get_assets", {}).get("rows", []),
         "incidents": observed.get("check_service_status", {}).get("rows", []),
     }
+
+
+def run_diagnostics(
+    tools: ServiceDeskTools, actor: str, query: str, *, decide=None, max_steps: int = 6
+) -> dict:
+    observed = {}
+
+    def observe(name, **arguments):
+        result, observation = observe_diagnostic(tools, actor, name, arguments)
+        observed[name] = result
+        return observation
+
+    bound = {name: partial(observe, name) for name in DIAGNOSTIC_TOOLS}
+    outcome = run_loop(decide or local_decision, bound, query, max_steps=max_steps)
+    return summarize_diagnostic(
+        outcome, observed, decision_source="configured" if decide else "local"
+    )
