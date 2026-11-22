@@ -21,6 +21,7 @@ from copilot.api.http import (
     identify_with,
     register_http,
 )
+from copilot.config import get_settings
 from copilot.rag.grounded import configured_rag
 from copilot.rag.pipeline import ingest
 from copilot.telemetry import configure, dashboard
@@ -150,8 +151,8 @@ def create_app(
 
 def production_app():
     configure("copilot-api")
+    settings = get_settings()
     ticketing = TicketingClient(
-        os.getenv("COPILOT_TICKETING_BASE_URL", "http://localhost:8081"),
-        os.environ["COPILOT_TICKETING_API_KEY"],
+        settings.ticketing_base_url, settings.ticketing_api_key.get_secret_value()
     )
-    return create_app(ticketing=ticketing)
+    return create_app(data=settings.data_dir, ticketing=ticketing)

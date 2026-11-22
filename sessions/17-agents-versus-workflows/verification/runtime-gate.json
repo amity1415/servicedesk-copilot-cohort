@@ -1,0 +1,180 @@
+{
+  "session": 17,
+  "verified_at_utc": "2026-11-22T17:53:29.191556+00:00",
+  "source_state": "d0c49601ef17f610278dc73ec802a44ddfca5054",
+  "checks": [
+    {
+      "name": "session-tests",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "17"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "6b2da81cfd700edf11af4bfe938425286a4cf75822efa8a36e79a0ce0190ea92"
+    },
+    {
+      "name": "main-tests",
+      "command": [
+        "-m",
+        "pytest",
+        "--tb=short",
+        "--basetemp=.work/pytest-gate-b05788360953403bb5a012d3d7aad8c6"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "721c606cd38a76297ac4d8ac6edee61f74896f792af089a570507f64da5a8f44"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "format",
+      "command": [
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "6cf2547d1e5613c0b0c22a7861d9c26adb305d086114c7982f47df9ba5a6f4dd"
+    },
+    {
+      "name": "session-run",
+      "command": [
+        "scripts/session.py",
+        "run",
+        "17"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "4149f0fe9980778a1a3af8361341ec447867372eadf99bb4ebd7b8c7cc9105f5"
+    },
+    {
+      "name": "main-run",
+      "command": [
+        "-m",
+        "copilot",
+        "workflow-verify"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "e44bdc844476c7ed4633ce3d1c422544c53f7cd69100fd29f7a4b222f3f58d33"
+    },
+    {
+      "name": "starter-inherited",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "17",
+        "--variant",
+        "starter",
+        "--previous-only"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "5a1a11356bd15fbadde87d2ba20b8bc9211510c01c7ce506b44e276596c196a3"
+    },
+    {
+      "name": "starter-new",
+      "command": [
+        "scripts/session.py",
+        "test",
+        "17",
+        "--variant",
+        "starter"
+      ],
+      "exit_code": 1,
+      "expected_failure": true,
+      "output_sha256": "29aaab6091f4fe7237770135856462b084ac2c3cc358e839d260cbed4d419d3a"
+    },
+    {
+      "name": "course-check",
+      "command": [
+        "scripts/check_course.py"
+      ],
+      "exit_code": 0,
+      "expected_failure": false,
+      "output_sha256": "1f346c19de1390fbb72e3d29d316a6abce56d94435421a161c96a19477fe2157"
+    }
+  ],
+  "runtime_scope": "actual session source and integrated main application",
+  "paid_calls": 0,
+  "workflow": {
+    "mode": "live-local-ticketing-workflow",
+    "directory": {
+      "employees": 300,
+      "devices": 450,
+      "test_employee_devices": 2
+    },
+    "policy": {
+      "default": "deny",
+      "action_tiers": {
+        "search_kb": "read",
+        "article": "read",
+        "get_employee": "read",
+        "get_assets": "read",
+        "check_service_status": "read",
+        "get_software_catalogue": "read",
+        "check_policy": "read",
+        "check_licences": "read",
+        "triage_ticket": "read",
+        "summarise_incident": "read",
+        "create_ticket": "low_risk_write",
+        "update_ticket": "low_risk_write",
+        "ingest": "low_risk_write",
+        "request_access": "approval_required",
+        "decide_access": "approval_required",
+        "fulfil_access": "approval_required",
+        "onboard": "approval_required",
+        "grant_admin": "forbidden",
+        "arbitrary_sql": "forbidden",
+        "disable_security": "forbidden"
+      }
+    },
+    "workflow": {
+      "previous_vpn_documents": [
+        "KB-1017"
+      ],
+      "requester_id": "E1261",
+      "assignment_group": "Identity & Access",
+      "category": "Access & Identity",
+      "steps": [
+        "get_employee",
+        "create_ticket"
+      ],
+      "ticket_count_delta": 1,
+      "idempotent_replay": true
+    },
+    "outage": {
+      "upstream_status": 503,
+      "after_outage": "ticket_unavailable",
+      "after_recovery": "ticket_created"
+    },
+    "paid_calls": 0
+  },
+  "observed": {
+    "integrated": {
+      "ticket_id": "INC0020064",
+      "request_id": "aee2fad6-8a8b-4292-a69c-116de51a73e8",
+      "replay_request_id": "b2d7c407-888d-47c4-ac36-6d5398003015"
+    },
+    "standalone": {
+      "ticket_id": "INC0020063",
+      "request_id": "2835b60e-4b1f-4c4b-bd89-5cc5263cc6cf",
+      "replay_request_id": "64a4abd1-c394-41bf-b5f5-95197109cf4b"
+    }
+  }
+}

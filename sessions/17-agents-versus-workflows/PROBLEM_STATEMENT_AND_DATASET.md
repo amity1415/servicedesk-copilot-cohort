@@ -133,4 +133,6 @@ The curriculum exit criterion is: Ticket visible in mock API and an action-risk 
 - [src/copilot/tools/ticketing.py](../../src/copilot/tools/ticketing.py)
 - [policies/actions.yaml](../../policies/actions.yaml)
 
-The adjacent `reference.py` currently launches shared application code. Some sessions execute offline fixtures or preflights; that does not establish that the full live-model, database or deployment requirement has run. Consult [implementation status](../../docs/IMPLEMENTATION_STATUS.md).
+The adjacent `reference.py` runs the live local ticketing workflow from the
+integrated application. The [session steps](STEPS_TO_FOLLOW.md) also run the
+standalone checkpoint against the same seeded Compose services.

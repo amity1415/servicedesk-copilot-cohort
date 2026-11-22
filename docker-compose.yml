@@ -1,7 +1,7 @@
 # Enterprise systems the copilot talks to, run locally.
 #
 #   docker compose up -d db          # session 10: PostgreSQL with pgvector and the seeded company data
-#   docker compose up -d ticketing   # session 17: the ticketing mock
+#   docker compose up -d db ticketing # session 17: seeded company tables and ticketing mock
 #   docker compose down -v           # stop everything and delete the database volume
 #
 # The MCP servers, the HR agent, the API and the UI are added to this file as they are built.
@@ -41,7 +41,7 @@ services:
       FAULT_TIMEOUT_RATE: "0"
       FAULT_RATE_LIMIT_PER_MINUTE: "0"
     ports:
-      - "8081:8081"
+      - "127.0.0.1:8081:8081"
     volumes:
       - ./data/tickets/open_tickets.json:/seed/open_tickets.json:ro
       - ./data/db/csv/employees.csv:/seed/employees.csv:ro

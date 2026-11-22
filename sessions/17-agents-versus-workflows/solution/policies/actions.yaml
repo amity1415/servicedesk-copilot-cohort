@@ -1,0 +1,16 @@
+version: 1
+default: deny
+read:
+  - search_kb
+  - article
+  - get_employee
+  - get_assets
+  - check_service_status
+  - get_software_catalogue
+  - check_policy
+  - check_licences
+  - triage_ticket
+  - summarise_incident
+low_risk_write: [create_ticket, update_ticket, ingest]
+approval_required: [request_access, decide_access, fulfil_access, onboard]
+forbidden: [grant_admin, arbitrary_sql, disable_security]

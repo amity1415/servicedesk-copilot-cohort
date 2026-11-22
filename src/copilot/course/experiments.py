@@ -122,7 +122,12 @@ def experiment(number: int, root: Path) -> dict:
         from copilot.api.verify import verify_http_service
 
         return verify_http_service(data)
-    if number in {17, 18, 24}:
+    if number == 17:
+        from copilot.config import get_settings
+        from copilot.tools.verify_workflow import verify_workflow
+
+        return verify_workflow(data, get_settings())
+    if number in {18, 24}:
         from copilot.tools.ticketing import TicketDraft
 
         draft = TicketDraft(

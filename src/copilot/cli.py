@@ -46,6 +46,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     session = commands.add_parser("session", help="run one teaching experiment")
     session.add_argument("number", type=int, choices=range(1, 41))
     commands.add_parser("evaluate-retrieval", help="score lexical retrieval on draft labels")
+    commands.add_parser(
+        "workflow-verify", help="verify the password-reset workflow on local services"
+    )
     serve = commands.add_parser("serve", help="start authenticated teaching API")
     serve.add_argument("--host", default="127.0.0.1", help="bind address (default: local only)")
     serve.add_argument("--port", type=int, default=8082, help="API port (default: 8082)")
@@ -73,6 +76,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     if foundation_result is not None:
         return foundation_result
 
+    if args.command == "workflow-verify":
+        from copilot.tools.verify_workflow import run_check
+
+        return run_check(settings)
     if args.command == "tickets-stats":
         return _tickets_stats(args.by, args.path)
     if args.command == "session":

@@ -14,17 +14,42 @@ Before coding, identify the input contract, the authoritative system of record a
 
 Work through these implementation decisions: Start ticketing service; inspect seeded employee data; classify read, low-risk write and approval-required actions; implement password-reset ticket workflow through HTTP; save request ID.
 
-## Reference implementation
+## Run the solution
 
-- [src/copilot/tools/ticketing.py](../../src/copilot/tools/ticketing.py)
-- [policies/actions.yaml](../../policies/actions.yaml)
+With the Python environment activated, start the local services from the repo root.
 
-Run the adjacent `reference.py` from the project root. It executes the session experiment through the shared application code. Its JSON report declares whether it is an offline experiment or an integration preflight. A preflight does not satisfy the integration gate.
+```powershell
+docker compose up -d db ticketing
+docker compose ps db ticketing
+python scripts/session.py test 17 --variant starter --previous-only
+python scripts/session.py test 17
+python scripts/session.py run 17
+python -m copilot workflow-verify
+```
+
+The two runtime commands require healthy Compose services. Each starts a new
+copilot API on loopback, verifies the directory seed, and creates one synthetic
+ticket in the running mock. The workflow uses the authenticated employee ID.
+Repeating the request in the same thread returns the original ticket. The
+report includes the ticket and both copilot request IDs.
+
+The exported learner project includes the Compose configuration and mock
+service. Use the [implementation guide](../IMPLEMENTATION_GUIDE.md) to create
+the standalone environment and start its services from the export directory.
+
+- [Password-reset workflow](solution/src/copilot/tools/password_reset.py)
+- [Ticketing HTTP adapter](solution/src/copilot/tools/ticketing.py)
+- [Action-risk policy](solution/policies/actions.yaml)
 
 ## Deliberate failure exercise
 
-Inject a ticket API 503 and determine which steps may safely retry. Capture the failing behaviour first, then implement the fix and retain the regression check.
+The verifier runs a separate copy of the mock which returns `503` to ticket
+requests. Check that the workflow reports the outage and leaves the ticket
+count unchanged. Clear the isolated fault and retry in the same thread. The
+first successful write produces one ticket.
 
 ## Evidence and exit criteria
 
-Ticket visible in mock API and an action-risk inventory with default-deny handling. Record observed values, never desired target values. Complete [STEPS_TO_FOLLOW.md](STEPS_TO_FOLLOW.md), then retain your implementation and evidence for the next session.
+Read the ticket back through the mock API, record its request ID, and verify
+that missing actions are denied before a write. Complete
+[STEPS_TO_FOLLOW.md](STEPS_TO_FOLLOW.md) and retain your evidence for Session 18.

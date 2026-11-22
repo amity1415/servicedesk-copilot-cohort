@@ -99,7 +99,7 @@ def complete(number, *, live_report=None, human_review=None, evaluation_dataset=
         evaluation_options = ["--dataset", str(reviewed_path)]
     elif evaluation_dataset is not None:
         raise RuntimeError("Reviewed RAG evaluation data applies to Session 15")
-    if number not in {1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16}:
+    if number not in {1, 2, 3, 9, 10, 11, 12, 13, 14, 15, 16, 17}:
         raise RuntimeError("No complete runtime-gate definition exists for this session yet")
     evidence_dir = ROOT / "sessions" / Path(item["solution"]).parts[1] / "verification"
     evidence_dir.mkdir(parents=True, exist_ok=True)
@@ -140,6 +140,7 @@ def complete(number, *, live_report=None, human_review=None, evaluation_dataset=
         14: "rag-grounded-verify",
         15: "rag-evaluate",
         16: "rag-http-verify",
+        17: "workflow-verify",
     }[number]
     commands.append(("main-run", ["-m", "copilot", runtime_command, *evaluation_options]))
     if number >= 9:
@@ -161,7 +162,7 @@ def complete(number, *, live_report=None, human_review=None, evaluation_dataset=
         if number in {14, 15}:
             runtime = ["scripts/verify_grounded_runtime.py"]
         commands.append(("main-http-runtime", runtime))
-    if number == 16:
+    if number in {16, 17}:
         commands.append(("course-check", ["scripts/check_course.py"]))
     if number == 3:
         pricing = [
@@ -366,6 +367,39 @@ def complete(number, *, live_report=None, human_review=None, evaluation_dataset=
         ):
             raise RuntimeError("The HTTP walkthrough did not verify the full Session 16 scope")
         evidence["http_and_ui"] = report
+    if number == 17:
+        main = ROOT / "reports/integrated/workflows/workflow-verify.json"
+        checkpoint = ROOT / "reports/cohort/session-17/solution/workflow-verify.json"
+        integrated = json.loads(main.read_text(encoding="utf-8"))
+        standalone = json.loads(checkpoint.read_text(encoding="utf-8"))
+        integrated_observed = integrated.pop("observed")
+        standalone_observed = standalone.pop("observed")
+        if (
+            integrated != standalone
+            or integrated_observed["ticket_id"] == standalone_observed["ticket_id"]
+        ):
+            raise RuntimeError(
+                "Both source trees must independently execute the same ticket workflow"
+            )
+        if (
+            integrated["mode"] != "live-local-ticketing-workflow"
+            or integrated["paid_calls"] != 0
+            or integrated["policy"]["default"] != "deny"
+            or integrated["workflow"]["ticket_count_delta"] != 1
+            or not integrated["workflow"]["idempotent_replay"]
+            or integrated["outage"]
+            != {
+                "upstream_status": 503,
+                "after_outage": "ticket_unavailable",
+                "after_recovery": "ticket_created",
+            }
+        ):
+            raise RuntimeError("The ticket workflow did not verify policy, retries and recovery")
+        evidence["workflow"] = integrated
+        evidence["observed"] = {
+            "integrated": integrated_observed,
+            "standalone": standalone_observed,
+        }
     record = evidence_dir / "runtime-gate.json"
     record.write_text(json.dumps(evidence, indent=2) + "\n")
     item["completion_state"] = "verified_awaiting_commit"
@@ -522,6 +556,25 @@ def complete(number, *, live_report=None, human_review=None, evaluation_dataset=
             "src/copilot/ui/chat.py",
             "src/copilot/ui/rag_chat.py",
             "tests/test_rag_http.py",
+        ]
+    if number == 17:
+        paths = [
+            "docker-compose.yml",
+            "docs/IMPLEMENTATION_STATUS.md",
+            "docs/SESSION_COMPLETION_POLICY.md",
+            "policies/actions.yaml",
+            "scripts/complete_session.py",
+            "sessions/17-agents-versus-workflows",
+            "sessions/IMPLEMENTATION_GUIDE.md",
+            "sessions/implementation_manifest.json",
+            "src/copilot/agents/engine.py",
+            "src/copilot/api/app.py",
+            "src/copilot/cli.py",
+            "src/copilot/course/experiments.py",
+            "src/copilot/tools/password_reset.py",
+            "src/copilot/tools/ticketing.py",
+            "src/copilot/tools/verify_workflow.py",
+            "tests/test_password_reset_workflow.py",
         ]
     if number >= 9 and git("diff", "--cached", "--name-only"):
         raise RuntimeError("The Git index has staged changes. Preserve them before completion.")

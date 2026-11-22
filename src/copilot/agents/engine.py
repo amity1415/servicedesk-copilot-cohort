@@ -13,6 +13,7 @@ from copilot.rag.grounded import MODE as GROUNDED_MODE
 from copilot.rag.pipeline import Retriever
 from copilot.rag.query import rewrite
 from copilot.telemetry import traced
+from copilot.tools.password_reset import asks_for_password_reset, open_password_reset_ticket
 from copilot.tools.runtime import Runtime
 from copilot.tools.ticketing import TicketDraft, TicketingClient
 
@@ -43,7 +44,9 @@ class Engine:
             }
         steps = []
         lower = query.lower()
-        if "access" in lower and ("finance" in lower or "finsight" in lower):
+        if asks_for_password_reset(query):
+            result = open_password_reset_ticket(actor, thread, self.ticketing)
+        elif "access" in lower and ("finance" in lower or "finsight" in lower):
             app = next(
                 a for a in self.runtime.rows("software_catalogue") if a["name"] == "FinSight"
             )

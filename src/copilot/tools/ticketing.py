@@ -5,6 +5,7 @@ import time
 import httpx
 from pydantic import BaseModel, Field
 
+from copilot.logging_setup import request_id_var
 from copilot.telemetry import outbound_headers, traced
 
 
@@ -31,18 +32,13 @@ class TicketingClient:
             "priority": draft.priority,
             "assignment_group": draft.assignment_group,
         }
+        headers = {**outbound_headers(), "X-API-Key": self.key, "Idempotency-Key": idempotency_key}
+        if request_id := request_id_var.get():
+            headers["X-Request-ID"] = request_id
         with httpx.Client(base_url=self.base_url, timeout=5, transport=self.transport) as client:
             for attempt in range(3):
                 try:
-                    response = client.post(
-                        "/tickets",
-                        json=body,
-                        headers={
-                            **outbound_headers(),
-                            "X-API-Key": self.key,
-                            "Idempotency-Key": idempotency_key,
-                        },
-                    )
+                    response = client.post("/tickets", json=body, headers=headers)
                     response.raise_for_status()
                     return response.json()
                 except (httpx.TimeoutException, httpx.NetworkError, httpx.HTTPStatusError) as exc:

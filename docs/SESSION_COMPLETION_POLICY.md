@@ -49,6 +49,11 @@ follow-up, the SSE response, request IDs and ingestion authorization. Confirm
 GitHub Actions on the published `main` commit and publish `v0.2-rag` at that
 verified commit before advancing.
 
+Session 17 runs `workflow-verify` against the local Compose PostgreSQL and
+ticketing services. Each source tree must create one ticket, read it back,
+replay the same request, and recover from a `503` using its own isolated
+mock. The gate also records the default-deny risk inventory and the VPN smoke test.
+
 The `status` field in `sessions/implementation_manifest.json` describes source
 availability. The separate `completion_state` describes audited completion:
 `pending_verification`, `verification_failed`, `verified_awaiting_commit`,

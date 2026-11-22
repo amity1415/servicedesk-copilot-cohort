@@ -41,7 +41,15 @@ Session 16 adds typed FastAPI routes, authenticated asks, administrator ingestio
 request IDs, and persistent citations in the Streamlit conversation. The
 standalone and integrated verification commands start their own loopback server
 and exercise both VPN scenarios plus the Windows follow-up using local TF-IDF.
+GitHub Actions passed at the published `v0.2-rag` checkpoint.
 [Session 16](../sessions/16-rag-as-a-fastapi-service/README.md)
+[Hosted verification](https://github.com/amity1415/servicedesk-copilot-cohort/actions/runs/45050723903)
+
+Session 17 adds fixed password-reset ticket intake and risk tiers for the
+planned tools. The runtime check verifies the seeded PostgreSQL employee and
+device tables, checks that a repeated request returns the original ticket,
+and recovers from an isolated ticketing `503` on the same thread.
+[Session 17](../sessions/17-agents-versus-workflows/README.md)
 
 ## Validated cumulative RAG batch, sessions 05–08
 
