@@ -591,7 +591,7 @@
     {
       "session": 20,
       "status": "implemented",
-      "completion_state": "verified_awaiting_commit",
+      "completion_state": "verified_committed",
       "starter": "sessions/20-langgraph-and-state-management/starter",
       "solution": "sessions/20-langgraph-and-state-management/solution",
       "previous_tests": [
@@ -623,7 +623,9 @@
       ],
       "default_command": [
         "graph-verify"
-      ]
+      ],
+      "completion_commit": "6700ddb9b627583da03fb0c0095595ae9606e401",
+      "completion_evidence": "sessions/20-langgraph-and-state-management/verification/runtime-gate.json"
     },
     {
       "session": 21,
