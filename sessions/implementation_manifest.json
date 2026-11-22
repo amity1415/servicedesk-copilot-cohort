@@ -376,8 +376,7 @@
     {
       "session": 14,
       "status": "implemented",
-      "completion_state": "verified_awaiting_commit",
-      "completion_blocker": "The revised GPT-6 Luna run passed. Human review of its two cited answers is pending.",
+      "completion_state": "verified_committed",
       "live_runner": "scripts/verify_grounded_live.py",
       "starter": "sessions/14-grounded-prompting-with-citations/starter",
       "solution": "sessions/14-grounded-prompting-with-citations/solution",
@@ -405,7 +404,9 @@
       "default_command": [
         "rag-grounded-verify"
       ],
-      "offline_evidence": "sessions/14-grounded-prompting-with-citations/verification/offline-fixture.json"
+      "offline_evidence": "sessions/14-grounded-prompting-with-citations/verification/offline-fixture.json",
+      "completion_commit": "0d2a750e0ede953e260d16a57233212a01c27b72",
+      "completion_evidence": "sessions/14-grounded-prompting-with-citations/verification/runtime-gate.json"
     },
     {
       "session": 15,
