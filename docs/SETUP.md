@@ -1,5 +1,8 @@
 # Setup for the trainer and learners
 
+For a fresh setup, follow the [project walkthrough](PROJECT_SETUP.md). Use the
+[session checklist](../sessions/SETUP.md) to prepare each lab.
+
 Use Python 3.12 or later and VS Code. On Windows use a short checkout path such
 as `C:\work\servicedesk-copilot`; compiled dependencies can fail under long paths.
 All commands below run in the repository root.

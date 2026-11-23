@@ -2,6 +2,9 @@
 
 Audience: experienced engineers who know AI fundamentals. Forty 90-minute sessions build one IT Service Desk Copilot. Read [setup](../docs/SETUP.md) first.
 
+Use the [session setup checklist](SETUP.md) to prepare dependencies and service
+checks for each lab.
+
 Each session has technical content, trainer notes, an implementation sequence, a runnable reference experiment, exercises and a verification checklist. Offline experiment completion is distinct from the syllabus integration gate. Reference source is shared with the application so fixes do not drift across forty copied repositories.
 
 | Session | Build increment |
