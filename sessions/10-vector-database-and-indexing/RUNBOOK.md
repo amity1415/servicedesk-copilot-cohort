@@ -1,68 +1,101 @@
-# 10 terminal and coding runbook
+# Session 10 — Persist vectors in pgvector
 
-Open the [lesson](README.md) and [numbered build steps](STEPS_TO_FOLLOW.md). Start from the repository root
-with the [course environment](../../docs/BEGINNER_RUNBOOK.md#1-set-up-the-learner-checkout)
-installed. In PowerShell, run these three lines to confirm the folder and
-use its Python interpreter:
+Store embeddings in PostgreSQL and query the active index. Verify replacement rollback and source withdrawal.
+
+## 1. Open the project and prepare PowerShell
+
+In VS Code, choose **File → Open Folder** and select the repository. Choose
+**Terminal → New Terminal** and use PowerShell. Paste one command at a time.
+Keep the terminal at the repository root, even when editing session files.
 
 ```powershell
 Get-Location
 Get-Item pyproject.toml
 $py = '.\.venv\Scripts\python.exe'
+& $py --version
 ```
 
-## Prepare this lab
+If the last command cannot find Python, follow the
+[beginner installation walkthrough](../../docs/BEGINNER_RUNBOOK.md#1-set-up-the-learner-checkout).
+Set `$py` again whenever you open a new terminal.
 
-Wait for each preparation command to finish before going on.
+**For this session.** Install `rag-local,postgres`, start Docker, and prepare MiniLM.
 
 ```powershell
+& $py -m pip install -e ".[rag-local,postgres]"
 docker compose up -d --wait db
 docker compose exec -T db pg_isready -U copilot -d copilot
 & $py -m copilot rag-model-prepare
 ```
 
-## 1. Run the instructor solution and inspect the starter
+## 2. Run the finished example
+
+The first command runs the completed lesson. The second checks it with
+pytest. Wait for the PowerShell prompt before moving to the next command.
 
 ```powershell
 & $py scripts/session.py run 10
 & $py scripts/session.py test 10
+```
+
+Inspect the output:
+
+```powershell
+$r = Get-Content 'reports/cohort/session-10/solution/rag-postgres-verify.json' -Raw | ConvertFrom-Json
+$r | Select-Object pgvector_version, dimension, published_chunks, search_document_ids, failed_replace_rolled_back, withdrawn_chunks
+$r | Select-Object exact_top5_chunk_ids, approximate_top5_chunk_ids, top5_overlap
+```
+
+Check the database version, vector dimension, retrieved sources, rollback result, and withdrawal result.
+
+## 3. Run the learner's tests
+
+```powershell
 & $py scripts/session.py test 10 --variant starter --previous-only
 & $py scripts/session.py test 10 --variant starter
 ```
 
-Expect the solution checks to pass. The last command is the learner's starting
-point and should fail on the new acceptance checks before implementation.
+The first command checks the inherited baseline. It should pass before you edit. The final command checks new learner behavior. A new acceptance check should
+fail on the untouched starter. Open the first failing test named by PowerShell
+under the starter's `tests` folder and look at its input and expected result.
+This session's new test files are [test_rag_postgres.py](starter/tests/test_rag_postgres.py).
 
-## 2. Write the code
+## 4. Write the code
 
-1. In VS Code, open `sessions/10-vector-database-and-indexing/starter` from the
-   Explorer. Open its `tests` folder and read the first failing test named by
-   PowerShell. The test gives the input and expected output.
-2. Use the [numbered build steps](STEPS_TO_FOLLOW.md) for the implementation sequence. Start with the
-   first relevant file below. Create paths marked **new** in the starter tree
-   if the feature needs them.
-3. Save each change with **Ctrl+S**. Rerun the learner test command after each
-   change. When stuck, open the corresponding reference beside your file and
-   compare one function at a time.
+In the VS Code Explorer, open `sessions/10-vector-database-and-indexing/starter/src/copilot`.
+The paths below are relative to that folder. Create files marked **new** in the
+starter tree. Save with **Ctrl+S** after each change and rerun the final command
+from Step 3. Use the reference links to compare one function at a time.
 
-| File in the starter | Completed example |
-| --- | --- |
-| [src/copilot/rag/service.py](starter/src/copilot/rag/service.py) | [Reference](solution/src/copilot/rag/service.py) |
-| `src/copilot/rag/postgres_benchmark.py` **new** | [Reference](solution/src/copilot/rag/postgres_benchmark.py) |
-| `src/copilot/rag/postgres_index.py` **new** | [Reference](solution/src/copilot/rag/postgres_index.py) |
-| [src/copilot/cli.py](starter/src/copilot/cli.py) | [Reference](solution/src/copilot/cli.py) |
-| [src/copilot/rag/cli.py](starter/src/copilot/rag/cli.py) | [Reference](solution/src/copilot/rag/cli.py) |
+| Order | File | Change to make |
+| --- | --- | --- |
+| 1 | `rag/postgres_index.py` **new** · [reference](solution/src/copilot/rag/postgres_index.py) | Create generation and vector storage with a known model identity and dimension. |
+| 2 | `rag/postgres_index.py` **new** · [reference](solution/src/copilot/rag/postgres_index.py) | Implement allowed-source top-k search and atomic replacement or withdrawal. |
+| 3 | [rag/service.py](starter/src/copilot/rag/service.py) · [reference](solution/src/copilot/rag/service.py) | Build the configured persistent index and encoder. |
+| 4 | `rag/postgres_benchmark.py` **new** · [reference](solution/src/copilot/rag/postgres_benchmark.py) | Use the isolated verifier state to test retrieval, failure rollback, and withdrawal. |
 
-## 3. Run your changes and check the integrated app
+For additional wiring, see [cli.py](solution/src/copilot/cli.py), [rag/cli.py](solution/src/copilot/rag/cli.py).
+
+Follow the [numbered lab instructions](STEPS_TO_FOLLOW.md) for the deliberate
+failure exercise and full exit criteria.
+
+## 5. Run your code and check the result
 
 ```powershell
 & $py scripts/session.py test 10 --variant starter
 & $py scripts/session.py run 10 --variant starter
-& $py -m copilot rag-postgres-verify
+Get-Item 'reports/cohort/session-10/starter/rag-postgres-verify.json'
 git status --short
 ```
 
-The last Copilot command uses the integrated application for comparison.
-Check the verifier report for top-k search, replacement rollback, and document withdrawal.
-Record the commands, observed output, and the deliberate failure exercise in
-[evidence.md](evidence.md). Stage only the files you changed when committing.
+The learner tests and run should both succeed. Confirm a failed replacement preserves the previous index and a successful withdrawal removes the affected chunks. Save the commands and
+observed results in [evidence.md](evidence.md).
+
+To compare with the root application, run:
+
+```powershell
+& $py -m copilot rag-postgres-verify
+```
+
+The `--variant starter` command above runs your learner code. This comparison
+runs the integrated application from the repository root.

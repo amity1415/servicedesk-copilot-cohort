@@ -1,55 +1,94 @@
-# 07 terminal and coding runbook
+# Session 07 — Fixed and recursive chunking
 
-Open the [lesson](README.md) and [build guide](BUILD_GUIDE.md). Start from the repository root
-with the [course environment](../../docs/BEGINNER_RUNBOOK.md#1-set-up-the-learner-checkout)
-installed. In PowerShell, run these three lines to confirm the folder and
-use its Python interpreter:
+Compare fixed-size windows with text-aware splitting at paragraphs and procedural steps.
+
+## 1. Open the project and prepare PowerShell
+
+In VS Code, choose **File → Open Folder** and select the repository. Choose
+**Terminal → New Terminal** and use PowerShell. Paste one command at a time.
+Keep the terminal at the repository root, even when editing session files.
 
 ```powershell
 Get-Location
 Get-Item pyproject.toml
 $py = '.\.venv\Scripts\python.exe'
+& $py --version
 ```
 
-## 1. Run the instructor solution and inspect the starter
+If the last command cannot find Python, follow the
+[beginner installation walkthrough](../../docs/BEGINNER_RUNBOOK.md#1-set-up-the-learner-checkout).
+Set `$py` again whenever you open a new terminal.
+
+**For this session.** Use the local teaching corpus prepared in the ingestion lesson.
+
+## 2. Run the finished example
+
+The first command runs the completed lesson. The second checks it with
+pytest. Wait for the PowerShell prompt before moving to the next command.
 
 ```powershell
 & $py scripts/session.py run 7
 & $py scripts/session.py test 7
+```
+
+Inspect the output:
+
+```powershell
+$r = Get-Content 'reports/cohort/session-07/solution/rag-chunks.json' -Raw | ConvertFrom-Json
+$r | Select-Object documents, chunks, strategy
+& $py scripts/session.py run 7 -- rag-chunks --strategy fixed
+Get-Content 'reports/cohort/session-07/solution/chunks.jsonl' -TotalCount 1
+& $py scripts/session.py run 7 -- rag-chunks --strategy recursive
+Get-Content 'reports/cohort/session-07/solution/chunks.jsonl' -TotalCount 1
+```
+
+Each strategy rewrites the same chunks inspection file. Read or save the first output before running the second strategy.
+
+## 3. Run the learner's tests
+
+```powershell
 & $py scripts/session.py test 7 --variant starter --previous-only
 & $py scripts/session.py test 7 --variant starter
 ```
 
-Expect the solution checks to pass. The last command is the learner's starting
-point and should fail on the new acceptance checks before implementation.
+The first command checks the inherited baseline. It should pass before you edit. The final command checks new learner behavior. A new acceptance check should
+fail on the untouched starter. Open the first failing test named by PowerShell
+under the starter's `tests` folder and look at its input and expected result.
+This session's new test files are [test_rag_recursive.py](starter/tests/test_rag_recursive.py).
 
-## 2. Write the code
+## 4. Write the code
 
-1. In VS Code, open `sessions/07-chunking-i-fixed-and-recursive/starter` from the
-   Explorer. Open its `tests` folder and read the first failing test named by
-   PowerShell. The test gives the input and expected output.
-2. Use the [build guide](BUILD_GUIDE.md) for the implementation sequence. Start with the
-   first relevant file below. Create paths marked **new** in the starter tree
-   if the feature needs them.
-3. Save each change with **Ctrl+S**. Rerun the learner test command after each
-   change. When stuck, open the corresponding reference beside your file and
-   compare one function at a time.
+In the VS Code Explorer, open `sessions/07-chunking-i-fixed-and-recursive/starter/src/copilot`.
+The paths below are relative to that folder. Create files marked **new** in the
+starter tree. Save with **Ctrl+S** after each change and rerun the final command
+from Step 3. Use the reference links to compare one function at a time.
 
-| File in the starter | Completed example |
-| --- | --- |
-| [src/copilot/rag/chunking.py](starter/src/copilot/rag/chunking.py) | [Reference](solution/src/copilot/rag/chunking.py) |
-| [src/copilot/cli.py](starter/src/copilot/cli.py) | [Reference](solution/src/copilot/cli.py) |
+| Order | File | Change to make |
+| --- | --- | --- |
+| 1 | [rag/chunking.py](starter/src/copilot/rag/chunking.py) · [reference](solution/src/copilot/rag/chunking.py) | Implement fixed windows, validate size and overlap, and retain stable source IDs. |
+| 2 | [rag/chunking.py](starter/src/copilot/rag/chunking.py) · [reference](solution/src/copilot/rag/chunking.py) | Prefer text boundaries for the recursive strategy. Keep an oversized numbered step intact. |
+| 3 | [cli.py](starter/src/copilot/cli.py) · [reference](solution/src/copilot/cli.py) | Expose the strategy switch and write the chunk inspection records. |
 
-## 3. Run your changes and check the integrated app
+Follow the [numbered lab instructions](STEPS_TO_FOLLOW.md) for the deliberate
+failure exercise and full exit criteria.
+
+## 5. Run your code and check the result
 
 ```powershell
 & $py scripts/session.py test 7 --variant starter
 & $py scripts/session.py run 7 --variant starter
-& $py -m copilot rag-chunks
+Get-Item 'reports/cohort/session-07/starter/rag-chunks.json'
 git status --short
 ```
 
-The last Copilot command uses the integrated application for comparison.
-Inspect the recursive chunk output for complete troubleshooting steps and retained section context.
-Record the commands, observed output, and the deliberate failure exercise in
-[evidence.md](evidence.md). Stage only the files you changed when committing.
+The learner tests and run should both succeed. Compare a long troubleshooting article under both strategies. Record how the boundaries change the context a reader receives. Save the commands and
+observed results in [evidence.md](evidence.md).
+
+To compare with the root application, run:
+
+```powershell
+& $py -m copilot rag-chunks
+```
+
+The `--variant starter` command above runs your learner code. This comparison
+runs the integrated application from the repository root.

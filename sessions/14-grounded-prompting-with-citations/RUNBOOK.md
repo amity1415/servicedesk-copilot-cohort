@@ -1,65 +1,97 @@
-# 14 terminal and coding runbook
+# Session 14 — Grounded answering and citations
 
-Open the [lesson](README.md) and [numbered build steps](STEPS_TO_FOLLOW.md). Start from the repository root
-with the [course environment](../../docs/BEGINNER_RUNBOOK.md#1-set-up-the-learner-checkout)
-installed. In PowerShell, run these three lines to confirm the folder and
-use its Python interpreter:
+Use a structured prompt to select evidence, validate citations and passages, and abstain when evidence is missing.
+
+## 1. Open the project and prepare PowerShell
+
+In VS Code, choose **File → Open Folder** and select the repository. Choose
+**Terminal → New Terminal** and use PowerShell. Paste one command at a time.
+Keep the terminal at the repository root, even when editing session files.
 
 ```powershell
 Get-Location
 Get-Item pyproject.toml
 $py = '.\.venv\Scripts\python.exe'
+& $py --version
 ```
 
-## 1. Run the instructor solution and inspect the starter
+If the last command cannot find Python, follow the
+[beginner installation walkthrough](../../docs/BEGINNER_RUNBOOK.md#1-set-up-the-learner-checkout).
+Set `$py` again whenever you open a new terminal.
+
+**For this session.** Use the offline verifier first. The separate live run requires an approved model and spending limit.
+
+## 2. Run the finished example
+
+The first command runs the completed lesson. The second checks it with
+pytest. Wait for the PowerShell prompt before moving to the next command.
 
 ```powershell
 & $py scripts/session.py run 14
 & $py scripts/session.py test 14
+```
+
+Inspect the output:
+
+```powershell
+$r = Get-Content 'reports/cohort/session-14/solution/rag-grounded-verify.json' -Raw | ConvertFrom-Json
+$r | Select-Object mode, live_generation_verified, human_review_completed
+$r.cases | ConvertTo-Json -Depth 5
+```
+
+Inspect both VPN citation outcomes and the unknown-policy abstention. Record whether the report covers a fixture or live generation.
+
+## 3. Run the learner's tests
+
+```powershell
 & $py scripts/session.py test 14 --variant starter --previous-only
 & $py scripts/session.py test 14 --variant starter
 ```
 
-Expect the solution checks to pass. The last command is the learner's starting
-point and should fail on the new acceptance checks before implementation.
+The first command checks the inherited baseline. It should pass before you edit. The final command checks new learner behavior. A new acceptance check should
+fail on the untouched starter. Open the first failing test named by PowerShell
+under the starter's `tests` folder and look at its input and expected result.
+This session's new test files are [test_rag_grounded.py](starter/tests/test_rag_grounded.py).
 
-## 2. Write the code
+## 4. Write the code
 
-1. In VS Code, open `sessions/14-grounded-prompting-with-citations/starter` from the
-   Explorer. Open its `tests` folder and read the first failing test named by
-   PowerShell. The test gives the input and expected output.
-2. Use the [numbered build steps](STEPS_TO_FOLLOW.md) for the implementation sequence. Start with the
-   first relevant file below. Create paths marked **new** in the starter tree
-   if the feature needs them.
-3. Save each change with **Ctrl+S**. Rerun the learner test command after each
-   change. When stuck, open the corresponding reference beside your file and
-   compare one function at a time.
+In the VS Code Explorer, open `sessions/14-grounded-prompting-with-citations/starter/src/copilot`.
+The paths below are relative to that folder. Create files marked **new** in the
+starter tree. Save with **Ctrl+S** after each change and rerun the final command
+from Step 3. Use the reference links to compare one function at a time.
 
-| File in the starter | Completed example |
-| --- | --- |
-| [src/copilot/config.py](starter/src/copilot/config.py) | [Reference](solution/src/copilot/config.py) |
-| [src/copilot/llm/client.py](starter/src/copilot/llm/client.py) | [Reference](solution/src/copilot/llm/client.py) |
-| [src/copilot/rag/pipeline.py](starter/src/copilot/rag/pipeline.py) | [Reference](solution/src/copilot/rag/pipeline.py) |
-| `src/copilot/rag/grounded.py` **new** | [Reference](solution/src/copilot/rag/grounded.py) |
-| `src/copilot/rag/grounded_fixture.py` **new** | [Reference](solution/src/copilot/rag/grounded_fixture.py) |
-| `src/copilot/rag/prompts/grounded-v2.md` **new** | [Reference](solution/src/copilot/rag/prompts/grounded-v2.md) |
-| `src/copilot/rag/prompts/grounded-v3.md` **new** | [Reference](solution/src/copilot/rag/prompts/grounded-v3.md) |
-| [src/copilot/cli.py](starter/src/copilot/cli.py) | [Reference](solution/src/copilot/cli.py) |
-| [src/copilot/rag/cli.py](starter/src/copilot/rag/cli.py) | [Reference](solution/src/copilot/rag/cli.py) |
+| Order | File | Change to make |
+| --- | --- | --- |
+| 1 | `rag/prompts/grounded-v3.md` **new** · [reference](solution/src/copilot/rag/prompts/grounded-v3.md) | Version the prompt, delimit retrieved source content, and ask for a structured evidence response. |
+| 2 | `rag/grounded.py` **new** · [reference](solution/src/copilot/rag/grounded.py) | Validate the output shape, retrieved IDs and supported excerpts. Abstain when validation fails or evidence is insufficient. |
+| 3 | `rag/grounded_fixture.py` **new** · [reference](solution/src/copilot/rag/grounded_fixture.py) | Cover Mac VPN, Windows 809 and an unknown policy with controlled responses. |
+| 4 | [llm/client.py](starter/src/copilot/llm/client.py) · [reference](solution/src/copilot/llm/client.py) | Apply the approved request settings and bounded model behavior. |
 
-## 3. Run your changes and check the integrated app
+For additional wiring, see [config.py](solution/src/copilot/config.py), [rag/pipeline.py](solution/src/copilot/rag/pipeline.py), [rag/prompts/grounded-v2.md](solution/src/copilot/rag/prompts/grounded-v2.md), [cli.py](solution/src/copilot/cli.py), [rag/cli.py](solution/src/copilot/rag/cli.py).
+
+Follow the [numbered lab instructions](STEPS_TO_FOLLOW.md) for the deliberate
+failure exercise and full exit criteria.
+
+## 5. Run your code and check the result
 
 ```powershell
 & $py scripts/session.py test 14 --variant starter
 & $py scripts/session.py run 14 --variant starter
-& $py -m copilot rag-grounded-verify
+Get-Item 'reports/cohort/session-14/starter/rag-grounded-verify.json'
 git status --short
 ```
 
-The last Copilot command uses the integrated application for comparison.
-Check that both VPN answers have valid citations and the unknown policy results in abstention.
-Record the commands, observed output, and the deliberate failure exercise in
-[evidence.md](evidence.md). Stage only the files you changed when committing.
+The learner tests and run should both succeed. Open each cited passage and check that it supports the answer. A valid citation ID alone does not prove support. Save the commands and
+observed results in [evidence.md](evidence.md).
+
+To compare with the root application, run:
+
+```powershell
+& $py -m copilot rag-grounded-verify
+```
+
+The `--variant starter` command above runs your learner code. This comparison
+runs the integrated application from the repository root.
 
 ## Run the live citation lab when authorized
 

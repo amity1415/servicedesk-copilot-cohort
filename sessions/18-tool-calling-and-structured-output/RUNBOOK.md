@@ -1,66 +1,98 @@
-# 18 terminal and coding runbook
+# Session 18 — Typed tool calling
 
-Open the [lesson](README.md) and [numbered build steps](STEPS_TO_FOLLOW.md). Start from the repository root
-with the [course environment](../../docs/BEGINNER_RUNBOOK.md#1-set-up-the-learner-checkout)
-installed. In PowerShell, run these three lines to confirm the folder and
-use its Python interpreter:
+Expose narrow tool contracts for knowledge, employee, assets, incidents and ticket operations. Validate requests before making a change.
+
+## 1. Open the project and prepare PowerShell
+
+In VS Code, choose **File → Open Folder** and select the repository. Choose
+**Terminal → New Terminal** and use PowerShell. Paste one command at a time.
+Keep the terminal at the repository root, even when editing session files.
 
 ```powershell
 Get-Location
 Get-Item pyproject.toml
 $py = '.\.venv\Scripts\python.exe'
+& $py --version
 ```
 
-## 1. Run the instructor solution and inspect the starter
+If the last command cannot find Python, follow the
+[beginner installation walkthrough](../../docs/BEGINNER_RUNBOOK.md#1-set-up-the-learner-checkout).
+Set `$py` again whenever you open a new terminal.
+
+**For this session.** Use the local HTTP verifier first. Its fixtures distinguish employee and analyst permissions.
+
+## 2. Run the finished example
+
+The first command runs the completed lesson. The second checks it with
+pytest. Wait for the PowerShell prompt before moving to the next command.
 
 ```powershell
 & $py scripts/session.py run 18
 & $py scripts/session.py test 18
+```
+
+Inspect the output:
+
+```powershell
+$r = Get-Content 'reports/cohort/session-18/solution/tools-verify.json' -Raw | ConvertFrom-Json
+$r | Select-Object search_documents, incident_ids, paid_calls
+$r.rejected_calls | ConvertTo-Json -Depth 5
+$r.ticket | ConvertTo-Json -Depth 5
+```
+
+Inspect which inputs passed and which were rejected, then check the persisted ticket and replay outcome.
+
+## 3. Run the learner's tests
+
+```powershell
 & $py scripts/session.py test 18 --variant starter --previous-only
 & $py scripts/session.py test 18 --variant starter
 ```
 
-Expect the solution checks to pass. The last command is the learner's starting
-point and should fail on the new acceptance checks before implementation.
+The first command checks the inherited baseline. It should pass before you edit. The final command checks new learner behavior. A new acceptance check should
+fail on the untouched starter. Open the first failing test named by PowerShell
+under the starter's `tests` folder and look at its input and expected result.
+This session's new test files are [test_service_desk_tools.py](starter/tests/test_service_desk_tools.py).
 
-## 2. Write the code
+## 4. Write the code
 
-1. In VS Code, open `sessions/18-tool-calling-and-structured-output/starter` from the
-   Explorer. Open its `tests` folder and read the first failing test named by
-   PowerShell. The test gives the input and expected output.
-2. Use the [numbered build steps](STEPS_TO_FOLLOW.md) for the implementation sequence. Start with the
-   first relevant file below. Create paths marked **new** in the starter tree
-   if the feature needs them.
-3. Save each change with **Ctrl+S**. Rerun the learner test command after each
-   change. When stuck, open the corresponding reference beside your file and
-   compare one function at a time.
+In the VS Code Explorer, open `sessions/18-tool-calling-and-structured-output/starter/src/copilot`.
+The paths below are relative to that folder. Create files marked **new** in the
+starter tree. Save with **Ctrl+S** after each change and rerun the final command
+from Step 3. Use the reference links to compare one function at a time.
 
-| File in the starter | Completed example |
-| --- | --- |
-| [src/copilot/api/app.py](starter/src/copilot/api/app.py) | [Reference](solution/src/copilot/api/app.py) |
-| [src/copilot/llm/client.py](starter/src/copilot/llm/client.py) | [Reference](solution/src/copilot/llm/client.py) |
-| [src/copilot/tools/password_reset.py](starter/src/copilot/tools/password_reset.py) | [Reference](solution/src/copilot/tools/password_reset.py) |
-| [src/copilot/tools/ticketing.py](starter/src/copilot/tools/ticketing.py) | [Reference](solution/src/copilot/tools/ticketing.py) |
-| [src/copilot/tools/verify_workflow.py](starter/src/copilot/tools/verify_workflow.py) | [Reference](solution/src/copilot/tools/verify_workflow.py) |
-| `src/copilot/api/tools.py` **new** | [Reference](solution/src/copilot/api/tools.py) |
-| `src/copilot/llm/service_desk.py` **new** | [Reference](solution/src/copilot/llm/service_desk.py) |
-| `src/copilot/tools/directory.py` **new** | [Reference](solution/src/copilot/tools/directory.py) |
-| `src/copilot/tools/service_desk.py` **new** | [Reference](solution/src/copilot/tools/service_desk.py) |
-| `src/copilot/tools/verify_tools.py` **new** | [Reference](solution/src/copilot/tools/verify_tools.py) |
+| Order | File | Change to make |
+| --- | --- | --- |
+| 1 | [tools/ticketing.py](starter/src/copilot/tools/ticketing.py) · [reference](solution/src/copilot/tools/ticketing.py) | Define `TicketDraft` with required fields and allowed values. |
+| 2 | `tools/service_desk.py` **new** · [reference](solution/src/copilot/tools/service_desk.py) | Enforce caller and asset scope before returning records or writing a ticket. |
+| 3 | `api/tools.py` **new** · [reference](solution/src/copilot/api/tools.py) | Expose tool endpoints with typed request and response structures. |
+| 4 | `llm/service_desk.py` **new** · [reference](solution/src/copilot/llm/service_desk.py) | Validate the proposed structured result and constrain schema repair to the lesson's allowed attempt. |
 
-## 3. Run your changes and check the integrated app
+For additional wiring, see [api/app.py](solution/src/copilot/api/app.py), [llm/client.py](solution/src/copilot/llm/client.py), [tools/password_reset.py](solution/src/copilot/tools/password_reset.py), [tools/verify_workflow.py](solution/src/copilot/tools/verify_workflow.py), [tools/directory.py](solution/src/copilot/tools/directory.py), [tools/verify_tools.py](solution/src/copilot/tools/verify_tools.py).
+
+Follow the [numbered lab instructions](STEPS_TO_FOLLOW.md) for the deliberate
+failure exercise and full exit criteria.
+
+## 5. Run your code and check the result
 
 ```powershell
 & $py scripts/session.py test 18 --variant starter
 & $py scripts/session.py run 18 --variant starter
-& $py -m copilot tools-verify
+Get-Item 'reports/cohort/session-18/starter/tools-verify.json'
 git status --short
 ```
 
-The last Copilot command uses the integrated application for comparison.
-Check the typed tool verifier for scoped reads, validated writes, and idempotent ticket creation.
-Record the commands, observed output, and the deliberate failure exercise in
-[evidence.md](evidence.md). Stage only the files you changed when committing.
+The learner tests and run should both succeed. Verify that an otherwise valid draft naming someone else's device fails, and that a replay does not duplicate the ticket. Save the commands and
+observed results in [evidence.md](evidence.md).
+
+To compare with the root application, run:
+
+```powershell
+& $py -m copilot tools-verify
+```
+
+The `--variant starter` command above runs your learner code. This comparison
+runs the integrated application from the repository root.
 
 ## Run the live exercise when authorized
 

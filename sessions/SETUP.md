@@ -5,6 +5,11 @@ Use the [project setup guide](../docs/PROJECT_SETUP.md) for software requirement
 environment variables, and troubleshooting. Each row links to a runbook with
 copy-and-paste commands, source files, and verification steps.
 
+For Sessions **01–20**, the runbooks lead you through the finished example,
+show you what output to inspect, identify the first files to edit in the
+starter, and finish by running and verifying your own implementation. Use
+the **Runbook** column in order, starting with Session 01.
+
 ## How to start each lab
 
 1. Open the linked lesson and read its instructor notes and setup row. Prepare

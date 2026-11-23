@@ -1,54 +1,88 @@
-# 01 terminal and coding runbook
+# Session 01 — Kickoff and setup
 
-Open the [lesson](README.md) and [build guide](BUILD_GUIDE.md). Start from the repository root
-with the [course environment](../../docs/BEGINNER_RUNBOOK.md#1-set-up-the-learner-checkout)
-installed. In PowerShell, run these three lines to confirm the folder and
-use its Python interpreter:
+Read a JSONL export (one JSON object per line), count tickets, and configure structured logging.
+
+## 1. Open the project and prepare PowerShell
+
+In VS Code, choose **File → Open Folder** and select the repository. Choose
+**Terminal → New Terminal** and use PowerShell. Paste one command at a time.
+Keep the terminal at the repository root, even when editing session files.
 
 ```powershell
 Get-Location
 Get-Item pyproject.toml
 $py = '.\.venv\Scripts\python.exe'
+& $py --version
 ```
 
-## 1. Run the instructor solution and inspect the starter
+If the last command cannot find Python, follow the
+[beginner installation walkthrough](../../docs/BEGINNER_RUNBOOK.md#1-set-up-the-learner-checkout).
+Set `$py` again whenever you open a new terminal.
+
+**For this session.** A Git checkout and the base course Python install. The ticket export is supplied.
+
+## 2. Run the finished example
+
+The first command runs the completed lesson. The second checks it with
+pytest. Wait for the PowerShell prompt before moving to the next command.
 
 ```powershell
 & $py scripts/session.py run 1
 & $py scripts/session.py test 1
+```
+
+Inspect the output:
+
+```powershell
+Get-Content data/tickets/historical_tickets.jsonl -TotalCount 2
+& $py scripts/session.py run 1 -- tickets-stats --by priority
+```
+
+The completed solution prints 5,000 tickets, including 850 Network & VPN tickets, and passes 17 tests. The priority command groups the same records by a different field.
+
+## 3. Run the learner's tests
+
+```powershell
 & $py scripts/session.py test 1 --variant starter
 ```
 
-Expect the solution checks to pass. The last command is the learner's starting
-point and should fail on the new acceptance checks before implementation.
+The final command checks new learner behavior. A new acceptance check should
+fail on the untouched starter. Open the first failing test named by PowerShell
+under the starter's `tests` folder and look at its input and expected result.
+This session's new test files are [test_config.py](starter/tests/test_config.py), [test_logging_setup.py](starter/tests/test_logging_setup.py), [test_tickets.py](starter/tests/test_tickets.py), [test_source_identity.py](starter/tests/test_source_identity.py).
 
-## 2. Write the code
+## 4. Write the code
 
-1. In VS Code, open `sessions/01-kickoff-and-project-setup/starter` from the
-   Explorer. Open its `tests` folder and read the first failing test named by
-   PowerShell. The test gives the input and expected output.
-2. Use the [build guide](BUILD_GUIDE.md) for the implementation sequence. Start with the
-   first relevant file below. Create paths marked **new** in the starter tree
-   if the feature needs them.
-3. Save each change with **Ctrl+S**. Rerun the learner test command after each
-   change. When stuck, open the corresponding reference beside your file and
-   compare one function at a time.
+In the VS Code Explorer, open `sessions/01-kickoff-and-project-setup/starter/src/copilot`.
+The paths below are relative to that folder. Create files marked **new** in the
+starter tree. Save with **Ctrl+S** after each change and rerun the final command
+from Step 3. Use the reference links to compare one function at a time.
 
-| File in the starter | Completed example |
-| --- | --- |
-| [src/copilot/logging_setup.py](starter/src/copilot/logging_setup.py) | [Reference](solution/src/copilot/logging_setup.py) |
-| [src/copilot/tickets.py](starter/src/copilot/tickets.py) | [Reference](solution/src/copilot/tickets.py) |
+| Order | File | Change to make |
+| --- | --- | --- |
+| 1 | [tickets.py](starter/src/copilot/tickets.py) · [reference](solution/src/copilot/tickets.py) | Implement `iter_tickets`. Open UTF-8, skip blank lines, validate each record, and attach the filename and line number to malformed-record errors. |
+| 2 | [tickets.py](starter/src/copilot/tickets.py) · [reference](solution/src/copilot/tickets.py) | Implement `count_by`. Check the field against `COUNTABLE_FIELDS`, then count each value. |
+| 3 | [logging_setup.py](starter/src/copilot/logging_setup.py) · [reference](solution/src/copilot/logging_setup.py) | Implement `configure_logging`. Apply the selected format and level, retain request IDs, and avoid duplicate handlers. |
 
-## 3. Run your changes and check the integrated app
+Follow the [numbered lab instructions](STEPS_TO_FOLLOW.md) for the deliberate
+failure exercise and full exit criteria.
+
+## 5. Run your code and check the result
 
 ```powershell
 & $py scripts/session.py test 1 --variant starter
 & $py scripts/session.py run 1 --variant starter
-& $py -m copilot tickets-stats
 git status --short
 ```
 
-The last Copilot command uses the integrated application for comparison.
-Expect 5,000 historical tickets. The Network & VPN category has 850.
-Record the commands, observed output, and the deliberate failure exercise in
-[evidence.md](evidence.md). Stage only the files you changed when committing.
+The learner tests and run should both succeed. Confirm your starter prints the same total. Open the malformed-record test and explain the error that it expects. Save the commands and
+observed results in [evidence.md](evidence.md).
+
+To compare with the root application, run:
+
+```powershell
+& $py -m copilot tickets-stats
+```
+
+The `--variant starter` command above runs your learner code. This comparison
+runs the integrated application from the repository root.
