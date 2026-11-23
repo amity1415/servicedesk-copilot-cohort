@@ -1,5 +1,8 @@
 # Project software and setup
 
+For a first run with copy-and-paste commands, open the
+[beginner terminal walkthrough](BEGINNER_RUNBOOK.md).
+
 Start with a local Python environment. Add the database and ticketing mock
 when a lab requires them, then use the Compose overlay for the MCP and HR
 integration. The [session setup checklist](../sessions/SETUP.md) gives the

@@ -4,6 +4,7 @@ Teaching materials, executable reference code and synthetic data for the 60-hour
 
 ## Start here
 
+- [Beginner terminal walkthrough](docs/BEGINNER_RUNBOOK.md)
 - [Project software and step-by-step setup](docs/PROJECT_SETUP.md)
 - [Session-by-session software and setup checklist](sessions/SETUP.md)
 - [Actual cumulative session implementations](sessions/IMPLEMENTATION_GUIDE.md)
