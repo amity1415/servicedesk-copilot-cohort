@@ -4,6 +4,8 @@ Teaching materials, executable reference code and synthetic data for the 60-hour
 
 ## Start here
 
+- [Session 00 software installation for Windows and macOS](sessions/00-software-installation/README.md)
+
 - [Beginner terminal walkthrough](docs/BEGINNER_RUNBOOK.md)
 - [Project software and step-by-step setup](docs/PROJECT_SETUP.md)
 - [Session-by-session software and setup checklist](sessions/SETUP.md)

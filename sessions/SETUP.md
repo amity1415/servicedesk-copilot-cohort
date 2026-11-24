@@ -1,5 +1,8 @@
 # Session-by-session setup
 
+**Session 00 — Install the software:** [Windows](00-software-installation/RUNBOOK-WINDOWS.md) ·
+[macOS](00-software-installation/RUNBOOK-MACOS.md)
+
 Start with the [beginner terminal walkthrough](../docs/BEGINNER_RUNBOOK.md).
 Use the [project setup guide](../docs/PROJECT_SETUP.md) for software requirements,
 environment variables, and troubleshooting. Each row links to a runbook with

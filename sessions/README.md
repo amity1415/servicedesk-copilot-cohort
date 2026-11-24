@@ -9,6 +9,7 @@ Each session has technical content, trainer notes, an implementation sequence, a
 
 | Session | Build increment |
 | --- | --- |
+| 00 | [Software installation for Windows and macOS](00-software-installation/README.md) |
 | 01 | [Kickoff and project setup](01-kickoff-and-project-setup/README.md) |
 | 02 | [ML basics on ticket data](02-ml-basics-on-ticket-data/README.md) |
 | 03 | [Neural networks, transformers and tokenization](03-neural-networks-transformers-and-tokenization/README.md) |
