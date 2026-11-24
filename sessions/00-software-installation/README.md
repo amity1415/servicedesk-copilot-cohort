@@ -8,7 +8,9 @@ for later labs.
 - [macOS installation runbook](RUNBOOK-MACOS.md)
 
 Install **VS Code**, the Microsoft **Python** extension, **Git**, and **Python**
-before Session 01. Install and start **Docker Desktop** before Session 10 or
+before Session 01. Both guides also cover the GitHub account and invitation,
+installing **GitHub CLI**, and checking access to the private course repository.
+Install and start **Docker Desktop** before Session 10 or
 any earlier optional Compose demo. Docker Desktop supplies the Docker CLI and
 Compose plugin. The course provides the data, application packages, and service
 definitions. Provider credentials, a telemetry collector, and optional model

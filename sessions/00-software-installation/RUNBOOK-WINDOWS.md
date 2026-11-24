@@ -33,6 +33,52 @@ git --version
 
 [Official Git for Windows download](https://git-scm.com/install/win)
 
+### Set up GitHub access
+
+Git tracks changes on your computer. GitHub hosts the course repository
+online. Use a GitHub account in your browser and install GitHub CLI (`gh`)
+for terminal sign-in.
+
+1. Sign in to GitHub, or create an account and verify your email address.
+2. Give your GitHub username to the instructor. Accept the invitation to the
+   private course repository while signed in with that account.
+
+[GitHub account setup](https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account) ·
+[Repository invitations](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/inviting-collaborators-to-a-personal-repository)
+
+### Install GitHub CLI and sign in
+
+In PowerShell, check for WinGet, then use it to install GitHub CLI:
+
+```powershell
+winget --version
+winget install --id GitHub.cli --exact --source winget
+```
+
+If WinGet is unavailable, download the **Windows MSI** from the official
+GitHub CLI site and run it. [GitHub CLI installation options](https://cli.github.com/)
+
+Open a fresh terminal. Run the commands in order. When GitHub CLI displays
+a one-time code and opens the browser, complete authorization with the same
+account that accepted the invitation.
+
+```powershell
+gh --version
+gh auth login --hostname github.com --git-protocol https --web
+gh auth status --hostname github.com
+gh auth setup-git --hostname github.com
+git ls-remote --exit-code https://github.com/amity1415/servicedesk-copilot-cohort.git refs/heads/codex/project-session-setup
+```
+
+The last command should print a commit ID and
+`refs/heads/codex/project-session-setup`. If GitHub reports that the repository
+cannot be found, confirm the account shown by `gh auth status` and check that
+you accepted the course invitation. Continue to Python setup after the check
+passes.
+
+[GitHub CLI sign-in](https://cli.github.com/manual/gh_auth_login) ·
+[Git credentials with GitHub CLI](https://cli.github.com/manual/gh_auth_setup-git)
+
 ## 3. Install Python
 
 The project requires Python **3.12 or newer**. This guide uses standard
